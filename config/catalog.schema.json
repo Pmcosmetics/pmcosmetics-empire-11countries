@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pmcosmetics.hub/schemas/catalog.schema.json",
+  "title": "PM Cosmetics Hub - Product Catalog Item",
+  "type": "object",
+  "required": [
+    "sku",
+    "name",
+    "brand",
+    "category",
+    "status",
+    "markets",
+    "pricing"
+  ],
+  "properties": {
+    "sku": {
+      "type": "string",
+      "pattern": "^PM-[A-Z0-9]{6,12}$",
+      "description": "Unique product identifier (PM-XXXXXX)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 255,
+      "description": "Product name in English"
+    },
+    "nameAr": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 255,
+      "description": "Product name in Arabic"
+    },
+    "brand": {
+      "type": "string",
+      "enum": [
+        "NIVEA",
+        "CeraVe",
+        "La Roche Posay",
+        "Vichy",
+        "Eucerin",
+        "Cetaphil",
+        "Cantu",
+        "Vaseline",
+        "PM Cosmetics",
+        "Other"
+      ],
+      "description": "Product brand"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Skincare",
+        "Haircare",
+        "Body Care",
+        "Makeup",
+        "Fragrance",
+        "Tools",
+        "Supplements",
+        "Bundles"
+      ],
+      "description": "Product category"
+    },
+    "subcategory": {
+      "type": "string",
+      "description": "Product subcategory"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Detailed product description"
+    },
+    "descriptionAr": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Product description in Arabic"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "inactive", "archived", "discontinued"],
+      "description": "Product status"
+    },
+    "markets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["EG", "SA", "AE", "KW", "QA", "BH", "OM", "JO", "PS", "LB", "IR"]
+      },
+      "minItems": 1,
+      "description": "Countries where product is available"
+    },
+    "pricing": {
+      "type": "object",
+      "required": ["EG"],
+      "properties": {
+        "EG": {
+          "type": "object",
+          "required": ["currency", "retail", "wholesale"],
+          "properties": {
+            "currency": { "type": "string", "const": "EGP" },
+            "retail": { "type": "number", "minimum": 0 },
+            "wholesale": { "type": "number", "minimum": 0 },
+            "cost": { "type": "number", "minimum": 0 }
+          }
+        },
+        "SA": {
+          "type": "object",
+          "properties": {
+            "currency": { "type": "string", "const": "SAR" },
+            "retail": { "type": "number", "minimum": 0 },
+            "wholesale": { "type": "number", "minimum": 0 },
+            "cost": { "type": "number", "minimum": 0 }
+          }
+        },
+        "AE": {
+          "type": "object",
+          "properties": {
+            "currency": { "type": "string", "const": "AED" },
+            "retail": { "type": "number", "minimum": 0 },
+            "wholesale": { "type": "number", "minimum": 0 },
+            "cost": { "type": "number", "minimum": 0 }
+          }
+        }
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "currency": { "type": "string" },
+          "retail": { "type": "number", "minimum": 0 },
+          "wholesale": { "type": "number", "minimum": 0 },
+          "cost": { "type": "number", "minimum": 0 }
+        }
+      },
+      "description": "Pricing per country"
+    },
+    "inventory": {
+      "type": "object",
+      "properties": {
+        "totalStock": { "type": "integer", "minimum": 0 },
+        "reorderLevel": { "type": "integer", "minimum": 0 },
+        "supplier": { "type": "string" },
+        "lastRestocked": { "type": "string", "format": "date-time" }
+      },
+      "description": "Inventory information"
+    },
+    "media": {
+      "type": "object",
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "description": "Product images URLs"
+        },
+        "videos": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "description": "Product video URLs"
+        }
+      },
+      "description": "Media files"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "barcode": { "type": "string" },
+        "weight": { "type": "number" },
+        "dimensions": {
+          "type": "object",
+          "properties": {
+            "length": { "type": "number" },
+            "width": { "type": "number" },
+            "height": { "type": "number" },
+            "unit": { "type": "string", "enum": ["cm", "in"] }
+          }
+        },
+        "expiryDate": { "type": "string", "format": "date" },
+        "batchNumber": { "type": "string" },
+        "certifications": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "description": "Additional metadata"
+    },
+    "seo": {
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string" },
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "metaDescription": { "type": "string", "maxLength": 160 }
+      },
+      "description": "SEO configuration"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  },
+  "additionalProperties": true
+}
