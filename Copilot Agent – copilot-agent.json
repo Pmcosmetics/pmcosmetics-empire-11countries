@@ -1,11 +1,4 @@
-{
-  "agent": "pmcosmetics-merge",
-  "enabled": true,
-  "instructions": "copilot-instructions.md",
-  "autoCommit": true,
-  "autoPush": true,
-  "mode": "full-automation"
-}
+
 name: PMCosmetics Auto Merge
 
 on:
