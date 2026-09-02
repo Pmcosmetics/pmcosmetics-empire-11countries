@@ -1,0 +1,60 @@
+- name: Install dependencies
+  run: |
+    sudo apt-get update
+    sudo apt-get install -y jq zip curl git
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+    sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install -y gh
+
+- name: Authenticate gh with PAT
+  env:
+    GITHUB_TOKEN_INPUT: ${{ secrets.AUDIT_PAT }}
+  run: |
+    echo "$GITHUB_TOKEN_INPUT" | gh auth login --with-token
+
+- name: Create audit script
+  run: |
+    cat > audit_accounts.sh <<'EOF'
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [ $# -lt 1 ]; then
+      echo "Usage: $0 username1 [username2 ...]"
+      exit 1
+    fi
+    for USER in "$@"; do
+      OUTDIR="audit_output/${USER}"
+      mkdir -p "$OUTDIR"
+      gh api users/"$USER" --jq '.' > "$OUTDIR/user.json" || echo "{}" > "$OUTDIR/user.json"
+      gh repo list "$USER" --limit 1000 --json name,fullName,visibility,sshUrl,url,description,updatedAt,createdAt,defaultBranch,fork,parentNameWithOwner > "$OUTDIR/repos.json"
+      gh api user/orgs -H "Accept: application/vnd.github+json" --jq '[ .[] | {login: .login, url: .url} ]' > "$OUTDIR/orgs.json" || echo "[]" > "$OUTDIR/orgs.json"
+      jq -r '.[].fullName' "$OUTDIR/repos.json" 2>/dev/null | while read -r REPO; do
+        if [ -z "$REPO" ]; then continue; fi
+        safe=$(echo "$REPO" | tr '/:' '__')
+        gh api repos/"$REPO" --jq '.' > "$OUTDIR/repo_${safe}_info.json" || true
+        gh api repos/"$REPO"/collaborators --jq '[ .[] | {login:.login,permissions:.permissions} ]' > "$OUTDIR/repo_${safe}_collaborators.json" || echo "[]" > "$OUTDIR/repo_${safe}_collaborators.json"
+        gh api repos/"$REPO"/keys --jq '[ .[] | {id:.id,title:.title,read_only:.read_only} ]' > "$OUTDIR/repo_${safe}_deploykeys.json" || echo "[]" > "$OUTDIR/repo_${safe}_deploykeys.json"
+        gh api repos/"$REPO"/hooks --jq '[ .[] | {id:.id,config:.config,events:.events,active:.active} ]' > "$OUTDIR/repo_${safe}_webhooks.json" || echo "[]" > "$OUTDIR/repo_${safe}_webhooks.json"
+        gh api repos/"$REPO"/actions/secrets --jq '{secrets: .secrets, total_count:.total_count}' > "$OUTDIR/repo_${safe}_secrets.json" || echo '{ "secrets": [], "total_count": 0 }' > "$OUTDIR/repo_${safe}_secrets.json"
+        gh api repos/"$REPO"/branches --jq '[ .[] | {name:.name,protected:.protected} ]' > "$OUTDIR/repo_${safe}_branches.json" || echo "[]" > "$OUTDIR/repo_${safe}_branches.json"
+        gh api repos/"$REPO"/actions/runners --jq '.' > "$OUTDIR/repo_${safe}_runners.json" || echo "{}" > "$OUTDIR/repo_${safe}_runners.json"
+      done
+    done
+    EOF
+    chmod +x audit_accounts.sh
+
+- name: Run audit
+  run: |
+    IFS=',' read -ra USERS <<< "${{ github.event.inputs.users }}"
+    ./audit_accounts.sh "${USERS[@]}"
+
+- name: Zip output
+  run: |
+    zip -r audit_output.zip audit_output || true
+
+- name: Upload artifact
+  uses: actions/upload-artifact@v4
+  with:
+    name: audit-output
+    path: audit_output.zip
