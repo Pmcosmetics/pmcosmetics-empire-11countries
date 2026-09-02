@@ -6,3 +6,31 @@
   "autoPush": true,
   "mode": "full-automation"
 }
+name: PMCosmetics Auto Merge
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Copilot Merge Agent
+        uses: github/copilot-actions@v1
+        with:
+          instructions-file: copilot-instructions.md
+
+      - name: Commit & Push Changes
+        run: |
+          git config user.name "PMCosmetics AutoBot"
+          git config user.email "bot@pmcosmetics.com"
+          git add .
+          git commit -m "Auto-merge: Unified 7 + 11 countries"
+          git push
