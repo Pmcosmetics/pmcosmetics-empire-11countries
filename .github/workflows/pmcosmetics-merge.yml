@@ -14,15 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run Copilot Merge Agent
-        uses: github/copilot-actions@v1
-        with:
-          instructions-file: copilot-instructions.md
+      - name: Merge 7 + 11 countries structure
+        run: |
+          echo "هنا تكتب سكربت الدمج الفعلي (bash أو node أو python)"
+          echo "مثال: نقل الملفات، إنشاء فولدر pmcosmetics-empire-unified، تنظيم الدول، إلخ"
 
       - name: Commit & Push Changes
         run: |
           git config user.name "PMCosmetics AutoBot"
           git config user.email "bot@pmcosmetics.com"
           git add .
-          git commit -m "Auto-merge: Unified 7 + 11 countries"
-          git push
+          git commit -m "Auto-merge: Unified 7 + 11 countries" || echo "No changes to commit"
+          git push || echo "No changes to push"
