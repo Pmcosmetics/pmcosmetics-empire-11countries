@@ -7,3 +7,12 @@ CREATE TABLE IF NOT EXISTS products (
   image TEXT,
   created_at TIMESTAMP DEFAULT NOW()
 );
+CREATE TABLE IF NOT EXISTS countries (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  code VARCHAR(10) NOT NULL,
+  currency VARCHAR(10) NOT NULL,
+  symbol VARCHAR(10) NOT NULL,
+  exchange_rate NUMERIC(10,4) DEFAULT 1,
+  created_at TIMESTAMP DEFAULT NOW()
+);
