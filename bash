@@ -5,3 +5,4 @@ mkdir src/api/countries
 mkdir src/api/orders
 mkdir src/config
 mkdir src/db
+pwd && ls -la
