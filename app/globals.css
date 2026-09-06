@@ -16,3 +16,16 @@ h1 { margin: 0; color: #fff; font-size: clamp(42px, 8vw, 68px); letter-spacing: 
 .state-id { color: var(--accent); font-weight: 700; } .state-label { color: var(--ink); } .state-value { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 0.13em; }
 .notice { margin: 32px 0 0; color: #777c8c; font-size: 12px; line-height: 1.6; }
 @media (max-width: 480px) { .gate-card { padding: 32px 24px; } .state-row { grid-template-columns: 44px 1fr; } .state-value { grid-column: 2; } }
+.intake-shell { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #090a0f; }
+.intake-card { width: min(100%, 560px); padding: 40px; border: 1px solid var(--line); border-radius: 20px; background: var(--panel); }
+.intake-kicker { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
+.intake-card h1 { margin-top: 18px; font-size: clamp(32px, 6vw, 48px); }
+.intake-card > p { color: var(--muted); line-height: 1.7; }
+.intake-card form { display: grid; gap: 10px; margin-top: 28px; }
+.intake-card label { color: var(--ink); font-size: 13px; font-weight: 700; }
+.intake-card input { width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: #0d0f16; }
+.intake-card small { color: var(--muted); line-height: 1.5; }
+.intake-card button { margin-top: 10px; padding: 13px 16px; border: 0; border-radius: 8px; color: #111; background: var(--accent); font-weight: 700; cursor: pointer; }
+.intake-card button:disabled { cursor: wait; opacity: .65; }
+.intake-message { padding: 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink) !important; }
+.intake-lock { margin-top: 28px; color: #777c8c; font-size: 11px; letter-spacing: .05em; }
