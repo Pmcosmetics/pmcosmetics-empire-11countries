@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PM Cosmetics HuB — Starter Catalog</title>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#fafafa;color:#171717}header{padding:28px 18px;text-align:center;background:#111;color:#fff}header h1{margin:0 0 8px}main{max-width:1050px;margin:auto;padding:18px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.card{background:#fff;border:1px solid #ddd;border-radius:16px;overflow:hidden;box-shadow:0 3px 14px #00000010}.card img{width:100%;height:230px;object-fit:contain;background:#f3f3f3}.body{padding:16px}.brand{font-size:13px;opacity:.65}.price{font-size:22px;font-weight:800;margin:10px 0}.btn{display:block;text-align:center;background:#111;color:#fff;text-decoration:none;padding:12px;border-radius:10px;font-weight:700}.muted{opacity:.7}.notice{padding:12px 14px;border:1px solid #ddd;border-radius:12px;margin-bottom:18px;background:#fff}
+</style>
+</head>
+<body>
+<header><h1>PM Cosmetics HuB</h1><div>Starter Catalog — مستحضرات تجميل فقط</div></header>
+<main><div class="notice">الأسعار المعروضة تجريبية وفق قاعدة MVP الحالية (السعر المرجعي + 30%)، ويجب تأكيد التوفر والسعر النهائي قبل إتمام الطلب.</div><section id="products" class="grid"></section><p id="error" class="muted"></p></main>
+<script>
+const fallbackImg='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450"><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="28" fill="#777">PM Cosmetics HuB</text></svg>');
+fetch('../feeds/catalog-starter.json').then(r=>r.json()).then(data=>{
+ const root=document.getElementById('products');
+ data.products.filter(p=>p.availability==='InStock').forEach(p=>{
+  const card=document.createElement('article');card.className='card';
+  const img=document.createElement('img');img.src=p.image_url||fallbackImg;img.alt=p.name_ar;img.onerror=()=>img.src=fallbackImg;
+  const body=document.createElement('div');body.className='body';
+  body.innerHTML=`<div class="brand">${p.brand} · ${p.category}</div><h2>${p.name_ar}</h2><p>${p.description_ar}</p><div class="price">${Number(p.price_pm).toFixed(2)} ${data.currency}</div><a class="btn" href="${p.whatsapp_cta}" target="_blank" rel="noopener">اطلب عبر واتساب</a>`;
+  card.append(img,body);root.append(card);
+ });
+}).catch(e=>document.getElementById('error').textContent='تعذر تحميل الكتالوج الآن.');
+</script>
+</body></html>

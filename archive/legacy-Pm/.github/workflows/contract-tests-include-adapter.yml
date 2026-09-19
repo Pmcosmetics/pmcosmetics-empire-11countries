@@ -1,0 +1,45 @@
+name: Contract Tests (include adapter files)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+    paths:
+      - 'contract-tests/**'
+      - 'adapters/**'
+      - 'services/adapters/**'
+      - '.github/workflows/contract-tests-include-adapter.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  contract-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch adapter branch files (epic01-adapter-contract)
+        run: |
+          # Fetch the adapter branch and copy only the adapter contract + shopify skeleton files
+          git fetch origin epic01-adapter-contract --no-tags
+          # Copy adapters/contract if present on the adapter branch
+          git checkout origin/epic01-adapter-contract -- adapters/contract || true
+          # Copy shopify skeleton service files if present on the adapter branch
+          git checkout origin/epic01-adapter-contract -- services/adapters/shopify-skeleton || true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run contract-tests (contract-tests package)
+        working-directory: contract-tests
+        run: |
+          npm ci || npm install --prefer-offline --no-audit --no-fund
+          npm test

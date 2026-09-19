@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PM Cosmetics HuB — Orders Admin</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div><h1>PM Cosmetics HuB</h1><p>لوحة متابعة الطلبات — آمنة</p></div><div class="header-actions"><button id="logout" class="btn secondary hidden">تسجيل الخروج</button><a class="catalog" href="../index.html">الكتالوج</a></div></header>
+<main>
+  <div id="loginGate" class="login-card">
+    <h2>دخول لوحة الطلبات</h2>
+    <p>بيانات العملاء لا تظهر إلا للمستخدمين المصرح لهم داخل Supabase.</p>
+    <button id="loginGithub" class="btn">الدخول بحساب GitHub</button>
+    <p id="loginError" class="error"></p>
+  </div>
+  <section id="dashboard" class="hidden">
+    <div class="privacy">🔒 البيانات الفعلية للطلبات محفوظة في قاعدة Supabase الخاصة. لا تستخدم <code>orders.csv</code> العام لتخزين أسماء العملاء أو أرقامهم أو عناوينهم أو رسائل واتساب.</div>
+    <section class="toolbar">
+      <input id="search" type="search" placeholder="بحث برقم الطلب أو المنتج أو الحالة…">
+      <select id="status"><option value="">كل الحالات</option><option>pending</option><option>confirmed</option><option>paid</option><option>shipped</option><option>delivered</option><option>cancelled</option></select>
+      <button id="reload">تحديث</button>
+    </section>
+    <div id="summary" class="summary"></div>
+    <div class="table-wrap"><table><thead><tr><th>الطلب</th><th>التاريخ</th><th>المنتج</th><th>الكمية</th><th>السعر</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="orders"><tr><td colspan="7">جارٍ التحميل…</td></tr></tbody></table></div>
+    <p id="error" class="error"></p>
+  </section>
+</main>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/dist/umd/supabase.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

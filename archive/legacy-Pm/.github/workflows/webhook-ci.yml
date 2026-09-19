@@ -1,0 +1,44 @@
+name: WhatsApp Webhook CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'services/whatsapp-webhook/**'
+      - '.github/workflows/webhook-ci.yml'
+  pull_request:
+    paths:
+      - 'services/whatsapp-webhook/**'
+      - '.github/workflows/webhook-ci.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/whatsapp-webhook
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: services/whatsapp-webhook/package.json
+      - name: Install dependencies
+        run: npm install --ignore-scripts
+      - name: Syntax check
+        run: node --check server.js
+      - name: Smoke check dependencies
+        run: node -e "require('express'); require('twilio'); require('@supabase/supabase-js'); console.log('dependencies ok')"
+
+  deploy-render:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.RENDER_DEPLOY_ENABLED == 'true'
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy hook
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          test -n "$RENDER_DEPLOY_HOOK"
+          curl --fail --silent --show-error -X POST "$RENDER_DEPLOY_HOOK"

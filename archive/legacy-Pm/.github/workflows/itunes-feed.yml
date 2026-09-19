@@ -1,0 +1,48 @@
+name: Update iTunes App Feed
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_id:
+        description: "Apple App Store app ID"
+        required: false
+        default: "1528993866"
+      country:
+        description: "App Store country code"
+        required: false
+        default: "eg"
+  schedule:
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch App Store metadata
+        env:
+          APP_ID: ${{ inputs.app_id || '1528993866' }}
+          COUNTRY: ${{ inputs.country || 'eg' }}
+        run: python3 scripts/fetch_itunes_app.py "$APP_ID" "$COUNTRY"
+
+      - name: Commit feed changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feeds/itunes
+          if git diff --cached --quiet; then
+            echo "No feed changes."
+            exit 0
+          fi
+          git commit -m "chore: update iTunes app feed"
+          git push

@@ -1,0 +1,10 @@
+{
+  "brand": "PM Cosmetics Hub",
+  "markets": ["Egypt", "Qatar", "Bahrain", "Saudi Arabia", "United Arab Emirates", "Kuwait"],
+  "canonical_name": "PM Cosmetics Hub",
+  "rules": {
+    "secrets_in_git": false,
+    "catalog_requires_validation": true,
+    "ledger_requires_validation": true
+  }
+}

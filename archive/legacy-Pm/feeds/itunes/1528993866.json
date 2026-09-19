@@ -1,0 +1,29 @@
+{
+  "id": 1528993866,
+  "name": "Elezaby",
+  "bundleId": "com.awfar.elezaby",
+  "primaryGenreName": "Medical",
+  "price": 0.0,
+  "currency": "EGP",
+  "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/04/53/5b/04535b38-d41b-f21d-2b38-76de784cc28b/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/100x100bb.jpg",
+  "artworkUrl512": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/04/53/5b/04535b38-d41b-f21d-2b38-76de784cc28b/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+  "trackViewUrl": "https://apps.apple.com/eg/app/elezaby/id1528993866?uo=4",
+  "screenshotUrls": [
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/6d/e5/3c/6de53c47-4b52-12ca-ac77-7954fab62704/05184704-be05-4d7a-bbf7-4c7bf72d6e87_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_13.38.45_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ab/80/49/ab804945-2e4a-54f3-814e-a17b8b479750/46dc2194-39e9-4621-ad6b-862ccfac5d53_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_14.05.49_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/29/1e/b3/291eb3e3-b422-1534-a069-d8094564fdd9/0ae9508c-07cf-416e-963b-3bdf36afae35_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_13.54.58_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/4c/82/99/4c829981-6124-bef0-5cb0-a49bdf451d40/d12015c2-82f8-46e1-9e0a-4db7c1e3f322_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_13.56.40_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9f/6c/2c/9f6c2ce9-0be8-d5a6-bdda-98e357c49c60/6c1b7b84-97f1-44a0-9037-25c9e393d7f7_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_13.58.15_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/19/b5/60/19b5608d-07f7-a85e-ee08-760178b1169a/5fc6c937-2faa-4b00-b07f-4fef34f119d9_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_14.01.06_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/19/f3/32/19f332fe-4941-871a-c6ae-66355c010596/8fb137ed-1c2c-48c0-9268-75e07f9aa8e6_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_14.02.15_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/59/96/c3/5996c3d9-023d-57bf-0ed5-bb9454167a82/3530c938-b6b7-4885-b6b0-18653763609d_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_14.03.46_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a1/df/30/a1df30bc-dc7a-5daf-74af-86a4b27dffd0/aaae2afb-94fb-48cd-a2ca-5828ae685624_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_14.04.32_iphoneseblack_portrait_1242x2208.png/392x696bb.png",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/00/3e/20/003e209d-3e58-edca-69e5-0c09ed000791/694a88f9-c312-408e-8327-e5fd8d8f6f0d_Simulator_Screen_Shot_-_iPhone_8_Plus_-_2021-03-08_at_14.05.08_iphoneseblack_portrait_1242x2208.png/392x696bb.png"
+  ],
+  "shortDescription": "",
+  "description": "El Ezaby pharmacies mobile application is your \"to go\" portal for all your medical, cosmetics, and health needs.\nEl Ezaby pharmacies mobile application offers:\n- Home Delivery.\n- Online Payment.\n- More than 11,000 products.\n- Detailed products' descriptions.\n- Online Medical insurance's prescriptions cash out.\n- Online Products' availability checking.\n- Scanning the product's bar code from your mobile's camera to make sure it's available.\n\nDownload the biggest pharmaceutical mobile application, and enjoy the promo codes and gifts.",
+  "seller": "awfar market",
+  "version": "9.0",
+  "releaseDate": "2020-08-26T07:00:00Z",
+  "currentVersionReleaseDate": "2026-01-22T09:18:20Z"
+}

@@ -1,0 +1,19 @@
+{
+  "product_code": "SKU-001",
+  "name": "Example Product",
+  "description": "Sample product for contract tests",
+  "brand": "PM Cosmetics",
+  "category": "skincare",
+  "attributes": {
+    "color": "rose",
+    "size": "50ml"
+  },
+  "skus": [
+    {
+      "sku": "SKU-001-RED",
+      "barcode": "1234567890123",
+      "attributes": { "variant": "red" },
+      "active": true
+    }
+  ]
+}

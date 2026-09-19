@@ -1,0 +1,64 @@
+name: CI — migrations validation & smoke tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-secrets:
+    name: Check CI secrets
+    runs-on: ubuntu-latest
+    outputs:
+      has_service_role: ${{ steps.check.outputs.has_service_role }}
+    steps:
+      - name: Check SUPABASE_SERVICE_ROLE_KEY
+        id: check
+        env:
+          SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SERVICE_ROLE_KEY" ]; then
+            echo "has_service_role=false" >> "$GITHUB_OUTPUT"
+            echo "SUPABASE_SERVICE_ROLE_KEY is not configured; smoke test will be skipped."
+          else
+            echo "has_service_role=true" >> "$GITHUB_OUTPUT"
+            echo "SUPABASE_SERVICE_ROLE_KEY is configured."
+          fi
+
+  validate:
+    name: Validate repository and migrations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate repository
+        run: npm run validate
+      - name: Validate migrations
+        run: npm run migrate:validate
+
+  smoke-tests:
+    name: Supabase smoke test
+    runs-on: ubuntu-latest
+    needs: [check-secrets, validate]
+    # Require deployment approval on the 'production' environment before this job runs.
+    environment: production
+    if: needs.check-secrets.outputs.has_service_role == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run smoke test
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run smoke-test
