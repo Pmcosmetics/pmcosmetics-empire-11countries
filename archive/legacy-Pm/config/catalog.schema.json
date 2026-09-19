@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pmcosmetics.example/schemas/catalog.schema.json",
+  "title": "PM Cosmetics Hub Catalog Item",
+  "type": "object",
+  "required": ["sku", "name", "status", "markets"],
+  "properties": {
+    "sku": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "brand": { "type": "string" },
+    "category": { "type": "string" },
+    "status": { "enum": ["draft", "active", "inactive", "archived"] },
+    "markets": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+    "currency": { "type": "string", "minLength": 3, "maxLength": 3 },
+    "price": { "type": "number", "minimum": 0 },
+    "stock": { "type": "integer", "minimum": 0 },
+    "media": { "type": "array", "items": { "type": "string", "format": "uri" } },
+    "description": { "type": "string" }
+  },
+  "additionalProperties": true
+}

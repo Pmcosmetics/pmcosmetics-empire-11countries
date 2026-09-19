@@ -1,0 +1,39 @@
+name: Contract Tests
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/contract-tests.yml'
+      - 'adapters/**'
+      - 'contract-tests/**'
+      - 'services/adapters/**'
+      - 'services/commerce-hub/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch adapter branch files
+        run: |
+          git fetch origin epic01-adapter-contract --no-tags
+          git checkout origin/epic01-adapter-contract -- adapters/contract || true
+          git checkout origin/epic01-adapter-contract -- services/adapters/shopify-skeleton || true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run contract tests
+        run: |
+          npm ci || npm install --prefer-offline --no-audit --no-fund
+          npm run test:contracts

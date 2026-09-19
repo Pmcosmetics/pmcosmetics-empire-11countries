@@ -1,0 +1,32 @@
+{
+  "name": "@pmcosmetics/mobile",
+  "version": "1.0.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-native": "0.72.0",
+    "expo": "^49.0.0",
+    "@react-navigation/native": "^6.1.0",
+    "@react-navigation/bottom-tabs": "^6.5.0",
+    "@react-navigation/native-stack": "^6.9.0",
+    "react-native-screens": "^3.25.0",
+    "react-native-safe-area-context": "^4.7.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "react-redux": "^8.1.3",
+    "axios": "^1.5.0",
+    "@react-query/native": "^3.39.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.0",
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.72.0"
+  }
+}

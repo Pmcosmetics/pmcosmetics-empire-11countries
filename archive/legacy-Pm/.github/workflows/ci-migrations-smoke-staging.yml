@@ -1,0 +1,63 @@
+name: CI — staging smoke test
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-staging-secrets:
+    name: Check staging CI secrets
+    runs-on: ubuntu-latest
+    outputs:
+      has_service_role: ${{ steps.check.outputs.has_service_role }}
+    steps:
+      - name: Check STAGING_SUPABASE_SERVICE_ROLE_KEY
+        id: check
+        env:
+          SERVICE_ROLE_KEY: ${{ secrets.STAGING_SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SERVICE_ROLE_KEY" ]; then
+            echo "has_service_role=false" >> "$GITHUB_OUTPUT"
+            echo "STAGING_SUPABASE_SERVICE_ROLE_KEY is not configured; staging smoke test will be skipped."
+          else
+            echo "has_service_role=true" >> "$GITHUB_OUTPUT"
+            echo "STAGING_SUPABASE_SERVICE_ROLE_KEY is configured."
+          fi
+
+  validate:
+    name: Validate repository and migrations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate repository
+        run: npm run validate
+      - name: Validate migrations
+        run: npm run migrate:validate
+
+  smoke-tests-staging:
+    name: Supabase smoke test (staging)
+    runs-on: ubuntu-latest
+    needs: [check-staging-secrets, validate]
+    environment: staging
+    if: needs.check-staging-secrets.outputs.has_service_role == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run staging smoke test
+        env:
+          SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.STAGING_SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run smoke-test

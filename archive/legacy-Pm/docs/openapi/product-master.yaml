@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: PM Cosmetics Commerce Hub Product Master API
+  version: 0.1.0
+paths:
+  /api/v1/products:
+    get:
+      summary: List products
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Create product
+      responses:
+        '201': { description: Created }
+  /api/v1/products/{id}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string } }
+    get:
+      summary: Get product
+      responses:
+        '200': { description: OK }
+    patch:
+      summary: Update product
+      responses:
+        '200': { description: Updated }
+    delete:
+      summary: Delete product
+      responses:
+        '204': { description: Deleted }
+  /api/v1/skus:
+    get:
+      summary: List SKUs
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Create SKU
+      responses:
+        '201': { description: Created }
+  /api/v1/skus/{id}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string } }
+    get:
+      summary: Get SKU
+      responses:
+        '200': { description: OK }
+    patch:
+      summary: Update SKU
+      responses:
+        '200': { description: Updated }
+  /api/v1/inventory/{skuId}/adjust:
+    post:
+      summary: Adjust inventory
+      responses:
+        '202': { description: Accepted }
+  /api/v1/inventory/{skuId}/reserve:
+    post:
+      summary: Reserve inventory
+      description: Draft contract; route currently accepts the request and returns 202 without persistence.
+      responses:
+        '202': { description: Accepted }
+  /api/v1/inventory/{skuId}/commit:
+    post:
+      summary: Commit inventory reservation
+      description: Draft contract; route currently accepts the request and returns 202 without persistence.
+      responses:
+        '202': { description: Accepted }

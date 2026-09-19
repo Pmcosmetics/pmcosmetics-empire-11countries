@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: pmcosmetics-db
+    environment:
+      POSTGRES_USER: pmcosmetics
+      POSTGRES_PASSWORD: pmcosmetics123
+      POSTGRES_DB: pmcosmetics
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pmcosmetics-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pmcosmetics"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: pmcosmetics-cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - pmcosmetics-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  pmcosmetics-network:
+    driver: bridge

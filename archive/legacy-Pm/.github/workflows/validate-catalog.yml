@@ -1,0 +1,32 @@
+name: Validate catalog (images + CTA)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'feeds/catalog-starter.json'
+      - 'pages/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-catalog.yml'
+  pull_request:
+    paths:
+      - 'feeds/catalog-starter.json'
+      - 'pages/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-catalog.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: sudo apt-get update && sudo apt-get install -y jq curl
+      - name: Run validation script
+        run: |
+          chmod +x ./scripts/validate_catalog.sh
+          ./scripts/validate_catalog.sh
