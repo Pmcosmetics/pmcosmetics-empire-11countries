@@ -1,0 +1,41 @@
+name: PMCosmetics Auto Merge
+
+on:
+  workflow_dispatch:
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create unified structure
+        run: |
+          rm -rf pmcosmetics-empire-unified
+          mkdir -p pmcosmetics-empire-unified/countries
+          mkdir -p pmcosmetics-empire-unified/global
+          mkdir -p pmcosmetics-empire-unified/catalog
+          mkdir -p pmcosmetics-empire-unified/assets
+          mkdir -p pmcosmetics-empire-unified/scripts
+          mkdir -p pmcosmetics-empire-unified/styles
+          mkdir -p pmcosmetics-empire-unified/dashboard
+
+      - name: Merge 7 countries version
+        run: |
+          cp -r pmcosmetics-7countries/* pmcosmetics-empire-unified/ || true
+          cp -r pmcosmetics-7countries/countries/* pmcosmetics-empire-unified/countries/ || true
+
+      - name: Merge 11 countries version
+        run: |
+          cp -r pmcosmetics-11countries/* pmcosmetics-empire-unified/ || true
+          cp -r pmcosmetics-11countries/countries/* pmcosmetics-empire-unified/countries/ || true
+
+      - name: Commit & Push Changes
+        run: |
+          git config user.name "PMCosmetics AutoBot"
+          git config user.email "bot@pmcosmetics.com"
+          git add .
+          git commit -m "Unified merge of 7 + 11 countries" || echo "No changes"
+          git push || echo "No push"
