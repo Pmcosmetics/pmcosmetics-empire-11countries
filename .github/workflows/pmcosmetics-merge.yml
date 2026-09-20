@@ -1,41 +1,44 @@
-name: PMCosmetics Auto Merge
+name: PM Cosmetics CI
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pm-cosmetics-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  merge:
+  build-and-validate:
+    name: Build and validate
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Create unified structure
-        run: |
-          rm -rf pmcosmetics-empire-unified
-          mkdir -p pmcosmetics-empire-unified/countries
-          mkdir -p pmcosmetics-empire-unified/global
-          mkdir -p pmcosmetics-empire-unified/catalog
-          mkdir -p pmcosmetics-empire-unified/assets
-          mkdir -p pmcosmetics-empire-unified/scripts
-          mkdir -p pmcosmetics-empire-unified/styles
-          mkdir -p pmcosmetics-empire-unified/dashboard
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-      - name: Merge 7 countries version
-        run: |
-          cp -r pmcosmetics-7countries/* pmcosmetics-empire-unified/ || true
-          cp -r pmcosmetics-7countries/countries/* pmcosmetics-empire-unified/countries/ || true
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Merge 11 countries version
-        run: |
-          cp -r pmcosmetics-11countries/* pmcosmetics-empire-unified/ || true
-          cp -r pmcosmetics-11countries/countries/* pmcosmetics-empire-unified/countries/ || true
+      - name: Build
+        run: npm run build
 
-      - name: Commit & Push Changes
-        run: |
-          git config user.name "PMCosmetics AutoBot"
-          git config user.email "bot@pmcosmetics.com"
-          git add .
-          git commit -m "Unified merge of 7 + 11 countries" || echo "No changes"
-          git push || echo "No push"
+      - name: Validate
+        run: npm run validate
