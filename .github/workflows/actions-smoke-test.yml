@@ -1,0 +1,14 @@
+name: PM Cosmetics Actions Smoke Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  actions-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify GitHub Actions runner
+        run: |
+          echo "PM Cosmetics Hub Actions smoke test"
+          node --version
+          npm --version
