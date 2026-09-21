@@ -1,0 +1,16 @@
+name: PM Cosmetics Dispatcher Diagnostic
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  dispatcher-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Runner smoke check
+        run: |
+          echo "PM Cosmetics dispatcher diagnostic"
+          node --version
+          npm --version
