@@ -30,10 +30,4 @@ app.get("/", (_req, res) => {
   });
 });
 
-if (process.argv[1] === new URL(import.meta.url).pathname) {
-  app.listen(port, () => {
-    console.log(`PM Cosmetics Hub API listening on :${port} (Gate CLOSED)`);
-  });
-}
-
 export default app;
