@@ -1,4 +1,5 @@
 name: PM Cosmetics Hub CI
+# Runner recovery check: canonical CI only.
 
 on:
   push:
