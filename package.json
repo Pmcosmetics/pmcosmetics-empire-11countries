@@ -12,9 +12,10 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "validate": "node scripts/validate.mjs && node scripts/validate-catalog.mjs && node scripts/validate-inventory.mjs",
-    "test": "jest",
+    "test": "node scripts/test-gate.mjs",
     "test:watch": "jest --watch",
-    "deploy": "npm run build && npm run validate"
+    "deploy": "npm run build && npm run validate",
+    "start": "node scripts/start.mjs"
   },
   "dependencies": {
     "axios": "^1.6.0",
