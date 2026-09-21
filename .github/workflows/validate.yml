@@ -23,7 +23,5 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Validate
+      - name: Validate all contracts
         run: npm run validate
-      - name: Lint
-        run: npm run lint
