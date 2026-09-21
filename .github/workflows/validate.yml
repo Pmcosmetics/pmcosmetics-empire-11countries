@@ -11,10 +11,14 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - name: Checkout repository without marketplace actions
-        run: |
-          git clone --depth 1 --branch "${GITHUB_REF_NAME}" "https://github.com/${GITHUB_REPOSITORY}.git" .
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          token: ${{ github.token }}
+          persist-credentials: false
+          fetch-depth: 1
       - name: Runtime
         run: |
           node --version
