@@ -3,8 +3,6 @@ name: Validate PM Cosmetics Hub
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -14,13 +12,13 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
+      - name: Checkout repository without marketplace actions
+        run: |
+          git clone --depth 1 --branch "${GITHUB_REF_NAME}" "https://github.com/${GITHUB_REPOSITORY}.git" .
+      - name: Runtime
+        run: |
+          node --version
+          npm --version
       - name: Install dependencies
         run: npm ci
       - name: Validate all contracts
