@@ -15,8 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git clone --depth 1 --branch "${GITHUB_REF_NAME}" "https://github.com/${GITHUB_REPOSITORY}.git" .
+          git clone --depth 1 --branch "${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}" "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
 
       - name: Runtime
         run: |
