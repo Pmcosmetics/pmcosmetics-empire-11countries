@@ -1,12 +1,12 @@
 # PM Cosmetics Hub - Setup Guide
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
-- Node.js >= 18.0.0
-- npm >= 9.0.0
+- Node.js 20 (the repository's CI runtime)
+- npm 9+
 - Git
-- Docker (optional, for database)
+- Docker (optional; the current checked-in API does not require PostgreSQL to start)
 
 ### 1. Clone Repository
 ```bash
@@ -16,246 +16,65 @@ cd pmcosmetics-empire-11countries
 
 ### 2. Install Dependencies
 ```bash
-npm install
+npm ci
 ```
 
-### 3. Setup Environment Variables
-```bash
-cp .env.example .env
-# Edit .env and fill in your API keys and secrets
-```
+### 3. Environment
+Copy `.env.example` to `.env` only when you need environment-backed integrations. Never commit secrets.
 
-### 4. Initialize Database
+### 4. Build, Validate, and Test
 ```bash
-# If using PostgreSQL with Docker
-docker run -d \
-  --name pmcosmetics-db \
-  -e POSTGRES_USER=pmcosmetics \
-  -e POSTGRES_PASSWORD=your_secure_password \
-  -e POSTGRES_DB=pmcosmetics \
-  -p 5432:5432 \
-  postgres:15
-```
-
-### 5. Validate Project
-```bash
+npm run build
 npm run validate
+npm test
 ```
 
-### 6. Start Development Server
+### 5. Start the API
 ```bash
-npm run dev
+npm start
 ```
 
-Server will run on `http://localhost:3000`
+The current server exposes:
+- `GET /api/health` → health response with the publication gate marked `CLOSED`
+- `/api/products` → intentionally returns `503 DATA_INTAKE_LOCKED` until verified product intake is available
 
----
+## Configuration
 
-## 📋 Configuration
+- Markets: `config/markets.json`
+- Catalog contract: `config/catalog.schema.json`
+- Product staging: `data/products/`
+- Real product-image staging: `data/images/real/`
 
-### Markets Configuration
-Edit `config/markets.json` to manage the 11 countries
+The repository currently requires evidence-backed catalog and inventory validation before publication. Do not add guessed SKU, name, price, stock, barcode, or image values.
 
-### Catalog Schema
-The product schema is defined in `config/catalog.schema.json`
+## Current Implementation Status
 
-### Environment Variables
-Copy `config/integrations.example.env` to `.env` and add:
-- Shopify API credentials
-- Instagram Business credentials
-- Etsy API keys
-- WhatsApp Business API token
-- Notion API key
-- Database connection strings
+The repository contains the validation/build/test gate and a minimal API server. Database, authentication, product intake, and channel integrations are not yet implemented as production services in the current `main` branch.
 
----
+The checked-in `src/db/db.ts` is currently not wired into the running server; treat it as unfinished infrastructure rather than an active database layer.
 
-## 🔌 Integration Setup
+## Testing
 
-### Shopify
-1. Create Shopify app at https://partners.shopify.com/
-2. Get API credentials
-3. Add to `.env` file
-4. Run: `npm run sync:shopify`
-
-### Instagram
-1. Create Facebook App at https://developers.facebook.com/
-2. Add Instagram Business credentials
-3. Get long-lived access token
-4. Add to `.env` file
-
-### Etsy
-1. Register app at https://www.etsy.com/developers/
-2. Get OAuth credentials
-3. Add to `.env` file
-
-### WhatsApp Business
-1. Get Business Account at Meta
-2. Create app and get phone number ID
-3. Generate access token
-4. Add to `.env` file
-
----
-
-## 📦 Database Setup
-
-### PostgreSQL Schema
-```bash
-npm run db:migrate
-```
-
-### Seed Sample Data
-```bash
-npm run db:seed
-```
-
----
-
-## 🧪 Testing
-
-### Run All Tests
+Run the contract gate with:
 ```bash
 npm test
 ```
 
-### Run Tests in Watch Mode
+## Deployment
+
+The repository's canonical CI workflow runs:
 ```bash
-npm run test:watch
-```
-
-### Generate Coverage Report
-```bash
-npm test -- --coverage
-```
-
----
-
-## 📊 Data Management
-
-### Validate Catalog
-```bash
-npm run validate:catalog
-```
-
-### Validate Inventory
-```bash
-npm run validate:inventory
-```
-
-### Sync Inventory from Shopify
-```bash
-npm run sync:inventory
-```
-
-### Update Prices
-```bash
-npm run sync:prices
-```
-
-### Generate Reports
-```bash
-npm run generate:reports
-```
-
----
-
-## 🚀 Deployment
-
-### Development
-```bash
-npm run dev
-```
-
-### Production Build
-```bash
+npm ci
 npm run build
-npm start
+npm run validate
+npm test
 ```
 
-### Deploy to Vercel
-```bash
-vercel deploy --prod
-```
+GitHub Pages, Supabase, and external sales-channel integrations require separate deployment/configuration work.
 
-### Deploy to GitHub Pages
-```bash
-npm run build
-npm run deploy
-```
+## Security
 
----
-
-## 🔐 Security Checklist
-
-- [ ] Never commit `.env` file
-- [ ] Rotate API keys regularly
-- [ ] Use environment variables for all secrets
-- [ ] Enable HTTPS in production
-- [ ] Setup firewall rules
-- [ ] Enable database encryption
-- [ ] Configure CORS properly
-- [ ] Use strong JWT secrets
-- [ ] Enable rate limiting
-- [ ] Setup monitoring and logging
-
----
-
-## 📱 Mobile App Setup
-
-### React Native Setup
-```bash
-cd app/mobile
-npm install
-```
-
-### Build iOS
-```bash
-npm run build:ios
-```
-
-### Build Android
-```bash
-npm run build:android
-```
-
----
-
-## 🐛 Troubleshooting
-
-### Port Already in Use
-```bash
-# Change PORT in .env
-PORT=3001 npm run dev
-```
-
-### Database Connection Error
-- Check DATABASE_URL in .env
-- Verify database is running
-- Check credentials
-
-### API Integration Issues
-- Verify API keys in .env
-- Check API rate limits
-- Review logs for errors
-
----
-
-## 📞 Support
-
-For issues or questions:
-- 📧 Email: tech@pmcosmetics.hub
-- 💬 Discord: [Join Server]
-- 📱 WhatsApp: Business Support
-
----
-
-## 📚 Additional Resources
-
-- [Architecture Documentation](./ARCHITECTURE.md)
-- [API Documentation](./API.md)
-- [Deployment Guide](./DEPLOYMENT.md)
-- [Security Guide](./SECURITY.md)
-
----
-
-**Happy Building! 🚀**
+- Never commit `.env` or credentials.
+- Keep secrets in the deployment platform's secret store.
+- Do not publish unverified product data.
+- Review `docs/SECURITY.md` before enabling integrations.
