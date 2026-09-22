@@ -1,5 +1,5 @@
 name: PM Cosmetics Hub CI
-# Runner recovery check: canonical CI only.
+# Canonical CI for the PM Cosmetics Hub repository.
 
 on:
   push:
@@ -23,9 +23,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          token: ${{ github.token }}
           persist-credentials: false
           fetch-depth: 1
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
       - name: Runtime
         run: |
