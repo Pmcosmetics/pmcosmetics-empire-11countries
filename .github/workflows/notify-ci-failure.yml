@@ -2,7 +2,7 @@ name: Notify CI failures
 
 on:
   workflow_run:
-    workflows: [PM Cosmetics CI]
+    workflows: ["PM Cosmetics Hub CI"]
     types: [completed]
   workflow_dispatch:
     inputs:
