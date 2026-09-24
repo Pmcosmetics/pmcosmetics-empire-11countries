@@ -2,10 +2,8 @@ name: Notify CI failures
 
 on:
   workflow_run:
-    workflows:
-      - PM Cosmetics CI
-    types:
-      - completed
+    workflows: [PM Cosmetics CI]
+    types: [completed]
   workflow_dispatch:
     inputs:
       channel:
@@ -13,10 +11,7 @@ on:
         required: true
         default: both
         type: choice
-        options:
-          - both
-          - slack
-          - email
+        options: [both, slack, email]
 
 permissions:
   actions: read
@@ -29,57 +24,36 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      SMTP_HOST: ${{ secrets.SMTP_HOST }}
-      SMTP_PORT: ${{ secrets.SMTP_PORT }}
-      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-      ALERT_FROM: ${{ secrets.ALERT_FROM }}
       ALERT_TO: ${{ secrets.ALERT_TO }}
-
     steps:
-      - name: Send Slack notification
+      - name: Notify through configured Slack webhook
         if: ${{ env.SLACK_WEBHOOK_URL != '' && (github.event_name == 'workflow_run' || inputs.channel == 'both' || inputs.channel == 'slack') }}
-        uses: slackapi/slack-github-action@v2.1.1
-        with:
-          webhook: ${{ env.SLACK_WEBHOOK_URL }}
-          webhook-type: incoming-webhook
-          payload: |
-            {
-              "text": "${{ github.event_name == 'workflow_dispatch' && '[DRY RUN] PM Cosmetics CI notification' || 'PM Cosmetics CI failed' }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "*:warning: ${{ github.event_name == 'workflow_dispatch' && '[DRY RUN] ' || '' }}PM Cosmetics CI notification*\n*Branch:* `${{ github.event_name == 'workflow_dispatch' && github.ref_name || github.event.workflow_run.head_branch }}`\n*Commit:* `${{ github.event_name == 'workflow_dispatch' && github.sha || github.event.workflow_run.head_sha }}`\n<${{ github.event_name == 'workflow_dispatch' && github.server_url || github.event.workflow_run.html_url }}|View GitHub run>"
-                  }
-                }
-              ]
-            }
-
-      - name: Send email notification
-        if: ${{ env.SMTP_HOST != '' && env.SMTP_PORT != '' && env.SMTP_USERNAME != '' && env.SMTP_PASSWORD != '' && env.ALERT_FROM != '' && env.ALERT_TO != '' && (github.event_name == 'workflow_run' || inputs.channel == 'both' || inputs.channel == 'email') }}
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: ${{ env.SMTP_HOST }}
-          server_port: ${{ env.SMTP_PORT }}
-          username: ${{ env.SMTP_USERNAME }}
-          password: ${{ env.SMTP_PASSWORD }}
-          subject: "${{ github.event_name == 'workflow_dispatch' && '[DRY RUN] PM Cosmetics CI notification' || '[CI FAILED] PM Cosmetics CI' }}"
-          to: ${{ env.ALERT_TO }}
-          from: ${{ env.ALERT_FROM }}
-          secure: true
-          body: |
-            ${{ github.event_name == 'workflow_dispatch' && '[DRY RUN] PM Cosmetics CI notification' || 'PM Cosmetics CI failed.' }}
-
-            Branch: ${{ github.event_name == 'workflow_dispatch' && github.ref_name || github.event.workflow_run.head_branch }}
-            Commit: ${{ github.event_name == 'workflow_dispatch' && github.sha || github.event.workflow_run.head_sha }}
-            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-            This is a notification test or CI alert only. Gate remains CLOSED.
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+          payload = {
+            "text": "PM Cosmetics CI notification",
+            "blocks": [{
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "*PM Cosmetics CI notification*\nBranch: `%s`\nCommit: `%s`\n<%s|View GitHub run>"
+                  % (os.environ.get("GITHUB_REF_NAME",""), os.environ.get("GITHUB_SHA",""), os.environ["RUN_URL"])
+              }
+            }]
+          }
+          req = urllib.request.Request(
+            os.environ["SLACK_WEBHOOK_URL"],
+            data=json.dumps(payload).encode(),
+            headers={"Content-Type":"application/json"}
+          )
+          urllib.request.urlopen(req, timeout=15).read()
+          PY
 
       - name: Report unconfigured notification channels
-        if: ${{ (github.event_name == 'workflow_dispatch' && ((inputs.channel == 'slack' && env.SLACK_WEBHOOK_URL == '') || (inputs.channel == 'email' && env.SMTP_HOST == '') || (inputs.channel == 'both' && env.SLACK_WEBHOOK_URL == '' && env.SMTP_HOST == ''))) || (github.event_name == 'workflow_run' && env.SLACK_WEBHOOK_URL == '' && env.SMTP_HOST == '') }}
+        if: ${{ (github.event_name == 'workflow_dispatch' && inputs.channel != 'slack' && env.SLACK_WEBHOOK_URL == '') || (github.event_name == 'workflow_run' && env.SLACK_WEBHOOK_URL == '') }}
         run: |
-          echo "The requested notification channel is not fully configured."
-          echo "Configure the repository secrets documented in .github/CI-NOTIFICATIONS.md."
+          echo "No Slack webhook is configured. CI gate remains unchanged."
+          echo "Email notification is intentionally not executed by marketplace actions."
