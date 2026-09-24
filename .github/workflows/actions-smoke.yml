@@ -1,0 +1,16 @@
+name: Actions Smoke Test
+on:
+  push:
+    branches: [diagnostic/actions-startup-minimal]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Smoke
+        run: echo "PM Cosmetics Hub Actions smoke test"
