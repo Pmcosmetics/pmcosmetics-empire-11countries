@@ -20,7 +20,7 @@ permissions:
 jobs:
   notify:
     name: Notify team about CI failure or dry run
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'failure' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'failure' || github.event.workflow_run.conclusion == 'startup_failure') }}
     runs-on: ubuntu-latest
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
