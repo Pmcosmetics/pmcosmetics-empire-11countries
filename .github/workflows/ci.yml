@@ -1,10 +1,12 @@
 name: PM Cosmetics Hub CI
-# Canonical CI for the PM Cosmetics Hub repository.
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - api-gated-foundation
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     branches: [main]
   workflow_dispatch:
 
@@ -21,26 +23,20 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 1
-
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - name: Runtime
         run: |
           node --version
           npm --version
-
       - name: Install dependencies
         run: npm ci
-
       - name: Build
         run: npm run build
-
       - name: Validate
         run: npm run validate
-
       - name: Test
         run: npm test
