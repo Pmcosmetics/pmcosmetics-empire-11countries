@@ -11,7 +11,7 @@ Automatically merge the 7-country version with the 11-country version into one u
 5. Standardize HTML/CSS/JS structure.
 6. Fix broken imports, missing assets, and inconsistent naming.
 7. Generate missing code automatically.
-8. Push all changes to the main branch.
+8. Propose changes through a branch and pull request; do not push directly to main.
 
 ## Unified Structure
 pmcosmetics-empire-unified/
@@ -38,7 +38,7 @@ pmcosmetics-empire-unified/
 - Copilot must generate missing code automatically.
 - Copilot must unify naming conventions.
 - Copilot must remove duplicates.
-- Copilot must push changes without asking.
+- Copilot must not push directly to main; use a branch and pull request, with tests and review before merge.
 - Copilot must keep the repo clean and organized.
 
 ## Final Output
