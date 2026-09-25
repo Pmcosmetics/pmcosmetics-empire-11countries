@@ -1,33 +1,29 @@
 import express from "express";
+import helmet from "helmet";
+import cors from "cors";
 
 const app = express();
-const port = Number(process.env.PORT || 3000);
+app.use(helmet());
+app.use(cors());
+app.use(express.json({ limit: "1mb" }));
 
-app.disable("x-powered-by");
-app.use(express.json());
-
-app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok", gate: "CLOSED" });
+const locked = (service, reason = "DATA_INTAKE_LOCKED") => ({
+  ok: false, service, status: 503, gate: "CLOSED", reason
 });
 
-const lockedResponse = (_req, res) => {
-  res.set("Cache-Control", "no-store");
-  res.status(503).json({ error: "DATA_INTAKE_LOCKED" });
-};
+app.get("/api/health", (_req, res) => res.json({
+  ok: true,
+  service: "pmcosmetics-empire-11countries",
+  gate: "CLOSED",
+  architecture: ["ChatGPT","Products OS","Supabase","Shopify","Noon","Amazon","Jumia"]
+}));
 
-app.get("/api/products", lockedResponse);
-app.post("/api/products", lockedResponse);
-app.put("/api/products", lockedResponse);
-app.patch("/api/products", lockedResponse);
-app.delete("/api/products", lockedResponse);
-
-app.get("/", (_req, res) => {
-  res.json({
-    name: "PM Cosmetics Hub",
-    status: "online",
-    gate: "CLOSED",
-    productsApi: "locked",
-  });
-});
+app.post("/api/chat", (_req, res) => res.status(503).json(locked("chat")));
+app.get("/api/products", (_req, res) => res.status(503).json(locked("products")));
+app.post("/api/products", (_req, res) => res.status(503).json(locked("products")));
+app.post("/api/shopify/sync", (_req, res) => res.status(503).json(locked("shopify-sync","SHOPIFY_NOT_VERIFIED")));
+app.post("/api/noon/import", (_req, res) => res.status(503).json(locked("noon-import","NOON_NOT_VERIFIED")));
+app.post("/api/amazon/import", (_req, res) => res.status(503).json(locked("amazon-import","AMAZON_NOT_VERIFIED")));
+app.post("/api/jumia/import", (_req, res) => res.status(503).json(locked("jumia-import","JUMIA_NOT_VERIFIED")));
 
 export default app;
