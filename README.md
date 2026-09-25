@@ -61,9 +61,10 @@ pmcosmetics-empire-11countries/
 - scripts/validate-catalog.mjs
 - scripts/validate-inventory.mjs
 - scripts/build.mjs
-- .github/workflows/pmcosmetics-merge.yml
-- .github/workflows/deploy.yml
-- .github/workflows/validate.yml
+- .github/workflows/ci.yml
+- .github/workflows/codeql.yml
+- .github/workflows/notify-ci-failure.yml
+- .github/workflows/sync-data.yml
 - package.json
 - README.md
 
