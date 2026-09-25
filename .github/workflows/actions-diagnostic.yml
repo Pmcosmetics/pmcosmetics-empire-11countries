@@ -1,0 +1,23 @@
+name: PM Actions Diagnostic
+
+on:
+  push:
+    branches: [api-gated-foundation]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Runner diagnostic
+        run: |
+          echo "GitHub Actions runner started"
+          echo "repo=$GITHUB_REPOSITORY"
+          echo "ref=$GITHUB_REF"
+          echo "sha=$GITHUB_SHA"
+          node --version
+          npm --version
