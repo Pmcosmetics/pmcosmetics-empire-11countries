@@ -10,11 +10,18 @@ const { port } = server.address();
 try {
   const health = await fetch(`http://127.0.0.1:${port}/api/health`);
   assert.equal(health.status, 200);
-  assert.deepEqual(await health.json(), { status: "ok", gate: "CLOSED" });
+  const healthBody = await health.json();
+  assert.equal(healthBody.ok, true);
+  assert.equal(healthBody.gate, "CLOSED");
+  assert.equal(healthBody.service, "pmcosmetics-empire-11countries");
+  assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Supabase","Shopify","Noon","Amazon","Jumia"]);
 
   const products = await fetch(`http://127.0.0.1:${port}/api/products`);
   assert.equal(products.status, 503);
-  assert.deepEqual(await products.json(), { error: "DATA_INTAKE_LOCKED" });
+  const productsBody = await products.json();
+  assert.equal(productsBody.ok, false);
+  assert.equal(productsBody.gate, "CLOSED");
+  assert.equal(productsBody.reason, "DATA_INTAKE_LOCKED");
 } finally {
   server.close();
 }
