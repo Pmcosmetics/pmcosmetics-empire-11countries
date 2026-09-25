@@ -1,0 +1,22 @@
+name: PM Actions Heartbeat
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify GitHub-hosted runner
+        run: |
+          echo "PM Actions heartbeat"
+          echo "repository=$GITHUB_REPOSITORY"
+          echo "sha=$GITHUB_SHA"
+          node --version
+          npm --version
