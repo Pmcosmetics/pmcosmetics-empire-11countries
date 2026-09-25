@@ -4,8 +4,7 @@ const required = [
   "package.json",
   "config/markets.json",
   "config/catalog.schema.json",
-  "archive/legacy-nextjs-boilerplate/app/api/health/route.ts",
-  "archive/legacy-nextjs-boilerplate/app/api/products/route.ts",
+  "server/index.mjs",
 ];
 
 for (const file of required) {
@@ -13,6 +12,18 @@ for (const file of required) {
 }
 
 const packageJson = JSON.parse(await readFile("package.json", "utf8"));
+const server = await readFile("server/index.mjs", "utf8");
+
+if (!server.includes('app.get("/api/health"')) {
+  throw new Error("Active server health route is missing");
+}
+if (!server.includes('app.get("/api/products"')) {
+  throw new Error("Active products API route is missing");
+}
+if (!server.includes("DATA_INTAKE_LOCKED")) {
+  throw new Error("Active products API lock is missing");
+}
+
 await mkdir("dist", { recursive: true });
 await writeFile(
   "dist/build-manifest.json",
