@@ -1,0 +1,20 @@
+name: Actions Startup Smoke Test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Runner smoke
+        run: |
+          echo "PM Cosmetics Hub Actions startup smoke"
+          node --version
+          npm --version
