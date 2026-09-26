@@ -14,7 +14,9 @@ try {
   assert.equal(healthBody.ok, true);
   assert.equal(healthBody.gate, "CLOSED");
   assert.equal(healthBody.service, "pmcosmetics-empire-11countries");
-  assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Supabase","Shopify","Noon","Amazon","Jumia"]);
+  assert.equal(healthBody.runtime, "Vercel");
+  assert.equal(healthBody.dataSource, "Airtable");
+  assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Vercel","Shopify","Noon","Amazon","Jumia"]);
 
   const products = await fetch(`http://127.0.0.1:${port}/api/products`);
   assert.equal(products.status, 503);
