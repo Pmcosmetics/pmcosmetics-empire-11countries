@@ -127,6 +127,10 @@ npm run validate
 
 See docs/SECURITY.md for project guidance.
 
+
+## ⚙️ Execution Control
+
+Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated template workflows are manual-only; product publication remains evidence-gated.
 ---
 
 ## 📚 Documentation
