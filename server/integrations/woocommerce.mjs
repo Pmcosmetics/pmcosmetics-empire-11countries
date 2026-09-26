@@ -1,5 +1,7 @@
 const DEFAULT_BATCH_SIZE = 50;
 const DEFAULT_PAGE_SIZE = 100;
+const DEFAULT_TIMEOUT_MS = 15000;
+const MAX_PRODUCTS_PER_RUN = 10000;
 
 function getWooConfig() {
   const baseUrl = String(process.env.WOOCOMMERCE_URL || "").trim().replace(/\/+$/, "");
@@ -11,13 +13,7 @@ function getWooConfig() {
     Math.max(1, Number(process.env.WOOCOMMERCE_BATCH_SIZE || DEFAULT_BATCH_SIZE))
   );
 
-  return {
-    baseUrl,
-    consumerKey,
-    consumerSecret,
-    enabled,
-    batchSize
-  };
+  return { baseUrl, consumerKey, consumerSecret, enabled, batchSize };
 }
 
 function assertValidBaseUrl(baseUrl) {
@@ -30,21 +26,27 @@ function assertValidBaseUrl(baseUrl) {
 
 export function getWooStatus() {
   const config = getWooConfig();
-  let urlOk = false;
+  const missing = [];
 
+  if (!config.baseUrl) missing.push("WOOCOMMERCE_URL");
+  if (!config.consumerKey) missing.push("WOOCOMMERCE_CONSUMER_KEY");
+  if (!config.consumerSecret) missing.push("WOOCOMMERCE_CONSUMER_SECRET");
+
+  let urlOk = false;
   if (config.baseUrl) {
     try {
       assertValidBaseUrl(config.baseUrl);
       urlOk = true;
     } catch {
-      urlOk = false;
+      missing.push("WOOCOMMERCE_URL_HTTPS");
     }
   }
 
   return {
-    configured: Boolean(config.baseUrl && config.consumerKey && config.consumerSecret && urlOk),
+    configured: missing.length === 0 && urlOk,
     enabled: config.enabled,
     batchSize: config.batchSize,
+    missing: [...new Set(missing)],
     api: config.baseUrl ? `${config.baseUrl}/wp-json/wc/v3` : null
   };
 }
@@ -61,6 +63,7 @@ async function wooRequest(path, { method = "GET", body, signal } = {}) {
     throw new Error("WooCommerce API credentials are not configured");
   }
 
+  const requestSignal = signal || AbortSignal.timeout(DEFAULT_TIMEOUT_MS);
   const response = await fetch(`${config.baseUrl}/wp-json/wc/v3${path}`, {
     method,
     headers: {
@@ -69,7 +72,7 @@ async function wooRequest(path, { method = "GET", body, signal } = {}) {
       Authorization: authHeader(config.consumerKey, config.consumerSecret)
     },
     body: body === undefined ? undefined : JSON.stringify(body),
-    signal
+    signal: requestSignal
   });
 
   const text = await response.text();
@@ -91,6 +94,44 @@ async function wooRequest(path, { method = "GET", body, signal } = {}) {
   return { payload, headers: response.headers };
 }
 
+export async function checkWooConnection() {
+  const status = getWooStatus();
+  if (!status.configured) {
+    return {
+      ok: false,
+      configured: false,
+      reachable: false,
+      enabled: status.enabled,
+      missing: status.missing,
+      api: status.api
+    };
+  }
+
+  try {
+    const { payload, headers } = await wooRequest("/products?per_page=1&page=1&orderby=id&order=asc");
+    return {
+      ok: true,
+      configured: true,
+      reachable: true,
+      enabled: status.enabled,
+      api: status.api,
+      sampleCount: Array.isArray(payload) ? payload.length : 0,
+      remoteProductCount: Number(headers.get("x-wp-total") || 0),
+      remotePageCount: Number(headers.get("x-wp-totalpages") || 0)
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      configured: true,
+      reachable: false,
+      enabled: status.enabled,
+      api: status.api,
+      httpStatus: Number(error?.status || 0) || null,
+      error: error instanceof Error ? error.message : "Unknown WooCommerce connection error"
+    };
+  }
+}
+
 async function listAllProducts() {
   const existing = [];
   let page = 1;
@@ -102,6 +143,10 @@ async function listAllProducts() {
     if (!Array.isArray(payload) || payload.length === 0) break;
 
     existing.push(...payload);
+    if (existing.length > MAX_PRODUCTS_PER_RUN) {
+      throw new Error(`WooCommerce catalog exceeds the safe ${MAX_PRODUCTS_PER_RUN}-product run limit`);
+    }
+
     const totalPages = Number(headers.get("x-wp-totalpages") || page);
     if (page >= totalPages) break;
     page += 1;
@@ -125,6 +170,9 @@ function normalizeProduct(input) {
     status: source.status || "draft"
   };
 
+  const barcode = source.barcode ?? source.gtin ?? source.GTIN;
+  if (barcode) item.meta_data = [{ key: "_pm_gtin", value: String(barcode).trim() }];
+
   if (price !== undefined && price !== null && String(price).trim() !== "") {
     item.regular_price = String(price);
   }
@@ -146,7 +194,7 @@ function normalizeProduct(input) {
 
   const images = Array.isArray(source.images)
     ? source.images
-        .map((image) => typeof image === "string" ? image : image?.src)
+        .map((image) => typeof image === "string" ? image : image?.src || image?.url)
         .filter(Boolean)
         .map((src) => ({ src }))
     : [];
@@ -164,6 +212,24 @@ function normalizeProduct(input) {
   return item;
 }
 
+function dedupeBySku(products) {
+  const unique = [];
+  const seen = new Set();
+  let duplicateCount = 0;
+
+  for (const product of products) {
+    const sku = String(product?.sku || "").trim();
+    if (!sku || seen.has(sku)) {
+      if (sku) duplicateCount += 1;
+      continue;
+    }
+    seen.add(sku);
+    unique.push(product);
+  }
+
+  return { unique, duplicateCount };
+}
+
 function chunk(items, size) {
   const output = [];
   for (let i = 0; i < items.length; i += size) {
@@ -174,18 +240,23 @@ function chunk(items, size) {
 
 export async function syncWooProducts(products, { dryRun = true } = {}) {
   if (!Array.isArray(products)) throw new Error("products must be an array");
+  if (products.length > MAX_PRODUCTS_PER_RUN) {
+    throw new Error(`Product run exceeds the safe ${MAX_PRODUCTS_PER_RUN}-product limit`);
+  }
 
   const normalized = products.map(normalizeProduct).filter(Boolean);
   const skipped = products.length - normalized.length;
+  const { unique, duplicateCount } = dedupeBySku(normalized);
 
   if (dryRun) {
     return {
       ok: true,
       dryRun: true,
       sourceCount: products.length,
-      validCount: normalized.length,
+      validCount: unique.length,
       skippedCount: skipped,
-      createCount: normalized.length,
+      duplicateSkuCount: duplicateCount,
+      createCount: unique.length,
       updateCount: 0,
       batches: 0
     };
@@ -193,6 +264,7 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
 
   const config = getWooConfig();
   if (!config.enabled) throw new Error("WOOCOMMERCE_SYNC_ENABLED is not true");
+  if (!getWooStatus().configured) throw new Error("WooCommerce integration is not fully configured");
 
   const existing = await listAllProducts();
   const existingBySku = new Map(
@@ -204,7 +276,7 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
   const creates = [];
   const updates = [];
 
-  for (const item of normalized) {
+  for (const item of unique) {
     const current = existingBySku.get(item.sku);
     if (current?.id) {
       updates.push({ id: current.id, ...item });
@@ -222,7 +294,10 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
       method: "POST",
       body: { create: batch }
     });
-    createResults += Array.isArray(payload?.create) ? payload.create.length : batch.length;
+    const created = Array.isArray(payload?.create) ? payload.create : [];
+    const errors = created.filter((item) => item?.error);
+    if (errors.length) throw new Error(`WooCommerce rejected ${errors.length} product creates`);
+    createResults += created.length || batch.length;
   }
 
   for (const batch of chunk(updates, config.batchSize)) {
@@ -230,15 +305,19 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
       method: "POST",
       body: { update: batch }
     });
-    updateResults += Array.isArray(payload?.update) ? payload.update.length : batch.length;
+    const updated = Array.isArray(payload?.update) ? payload.update : [];
+    const errors = updated.filter((item) => item?.error);
+    if (errors.length) throw new Error(`WooCommerce rejected ${errors.length} product updates`);
+    updateResults += updated.length || batch.length;
   }
 
   return {
     ok: true,
     dryRun: false,
     sourceCount: products.length,
-    validCount: normalized.length,
+    validCount: unique.length,
     skippedCount: skipped,
+    duplicateSkuCount: duplicateCount,
     createCount: createResults,
     updateCount: updateResults,
     batches: totalBatches
