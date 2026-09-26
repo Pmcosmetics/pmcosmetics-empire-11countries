@@ -15,7 +15,7 @@ app.get("/", (_req, res) => res.json({
   ok: true,
   service: "pmcosmetics-empire-11countries",
   gate: "CLOSED",
-  message: "PM Cosmetics Hub API is running",
+  message: "PM Cosmetics Hub API is running on Vercel",
   health: "/api/health",
   products: "/api/products",
   staging: "/api/products/staging"
@@ -25,7 +25,9 @@ app.get("/api/health", (_req, res) => res.json({
   ok: true,
   service: "pmcosmetics-empire-11countries",
   gate: "CLOSED",
-  architecture: ["ChatGPT","Products OS","Supabase","Shopify","Noon","Amazon","Jumia"]
+  runtime: "Vercel",
+  dataSource: "Airtable",
+  architecture: ["ChatGPT","Products OS","Airtable","Vercel","Shopify","Noon","Amazon","Jumia"]
 }));
 
 app.post("/api/chat", (_req, res) => res.status(503).json(locked("chat")));
