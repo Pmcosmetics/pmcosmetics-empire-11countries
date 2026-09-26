@@ -1,1 +1,16 @@
+# Disabled unrelated/template workflow.
+# PM Cosmetics Hub canonical execution is .github/workflows/ci.yml.
+name: Disabled template
 
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  disabled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Disabled
+        run: echo "Disabled: use PM Cosmetics Hub CI as the canonical workflow."
