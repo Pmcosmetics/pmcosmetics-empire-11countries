@@ -32,19 +32,9 @@
     },
     "brand": {
       "type": "string",
-      "enum": [
-        "NIVEA",
-        "CeraVe",
-        "La Roche Posay",
-        "Vichy",
-        "Eucerin",
-        "Cetaphil",
-        "Cantu",
-        "Vaseline",
-        "PM Cosmetics",
-        "Other"
-      ],
-      "description": "Product brand"
+      "minLength": 2,
+      "maxLength": 120,
+      "description": "Product brand; supports the full PM Cosmetics Hub brand catalog"
     },
     "category": {
       "type": "string",

@@ -1,0 +1,59 @@
+name: Notify CI failures
+
+on:
+  workflow_run:
+    workflows: [PM Cosmetics CI]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Channel to test
+        required: true
+        default: both
+        type: choice
+        options: [both, slack, email]
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  notify:
+    name: Notify team about CI failure or dry run
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      ALERT_TO: ${{ secrets.ALERT_TO }}
+    steps:
+      - name: Notify through configured Slack webhook
+        if: ${{ env.SLACK_WEBHOOK_URL != '' && (github.event_name == 'workflow_run' || inputs.channel == 'both' || inputs.channel == 'slack') }}
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+          payload = {
+            "text": "PM Cosmetics CI notification",
+            "blocks": [{
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "*PM Cosmetics CI notification*\nBranch: `%s`\nCommit: `%s`\n<%s|View GitHub run>"
+                  % (os.environ.get("GITHUB_REF_NAME",""), os.environ.get("GITHUB_SHA",""), os.environ["RUN_URL"])
+              }
+            }]
+          }
+          req = urllib.request.Request(
+            os.environ["SLACK_WEBHOOK_URL"],
+            data=json.dumps(payload).encode(),
+            headers={"Content-Type":"application/json"}
+          )
+          urllib.request.urlopen(req, timeout=15).read()
+          PY
+
+      - name: Report unconfigured notification channels
+        if: ${{ (github.event_name == 'workflow_dispatch' && inputs.channel != 'slack' && env.SLACK_WEBHOOK_URL == '') || (github.event_name == 'workflow_run' && env.SLACK_WEBHOOK_URL == '') }}
+        run: |
+          echo "No Slack webhook is configured. CI gate remains unchanged."
+          echo "Email notification is intentionally not executed by marketplace actions."
