@@ -1,0 +1,33 @@
+{
+  "source": "Airtable — PM Cosmetics Hub",
+  "source_verified_at": "2026-09-26",
+  "gate": "CLOSED",
+  "publishable": false,
+  "note": "Staging evidence only. PM Cosmetics stock is not verified; do not publish or sync.",
+  "products": [
+    {
+      "name": "SVR سيبيا كلير هيدرا كريم 40 مل",
+      "sku": "103971",
+      "gtin": "3662361003594",
+      "public_price_egp": 729
+    },
+    {
+      "name": "بيوليك سيروم مكثف لإحياء البشرة 30 مل",
+      "sku": "100004",
+      "gtin": "5902802707833",
+      "public_price_egp": 799
+    },
+    {
+      "name": "بايو أويل زيت علاجي للجنسين 125 مل",
+      "sku": "85855",
+      "gtin": "6001159114741",
+      "public_price_egp": 699
+    },
+    {
+      "name": "Pantene Pro-V Smooth & Silky Leave-In Conditioner 275 ml",
+      "sku": "90467",
+      "gtin": "8001090151780",
+      "public_price_egp": 230
+    }
+  ]
+}
