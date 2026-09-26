@@ -20,6 +20,7 @@ app.get("/api/health", (_req, res) => res.json({
 
 app.post("/api/chat", (_req, res) => res.status(503).json(locked("chat")));
 app.get("/api/products", (_req, res) => res.status(503).json(locked("products")));
+app.get("/api/products/staging", (_req, res) => res.json({ ok: true, gate: "CLOSED", publishable: false, source: "Airtable", feed: "/data/products/staging-evidence.json" }));
 app.post("/api/products", (_req, res) => res.status(503).json(locked("products")));
 app.post("/api/shopify/sync", (_req, res) => res.status(503).json(locked("shopify-sync","SHOPIFY_NOT_VERIFIED")));
 app.post("/api/noon/import", (_req, res) => res.status(503).json(locked("noon-import","NOON_NOT_VERIFIED")));
