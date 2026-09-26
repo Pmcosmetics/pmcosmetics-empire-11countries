@@ -23,7 +23,7 @@ The API intentionally keeps the commercial publication gate **CLOSED** until pro
 
 ## WooCommerce configuration
 
-Create WooCommerce REST API credentials with the minimum permissions required for the intended operation. WooCommerce supports API-key authentication over HTTPS, including Basic authentication with consumer key/secret. citeturn413668search0turn413668search1
+Create WooCommerce REST API credentials with the minimum permissions required for the intended operation. WooCommerce supports API-key authentication over HTTPS, including Basic authentication with consumer key/secret.
 
 Set these variables in Railway/Vercel secret storage:
 
@@ -33,7 +33,7 @@ Set these variables in Railway/Vercel secret storage:
 `WOOCOMMERCE_SYNC_ENABLED=true` only after connectivity is verified
 `WOOCOMMERCE_BATCH_SIZE=50`
 
-The connector reads existing products with pagination, matches on SKU, and uses WooCommerce's batch product endpoint for creates/updates. WooCommerce's product controller exposes batch create/update/delete operations. citeturn413668search2
+The connector reads existing products with pagination, matches on SKU, and uses WooCommerce's batch product endpoint for creates/updates. WooCommerce's product controller exposes batch create/update/delete operations.
 
 ## Manus catalog over 2,000 products
 
