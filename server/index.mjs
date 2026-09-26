@@ -11,6 +11,16 @@ const locked = (service, reason = "DATA_INTAKE_LOCKED") => ({
   ok: false, service, status: 503, gate: "CLOSED", reason
 });
 
+app.get("/", (_req, res) => res.json({
+  ok: true,
+  service: "pmcosmetics-empire-11countries",
+  gate: "CLOSED",
+  message: "PM Cosmetics Hub API is running",
+  health: "/api/health",
+  products: "/api/products",
+  staging: "/api/products/staging"
+}));
+
 app.get("/api/health", (_req, res) => res.json({
   ok: true,
   service: "pmcosmetics-empire-11countries",
