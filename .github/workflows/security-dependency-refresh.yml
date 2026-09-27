@@ -24,7 +24,10 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Refresh vulnerable dependency
+      - name: Remove unused vulnerable packages
+        run: npm uninstall nodemailer uuid --save
+
+      - name: Refresh Multer security floor
         run: npm install multer@2.4.0 --save-exact
 
       - name: Clean install
@@ -51,5 +54,5 @@ jobs:
             exit 0
           fi
           git add package.json package-lock.json
-          git commit -m "fix(security): upgrade multer to 2.4.0"
+          git commit -m "fix(security): remove unused vulnerable deps"
           git push origin HEAD:ops/2026-09-27-runtime-hardening
