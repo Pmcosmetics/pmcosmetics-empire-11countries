@@ -30,7 +30,6 @@ const clean = (value) =>
     .trim()
     .replace(/\s+/g, " ");
 
-const tokenize = (value) => new Set(clean(value).split(" ").filter(Boolean));
 
 const normalizedSize = (value) => {
   if (!value) return "";
