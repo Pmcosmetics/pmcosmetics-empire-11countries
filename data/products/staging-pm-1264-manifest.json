@@ -4,10 +4,11 @@
   "source_rows": 1264,
   "source_status_counts": {
     "image_ready_status": 24,
-    "in_preparation_status": 1240
+    "in_preparation_status": 1240,
+    "embedded_images_detected": 24
   },
   "status_interpretation": {
-    "image_ready_status": "source status only; not exact image evidence until an image asset is independently linked to the exact product identity",
+    "image_ready_status": "24 row-anchored embedded image objects are present in the workbook. This satisfies source-level image presence for those rows, but exact product identity and PM ownership still require PM identity evidence.",
     "in_preparation_status": "not ready for image gate"
   },
   "publication_gate": "CLOSED",
@@ -25,5 +26,11 @@
     "mood_source_rows": 152,
     "mood_source_formula_state": "contains #NAME? and #REF! formula errors; derived formula cells are not canonical"
   },
-  "next_stage": "retailer reference enrichment -> identity QA -> PM stock evidence -> unified SKU -> reversible pilot"
+  "next_stage": "retailer reference enrichment -> identity QA -> PM stock evidence -> unified SKU -> reversible pilot",
+  "evidence_model": {
+    "source_image_presence": "24 embedded images detected and row-anchored",
+    "identity_gate": "still blocked until canonical PM SKU/GTIN or equivalent verified identity evidence",
+    "stock_gate": "still blocked until PM physical stock/quantity evidence",
+    "publication_gate": "CLOSED"
+  }
 }
