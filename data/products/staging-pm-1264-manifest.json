@@ -1,0 +1,36 @@
+{
+  "source_file": "PM_x5f_1549_x5f_Progress_x5f_32_x5f_Images.xlsx",
+  "source_sha256": "80e35b209e89580a73f8db0c913a0047d1fa21048b03dcdb9a6833f2cb96ecb1",
+  "source_rows": 1264,
+  "source_status_counts": {
+    "image_ready_status": 24,
+    "in_preparation_status": 1240,
+    "embedded_images_detected": 24
+  },
+  "status_interpretation": {
+    "image_ready_status": "24 row-anchored embedded image objects are present in the workbook. This satisfies source-level image presence for those rows, but exact product identity and PM ownership still require PM identity evidence.",
+    "in_preparation_status": "not ready for image gate"
+  },
+  "publication_gate": "CLOSED",
+  "pm_evidence_required": [
+    "canonical SKU",
+    "GTIN/barcode when applicable",
+    "PM stock quantity evidence",
+    "PM cost evidence",
+    "exact product image evidence",
+    "supplier/batch/expiry when applicable"
+  ],
+  "policy": "This manifest records provenance only. No SKU, GTIN, stock, cost, image, supplier, batch, expiry, or Publish-Ready state is inferred from the source status.",
+  "related_reference_layers": {
+    "price_list_rows": 345,
+    "mood_source_rows": 152,
+    "mood_source_formula_state": "contains #NAME? and #REF! formula errors; derived formula cells are not canonical"
+  },
+  "next_stage": "retailer reference enrichment -> identity QA -> PM stock evidence -> unified SKU -> reversible pilot",
+  "evidence_model": {
+    "source_image_presence": "24 embedded images detected and row-anchored",
+    "identity_gate": "still blocked until canonical PM SKU/GTIN or equivalent verified identity evidence",
+    "stock_gate": "still blocked until PM physical stock/quantity evidence",
+    "publication_gate": "CLOSED"
+  }
+}
