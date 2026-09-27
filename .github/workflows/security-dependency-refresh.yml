@@ -1,0 +1,55 @@
+name: Security Dependency Refresh
+
+on:
+  push:
+    branches:
+      - ops/2026-09-27-runtime-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Refresh vulnerable dependency
+        run: npm install multer@2.4.0 --save-exact
+
+      - name: Clean install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Validate
+        run: npm run validate
+
+      - name: Test
+        run: npm test
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Commit dependency refresh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No dependency changes to commit."
+            exit 0
+          fi
+          git add package.json package-lock.json
+          git commit -m "fix(security): upgrade multer to 2.4.0"
+          git push origin HEAD:ops/2026-09-27-runtime-hardening
