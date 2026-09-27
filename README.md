@@ -14,7 +14,7 @@
 6. 🇧🇭 Bahrain - BHD
 7. 🇴🇲 Oman - OMR
 8. 🇯🇴 Jordan - JOD
-9. 🇵🇸 Palestine - ILS/JOD
+9. 🇵🇸 Palestine - ILS
 10. 🇱🇧 Lebanon - LBP
 11. 🇮🇷 Iran - IRR
 
