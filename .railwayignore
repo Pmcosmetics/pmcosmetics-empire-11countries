@@ -1,0 +1,8 @@
+# Historical/legacy code is not part of the production API build
+archive/**
+
+# Local and VCS noise
+.git/**
+node_modules/**
+*.log
+.DS_Store
