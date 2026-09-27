@@ -15,7 +15,8 @@
     "test": "node scripts/test-gate.mjs",
     "test:watch": "jest --watch",
     "deploy": "npm run build && npm run validate",
-    "start": "node scripts/start.mjs"
+    "start": "node scripts/start.mjs",
+    "enrich:reference": "node scripts/enrich-retailer-reference.mjs"
   },
   "dependencies": {
     "axios": "^1.6.0",
