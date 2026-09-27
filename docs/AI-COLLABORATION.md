@@ -19,8 +19,10 @@ AI assistants:
 5. External AI integrations use least-privilege credentials and explicit user authorization.
 
 ## Current blockers
-- Supabase project rhozehqlpnmzmknlpmvf is inactive because the account has reached the Free-plan active-project limit.
-- GitHub Actions PM Cosmetics Hub CI and CodeQL currently report startup_failure before jobs are created.
+- Supabase project rhozehqlpnmzmknlpmvf is currently INACTIVE; the connected Supabase account is at its Free-plan active-project limit, so the database cannot be treated as an active production dependency.
+- The earlier GitHub Actions startup_failure incident was repaired for the canonical CI path and legacy PM Cosmetics CI: on 2026-09-21 the merged main commit created real jobs and completed build/validate/test successfully.
+- The Pages/deploy path had a separate startup_failure with zero jobs and was subsequently changed to a Node-based build/validate + dist artifact workflow instead of relying on GitHub Pages enablement.
+- The latest main commit 6e32656a71960b61d95e15e77305d2e9a2d8214e currently has no attached commit statuses, so the next verification step is to observe a fresh CI run on the current commit before treating CI as green.
 
 ## First automation targets
 - Copilot: inspect and repair CI startup failures, then run contract tests.
