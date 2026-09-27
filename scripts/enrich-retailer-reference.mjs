@@ -140,13 +140,18 @@ const enrichGate = (pm, matched) => {
     matched &&
     Boolean(matched.source?.url ?? matched.url);
 
+  const costValue = pm.costEgp ?? pm.cost;
   const evidenceReady =
     identityReady &&
     Boolean(pm.pmStockEvidence ?? pm.stockEvidence) &&
-    Number.isFinite(Number(pm.costEgp ?? pm.cost)) &&
+    costValue !== undefined &&
+    costValue !== null &&
+    costValue !== "" &&
+    Number.isFinite(Number(costValue)) &&
     Boolean(pm.imageEvidence) &&
     Boolean(pm.evidenceValidated);
 
+  if (!matched) return "Blocked — Identity";
   return evidenceReady ? "Publish-Ready" : "Blocked — Image/Stock";
 };
 
