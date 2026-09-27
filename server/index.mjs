@@ -3,6 +3,7 @@ import helmet from "helmet";
 import cors from "cors";
 import { checkWooConnection, getWooStatus, syncWooProducts } from "./integrations/woocommerce.mjs";
 import { getManusStatus, pullManusProducts, validateManusProducts } from "./integrations/manus.mjs";
+import { isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
 
 const app = express();
 app.use(helmet());
@@ -22,6 +23,7 @@ app.get("/", (_req, res) => res.json({
   products: "/api/products",
   staging: "/api/products/staging",
   manus: "/api/manus/status",
+  supabase: "/api/supabase/status",
   woocommerce: "/api/woocommerce/status"
 }));
 
@@ -30,9 +32,19 @@ app.get("/api/health", (_req, res) => res.json({
   service: "pmcosmetics-empire-11countries",
   gate: "CLOSED",
   runtime: "Vercel/Railway",
-  dataSource: "Airtable",
-  architecture: ["ChatGPT","Products OS","Airtable","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]
+  dataSource: isSupabaseConfigured() ? "Supabase" : "Airtable",
+  supabaseConfigured: isSupabaseConfigured(),
+  architecture: ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]
 }));
+
+app.get("/api/supabase/status", (_req, res) => {
+  res.json({
+    ok: true,
+    gate: "CLOSED",
+    configured: isSupabaseConfigured(),
+    mode: isSupabaseConfigured() ? "read-only-products" : "not-configured"
+  });
+});
 
 app.get("/api/manus/status", (_req, res) => {
   res.json({ ok: true, gate: "CLOSED", service: "manus-catalog-adapter", ...getManusStatus() });
@@ -121,8 +133,33 @@ app.post("/api/woocommerce/sync", async (req, res) => {
   }
 });
 
+app.get("/api/chat", (_req, res) => res.status(503).json(locked("chat")));
 app.post("/api/chat", (_req, res) => res.status(503).json(locked("chat")));
-app.get("/api/products", (_req, res) => res.status(503).json(locked("products")));
+
+app.get("/api/products", async (_req, res) => {
+  try {
+    const products = await listActiveProducts();
+    return res.json({
+      ok: true,
+      gate: "CLOSED",
+      source: "Supabase",
+      readOnly: true,
+      publishable: false,
+      products
+    });
+  } catch (error) {
+    const reason = error?.code || "SUPABASE_PRODUCTS_READ_FAILED";
+    return res.status(503).json({
+      ok: false,
+      gate: "CLOSED",
+      source: "Supabase",
+      readOnly: true,
+      reason,
+      message: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+});
+
 app.get("/api/products/staging", (_req, res) => res.json({
   ok: true,
   gate: "CLOSED",
@@ -130,6 +167,7 @@ app.get("/api/products/staging", (_req, res) => res.json({
   source: "Airtable",
   feed: "/data/products/staging-evidence.json"
 }));
+
 app.post("/api/products", (_req, res) => res.status(503).json(locked("products")));
 app.post("/api/shopify/sync", (_req, res) => res.status(503).json(locked("shopify-sync","SHOPIFY_NOT_VERIFIED")));
 app.post("/api/noon/import", (_req, res) => res.status(503).json(locked("noon-import","NOON_NOT_VERIFIED")));
