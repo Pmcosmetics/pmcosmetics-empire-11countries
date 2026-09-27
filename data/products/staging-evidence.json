@@ -1,13 +1,13 @@
 {
   "source": "Airtable — PM Cosmetics Hub",
-  "source_verified_at": "2026-09-27",
+  "source_verified_at": "2026-09-28",
   "gate": "CLOSED",
   "publishable": false,
   "note": "Live staging evidence snapshot reconciled against the operational Airtable Product Gate. Archived records are excluded from the active gate. Commercial publication remains CLOSED; do not sync until the one-product pilot and post-write verification pass. PM-owned exact image + verified PM stock/cost + required provenance remain mandatory for any product-level promotion.",
   "current_counts": {
     "products": 67,
-    "publish_ready": 1,
-    "blocked_image_stock": 0,
+    "publish_ready": 0,
+    "blocked_image_stock": 1,
     "blocked_identity": 60,
     "archived": 6
   },
@@ -79,8 +79,8 @@
       "public_price_egp": 239,
       "pm_stock": 48,
       "pm_cost_egp": 260,
-      "status": "PUBLISH-READY",
-      "blocker": null
+      "status": "BLOCKED — IMAGE/STOCK",
+      "blocker": "PM identity, GTIN, stock and cost are supported; exact PM-owned image evidence remains unverified. Commercial promotion must remain closed."
     }
   ]
 }
