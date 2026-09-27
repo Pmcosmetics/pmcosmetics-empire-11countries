@@ -3,12 +3,13 @@
   "source_verified_at": "2026-09-27",
   "gate": "CLOSED",
   "publishable": false,
-  "note": "Staging evidence only. No product is Publish-Ready; do not publish or sync until PM-owned exact image + verified PM stock/cost + required provenance are complete.",
+  "note": "Live staging evidence snapshot. Airtable is the operational source of truth for the current gate counts. Commercial publication remains CLOSED; do not sync until the one-product pilot and post-write verification pass. PM-owned exact image + verified PM stock/cost + required provenance remain mandatory for any product-level promotion.",
   "current_counts": {
     "products": 67,
-    "publish_ready": 0,
-    "blocked_image_stock": 7,
-    "blocked_identity": 60
+    "publish_ready": 1,
+    "blocked_image_stock": 1,
+    "blocked_identity": 60,
+    "archived": 5
   },
   "products": [
     {
@@ -59,7 +60,7 @@
       "pm_stock": 60,
       "pm_cost_egp": 540,
       "status": "BLOCKED — IMAGE/STOCK",
-      "blocker": "Exact PM-owned image evidence and PM evidence URL missing"
+      "blocker": "Exact PM-owned image provenance remains unverified; manufacturer image is identity reference only"
     },
     {
       "name": "Dermaelle Face Cleanser Gel for Oily/Acne Skin with Salicylic Acid 200ml",
@@ -68,8 +69,8 @@
       "public_price_egp": null,
       "pm_stock": 48,
       "pm_cost_egp": 260,
-      "status": "BLOCKED — IMAGE/STOCK",
-      "blocker": "Exact PM-owned image evidence and PM evidence URL missing"
+      "status": "ARCHIVED",
+      "blocker": "Archived duplicate/naming variant of DERMAELLE007; retained for audit trail"
     },
     {
       "name": "Dermaelle Sebum Control Cleansing Gel 200ml",
@@ -78,8 +79,8 @@
       "public_price_egp": null,
       "pm_stock": 48,
       "pm_cost_egp": 260,
-      "status": "BLOCKED — IMAGE/STOCK",
-      "blocker": "Exact PM-owned image evidence and PM evidence URL missing"
+      "status": "PUBLISH-READY",
+      "blocker": null
     }
   ]
 }
