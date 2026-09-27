@@ -1,33 +1,85 @@
 {
   "source": "Airtable — PM Cosmetics Hub",
-  "source_verified_at": "2026-09-26",
+  "source_verified_at": "2026-09-27",
   "gate": "CLOSED",
   "publishable": false,
-  "note": "Staging evidence only. PM Cosmetics stock is not verified; do not publish or sync.",
+  "note": "Staging evidence only. No product is Publish-Ready; do not publish or sync until PM-owned exact image + verified PM stock/cost + required provenance are complete.",
+  "current_counts": {
+    "products": 67,
+    "publish_ready": 0,
+    "blocked_image_stock": 7,
+    "blocked_identity": 60
+  },
   "products": [
     {
       "name": "SVR سيبيا كلير هيدرا كريم 40 مل",
       "sku": "103971",
       "gtin": "3662361003594",
-      "public_price_egp": 729
+      "public_price_egp": 729,
+      "pm_stock": null,
+      "pm_cost_egp": null,
+      "status": "BLOCKED — IMAGE/STOCK",
+      "blocker": "No verified PM stock and no exact PM-owned image evidence"
     },
     {
       "name": "بيوليك سيروم مكثف لإحياء البشرة 30 مل",
       "sku": "100004",
       "gtin": "5902802707833",
-      "public_price_egp": 799
+      "public_price_egp": 799,
+      "pm_stock": null,
+      "pm_cost_egp": null,
+      "status": "BLOCKED — IMAGE/STOCK",
+      "blocker": "No verified PM stock and no exact PM-owned image evidence"
     },
     {
       "name": "بايو أويل زيت علاجي للجنسين 125 مل",
       "sku": "85855",
       "gtin": "6001159114741",
-      "public_price_egp": 699
+      "public_price_egp": 699,
+      "pm_stock": null,
+      "pm_cost_egp": null,
+      "status": "BLOCKED — IMAGE/STOCK",
+      "blocker": "No verified PM stock and no exact PM-owned image evidence"
     },
     {
       "name": "Pantene Pro-V Smooth & Silky Leave-In Conditioner 275 ml",
       "sku": "90467",
       "gtin": "8001090151780",
-      "public_price_egp": 230
+      "public_price_egp": 230,
+      "pm_stock": null,
+      "pm_cost_egp": null,
+      "status": "BLOCKED — IMAGE/STOCK",
+      "blocker": "No verified PM stock and no exact PM-owned image evidence"
+    },
+    {
+      "name": "Dermaelle Advanced Retinol Multi-Peptides Serum 30ml",
+      "sku": "DERMAELLE028",
+      "gtin": null,
+      "public_price_egp": null,
+      "pm_stock": 60,
+      "pm_cost_egp": 540,
+      "status": "BLOCKED — IMAGE/STOCK",
+      "blocker": "Exact PM-owned image evidence and PM evidence URL missing"
+    },
+    {
+      "name": "Dermaelle Face Cleanser Gel for Oily/Acne Skin with Salicylic Acid 200ml",
+      "sku": "DERMAELLE008",
+      "gtin": null,
+      "public_price_egp": null,
+      "pm_stock": 48,
+      "pm_cost_egp": 260,
+      "status": "BLOCKED — IMAGE/STOCK",
+      "blocker": "Exact PM-owned image evidence and PM evidence URL missing"
+    },
+    {
+      "name": "Dermaelle Sebum Control Cleansing Gel 200ml",
+      "sku": "DERMAELLE007",
+      "gtin": null,
+      "public_price_egp": null,
+      "pm_stock": 48,
+      "pm_cost_egp": 260,
+      "status": "BLOCKED — IMAGE/STOCK",
+      "blocker": "Exact PM-owned image evidence and PM evidence URL missing"
     }
   ]
 }
