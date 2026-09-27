@@ -75,8 +75,8 @@
     {
       "name": "Dermaelle Sebum Control Cleansing Gel 200ml",
       "sku": "DERMAELLE007",
-      "gtin": null,
-      "public_price_egp": null,
+      "gtin": "6223007905060",
+      "public_price_egp": 239,
       "pm_stock": 48,
       "pm_cost_egp": 260,
       "status": "PUBLISH-READY",
