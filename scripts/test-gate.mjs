@@ -69,7 +69,7 @@ try {
   const productsBody = await products.json();
   assert.equal(productsBody.ok, false);
   assert.equal(productsBody.gate, "CLOSED");
-  assert.equal(productsBody.reason, "DATA_INTAKE_LOCKED");
+  assert.equal(productsBody.reason, "SUPABASE_NOT_CONFIGURED");
 } finally {
   server.close();
 }
