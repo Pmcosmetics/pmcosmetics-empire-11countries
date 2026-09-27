@@ -6,7 +6,7 @@ if (markets.rules?.inventory_requires_validation !== true) {
 }
 
 const productReadme = await readFile("data/products/README.md", "utf8");
-if (!productReadme.includes("SKU, stock, cost, barcode, or image values")) {
+if (!(productReadme.includes("Do not add guessed SKU, name, price, stock, barcode, or image values.") || productReadme.includes("SKU, stock, cost, barcode, or image values"))) {
   throw new Error("Inventory anti-guessing guard is missing");
 }
 if (!productReadme.includes("Staging evidence alone does not open the commercial publication gate")) {
