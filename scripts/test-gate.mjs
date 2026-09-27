@@ -15,7 +15,7 @@ try {
   assert.equal(healthBody.gate, "CLOSED");
   assert.equal(healthBody.service, "pmcosmetics-empire-11countries");
   assert.equal(healthBody.dataSource, "Airtable");
-  assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]);
+  assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]);
 
   const manus = await fetch(`http://127.0.0.1:${port}/api/manus/status`);
   assert.equal(manus.status, 200);
