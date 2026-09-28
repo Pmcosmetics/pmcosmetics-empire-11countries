@@ -1,0 +1,5 @@
+PM Cosmetics Hub deployment synchronization marker.
+
+Purpose: force a fresh Railway source snapshot from main after evidence-gate reconciliation.
+Reference commit: a7213ae6beb80f3c2fe52ecd62e09a508e4dc388
+Commercial publish gate remains CLOSED until product evidence is complete.
