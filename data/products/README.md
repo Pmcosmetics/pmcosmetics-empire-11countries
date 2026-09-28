@@ -8,3 +8,5 @@ Current external staging reference:
 - Staging evidence alone does not open the commercial publication gate.
 
 Do not add guessed SKU, name, price, stock, barcode, or image values.
+
+<!-- CI verification checkpoint: 2026-09-29; no commercial gate change. -->
