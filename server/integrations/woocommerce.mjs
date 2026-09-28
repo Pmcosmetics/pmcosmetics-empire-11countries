@@ -248,6 +248,14 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
   const skipped = products.length - normalized.length;
   const { unique, duplicateCount } = dedupeBySku(normalized);
 
+  // Live publication is product-evidence gated independently of the global gate.
+  // Dry runs intentionally remain permissive so the pipeline can validate payloads.
+  const liveEligible = unique.filter((item) => {
+    const source = products.find((candidate) => String(candidate?.sku ?? candidate?.SKU ?? "").trim() === item.sku);
+    return source?.publishable === true && source?.evidenceVerified === true;
+  });
+  const blockedByEvidence = dryRun ? 0 : unique.length - liveEligible.length;
+
   if (dryRun) {
     return {
       ok: true,
@@ -265,7 +273,12 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
   const config = getWooConfig();
   if (!config.enabled) throw new Error("WOOCOMMERCE_SYNC_ENABLED is not true");
   if (!getWooStatus().configured) throw new Error("WooCommerce integration is not fully configured");
+  if (blockedByEvidence > 0) {
+    // Never publish unverified products; publish only the evidence-qualified subset.
+    // The caller still gets a complete accounting of what was held back.
+  }
 
+  const publishable = liveEligible;
   const existing = await listAllProducts();
   const existingBySku = new Map(
     existing
@@ -276,7 +289,7 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
   const creates = [];
   const updates = [];
 
-  for (const item of unique) {
+  for (const item of publishable) {
     const current = existingBySku.get(item.sku);
     if (current?.id) {
       updates.push({ id: current.id, ...item });
@@ -316,6 +329,8 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
     dryRun: false,
     sourceCount: products.length,
     validCount: unique.length,
+    publishableCount: publishable.length,
+    blockedByEvidence,
     skippedCount: skipped,
     duplicateSkuCount: duplicateCount,
     createCount: createResults,
