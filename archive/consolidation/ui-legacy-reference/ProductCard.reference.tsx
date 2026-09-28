@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -35,14 +34,14 @@ export default function ProductCard({
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/cart/items`,
+        process.env.NEXT_PUBLIC_API_URL + '/api/cart/items',
         {
           productId: product.id,
           quantity,
           price: displayPrice,
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: 'Bearer ' + token },
         }
       );
       alert('تم إضافة المنتج إلى السلة');
@@ -89,10 +88,11 @@ export default function ProductCard({
           )}
         </div>
 
-        <p className={`text-sm mb-4 ${
-          product.stock > 0 ? 'text-green-600' : 'text-red-600'
-        }`}>
-          {product.stock > 0 ? `متوفر (${product.stock})` : 'غير متوفر'}
+        <p className={
+          'text-sm mb-4 ' +
+          (product.stock > 0 ? 'text-green-600' : 'text-red-600')
+        }>
+          {product.stock > 0 ? 'متوفر (' + product.stock + ')' : 'غير متوفر'}
         </p>
 
         {product.stock > 0 && (
