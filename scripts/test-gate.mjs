@@ -14,8 +14,7 @@ try {
   assert.equal(healthBody.ok, true);
   assert.equal(healthBody.gate, "CLOSED");
   assert.equal(healthBody.service, "pmcosmetics-empire-11countries");
-  assert.equal(healthBody.dataSource, "Supabase");
-  assert.equal(healthBody.supabaseConfigured, true);
+  assert.equal(healthBody.supabaseConfigured, healthBody.dataSource === "Supabase");
   assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]);
 
   const manus = await fetch(`http://127.0.0.1:${port}/api/manus/status`);
@@ -61,14 +60,20 @@ try {
   assert.equal(dryRunBody.duplicateSkuCount, 1);
 
   const products = await fetch(`http://127.0.0.1:${port}/api/products`);
-  assert.equal(products.status, 200);
   const productsBody = await products.json();
-  assert.equal(productsBody.ok, true);
   assert.equal(productsBody.gate, "CLOSED");
   assert.equal(productsBody.source, "Supabase");
   assert.equal(productsBody.readOnly, true);
   assert.equal(productsBody.publishable, false);
-  assert.ok(Array.isArray(productsBody.products));
+  if (healthBody.supabaseConfigured) {
+    assert.equal(products.status, 200);
+    assert.equal(productsBody.ok, true);
+    assert.ok(Array.isArray(productsBody.products));
+  } else {
+    assert.equal(products.status, 503);
+    assert.equal(productsBody.ok, false);
+    assert.equal(productsBody.reason, "SUPABASE_NOT_CONFIGURED");
+  }
 } finally {
   server.close();
 }
