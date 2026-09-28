@@ -97,7 +97,7 @@ npm run validate
 
 ## 🏪 Phase 2: Platform Integration
 
-- [ ] Shopify Integration
+- [x] WooCommerce Central Backbone (evidence-gated connector)\n- [ ] Shopify Integration
 - [ ] Instagram Shop Setup
 - [ ] Etsy Listing Integration
 - [ ] WhatsApp Business API
