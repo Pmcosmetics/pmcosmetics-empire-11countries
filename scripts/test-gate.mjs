@@ -14,7 +14,8 @@ try {
   assert.equal(healthBody.ok, true);
   assert.equal(healthBody.gate, "CLOSED");
   assert.equal(healthBody.service, "pmcosmetics-empire-11countries");
-  assert.equal(healthBody.dataSource, "Airtable");
+  assert.equal(healthBody.dataSource, "Supabase");
+  assert.equal(healthBody.supabaseConfigured, true);
   assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]);
 
   const manus = await fetch(`http://127.0.0.1:${port}/api/manus/status`);
@@ -26,13 +27,11 @@ try {
   const manusImport = await fetch(`http://127.0.0.1:${port}/api/manus/import`, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      products: [
-        { sku: "PM-MANUS-001", name: "Manus Product A" },
-        { sku: "PM-MANUS-001", name: "Duplicate" },
-        { name: "Missing SKU" }
-      ]
-    })
+    body: JSON.stringify({ products: [
+      { sku: "PM-MANUS-001", name: "Manus Product A" },
+      { sku: "PM-MANUS-001", name: "Duplicate" },
+      { name: "Missing SKU" }
+    ]})
   });
   assert.equal(manusImport.status, 200);
   const manusBody2 = await manusImport.json();
@@ -50,13 +49,10 @@ try {
   const dryRun = await fetch(`http://127.0.0.1:${port}/api/woocommerce/sync`, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      dryRun: true,
-      products: [
-        { sku: "PM-TEST-001", name: "PM Test Product", price: 100, stock: 1 },
-        { sku: "PM-TEST-001", name: "Duplicate" }
-      ]
-    })
+    body: JSON.stringify({ dryRun: true, products: [
+      { sku: "PM-TEST-001", name: "PM Test Product", price: 100, stock: 1 },
+      { sku: "PM-TEST-001", name: "Duplicate" }
+    ]})
   });
   assert.equal(dryRun.status, 200);
   const dryRunBody = await dryRun.json();
@@ -65,11 +61,14 @@ try {
   assert.equal(dryRunBody.duplicateSkuCount, 1);
 
   const products = await fetch(`http://127.0.0.1:${port}/api/products`);
-  assert.equal(products.status, 503);
+  assert.equal(products.status, 200);
   const productsBody = await products.json();
-  assert.equal(productsBody.ok, false);
+  assert.equal(productsBody.ok, true);
   assert.equal(productsBody.gate, "CLOSED");
-  assert.equal(productsBody.reason, "SUPABASE_NOT_CONFIGURED");
+  assert.equal(productsBody.source, "Supabase");
+  assert.equal(productsBody.readOnly, true);
+  assert.equal(productsBody.publishable, false);
+  assert.ok(Array.isArray(productsBody.products));
 } finally {
   server.close();
 }
