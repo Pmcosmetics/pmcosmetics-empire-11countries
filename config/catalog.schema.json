@@ -15,8 +15,13 @@
   "properties": {
     "sku": {
       "type": "string",
-      "pattern": "^PM-[A-Z0-9]{6,12}$",
-      "description": "Unique product identifier (PM-XXXXXX)"
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,31}$",
+      "description": "Canonical or source SKU used by PM Cosmetics Hub. Supports PM-, supplier/brand-prefixed, and numeric source SKUs.",
+      "examples": [
+        "PM-ABC12345",
+        "DERMAELLE007",
+        "86067"
+      ]
     },
     "name": {
       "type": "string",
@@ -66,58 +71,129 @@
     },
     "status": {
       "type": "string",
-      "enum": ["draft", "active", "inactive", "archived", "discontinued"],
+      "enum": [
+        "draft",
+        "active",
+        "inactive",
+        "archived",
+        "discontinued"
+      ],
       "description": "Product status"
     },
     "markets": {
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["EG", "SA", "AE", "KW", "QA", "BH", "OM", "JO", "PS", "LB", "IR"]
+        "enum": [
+          "EG",
+          "SA",
+          "AE",
+          "KW",
+          "QA",
+          "BH",
+          "OM",
+          "JO",
+          "PS",
+          "LB",
+          "IR"
+        ]
       },
       "minItems": 1,
       "description": "Countries where product is available"
     },
     "pricing": {
       "type": "object",
-      "required": ["EG"],
+      "required": [
+        "EG"
+      ],
       "properties": {
         "EG": {
           "type": "object",
-          "required": ["currency", "retail", "wholesale"],
+          "required": [
+            "currency",
+            "retail",
+            "wholesale"
+          ],
           "properties": {
-            "currency": { "type": "string", "const": "EGP" },
-            "retail": { "type": "number", "minimum": 0 },
-            "wholesale": { "type": "number", "minimum": 0 },
-            "cost": { "type": "number", "minimum": 0 }
+            "currency": {
+              "type": "string",
+              "const": "EGP"
+            },
+            "retail": {
+              "type": "number",
+              "minimum": 0
+            },
+            "wholesale": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cost": {
+              "type": "number",
+              "minimum": 0
+            }
           }
         },
         "SA": {
           "type": "object",
           "properties": {
-            "currency": { "type": "string", "const": "SAR" },
-            "retail": { "type": "number", "minimum": 0 },
-            "wholesale": { "type": "number", "minimum": 0 },
-            "cost": { "type": "number", "minimum": 0 }
+            "currency": {
+              "type": "string",
+              "const": "SAR"
+            },
+            "retail": {
+              "type": "number",
+              "minimum": 0
+            },
+            "wholesale": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cost": {
+              "type": "number",
+              "minimum": 0
+            }
           }
         },
         "AE": {
           "type": "object",
           "properties": {
-            "currency": { "type": "string", "const": "AED" },
-            "retail": { "type": "number", "minimum": 0 },
-            "wholesale": { "type": "number", "minimum": 0 },
-            "cost": { "type": "number", "minimum": 0 }
+            "currency": {
+              "type": "string",
+              "const": "AED"
+            },
+            "retail": {
+              "type": "number",
+              "minimum": 0
+            },
+            "wholesale": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cost": {
+              "type": "number",
+              "minimum": 0
+            }
           }
         }
       },
       "additionalProperties": {
         "type": "object",
         "properties": {
-          "currency": { "type": "string" },
-          "retail": { "type": "number", "minimum": 0 },
-          "wholesale": { "type": "number", "minimum": 0 },
-          "cost": { "type": "number", "minimum": 0 }
+          "currency": {
+            "type": "string"
+          },
+          "retail": {
+            "type": "number",
+            "minimum": 0
+          },
+          "wholesale": {
+            "type": "number",
+            "minimum": 0
+          },
+          "cost": {
+            "type": "number",
+            "minimum": 0
+          }
         }
       },
       "description": "Pricing per country"
@@ -125,10 +201,21 @@
     "inventory": {
       "type": "object",
       "properties": {
-        "totalStock": { "type": "integer", "minimum": 0 },
-        "reorderLevel": { "type": "integer", "minimum": 0 },
-        "supplier": { "type": "string" },
-        "lastRestocked": { "type": "string", "format": "date-time" }
+        "totalStock": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reorderLevel": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "supplier": {
+          "type": "string"
+        },
+        "lastRestocked": {
+          "type": "string",
+          "format": "date-time"
+        }
       },
       "description": "Inventory information"
     },
@@ -157,22 +244,45 @@
     "metadata": {
       "type": "object",
       "properties": {
-        "barcode": { "type": "string" },
-        "weight": { "type": "number" },
+        "barcode": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number"
+        },
         "dimensions": {
           "type": "object",
           "properties": {
-            "length": { "type": "number" },
-            "width": { "type": "number" },
-            "height": { "type": "number" },
-            "unit": { "type": "string", "enum": ["cm", "in"] }
+            "length": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "unit": {
+              "type": "string",
+              "enum": [
+                "cm",
+                "in"
+              ]
+            }
           }
         },
-        "expiryDate": { "type": "string", "format": "date" },
-        "batchNumber": { "type": "string" },
+        "expiryDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "batchNumber": {
+          "type": "string"
+        },
         "certifications": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         }
       },
       "description": "Additional metadata"
@@ -180,9 +290,19 @@
     "seo": {
       "type": "object",
       "properties": {
-        "slug": { "type": "string" },
-        "keywords": { "type": "array", "items": { "type": "string" } },
-        "metaDescription": { "type": "string", "maxLength": 160 }
+        "slug": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metaDescription": {
+          "type": "string",
+          "maxLength": 160
+        }
       },
       "description": "SEO configuration"
     },
