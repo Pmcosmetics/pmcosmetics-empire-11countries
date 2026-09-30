@@ -14,20 +14,7 @@ const locked = (service, reason = "DATA_INTAKE_LOCKED") => ({
   ok: false, service, status: 503, gate: "CLOSED", reason
 });
 
-app.get("/", (_req, res) => res.json({
-  ok: true,
-  service: "pmcosmetics-empire-11countries",
-  gate: "CLOSED",
-  message: "PM Cosmetics Hub API is running on Vercel/Railway",
-  health: "/api/health",
-  products: "/api/products",
-  staging: "/api/products/staging",
-  manus: "/api/manus/status",
-  supabase: "/api/supabase/status",
-  woocommerce: "/api/woocommerce/status"
-}));
-
-app.get("/api/health", (_req, res) => res.json({
+const healthResponse = (_req, res) => res.json({
   ok: true,
   service: "pmcosmetics-empire-11countries",
   gate: "CLOSED",
@@ -35,7 +22,25 @@ app.get("/api/health", (_req, res) => res.json({
   dataSource: isSupabaseConfigured() ? "Supabase" : "Airtable",
   supabaseConfigured: isSupabaseConfigured(),
   architecture: ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]
+});
+
+app.get("/", (_req, res) => res.json({
+  ok: true,
+  service: "pmcosmetics-empire-11countries",
+  gate: "CLOSED",
+  message: "PM Cosmetics Hub API is running on Vercel/Railway",
+  health: "/api/health",
+  healthAlias: "/health",
+  products: "/api/products",
+  staging: "/api/products/staging",
+  manus: "/api/manus/status",
+  supabase: "/api/supabase/status",
+  woocommerce: "/api/woocommerce/status"
 }));
+
+app.get("/api/health", healthResponse);
+app.get("/health", healthResponse);
+app.get("/favicon.ico", (_req, res) => res.status(204).end());
 
 app.get("/api/supabase/status", (_req, res) => {
   res.json({
