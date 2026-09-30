@@ -97,7 +97,8 @@ npm run validate
 
 ## 🏪 Phase 2: Platform Integration
 
-- [x] WooCommerce Central Backbone (evidence-gated connector)\n- [ ] Shopify Integration
+- [x] WooCommerce Central Backbone (evidence-gated connector)
+- [ ] Shopify Integration
 - [ ] Instagram Shop Setup
 - [ ] Etsy Listing Integration
 - [ ] WhatsApp Business API
@@ -127,10 +128,11 @@ npm run validate
 
 See docs/SECURITY.md for project guidance.
 
-
 ## ⚙️ Execution Control
 
 Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated template workflows are manual-only; product publication remains evidence-gated.
+
+**2026-10-01 operations sync:** CI gate validation fix merged to `main`; Railway production remains evidence-gated with commercial writes locked until verified product evidence is complete.
 ---
 
 ## 📚 Documentation
