@@ -17,6 +17,17 @@ try {
   assert.equal(healthBody.supabaseConfigured, healthBody.dataSource === "Supabase");
   assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]);
 
+  const readiness = await fetch(`http://127.0.0.1:${port}/api/readiness`);
+  assert.equal(readiness.status, 200);
+  const readinessBody = await readiness.json();
+  assert.equal(readinessBody.ok, true);
+  assert.equal(readinessBody.mode, "CONTROLLED_PILOT");
+  assert.equal(readinessBody.commercialWrites, "LOCKED");
+  assert.equal(readinessBody.marketScope.count, 11);
+  assert.equal(readinessBody.marketScope.launchValidationRequired, true);
+  assert.equal(readinessBody.externalWriteRoutes.shopify, "LOCKED_BY_GATE");
+  assert.equal(readinessBody.externalWriteRoutes.noon, "LOCKED_BY_GATE");
+
   const manus = await fetch(`http://127.0.0.1:${port}/api/manus/status`);
   assert.equal(manus.status, 200);
   const manusBody = await manus.json();
