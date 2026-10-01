@@ -240,12 +240,25 @@ app.post("/api/products/batch/publish", async (req, res) => {
     return res.status(400).json({ ok: false, gate: gateState(), batchGate: batchGateState(), reason: "NO_PRODUCTS" });
   }
 
-  if (result.blockedCount > 0) {
+  const allowPartial = req.body?.allowPartial === true;
+
+  if (result.blockedCount > 0 && !allowPartial) {
     return res.status(422).json({
       ok: false,
       gate: gateState(),
       batchGate: batchGateState(),
       reason: "BATCH_CONTAINS_INELIGIBLE_PRODUCTS",
+      allowPartial: false,
+      ...result
+    });
+  }
+
+  if (result.eligibleCount === 0) {
+    return res.status(422).json({
+      ok: false,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      reason: "NO_ELIGIBLE_PRODUCTS",
       ...result
     });
   }
@@ -266,7 +279,8 @@ app.post("/api/products/batch/publish", async (req, res) => {
       dryRun: true,
       gate: gateState(),
       batchGate: batchGateState(),
-      mode: "VALIDATED_ONLY",
+      mode: allowPartial && result.blockedCount > 0 ? "VALIDATED_PARTIAL" : "VALIDATED_ONLY",
+      allowPartial,
       ...result
     });
   }
@@ -290,6 +304,7 @@ app.post("/api/products/batch/publish", async (req, res) => {
       gate: gateState(),
       batchGate: batchGateState(),
       channel,
+      allowPartial,
       ...result,
       publishResult
     });
