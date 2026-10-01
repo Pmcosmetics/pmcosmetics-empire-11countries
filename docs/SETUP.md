@@ -76,3 +76,20 @@ Only change `COMMERCIAL_PUBLISH_GATE` to `OPEN` after the evidence gate has been
 - Use HTTPS for all remote integrations.
 - Keep commercial publication CLOSED for unverified inventory.
 - Do not treat a successful connector dry-run as evidence that PM owns the stock.
+
+
+
+## WhatsApp Cloud API
+
+The production server exposes /api/whatsapp/status, GET /api/whatsapp/webhook, and POST /api/whatsapp/webhook.
+
+Callback URL:
+https://pmcosmetics-empire-11countries-production.up.railway.app/api/whatsapp/webhook
+
+Keep only these in Railway secret storage:
+- WHATSAPP_BUSINESS_ACCESS_TOKEN
+- WHATSAPP_BUSINESS_PHONE_NUMBER_ID
+- WHATSAPP_BUSINESS_VERIFY_TOKEN
+- WHATSAPP_WEBHOOK_SECRET
+
+Meta verification must complete before the integration is considered live. The commercial publication gate remains independent and CLOSED.
