@@ -2,6 +2,7 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import { createRequire } from "node:module";
+import { createHmac, timingSafeEqual } from "node:crypto";
 import { checkWooConnection, getWooStatus, syncWooProducts } from "./integrations/woocommerce.mjs";
 import { getManusStatus, pullManusProducts, validateManusProducts } from "./integrations/manus.mjs";
 import { isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
@@ -14,7 +15,7 @@ const marketConfig = require("../config/markets.json");
 const app = express();
 app.use(helmet());
 app.use(cors());
-app.use(express.json({ limit: "25mb" }));
+app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody = Buffer.from(buf); } }));
 
 const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
 const batchGateState = () => String(process.env.BATCH_COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
@@ -49,6 +50,63 @@ app.get("/", (_req, res) => res.json({
 }));
 
 app.get("/api/health", healthResponse);
+
+const whatsappConfigState = () => ({
+  webhook: {
+    configured: Boolean(process.env.WHATSAPP_BUSINESS_VERIFY_TOKEN && process.env.WHATSAPP_WEBHOOK_SECRET),
+    path: "/api/whatsapp/webhook"
+  },
+  cloudApi: {
+    configured: Boolean(process.env.WHATSAPP_BUSINESS_ACCESS_TOKEN && process.env.WHATSAPP_BUSINESS_PHONE_NUMBER_ID)
+  },
+  routing: {
+    primary: "https://wa.me/201055655649",
+    backup: "https://wa.me/201203151461",
+    catalog: "https://wa.me/c/201055655649"
+  }
+});
+
+const whatsappSignatureValid = (req) => {
+  const secret = process.env.WHATSAPP_WEBHOOK_SECRET;
+  const signature = String(req.headers["x-hub-signature-256"] || "");
+  const rawBody = req.rawBody;
+  if (!secret || !rawBody || !signature.startsWith("sha256=")) return false;
+  const expected = "sha256=" + createHmac("sha256", secret).update(rawBody).digest("hex");
+  const a = Buffer.from(signature);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+};
+
+app.get("/api/whatsapp/status", (_req, res) => {
+  res.json({ ok: true, gate: gateState(), service: "whatsapp-cloud-api", ...whatsappConfigState() });
+});
+
+app.get("/api/whatsapp/webhook", (req, res) => {
+  const verifyToken = process.env.WHATSAPP_BUSINESS_VERIFY_TOKEN;
+  if (!verifyToken) return res.status(503).json({ ok: false, gate: gateState(), reason: "WHATSAPP_WEBHOOK_NOT_CONFIGURED" });
+  const mode = String(req.query["hub.mode"] || "");
+  const token = String(req.query["hub.verify_token"] || "");
+  const challenge = String(req.query["hub.challenge"] || "");
+  if (mode === "subscribe" && token === verifyToken && challenge) return res.status(200).send(challenge);
+  return res.status(403).send("Forbidden");
+});
+
+app.post("/api/whatsapp/webhook", (req, res) => {
+  if (!process.env.WHATSAPP_WEBHOOK_SECRET) {
+    return res.status(503).json({ ok: false, gate: gateState(), reason: "WHATSAPP_WEBHOOK_NOT_CONFIGURED" });
+  }
+  if (!whatsappSignatureValid(req)) {
+    return res.status(401).json({ ok: false, gate: gateState(), reason: "WHATSAPP_WEBHOOK_SIGNATURE_INVALID" });
+  }
+  return res.status(200).json({
+    ok: true,
+    gate: gateState(),
+    received: true,
+    processed: false,
+    reason: "WEBHOOK_RECEIVED_GATED"
+  });
+});
+
 app.get("/api/amplitude/status", (_req, res) => res.json({ ok: true, ...getAmplitudeStatus() }));
 app.get("/health", healthResponse);
 app.get("/favicon.ico", (_req, res) => res.status(204).end());
