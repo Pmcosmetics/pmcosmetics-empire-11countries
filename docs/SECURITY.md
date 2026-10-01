@@ -42,9 +42,10 @@ This document outlines security best practices for the PM Cosmetics Hub project.
 - Scope: Products, inventory, orders
 
 ### WhatsApp Business
-- Store in: `WHATSAPP_BUSINESS_ACCESS_TOKEN`, `WHATSAPP_BUSINESS_PHONE_NUMBER_ID`
+- Store in: `WHATSAPP_BUSINESS_ACCESS_TOKEN`, `WHATSAPP_BUSINESS_PHONE_NUMBER_ID`, `WHATSAPP_BUSINESS_VERIFY_TOKEN`, `WHATSAPP_WEBHOOK_SECRET`
 - Rotate: Every 30 days
-- Security: Enable webhook verification
+- Security: Enable webhook verification and validate `X-Hub-Signature-256` before processing POST deliveries
+- Do not persist inbound webhook bodies unless a separate approved data-retention policy exists
 
 ### Database
 - Store in: `DATABASE_URL`, `MONGODB_URI`
