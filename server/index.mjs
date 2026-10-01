@@ -6,6 +6,7 @@ import { checkWooConnection, getWooStatus, syncWooProducts } from "./integration
 import { getManusStatus, pullManusProducts, validateManusProducts } from "./integrations/manus.mjs";
 import { isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
 import { evaluateBatch } from "../scripts/batch-gate.mjs";
+import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitude.mjs";
 
 const require = createRequire(import.meta.url);
 const marketConfig = require("../config/markets.json");
@@ -48,6 +49,7 @@ app.get("/", (_req, res) => res.json({
 }));
 
 app.get("/api/health", healthResponse);
+app.get("/api/amplitude/status", (_req, res) => res.json({ ok: true, ...getAmplitudeStatus() }));
 app.get("/health", healthResponse);
 app.get("/favicon.ico", (_req, res) => res.status(204).end());
 
@@ -59,7 +61,7 @@ app.get("/api/readiness", (_req, res) => {
   const markets = Array.isArray(marketConfig?.markets) ? marketConfig.markets : [];
   const blockedWrites = gate !== "OPEN";
 
-  return res.json({
+  const response = {
     ok: true,
     service: "pmcosmetics-empire-11countries",
     gate,
@@ -83,7 +85,14 @@ app.get("/api/readiness", (_req, res) => {
       amazon: "LOCKED_BY_GATE",
       jumia: "LOCKED_BY_GATE"
     }
+  };
+  void trackAmplitudeEvent("empire_readiness_viewed", {
+    gate,
+    mode: response.mode,
+    commercialWrites: response.commercialWrites,
+    marketCount: response.marketScope.count
   });
+  return res.json(response);
 });
 
 app.get("/api/supabase/status", (_req, res) => {
@@ -170,6 +179,11 @@ app.post("/api/woocommerce/sync", async (req, res) => {
       return res.status(503).json(locked("woocommerce-sync", "COMMERCIAL_PUBLISH_GATE_CLOSED"));
     }
 
+    void trackAmplitudeEvent("woocommerce_sync_requested", {
+      dryRun,
+      productCount: products.length,
+      gate: gateState()
+    });
     const result = await syncWooProducts(products, { dryRun });
     return res.json({ ...result, gate: dryRun ? gateState() : "OPEN" });
   } catch (error) {
@@ -188,6 +202,7 @@ app.post("/api/chat", (_req, res) => res.status(503).json(locked("chat")));
 app.get("/api/products", async (_req, res) => {
   try {
     const products = await listActiveProducts();
+    void trackAmplitudeEvent("products_read", { productCount: Array.isArray(products) ? products.length : 0 });
     return res.json({
       ok: true,
       gate: gateState(),
@@ -219,6 +234,12 @@ app.get("/api/products/staging", (_req, res) => res.json({
 
 app.post("/api/products/batch/readiness", (req, res) => {
   const result = evaluateBatch(req.body?.products);
+  void trackAmplitudeEvent("batch_readiness_checked", {
+    inputCount: result.inputCount,
+    eligibleCount: result.eligibleCount,
+    blockedCount: result.blockedCount,
+    batchGate: batchGateState()
+  });
   return res.json({
     ok: true,
     gate: gateState(),

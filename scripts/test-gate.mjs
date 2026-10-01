@@ -8,6 +8,12 @@ const server = app.listen(0);
 const { port } = server.address();
 
 try {
+  const amplitudeStatus = await fetch(`http://127.0.0.1:${port}/api/amplitude/status`);
+  assert.equal(amplitudeStatus.status, 200);
+  const amplitudeBody = await amplitudeStatus.json();
+  assert.equal(amplitudeBody.ok, true);
+  assert.equal(amplitudeBody.configured, false);
+
   const health = await fetch(`http://127.0.0.1:${port}/api/health`);
   assert.equal(health.status, 200);
   const healthBody = await health.json();
