@@ -5,6 +5,7 @@ import { createRequire } from "node:module";
 import { checkWooConnection, getWooStatus, syncWooProducts } from "./integrations/woocommerce.mjs";
 import { getManusStatus, pullManusProducts, validateManusProducts } from "./integrations/manus.mjs";
 import { isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
+import { evaluateBatch } from "../scripts/batch-gate.mjs";
 
 const require = createRequire(import.meta.url);
 const marketConfig = require("../config/markets.json");
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json({ limit: "25mb" }));
 
 const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
+const batchGateState = () => String(process.env.BATCH_COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
 
 const locked = (service, reason = "DATA_INTAKE_LOCKED") => ({
   ok: false, service, status: 503, gate: gateState(), reason
@@ -63,6 +65,7 @@ app.get("/api/readiness", (_req, res) => {
     gate,
     mode: blockedWrites ? "CONTROLLED_PILOT" : "COMMERCIAL",
     commercialWrites: blockedWrites ? "LOCKED" : "GATE_OPEN",
+    batchPublishGate: batchGateState(),
     evidencePolicy: "PM-owned identity + exact image + stock + cost/provenance required before commercial publication",
     marketScope: {
       count: markets.length,
@@ -213,6 +216,94 @@ app.get("/api/products/staging", (_req, res) => res.json({
   source: "Airtable",
   feed: "/data/products/staging-evidence.json"
 }));
+
+app.post("/api/products/batch/readiness", (req, res) => {
+  const result = evaluateBatch(req.body?.products);
+  return res.json({
+    ok: true,
+    gate: gateState(),
+    batchGate: batchGateState(),
+    mode: "EVIDENCE_AWARE_BATCH",
+    ...result,
+    publishableNow: result.inputCount > 0 &&
+      result.eligibleCount === result.inputCount &&
+      batchGateState() === "OPEN"
+  });
+});
+
+app.post("/api/products/batch/publish", async (req, res) => {
+  const products = Array.isArray(req.body?.products) ? req.body.products : [];
+  const dryRun = req.body?.dryRun !== false;
+  const result = evaluateBatch(products);
+
+  if (products.length === 0) {
+    return res.status(400).json({ ok: false, gate: gateState(), batchGate: batchGateState(), reason: "NO_PRODUCTS" });
+  }
+
+  if (result.blockedCount > 0) {
+    return res.status(422).json({
+      ok: false,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      reason: "BATCH_CONTAINS_INELIGIBLE_PRODUCTS",
+      ...result
+    });
+  }
+
+  if (!dryRun && batchGateState() !== "OPEN") {
+    return res.status(503).json({
+      ok: false,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      reason: "BATCH_COMMERCIAL_PUBLISH_GATE_CLOSED",
+      ...result
+    });
+  }
+
+  if (dryRun) {
+    return res.json({
+      ok: true,
+      dryRun: true,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      mode: "VALIDATED_ONLY",
+      ...result
+    });
+  }
+
+  try {
+    const channel = String(req.body?.channel || "woocommerce").toLowerCase();
+    if (channel !== "woocommerce") {
+      return res.status(501).json({
+        ok: false,
+        gate: gateState(),
+        batchGate: batchGateState(),
+        reason: "CHANNEL_ADAPTER_NOT_IMPLEMENTED",
+        channel
+      });
+    }
+
+    const publishResult = await syncWooProducts(result.eligible, { dryRun: false });
+    return res.json({
+      ok: true,
+      dryRun: false,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      channel,
+      ...result,
+      publishResult
+    });
+  } catch (error) {
+    return res.status(502).json({
+      ok: false,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      reason: "BATCH_PUBLISH_FAILED",
+      message: error instanceof Error ? error.message : "Unknown error",
+      ...result
+    });
+  }
+});
 
 app.post("/api/products", (_req, res) => res.status(503).json(locked("products")));
 app.post("/api/shopify/sync", (_req, res) => res.status(503).json(locked("shopify-sync","SHOPIFY_NOT_VERIFIED")));
