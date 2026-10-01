@@ -30,3 +30,25 @@ The legacy webhook implementation is archived under `archive/legacy-Pm/services/
 - Direct/backup contact → secondary `01203151461`
 - Product-specific deep links may target either number only after the product is evidence-gated.
 - Do not initiate outbound campaigns without approved templates/consent and current WhatsApp Business policy compliance.
+
+
+## Cloud API webhook endpoint
+
+The production API exposes:
+- GET /api/whatsapp/webhook — Meta verification handshake
+- POST /api/whatsapp/webhook — signed webhook delivery endpoint
+- GET /api/whatsapp/status — configuration state without exposing secrets
+
+Production callback URL:
+
+https://pmcosmetics-empire-11countries-production.up.railway.app/api/whatsapp/webhook
+
+Required Railway secrets:
+- WHATSAPP_BUSINESS_ACCESS_TOKEN
+- WHATSAPP_BUSINESS_PHONE_NUMBER_ID
+- WHATSAPP_BUSINESS_VERIFY_TOKEN
+- WHATSAPP_WEBHOOK_SECRET
+
+The webhook validates the Meta verification token on GET and X-Hub-Signature-256 on POST. It does not persist webhook payloads or send outbound messages automatically.
+
+Cloud API/WABA is not claimed as connected until Meta-side WABA subscription and phone-number configuration are completed and verified.
