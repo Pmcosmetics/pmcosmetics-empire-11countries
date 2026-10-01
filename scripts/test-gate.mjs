@@ -70,6 +70,65 @@ try {
   assert.equal(dryRunBody.validCount, 1);
   assert.equal(dryRunBody.duplicateSkuCount, 1);
 
+  const batch = [
+    {
+      sku: "PM-BATCH-001",
+      name: "Verified Product",
+      gtin: "1234567890123",
+      imageUrl: "https://example.test/pm-batch-001.jpg",
+      stock: 10,
+      cost: 100,
+      provenanceVerified: true,
+      imageVerified: true,
+      authorizationRequired: false
+    },
+    {
+      sku: "PM-BATCH-002",
+      name: "Blocked Product",
+      gtin: "1234567890124",
+      stock: 0,
+      cost: 0,
+      provenanceVerified: false,
+      imageVerified: false,
+      authorizationRequired: true,
+      authorizationVerified: false
+    }
+  ];
+
+  const batchReadiness = await fetch(`http://127.0.0.1:${port}/api/products/batch/readiness`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ products: batch })
+  });
+  assert.equal(batchReadiness.status, 200);
+  const batchReadinessBody = await batchReadiness.json();
+  assert.equal(batchReadinessBody.mode, "EVIDENCE_AWARE_BATCH");
+  assert.equal(batchReadinessBody.inputCount, 2);
+  assert.equal(batchReadinessBody.eligibleCount, 1);
+  assert.equal(batchReadinessBody.blockedCount, 1);
+  assert.equal(batchReadinessBody.publishableNow, false);
+
+  const batchDryRun = await fetch(`http://127.0.0.1:${port}/api/products/batch/publish`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ dryRun: true, products: [batch[0]] })
+  });
+  assert.equal(batchDryRun.status, 200);
+  const batchDryRunBody = await batchDryRun.json();
+  assert.equal(batchDryRunBody.dryRun, true);
+  assert.equal(batchDryRunBody.eligibleCount, 1);
+  assert.equal(batchDryRunBody.blockedCount, 0);
+  assert.equal(batchDryRunBody.batchGate, "CLOSED");
+
+  const blockedBatchPublish = await fetch(`http://127.0.0.1:${port}/api/products/batch/publish`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ dryRun: false, products: [batch[0]] })
+  });
+  assert.equal(blockedBatchPublish.status, 503);
+  const blockedBatchBody = await blockedBatchPublish.json();
+  assert.equal(blockedBatchBody.reason, "BATCH_COMMERCIAL_PUBLISH_GATE_CLOSED");
+
   const products = await fetch(`http://127.0.0.1:${port}/api/products`);
   const productsBody = await products.json();
   assert.equal(productsBody.gate, "CLOSED");
