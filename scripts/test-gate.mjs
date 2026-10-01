@@ -8,6 +8,19 @@ const server = app.listen(0);
 const { port } = server.address();
 
 try {
+  const whatsappStatus = await fetch(`http://127.0.0.1:${port}/api/whatsapp/status`);
+  assert.equal(whatsappStatus.status, 200);
+  const whatsappStatusBody = await whatsappStatus.json();
+  assert.equal(whatsappStatusBody.ok, true);
+  assert.equal(whatsappStatusBody.routing.primary, "https://wa.me/201055655649");
+  assert.equal(whatsappStatusBody.routing.backup, "https://wa.me/201203151461");
+  assert.equal(whatsappStatusBody.routing.catalog, "https://wa.me/c/201055655649");
+
+  if (!whatsappStatusBody.webhook.configured) {
+    const whatsappWebhook = await fetch(`http://127.0.0.1:${port}/api/whatsapp/webhook`);
+    assert.equal(whatsappWebhook.status, 503);
+  }
+
   const amplitudeStatus = await fetch(`http://127.0.0.1:${port}/api/amplitude/status`);
   assert.equal(amplitudeStatus.status, 200);
   const amplitudeBody = await amplitudeStatus.json();
