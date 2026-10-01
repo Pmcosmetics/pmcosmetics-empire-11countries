@@ -7,6 +7,7 @@ const required = [
   "config/markets.json",
   "config/catalog.schema.json",
   "server/index.mjs",
+  "scripts/batch-gate.mjs",
   "app/intake/README.md",
   "data/products/README.md",
   "data/images/real/README.md",
@@ -18,6 +19,7 @@ for (const file of required) await read(file);
 const server = await read("server/index.mjs");
 const productReadme = await read("data/products/README.md");
 const imageReadme = await read("data/images/real/README.md");
+const serverContract = await read("scripts/batch-gate.mjs");
 
 if (!server.includes("COMMERCIAL_PUBLISH_GATE")) throw new Error("Commercial gate environment contract is missing");
 if (!server.includes('process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED"')) throw new Error("Commercial gate default CLOSED contract is missing");
@@ -28,5 +30,9 @@ if (!productReadme.includes("verified PM Cosmetics product source")) throw new E
 if (!productReadme.includes("Staging evidence alone does not open the commercial publication gate")) throw new Error("Product staging evidence-gate rule is missing");
 if (!imageReadme.includes("verified PM-owned real product images")) throw new Error("Real image staging contract is missing");
 if (!imageReadme.includes("Do not add placeholders")) throw new Error("Real image anti-placeholder guard is missing");
+if (!serverContract.includes("PROVENANCE_NOT_VERIFIED")) throw new Error("Batch provenance guard is missing");
+if (!server.includes("/api/products/batch/readiness")) throw new Error("Batch readiness route is missing");
+if (!server.includes("/api/products/batch/publish")) throw new Error("Batch publish route is missing");
+if (!server.includes("BATCH_COMMERCIAL_PUBLISH_GATE")) throw new Error("Batch commercial gate contract is missing");
 
 console.log("Validation passed: dynamic commercial gate contract, staging provenance rules, Gate CLOSED default, and products API lock");
