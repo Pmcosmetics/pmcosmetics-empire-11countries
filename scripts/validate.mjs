@@ -34,5 +34,8 @@ if (!serverContract.includes("PROVENANCE_NOT_VERIFIED")) throw new Error("Batch 
 if (!server.includes("/api/products/batch/readiness")) throw new Error("Batch readiness route is missing");
 if (!server.includes("/api/products/batch/publish")) throw new Error("Batch publish route is missing");
 if (!server.includes("BATCH_COMMERCIAL_PUBLISH_GATE")) throw new Error("Batch commercial gate contract is missing");
+if (!server.includes('app.get("/api/whatsapp/status"')) throw new Error("WhatsApp status route is missing");
+if (!server.includes('app.get("/api/whatsapp/webhook"')) throw new Error("WhatsApp webhook verification route is missing");
+if (!server.includes('x-hub-signature-256')) throw new Error("WhatsApp webhook signature guard is missing");
 
 console.log("Validation passed: dynamic commercial gate contract, staging provenance rules, Gate CLOSED default, and products API lock");
