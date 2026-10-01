@@ -120,6 +120,18 @@ try {
   assert.equal(batchDryRunBody.blockedCount, 0);
   assert.equal(batchDryRunBody.batchGate, "CLOSED");
 
+  const partialBatchDryRun = await fetch(`http://127.0.0.1:${port}/api/products/batch/publish`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ dryRun: true, allowPartial: true, products: batch })
+  });
+  assert.equal(partialBatchDryRun.status, 200);
+  const partialBatchBody = await partialBatchDryRun.json();
+  assert.equal(partialBatchBody.mode, "VALIDATED_PARTIAL");
+  assert.equal(partialBatchBody.allowPartial, true);
+  assert.equal(partialBatchBody.eligibleCount, 1);
+  assert.equal(partialBatchBody.blockedCount, 1);
+
   const blockedBatchPublish = await fetch(`http://127.0.0.1:${port}/api/products/batch/publish`, {
     method: "POST",
     headers: { "content-type": "application/json" },
