@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-02",
+  "brand": "Pmcosmetics Hub",
+  "sourceOfTruth": "Empire Product Master / Evidence Gate",
+  "publicationPolicy": {
+    "onlyPublishReady": true,
+    "commercialGate": "CLOSED",
+    "referenceCatalogsNeverAutoPublish": true
+  },
+  "channels": [
+    {
+      "id": "shopify",
+      "group": "commerce",
+      "integration": "windsor.ai",
+      "status": "pending_account_authorization"
+    },
+    {
+      "id": "facebook",
+      "group": "social",
+      "integration": "windsor.ai",
+      "status": "connected"
+    },
+    {
+      "id": "instagram",
+      "group": "social",
+      "integration": "windsor.ai",
+      "status": "pending_account_authorization"
+    },
+    {
+      "id": "tiktok",
+      "group": "social",
+      "integration": "windsor.ai",
+      "status": "pending_account_authorization"
+    },
+    {
+      "id": "tiktok_shop",
+      "group": "commerce",
+      "integration": "windsor.ai",
+      "status": "pending_account_authorization"
+    },
+    {
+      "id": "amazon_sp",
+      "group": "marketplace",
+      "integration": "windsor.ai",
+      "status": "pending_account_authorization"
+    },
+    {
+      "id": "google_merchant",
+      "group": "commerce",
+      "integration": "windsor.ai",
+      "status": "pending_account_authorization"
+    },
+    {
+      "id": "woocommerce",
+      "group": "commerce",
+      "integration": "windsor.ai",
+      "status": "pending_account_authorization"
+    },
+    {
+      "id": "salla",
+      "group": "commerce",
+      "integration": "independent_api",
+      "status": "not_supported_by_windsor"
+    },
+    {
+      "id": "instashop",
+      "group": "marketplace",
+      "integration": "independent_api",
+      "status": "not_supported_by_windsor"
+    },
+    {
+      "id": "etsy",
+      "group": "marketplace",
+      "integration": "independent_api",
+      "status": "not_supported_by_windsor"
+    },
+    {
+      "id": "whatsapp_business_primary",
+      "group": "messaging",
+      "integration": "meta_waba",
+      "status": "credentials_pending",
+      "publicNumber": "01055655649"
+    },
+    {
+      "id": "whatsapp_business_backup",
+      "group": "messaging",
+      "integration": "meta_waba",
+      "status": "credentials_pending",
+      "publicNumber": "01203151461"
+    },
+    {
+      "id": "temu",
+      "group": "marketplace",
+      "integration": "independent_api",
+      "status": "not_supported_by_windsor"
+    },
+    {
+      "id": "jumia",
+      "group": "marketplace",
+      "integration": "independent_api",
+      "status": "not_supported_by_windsor"
+    },
+    {
+      "id": "talabat",
+      "group": "marketplace",
+      "integration": "independent_api",
+      "status": "not_supported_by_windsor"
+    }
+  ],
+  "currentEvidence": {
+    "publishReadyProducts": 0
+  }
+}
