@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-02",
+  "canonicalBrand": "Pmcosmetics Hub",
+  "purpose": "Map verified account identities to useful Empire integrations without changing access policy.",
+  "accounts": [
+    {
+      "email": "shukrypeter79@gmail.com",
+      "role": "commerce-and-design-primary",
+      "verifiedIntegrations": [
+        {
+          "service": "Shopify",
+          "status": "connected_verified",
+          "use": "commerce storefront"
+        },
+        {
+          "service": "Figma",
+          "status": "connected_verified",
+          "use": "UI/design system"
+        }
+      ],
+      "recommendedEmpireRole": "primary commerce/design identity",
+      "authPolicyChange": false
+    },
+    {
+      "email": "shukrypeter102@gmail.com",
+      "role": "engineering-and-operations-secondary",
+      "verifiedIntegrations": [
+        {
+          "service": "GitHub",
+          "status": "connected_verified",
+          "use": "code and CI/CD"
+        },
+        {
+          "service": "Notion",
+          "status": "connected_verified",
+          "use": "command center and documentation"
+        },
+        {
+          "service": "Windsor.ai",
+          "status": "connected",
+          "use": "marketing/data connectors"
+        }
+      ],
+      "recommendedEmpireRole": "engineering/integration identity",
+      "authPolicyChange": false
+    },
+    {
+      "email": "shukrypeter72@gmail.com",
+      "role": "backup-identity",
+      "verifiedIntegrations": [
+        {
+          "service": "Notion",
+          "status": "workspace_member",
+          "use": "continuity/document access"
+        }
+      ],
+      "recommendedEmpireRole": "backup only",
+      "authPolicyChange": false
+    },
+    {
+      "email": "petershukry67@gmail.com",
+      "role": "backup-identity",
+      "verifiedIntegrations": [
+        {
+          "service": "Notion",
+          "status": "workspace_member",
+          "use": "continuity/document access"
+        }
+      ],
+      "recommendedEmpireRole": "backup only",
+      "authPolicyChange": false
+    }
+  ],
+  "apple": {
+    "status": "not_verified_as_direct_Empire_connector",
+    "recommendedRole": "device/account ecosystem only until an explicit Apple/iCloud connector is available",
+    "authPolicyChange": false
+  },
+  "currentEmpireAuthAllowlist": [
+    "shukrypeter79@gmail.com",
+    "shukrypeter102@gmail.com"
+  ],
+  "principles": {
+    "doNotExpandAuthAllowlistAutomatically": true,
+    "doNotInferThirdPartyAppsFromEmailAddressAlone": true,
+    "doNotGrantAdminAccessToBackupIdentities": true,
+    "commercialPublishGateRemainsClosed": true
+  }
+}
