@@ -6,6 +6,8 @@ const required = [
   "config/catalog.schema.json",
   "server/index.mjs",
   "config/storefront-cosmetics.json",
+  "config/brand-identity.json",
+  "public/pmcosmetics-logo.svg",
   "public/index.html",
 ];
 
