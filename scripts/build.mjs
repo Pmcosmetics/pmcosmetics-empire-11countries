@@ -8,6 +8,8 @@ const required = [
   "config/storefront-cosmetics.json",
   "config/brand-identity.json",
   "config/reference-catalog.json",
+  "config/auth-identity.json",
+  "public/auth.html",
   "public/reference-catalog.html",
   "public/pmcosmetics-logo.svg",
   "public/index.html",
