@@ -1,0 +1,90 @@
+{
+  "source": {
+    "name": "AlFouad Pharmacies",
+    "url": "https://alfouadpharmacies.com/",
+    "capturedAt": "2026-10-02",
+    "use": "category/UX/reference only",
+    "policy": "Do not copy branding, copyrighted copy, images, or proprietary data"
+  },
+  "storeModel": {
+    "primaryCategories": [
+      "عروض خاصة",
+      "باقات مجمعة",
+      "العطور",
+      "العناية بالبشرة",
+      "العناية بالشعر",
+      "العناية بالجسم",
+      "العناية بالأطفال",
+      "منتجات كورية"
+    ],
+    "concerns": [
+      "الحماية من الشمس",
+      "البشرة الدهنية والمختلطة",
+      "البشرة الجافة",
+      "قشرة الشعر",
+      "البشرة الحساسة",
+      "العناية الشخصية",
+      "إصلاح البشرة",
+      "رول أون",
+      "مزيلات المكياج",
+      "ركن الأطفال",
+      "علاج تساقط الشعر"
+    ],
+    "merchandising": [
+      "Best Seller",
+      "باقات",
+      "العروض الخاصة",
+      "الأكثر بحثا",
+      "الأكثر رواجاً",
+      "تسوق حسب الفئة",
+      "تسوق حسب الاهتمام"
+    ],
+    "productFields": [
+      "name",
+      "brand",
+      "size",
+      "priceEGP",
+      "compareAtPriceEGP",
+      "discount",
+      "image",
+      "description",
+      "availability",
+      "gtin",
+      "sku",
+      "evidenceUrl"
+    ],
+    "checkoutModel": [
+      "cart",
+      "customer details",
+      "delivery",
+      "payment",
+      "order confirmation"
+    ],
+    "referenceObservations": {
+      "skinCareListedProducts": 1191,
+      "skinCareInStock": 850,
+      "skinCareOutOfStock": 341,
+      "examples": [
+        "Dermaelle Glycolic Acid Toner 350ml",
+        "Bioderma Pigmentbio Sensitive Areas 75ml",
+        "La Roche Effaclar H Iso-Biome Cream 40ml",
+        "La Roche Hyalu B5 Serum 30ml",
+        "Eucerin Anti-Pigment Dual Serum 30ml",
+        "Avène Cicalfate+ Restorative Protective Cream 40ml",
+        "CeraVe Oil Control Moisturising Gel-Cream 52ml"
+      ],
+      "hairFallExamples": [
+        "Vichy Dercos R.E.G.E.N Booster Hair Serum 90ml",
+        "Vichy Dercos Aminexil Clinical Hair Care Ampoules for Women – 21 Ampoules",
+        "Vichy Dercos Densi-Solutions Hair Mass Creator 100ml",
+        "Kamino-Moto Trigger Hair Growth 180ml"
+      ]
+    }
+  },
+  "pmImplementation": {
+    "brand": "Pmcosmetics Hub",
+    "evidenceGate": "CLOSED",
+    "rule": "Reference source can define taxonomy and storefront UX; it does not prove PM stock, ownership, cost, image rights, or publish readiness.",
+    "publication": "Only evidence-backed PM products may be published commercially."
+  }
+}
