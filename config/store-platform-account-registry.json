@@ -118,7 +118,20 @@
       "ownerEmail": "shukrypeter79@gmail.com",
       "identityLinkStatus": "owner_declared_linked",
       "apiVerificationStatus": "not_independently_verified",
-      "catalogUrl": "https://wa.me/c/201055655649"
+      "catalogUrl": "https://wa.me/c/201055655649",
+      "metaCloudApi": {
+        "status": "pending_owner_authorization",
+        "connectorAvailableInChat": false,
+        "requiredSecrets": [
+          "WHATSAPP_BUSINESS_ACCESS_TOKEN",
+          "WHATSAPP_BUSINESS_PHONE_NUMBER_ID",
+          "WHATSAPP_BUSINESS_VERIFY_TOKEN",
+          "WHATSAPP_WEBHOOK_SECRET"
+        ],
+        "ownerEmail": "shukrypeter79@gmail.com",
+        "phoneNumber": "01055655649",
+        "catalogUrl": "https://wa.me/c/201055655649"
+      }
     },
     "whatsapp_secondary": {
       "status": "public_identity_ready_credentials_pending",
