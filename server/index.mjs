@@ -13,6 +13,7 @@ const require = createRequire(import.meta.url);
 const marketConfig = require("../config/markets.json");
 const storefrontConfig = require("../config/storefront-cosmetics.json");
 const brandConfig = require("../config/brand-identity.json");
+const referenceCatalogConfig = require("../config/reference-catalog.json");
 
 const app = express();
 app.use(helmet());
@@ -72,6 +73,28 @@ app.get("/api/brand", (_req, res) => res.json({
   whatsappCatalog: brandConfig.whatsappCatalog,
   policy: brandConfig.policy
 }));
+
+
+const REFERENCE_RAW_BASE = "https://raw.githubusercontent.com/Pmcosmetics/pmcosmetics-empire-11countries/ref/alfouad-cosmetics-catalog-2026-10-02/data/references/alfouad-cosmetics-catalog/categories";
+const referenceCache = new Map();
+
+app.get("/reference-catalog", (_req, res) => res.sendFile("reference-catalog.html", { root: process.cwd() }));
+app.get("/api/reference/catalog", (_req, res) => res.json({ ok: true, ...referenceCatalogConfig, gate: gateState() }));
+app.get("/api/reference/catalog/:category", async (req, res) => {
+  const category = referenceCatalogConfig.categories.find((item) => item.id === req.params.category);
+  if (!category) return res.status(404).json({ ok: false, reason: "REFERENCE_CATEGORY_NOT_FOUND" });
+  if (referenceCache.has(category.id)) return res.json({ ok: true, referenceOnly: true, category: category.name, products: referenceCache.get(category.id) });
+  try {
+    const response = await fetch(REFERENCE_RAW_BASE + "/" + category.file, { signal: AbortSignal.timeout(30000) });
+    if (!response.ok) throw new Error("reference fetch failed: HTTP " + response.status);
+    const payload = await response.json();
+    const products = Array.isArray(payload) ? payload : (payload.products || payload.items || []);
+    referenceCache.set(category.id, products);
+    return res.json({ ok: true, referenceOnly: true, category: category.name, products });
+  } catch (error) {
+    return res.status(502).json({ ok: false, referenceOnly: true, category: category.name, reason: "REFERENCE_CATALOG_FETCH_FAILED", message: error instanceof Error ? error.message : "Unknown error" });
+  }
+});
 
 app.get("/api/reference/alfouad", (_req, res) => {
   res.json({

@@ -1,0 +1,52 @@
+{
+  "brandName": "Pmcosmetics Hub",
+  "logo": "/pmcosmetics-logo.svg",
+  "primaryPhone": "01055655649",
+  "primaryWa": "https://wa.me/201055655649",
+  "secondaryPhone": "01203151461",
+  "secondaryWa": "https://wa.me/201203151461",
+  "whatsappCatalog": "https://wa.me/c/201055655649",
+  "sourceBranch": "ref/alfouad-cosmetics-catalog-2026-10-02",
+  "sourceRepo": "Pmcosmetics/pmcosmetics-empire-11countries",
+  "uniqueProducts": 3218,
+  "categoryRows": 3479,
+  "referenceOnly": true,
+  "categories": [
+    {
+      "id": "skin-care",
+      "name": "العناية بالبشرة",
+      "file": "skin-care.json",
+      "rows": 1178
+    },
+    {
+      "id": "hair-care",
+      "name": "العناية بالشعر",
+      "file": "hair-care.json",
+      "rows": 992
+    },
+    {
+      "id": "body-care",
+      "name": "العناية بالجسم",
+      "file": "body-care.json",
+      "rows": 921
+    },
+    {
+      "id": "perfumes",
+      "name": "العطور",
+      "file": "perfumes.json",
+      "rows": 178
+    },
+    {
+      "id": "kids-care",
+      "name": "عناية الأطفال التجميلية",
+      "file": "kids-care.json",
+      "rows": 157
+    },
+    {
+      "id": "korean",
+      "name": "الجمال الكوري",
+      "file": "korean.json",
+      "rows": 53
+    }
+  ]
+}
