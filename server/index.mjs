@@ -14,6 +14,7 @@ const marketConfig = require("../config/markets.json");
 const storefrontConfig = require("../config/storefront-cosmetics.json");
 const brandConfig = require("../config/brand-identity.json");
 const referenceCatalogConfig = require("../config/reference-catalog.json");
+const authIdentityConfig = require("../config/auth-identity.json");
 
 const app = express();
 app.use(helmet());
@@ -39,6 +40,21 @@ const healthResponse = (_req, res) => res.json({
 });
 
 app.get("/", (_req, res) => res.sendFile("public/index.html", { root: process.cwd() }));
+
+app.get("/auth", (_req, res) => res.sendFile("auth.html", { root: "public" }));
+app.get("/api/auth/config", (_req, res) => res.json({
+  ok: true,
+  provider: authIdentityConfig.provider,
+  mode: authIdentityConfig.mode,
+  status: authIdentityConfig.status,
+  allowedEmails: authIdentityConfig.allowedEmails,
+  primaryEmail: authIdentityConfig.primaryEmail,
+  secondaryEmail: authIdentityConfig.secondaryEmail,
+  supabaseUrl: process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl,
+  publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || "",
+  redirectPath: authIdentityConfig.redirectPath
+}));
+
 
 app.get("/api/storefront", (_req, res) => res.json({
   ok: true,
