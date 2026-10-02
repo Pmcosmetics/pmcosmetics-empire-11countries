@@ -88,6 +88,36 @@ const whatsappSignatureValid = (req) => {
   return a.length === b.length && timingSafeEqual(a, b);
 };
 
+app.get("/api/channel/status", (_req, res) => {
+  res.json({
+    ok: true,
+    gate: gateState(),
+    empire: {
+      service: "pmcosmetics-empire-11countries",
+      liveDomain: process.env.RAILWAY_PUBLIC_DOMAIN || "https://pmcosmetics-empire-11countries-production.up.railway.app"
+    },
+    whatsapp: {
+      primary: process.env.WHATSAPP_PRIMARY_PUBLIC_NUMBER || "201055655649",
+      backup: process.env.WHATSAPP_BACKUP_PUBLIC_NUMBER || "201203151461",
+      cloudApiConfigured: Boolean(
+        process.env.WHATSAPP_BUSINESS_ACCESS_TOKEN &&
+        process.env.WHATSAPP_BUSINESS_PHONE_NUMBER_ID
+      )
+    },
+    gmail: {
+      primary: process.env.PM_AUTH_EMAIL_PRIMARY || "shukrypeter79@gmail.com",
+      secondary: process.env.PM_AUTH_EMAIL_SECONDARY || "shukrypeter102@gmail.com",
+      oauthConnectorAvailable: false,
+      note: "Gmail connector unavailable in the current ChatGPT workspace"
+    },
+    commerce: {
+      canonicalBrand: "Pmcosmetics Hub",
+      referenceCatalog: "AlFouad Pharmacies",
+      commercialPublication: gateState() === "OPEN" ? "OPEN" : "LOCKED"
+    }
+  });
+});
+
 app.get("/api/whatsapp/status", (_req, res) => {
   res.json({ ok: true, gate: gateState(), service: "whatsapp-cloud-api", ...whatsappConfigState() });
 });
