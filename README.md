@@ -132,6 +132,8 @@ See docs/SECURITY.md for project guidance.
 
 Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated template workflows are manual-only; product publication remains evidence-gated.
 
+**AlFouad reference:** `data/references/alfouad-store-reference.json` — taxonomy/UX reference only; PM evidence gate remains authoritative.
+
 **2026-10-01 operations sync:** CI gate validation fix merged to `main`; Railway production remains evidence-gated with commercial writes locked until verified product evidence is complete.
 
 **2026-10-01 telemetry sync:** Amplitude server telemetry is env-gated and remains disabled until `AMPLITUDE_API_KEY` is configured in the deployment environment. Commercial publication remains CLOSED.
