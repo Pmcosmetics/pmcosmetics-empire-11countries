@@ -114,7 +114,11 @@
   "messaging": {
     "whatsapp_primary": {
       "status": "public_identity_ready_credentials_pending",
-      "number": "01055655649"
+      "number": "01055655649",
+      "ownerEmail": "shukrypeter79@gmail.com",
+      "identityLinkStatus": "owner_declared_linked",
+      "apiVerificationStatus": "not_independently_verified",
+      "catalogUrl": "https://wa.me/c/201055655649"
     },
     "whatsapp_secondary": {
       "status": "public_identity_ready_credentials_pending",
@@ -173,7 +177,7 @@
   },
   "autoSync": {
     "enabled": true,
-    "lastVerified": "2026-10-02",
+    "lastVerified": "2026-10-03",
     "source": "live_connectors",
     "behavior": "sync_verified_accounts_and_connection_states_only",
     "oauthHumanConsentRequired": true
