@@ -1,0 +1,20 @@
+{
+  "provider": "google",
+  "mode": "google_oauth_plus_gmail_magic_link",
+  "status": "PENDING_GOOGLE_PROVIDER_CONFIGURATION",
+  "allowedEmails": [
+    "shukrypeter79@gmail.com",
+    "shukrypeter102@gmail.com"
+  ],
+  "primaryEmail": "shukrypeter79@gmail.com",
+  "secondaryEmail": "shukrypeter102@gmail.com",
+  "supabaseProjectRef": "rhozehqlpnmzmknlpmvf",
+  "supabaseUrl": "https://rhozehqlpnmzmknlpmvf.supabase.co",
+  "redirectPath": "/auth",
+  "policy": {
+    "exactEmailAllowlist": true,
+    "passwordlessGmail": true,
+    "googleOAuth": true,
+    "connectorCredentialsRemainProviderSpecific": true
+  }
+}
