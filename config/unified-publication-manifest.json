@@ -156,5 +156,25 @@
     "referenceOnly": true,
     "commercialGate": "CLOSED"
   },
-  "registryPath": "config/empire-unified-registry.json"
+  "registryPath": "config/empire-unified-registry.json",
+  "lastLiveSync": {
+    "verifiedAt": "2026-10-02",
+    "source": "GitHub + Railway + Supabase + Airtable + Windsor.ai + Shopify",
+    "snapshot": "config/live-sync-snapshot.json"
+  },
+  "supportingIntegrations": [
+    "github",
+    "railway",
+    "supabase",
+    "airtable",
+    "notion",
+    "shopify",
+    "windsor_facebook",
+    "windsor_google_ads",
+    "windsor_google_business_profile",
+    "figma",
+    "canva",
+    "monday",
+    "linear"
+  ]
 }
