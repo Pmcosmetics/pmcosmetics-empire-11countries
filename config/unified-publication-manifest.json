@@ -122,5 +122,19 @@
     "productScope": "Publish-Ready only",
     "currentPublishReadyProducts": 0,
     "currentBlockedProductsRemainOutOfPublication": true
+  },
+  "brandIdentity": {
+    "name": "Pmcosmetics Hub",
+    "logo": "/pmcosmetics-logo.svg",
+    "primaryPhone": "01055655649",
+    "secondaryPhone": "01203151461",
+    "whatsappCatalog": "https://wa.me/c/201055655649"
+  },
+  "channelPolicy": {
+    "brandIdentityRequired": true,
+    "phoneIdentity": {
+      "primary": "01055655649",
+      "secondary": "01203151461"
+    }
   }
 }
