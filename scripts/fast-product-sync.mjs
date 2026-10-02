@@ -327,7 +327,6 @@ class ProductSyncEngine {
     }
   }
 
-  }
 }
 
 // Main sync orchestrator
