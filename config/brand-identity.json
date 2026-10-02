@@ -1,0 +1,27 @@
+{
+  "brandName": "Pmcosmetics Hub",
+  "logo": {
+    "asset": "/pmcosmetics-logo.svg",
+    "alt": "Pmcosmetics Hub",
+    "concept": "Golden PM monogram + circle on transparent background"
+  },
+  "phones": {
+    "primary": {
+      "local": "01055655649",
+      "international": "201055655649",
+      "wa": "https://wa.me/201055655649"
+    },
+    "secondary": {
+      "local": "01203151461",
+      "international": "201203151461",
+      "wa": "https://wa.me/201203151461"
+    }
+  },
+  "whatsappCatalog": "https://wa.me/c/201055655649",
+  "policy": {
+    "sameLogoEverywhere": true,
+    "sameTwoPrimaryPhonesEverywhere": true,
+    "primaryRole": "catalog / primary contact",
+    "secondaryRole": "backup / direct contact"
+  }
+}
