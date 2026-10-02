@@ -15,6 +15,7 @@ const storefrontConfig = require("../config/storefront-cosmetics.json");
 const brandConfig = require("../config/brand-identity.json");
 const referenceCatalogConfig = require("../config/reference-catalog.json");
 const authIdentityConfig = require("../config/auth-identity.json");
+const empireRegistry = require("../config/empire-unified-registry.json");
 
 const app = express();
 app.use(helmet());
@@ -55,6 +56,17 @@ app.get("/api/auth/config", (_req, res) => res.json({
   redirectPath: authIdentityConfig.redirectPath
 }));
 
+
+
+app.get("/api/empire/registry", (_req, res) => res.json({
+  ok: true,
+  registry: empireRegistry,
+  runtime: {
+    commercialGate: gateState(),
+    referenceOnly: empireRegistry.catalog.reference.referenceOnly,
+    publishReadyProducts: empireRegistry.catalog.commercial.currentPublishReadyProducts
+  }
+}));
 
 app.get("/api/storefront", (_req, res) => res.json({
   ok: true,
