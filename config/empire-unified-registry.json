@@ -1,0 +1,171 @@
+{
+  "version": 2,
+  "canonicalName": "Pmcosmetics Hub",
+  "empire": {
+    "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
+    "railwayUrl": "https://pmcosmetics-empire-11countries-production.up.railway.app",
+    "supabaseProjectRef": "rhozehqlpnmzmknlpmvf",
+    "identityPortal": "/auth"
+  },
+  "brand": {
+    "name": "Pmcosmetics Hub",
+    "logo": "/pmcosmetics-logo.svg",
+    "phones": {
+      "primary": {
+        "local": "01055655649",
+        "international": "201055655649",
+        "role": "catalog / primary contact",
+        "whatsapp": "https://wa.me/201055655649"
+      },
+      "secondary": {
+        "local": "01203151461",
+        "international": "201203151461",
+        "role": "backup / direct contact",
+        "whatsapp": "https://wa.me/201203151461"
+      }
+    },
+    "whatsappCatalog": "https://wa.me/c/201055655649"
+  },
+  "identities": {
+    "canonicalProvider": "Google/Gmail",
+    "allowedEmails": [
+      "shukrypeter79@gmail.com",
+      "shukrypeter102@gmail.com"
+    ],
+    "primaryEmail": "shukrypeter79@gmail.com",
+    "secondaryEmail": "shukrypeter102@gmail.com",
+    "policy": "Exact email allowlist; external platforms still require provider-specific OAuth/credentials"
+  },
+  "catalog": {
+    "commercial": {
+      "sourceOfTruth": "Empire Product Master / Evidence Gate",
+      "publishRule": "Publish-Ready + evidenceVerified only",
+      "commercialGate": "CLOSED",
+      "currentPublishReadyProducts": 0
+    },
+    "reference": {
+      "source": "AlFouad Pharmacies",
+      "sourceBranch": "ref/alfouad-cosmetics-catalog-2026-10-02",
+      "uniqueProducts": 3218,
+      "categoryRows": 3479,
+      "referenceOnly": true,
+      "autoPublish": false,
+      "url": "/reference-catalog"
+    },
+    "taxonomy": "cosmetics-only",
+    "categories": [
+      "skin-care",
+      "hair-care",
+      "body-care",
+      "perfumes",
+      "kids-care",
+      "korean"
+    ]
+  },
+  "channels": [
+    {
+      "id": "facebook",
+      "kind": "social",
+      "integration": "windsor.ai",
+      "status": "connected"
+    },
+    {
+      "id": "shopify",
+      "kind": "commerce",
+      "integration": "windsor.ai",
+      "status": "oauth_pending"
+    },
+    {
+      "id": "instagram",
+      "kind": "social",
+      "integration": "windsor.ai",
+      "status": "oauth_pending"
+    },
+    {
+      "id": "tiktok",
+      "kind": "social",
+      "integration": "windsor.ai",
+      "status": "oauth_pending"
+    },
+    {
+      "id": "tiktok_shop",
+      "kind": "commerce",
+      "integration": "windsor.ai",
+      "status": "oauth_pending"
+    },
+    {
+      "id": "amazon_sp",
+      "kind": "marketplace",
+      "integration": "windsor.ai",
+      "status": "oauth_pending"
+    },
+    {
+      "id": "google_merchant",
+      "kind": "commerce",
+      "integration": "windsor.ai",
+      "status": "oauth_pending"
+    },
+    {
+      "id": "woocommerce",
+      "kind": "commerce",
+      "integration": "windsor.ai",
+      "status": "manual_credentials_pending"
+    },
+    {
+      "id": "salla",
+      "kind": "commerce",
+      "integration": "direct_api",
+      "status": "direct_integration_pending"
+    },
+    {
+      "id": "instashop",
+      "kind": "marketplace",
+      "integration": "direct_api",
+      "status": "direct_integration_pending"
+    },
+    {
+      "id": "etsy",
+      "kind": "marketplace",
+      "integration": "direct_api",
+      "status": "direct_integration_pending"
+    },
+    {
+      "id": "temu",
+      "kind": "marketplace",
+      "integration": "direct_api",
+      "status": "direct_integration_pending"
+    },
+    {
+      "id": "jumia",
+      "kind": "marketplace",
+      "integration": "direct_api",
+      "status": "direct_integration_pending"
+    },
+    {
+      "id": "talabat",
+      "kind": "marketplace",
+      "integration": "direct_api",
+      "status": "direct_integration_pending"
+    },
+    {
+      "id": "whatsapp_primary",
+      "kind": "messaging",
+      "integration": "meta_waba",
+      "status": "public_identity_ready_credentials_pending"
+    },
+    {
+      "id": "whatsapp_secondary",
+      "kind": "messaging",
+      "integration": "meta_waba",
+      "status": "public_identity_ready_credentials_pending"
+    }
+  ],
+  "synchronization": {
+    "brandIdentity": true,
+    "phoneIdentity": true,
+    "emailIdentity": true,
+    "catalogRouting": true,
+    "referenceCatalogIsolation": true,
+    "commercialPublishGate": true
+  }
+}
