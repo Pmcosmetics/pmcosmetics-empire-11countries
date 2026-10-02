@@ -67,13 +67,13 @@
       "id": "facebook",
       "kind": "social",
       "integration": "windsor.ai",
-      "status": "connected"
+      "status": "connected_verified"
     },
     {
       "id": "shopify",
       "kind": "commerce",
-      "integration": "windsor.ai",
-      "status": "oauth_pending"
+      "integration": "shopify_native",
+      "status": "connected_verified"
     },
     {
       "id": "instagram",
@@ -158,6 +158,20 @@
       "kind": "messaging",
       "integration": "meta_waba",
       "status": "public_identity_ready_credentials_pending"
+    },
+    {
+      "id": "google_ads",
+      "kind": "marketing",
+      "integration": "windsor.ai",
+      "status": "connected_verified",
+      "accountId": "663-195-7015"
+    },
+    {
+      "id": "google_business_profile",
+      "kind": "local_presence",
+      "integration": "windsor.ai",
+      "status": "connected_verified",
+      "accountId": "locations/8169383730265167314"
     }
   ],
   "synchronization": {
@@ -167,5 +181,67 @@
     "catalogRouting": true,
     "referenceCatalogIsolation": true,
     "commercialPublishGate": true
-  }
+  },
+  "lastLiveSync": {
+    "timestamp": "2026-10-02",
+    "source": "Railway + GitHub + Supabase + Airtable + Windsor.ai + Shopify",
+    "operationalGoal": "Keep Empire live and synchronize only verified/connected supporting integrations"
+  },
+  "supportingIntegrations": [
+    {
+      "id": "github",
+      "status": "active_verified",
+      "detail": "main repository writable; latest merged deployment commit 70e8a3cf6c470252802ac42d8576edd822ad767e"
+    },
+    {
+      "id": "railway",
+      "status": "active_verified",
+      "detail": "production deployment SUCCESS; Empire API listening"
+    },
+    {
+      "id": "supabase",
+      "status": "active_healthy",
+      "detail": "production project ACTIVE_HEALTHY"
+    },
+    {
+      "id": "airtable",
+      "status": "active_verified",
+      "detail": "canonical Master Registry and evidence tables available"
+    },
+    {
+      "id": "notion",
+      "status": "active_verified",
+      "detail": "operating knowledge hub connected"
+    },
+    {
+      "id": "figma",
+      "status": "active_verified",
+      "detail": "connected and verified"
+    },
+    {
+      "id": "canva",
+      "status": "active_verified",
+      "detail": "connected and verified"
+    },
+    {
+      "id": "monday",
+      "status": "active_verified",
+      "detail": "connected and verified"
+    },
+    {
+      "id": "linear",
+      "status": "active_verified",
+      "detail": "connected and verified"
+    },
+    {
+      "id": "shopify",
+      "status": "active_verified",
+      "detail": "Pmcosmetics store connected and accessible; legacy/test products archived"
+    },
+    {
+      "id": "windsor",
+      "status": "active_verified",
+      "detail": "connected accounts confirmed for Facebook (3), Google Ads (1), Google Business Profile (1)"
+    }
+  ]
 }
