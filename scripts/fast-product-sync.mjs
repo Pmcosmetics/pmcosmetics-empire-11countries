@@ -9,6 +9,7 @@
  */
 
 import axios from 'axios';
+import { evaluateBatch } from './batch-gate.mjs';
 import { writeFile, readFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -327,115 +328,132 @@ class ProductSyncEngine {
   }
 
   // Main sync orchestrator
-  async syncAll(products) {
-    console.log('\n🚀 PM Cosmetics Hub - Multi-Platform Sync Engine');
-    console.log(`📦 Syncing ${products.length} products...`);
-    console.log('─'.repeat(50));
-
-    this.results.stats.total = products.length;
-
-    // Run all syncs in parallel for speed
-    await Promise.allSettled([
-      this.syncToWooCommerce(products),
-      this.syncToShopify(products),
-      this.syncToNoon(products),
-      this.syncToAmazon(products),
-      this.exportLocal(products)
-    ]);
-
-    // Calculate final stats
-    Object.values(this.results.platforms).forEach(platform => {
-      if (platform.success) {
-        this.results.stats.synced += platform.success;
-        this.results.stats.failed += platform.failed || 0;
-      } else if (platform.status === 'exported') {
-        this.results.stats.synced += platform.count;
-      } else if (platform.status === 'skipped') {
-        this.results.stats.skipped += 1;
-      }
-    });
-
-    console.log('─'.repeat(50));
-    console.log(`\n📊 Sync Summary:`);
-    console.log(`   Total: ${this.results.stats.total}`);
-    console.log(`   ✅ Synced: ${this.results.stats.synced}`);
-    console.log(`   ❌ Failed: ${this.results.stats.failed}`);
-    console.log(`   ⏭️  Skipped: ${this.results.stats.skipped}`);
-
-    // Save results
-    await mkdir(SYNC_DIR, { recursive: true });
-    await writeFile(LOG_FILE, JSON.stringify(this.results, null, 2));
-    console.log(`\n📄 Results saved: ${LOG_FILE}`);
-
-    return this.results;
-  }
-}
-
-// Example usage with sample products
 async function main() {
-  const sampleProducts = [
-    {
-      sku: 'PM-LIPSTICK-001',
-      name: 'Premium Rose Lipstick',
-      nameAr: 'أحمر الشفاه الوردي الفاخر',
-      brand: 'PM Beauty',
-      category: 'Makeup',
-      categoryId: '10001',
-      description: 'Luxurious long-lasting lipstick',
-      descriptionAr: 'أحمر شفاه فاخر وطويل الأمد',
-      priceUSD: 24.99,
-      priceLocal: {
-        EGP: 774,
-        SAR: 94,
-        AED: 92,
-        KWD: 7.8
-      },
-      stock: 150,
-      gtin: '1234567890123',
-      images: [
-        'https://images.example.com/lipstick-rose-1.jpg',
-        'https://images.example.com/lipstick-rose-2.jpg',
-        'https://images.example.com/lipstick-rose-3.jpg'
-      ],
-      markets: ['EG', 'SA', 'AE', 'KW', 'QA', 'BH'],
-      createdAt: new Date().toISOString()
-    },
-    {
-      sku: 'PM-SERUM-002',
-      name: 'Vitamin C Face Serum',
-      nameAr: 'سيروم الوجه بفيتامين سي',
-      brand: 'PM Science',
-      category: 'Skincare',
-      categoryId: '10002',
-      description: 'Brightening vitamin C serum for all skin types',
-      descriptionAr: 'سيروم فيتامين سي المنير لجميع أنواع البشرة',
-      priceUSD: 34.99,
-      priceLocal: {
-        EGP: 1087,
-        SAR: 132,
-        AED: 128,
-        KWD: 10.8
-      },
-      stock: 89,
-      gtin: '1234567890124',
-      images: [
-        'https://images.example.com/serum-vc-1.jpg',
-        'https://images.example.com/serum-vc-2.jpg'
-      ],
-      markets: ['EG', 'SA', 'AE', 'KW', 'QA', 'BH', 'OM'],
-      createdAt: new Date().toISOString()
+  const args = process.argv.slice(2);
+  const getArgValue = (name) => {
+    const i = args.indexOf(name);
+    return i >= 0 && args[i + 1] ? args[i + 1] : null;
+  };
+
+  const dryRun = args.includes("--dry-run") || !args.includes("--all");
+  const requestedTargets = new Set(
+    ["--woo", "--shopify", "--noon", "--amazon"]
+      .filter(flag => args.includes(flag))
+      .map(flag => flag.slice(2))
+  );
+
+  const targets = args.includes("--all")
+    ? new Set(["woo", "shopify", "noon", "amazon"])
+    : requestedTargets;
+
+  if (targets.size === 0) {
+    console.error("Usage: node scripts/fast-product-sync.mjs --dry-run [--input FILE] [--woo|--shopify|--noon|--amazon|--all]");
+    process.exit(2);
+  }
+
+  const inputPath = getArgValue("--input") || process.env.SYNC_INPUT_FILE;
+  if (!inputPath) {
+    console.error("SYNC_INPUT_FILE/--input is required. Hardcoded sample products are intentionally disabled.");
+    process.exit(2);
+  }
+
+  let raw;
+  try {
+    raw = JSON.parse(await readFile(inputPath, "utf8"));
+  } catch (error) {
+    console.error(`Unable to read sync input: ${error.message}`);
+    process.exit(2);
+  }
+
+  const sourceProducts = Array.isArray(raw) ? raw : Array.isArray(raw?.products) ? raw.products : [];
+  if (sourceProducts.length === 0) {
+    console.error("Sync input contains no products.");
+    process.exit(2);
+  }
+
+  const normalizeForGate = (product) => ({
+    ...product,
+    imageUrl: product.imageUrl || null,
+    cost: product.cost ?? product.pm_cost_egp ?? null,
+    provenanceVerified: product.provenanceVerified === true,
+    imageVerified: product.imageVerified === true
+  });
+
+  const gateInput = sourceProducts.map(normalizeForGate);
+  const gateResult = evaluateBatch(gateInput);
+
+  console.log(`\n📦 Input products: ${gateResult.inputCount}`);
+  console.log(`✅ Evidence-ready: ${gateResult.eligibleCount}`);
+  console.log(`⛔ Blocked: ${gateResult.blockedCount}`);
+
+  if (gateResult.blockedCount > 0) {
+    console.log("Blocked products are excluded from commercial sync until product-level evidence is complete.");
+  }
+
+  if (!dryRun && gateState() !== "OPEN") {
+    console.error("COMMERCIAL_PUBLISH_GATE is CLOSED. Live writes are blocked.");
+    process.exit(3);
+  }
+
+  const enabledForTarget = {
+    woo: process.env.WOOCOMMERCE_SYNC_ENABLED === "true",
+    shopify: process.env.SHOPIFY_SYNC_ENABLED === "true",
+    noon: process.env.NOON_SYNC_ENABLED === "true",
+    amazon: process.env.AMAZON_SYNC_ENABLED === "true"
+  };
+
+  if (!dryRun) {
+    for (const target of targets) {
+      if (!enabledForTarget[target]) {
+        console.error(`${target.toUpperCase()}_SYNC_ENABLED must be true for live writes.`);
+        process.exit(4);
+      }
     }
-  ];
+  }
 
   const engine = new ProductSyncEngine();
-  const results = await engine.syncAll(sampleProducts);
-  
-  process.exit(results.stats.failed > 0 ? 1 : 0);
+  engine.results.validation = gateResult;
+  engine.results.stats.total = gateResult.inputCount;
+
+  const eligibleProducts = gateResult.eligible;
+
+  if (dryRun) {
+    console.log("🧪 DRY-RUN: no external platform writes will be performed.");
+    await engine.exportLocal(eligibleProducts);
+    engine.results.stats.synced = eligibleProducts.length;
+    engine.results.stats.failed = 0;
+    engine.results.stats.skipped = gateResult.blockedCount;
+  } else {
+    const jobs = [];
+    if (targets.has("woo")) jobs.push(engine.syncToWooCommerce(eligibleProducts));
+    if (targets.has("shopify")) jobs.push(engine.syncToShopify(eligibleProducts));
+    if (targets.has("noon")) jobs.push(engine.syncToNoon(eligibleProducts));
+    if (targets.has("amazon")) jobs.push(engine.syncToAmazon(eligibleProducts));
+    await Promise.allSettled(jobs);
+
+    engine.results.stats.synced = Object.values(engine.results.platforms)
+      .reduce((sum, platform) => sum + Number(platform?.success || 0), 0);
+    engine.results.stats.failed = Object.values(engine.results.platforms)
+      .reduce((sum, platform) => sum + Number(platform?.failed || 0), 0);
+    engine.results.stats.skipped = gateResult.blockedCount;
+  }
+
+  await mkdir(SYNC_DIR, { recursive: true });
+  await writeFile(LOG_FILE, JSON.stringify(engine.results, null, 2));
+
+  console.log("\n📊 Sync Summary:");
+  console.log(`   Total: ${engine.results.stats.total}`);
+  console.log(`   ✅ Synced/eligible: ${engine.results.stats.synced}`);
+  console.log(`   ❌ Failed: ${engine.results.stats.failed}`);
+  console.log(`   ⏭️ Blocked/skipped: ${engine.results.stats.skipped}`);
+  console.log(`📄 Results saved: ${LOG_FILE}`);
+
+  process.exit(engine.results.stats.failed > 0 ? 1 : 0);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(error => {
-    console.error('Fatal error:', error);
+    console.error("Fatal error:", error);
     process.exit(1);
   });
 }
