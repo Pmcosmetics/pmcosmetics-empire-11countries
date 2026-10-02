@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-02",
+  "canonicalBrand": "Pmcosmetics Hub",
+  "empire": {
+    "github": {
+      "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
+      "status": "active_verified",
+      "accountEmail": "shukrypeter102@gmail.com"
+    },
+    "railway": {
+      "project": "Pmcosmetics Hub Production",
+      "status": "active_verified",
+      "production": true
+    },
+    "supabase": {
+      "projectRef": "rhozehqlpnmzmknlpmvf",
+      "status": "ACTIVE_HEALTHY"
+    },
+    "airtable": {
+      "baseId": "appJWz1djDBgFGKo9",
+      "name": "PM Cosmetics Hub",
+      "status": "connected"
+    }
+  },
+  "commerce": {
+    "shopify": {
+      "status": "connected_verified",
+      "store": "Pmcosmetics",
+      "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "accountEmail": "shukrypeter79@gmail.com",
+      "publicationGate": "CLOSED"
+    },
+    "woocommerce": {
+      "status": "pending_authorization",
+      "connector": "windsor.ai",
+      "connectUrl": "https://onboard.windsor.ai/connect?connector=woocommerce&next=/app/woocommerce"
+    },
+    "tiktok_shop": {
+      "status": "pending_authorization",
+      "connector": "windsor.ai",
+      "connectUrl": "https://onboard.windsor.ai/connect?connector=tiktok_shop&next=/tiktok_shop/authorize"
+    },
+    "amazon_sp": {
+      "status": "pending_authorization",
+      "connector": "windsor.ai",
+      "connectUrl": "https://onboard.windsor.ai/connect?connector=amazon_sp&next=/amazon_sp/authorize"
+    },
+    "google_merchant": {
+      "status": "pending_authorization",
+      "connector": "windsor.ai",
+      "connectUrl": "https://onboard.windsor.ai/connect?connector=google_merchant&next=/google_merchant/authorize"
+    },
+    "salla": {
+      "status": "pending_direct_api"
+    },
+    "instashop": {
+      "status": "pending_direct_api"
+    },
+    "etsy": {
+      "status": "pending_direct_api"
+    },
+    "temu": {
+      "status": "pending_direct_api"
+    },
+    "jumia": {
+      "status": "pending_direct_api"
+    },
+    "talabat": {
+      "status": "pending_direct_api"
+    }
+  },
+  "social": {
+    "facebook": {
+      "status": "connected_verified",
+      "connector": "windsor.ai",
+      "accounts": [
+        {
+          "id": "758458256557661",
+          "name": "Peter Shukry"
+        },
+        {
+          "id": "689846283340520",
+          "name": "Peter Shukry"
+        },
+        {
+          "id": "1308509513682283",
+          "name": "WhatsApp Ad Account"
+        }
+      ]
+    },
+    "instagram": {
+      "status": "pending_authorization",
+      "connector": "windsor.ai",
+      "connectUrl": "https://onboard.windsor.ai/connect?connector=instagram&next=/instagram/authorize"
+    },
+    "tiktok": {
+      "status": "pending_authorization",
+      "connector": "windsor.ai",
+      "connectUrl": "https://onboard.windsor.ai/connect?connector=tiktok&next=/tiktok/authorize"
+    },
+    "google_ads": {
+      "status": "connected_verified",
+      "connector": "windsor.ai",
+      "accountId": "663-195-7015"
+    },
+    "google_business_profile": {
+      "status": "connected_verified",
+      "connector": "windsor.ai",
+      "accountId": "locations/8169383730265167314",
+      "name": "P.M Cosmetics"
+    }
+  },
+  "messaging": {
+    "whatsapp_primary": {
+      "status": "public_identity_ready_credentials_pending",
+      "number": "01055655649"
+    },
+    "whatsapp_secondary": {
+      "status": "public_identity_ready_credentials_pending",
+      "number": "01203151461"
+    }
+  },
+  "statusMonitoring": {
+    "statuspage": {
+      "status": "pending_authorization",
+      "connector": "windsor.ai",
+      "connectUrl": "https://onboard.windsor.ai/connect?connector=statuspage&next=/app/statuspage"
+    }
+  },
+  "workspaceTools": {
+    "notion": {
+      "status": "connected",
+      "verifiedEmails": [
+        "shukrypeter102@gmail.com",
+        "shukrypeter79@gmail.com",
+        "petershukry67@gmail.com",
+        "shukrypeter72@gmail.com"
+      ]
+    },
+    "figma": {
+      "status": "connected_verified",
+      "accountEmail": "shukrypeter79@gmail.com"
+    },
+    "canva": {
+      "status": "connected_verified"
+    },
+    "monday": {
+      "status": "connected_verified"
+    },
+    "linear": {
+      "status": "connected_verified"
+    }
+  },
+  "identity": {
+    "empireAuthAllowlist": [
+      "shukrypeter79@gmail.com",
+      "shukrypeter102@gmail.com"
+    ],
+    "backupEmails": [
+      "shukrypeter72@gmail.com",
+      "petershukry67@gmail.com"
+    ],
+    "apple": {
+      "status": "not_verified_as_direct_Empire_connector",
+      "action": "manual/provider-specific connection only"
+    }
+  },
+  "policy": {
+    "preserveCommercialPublishGate": true,
+    "noSecretsInGit": true,
+    "noBulkPublishUntilEvidenceReady": true
+  }
+}
