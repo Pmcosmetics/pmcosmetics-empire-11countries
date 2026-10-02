@@ -1,14 +1,14 @@
 {
   "source": "Airtable — PM Cosmetics Hub",
-  "source_verified_at": "2026-09-29",
+  "source_verified_at": "2026-10-02",
   "gate": "CLOSED",
   "publishable": false,
-  "note": "Live Evidence snapshot generated from the operational Airtable Product Master. External retailer evidence does not prove PM ownership/stock. Commercial publication stays CLOSED until product-level evidence, QA, and controlled pilot verification pass.",
+  "note": "Live Evidence snapshot regenerated from the operational Airtable Product Master. External retailer evidence does not prove PM ownership/stock. Commercial publication stays CLOSED until product-level evidence, QA, and controlled pilot verification pass.",
   "current_counts": {
     "products": 73,
     "publish_ready": 0,
-    "blocked_image_stock": 13,
-    "blocked_identity": 60,
+    "blocked_image_stock": 21,
+    "blocked_identity": 52,
     "archived": 6
   },
   "products": [
@@ -16,13 +16,15 @@
       "source_record_id": "rec0UZA5dMtLyTkSd",
       "name": "أديداس إنرجي كيك أكتيف سكين-مايند جل استحمام 400 مل",
       "sku": null,
-      "gtin": null,
+      "gtin": {
+        "text": "3616303861124"
+      },
       "status": "Needs Review",
-      "publish_gate": "Blocked — Identity",
+      "publish_gate": "Blocked — Image/Stock",
       "pm_stock": null,
       "pm_cost_egp": null,
       "image_evidence_url": null,
-      "evidence_source_url": null,
+      "evidence_source_url": "https://drahmedelezaby.com/product-tag/shower-gel/",
       "source_type": null,
       "authorization_status": null
     },
@@ -62,13 +64,15 @@
       "source_record_id": "rec2mU5Xykqn6UNpS",
       "name": "برايمر مرطب من بورجوا هيلثي ميكس كلين آند فيجان 30 مل",
       "sku": null,
-      "gtin": null,
+      "gtin": {
+        "text": "3616303915551"
+      },
       "status": "Needs Review",
-      "publish_gate": "Blocked — Identity",
+      "publish_gate": "Blocked — Image/Stock",
       "pm_stock": null,
       "pm_cost_egp": null,
       "image_evidence_url": null,
-      "evidence_source_url": null,
+      "evidence_source_url": "https://drahmedelezaby.com/product/bourjois-healthy-mix-clean-vegan-primer-5551/",
       "source_type": null,
       "authorization_status": null
     },
@@ -91,14 +95,16 @@
     {
       "source_record_id": "rec3FYaVUEONPXv3i",
       "name": "إنفينيتي ناتشورالز كريم مرطب للجسم بخلاصة الفراولة 250 مل",
-      "sku": null,
-      "gtin": null,
+      "sku": "97987",
+      "gtin": {
+        "text": "6222019614809"
+      },
       "status": "Needs Review",
-      "publish_gate": "Blocked — Identity",
+      "publish_gate": "Blocked — Image/Stock",
       "pm_stock": null,
       "pm_cost_egp": null,
       "image_evidence_url": null,
-      "evidence_source_url": null,
+      "evidence_source_url": "https://drahmedelezaby.com/product/infinity-naturals-body-lotion-strawberry-250-ml/",
       "source_type": null,
       "authorization_status": null
     },
@@ -333,14 +339,16 @@
     {
       "source_record_id": "recHp2aOIn7K9pSww",
       "name": "فازلين تونك الشعر 200 مل",
-      "sku": null,
-      "gtin": null,
+      "sku": "78704",
+      "gtin": {
+        "text": "6281006450172"
+      },
       "status": "Needs Review",
-      "publish_gate": "Blocked — Identity",
+      "publish_gate": "Blocked — Image/Stock",
       "pm_stock": null,
       "pm_cost_egp": null,
       "image_evidence_url": null,
-      "evidence_source_url": null,
+      "evidence_source_url": "https://drahmedelezaby.com/product/vaseline-hair-tonic-200ml/",
       "source_type": null,
       "authorization_status": null
     },
@@ -493,7 +501,7 @@
       "gtin": null,
       "status": "Archived",
       "publish_gate": "Blocked — Identity",
-      "pm_stock": 48,
+      "pm_stock": 0,
       "pm_cost_egp": 260,
       "image_evidence_url": null,
       "evidence_source_url": "https://app.notion.com/p/50a11d0639204457aaac00c76c23b1bf",
@@ -531,14 +539,16 @@
     {
       "source_record_id": "recS8h9PFioqNNsre",
       "name": "إيفا مقشر الجسم ناتشورال جلو 250 جم",
-      "sku": null,
-      "gtin": null,
+      "sku": "94964",
+      "gtin": {
+        "text": "6223001382706"
+      },
       "status": "Needs Review",
-      "publish_gate": "Blocked — Identity",
+      "publish_gate": "Blocked — Image/Stock",
       "pm_stock": null,
       "pm_cost_egp": null,
       "image_evidence_url": null,
-      "evidence_source_url": null,
+      "evidence_source_url": "https://drahmedelezaby.com/product/eva-natural-glow-body-scrub-250g/",
       "source_type": null,
       "authorization_status": null
     },
@@ -573,14 +583,16 @@
     {
       "source_record_id": "recUS5ftlrQXc6nWr",
       "name": "كريم الاستحمام إيفا برائحة الموكا 370 مل",
-      "sku": null,
-      "gtin": null,
+      "sku": "101023",
+      "gtin": {
+        "text": "6223001388746"
+      },
       "status": "Needs Review",
-      "publish_gate": "Blocked — Identity",
+      "publish_gate": "Blocked — Image/Stock",
       "pm_stock": null,
       "pm_cost_egp": null,
       "image_evidence_url": null,
-      "evidence_source_url": null,
+      "evidence_source_url": "https://drahmedelezaby.com/product/eva-recipe-shower-cream-mocha-scent-370ml/",
       "source_type": null,
       "authorization_status": null
     },
@@ -603,14 +615,16 @@
     {
       "source_record_id": "recVjFp6TPT45jwxT",
       "name": "بيزلاين كريم لتبييض المنطقة الحساسة 50 مل",
-      "sku": null,
-      "gtin": null,
+      "sku": "82197",
+      "gtin": {
+        "text": "5281018003145"
+      },
       "status": "Needs Review",
-      "publish_gate": "Blocked — Identity",
+      "publish_gate": "Blocked — Image/Stock",
       "pm_stock": null,
       "pm_cost_egp": null,
       "image_evidence_url": null,
-      "evidence_source_url": null,
+      "evidence_source_url": "https://drahmedelezaby.com/product/beesline-whitening-sensitive-zone-cream-50-ml/",
       "source_type": null,
       "authorization_status": null
     },
@@ -837,7 +851,7 @@
       },
       "status": "Active",
       "publish_gate": "Blocked — Image/Stock",
-      "pm_stock": 0,
+      "pm_stock": 48,
       "pm_cost_egp": 260,
       "image_evidence_url": null,
       "evidence_source_url": "https://alfouadpharmacies.com/en/products/dermaelle-hyalubalance-sebum-cleans-200ml",
@@ -948,13 +962,15 @@
       "source_record_id": "rectUWc2cvgO3FbRv",
       "name": "أديداس فيكتوري ليج جل الاستحمام 3 في 1 400 مل",
       "sku": null,
-      "gtin": null,
+      "gtin": {
+        "text": "3616303459147"
+      },
       "status": "Needs Review",
-      "publish_gate": "Blocked — Identity",
+      "publish_gate": "Blocked — Image/Stock",
       "pm_stock": null,
       "pm_cost_egp": null,
       "image_evidence_url": null,
-      "evidence_source_url": null,
+      "evidence_source_url": "https://drahmedelezaby.com/product/adidas-shower-gel-victory-league-3in1-400-ml/",
       "source_type": null,
       "authorization_status": null
     },
