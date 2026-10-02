@@ -110,5 +110,17 @@
   ],
   "currentEvidence": {
     "publishReadyProducts": 0
+  },
+  "executionMode": "operational_pilot",
+  "blockerIsolation": {
+    "productEvidenceFailuresDoNotStopPlatformOrChannelReadiness": true,
+    "commercialPublicationStillRequiresPublishReady": true,
+    "referenceCatalogIsNonPublishing": true
+  },
+  "pilot": {
+    "purpose": "Keep Empire live and channel-ready while individual products complete evidence",
+    "productScope": "Publish-Ready only",
+    "currentPublishReadyProducts": 0,
+    "currentBlockedProductsRemainOutOfPublication": true
   }
 }
