@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "canonicalName": "Pmcosmetics Hub",
+  "canonicalName": "PM COSMETICS HUB",
   "empire": {
     "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
     "railwayUrl": "https://pmcosmetics-empire-11countries-production.up.railway.app",
@@ -8,7 +8,7 @@
     "identityPortal": "/auth"
   },
   "brand": {
-    "name": "Pmcosmetics Hub",
+    "name": "PM COSMETICS HUB",
     "logo": "/pmcosmetics-logo.svg",
     "phones": {
       "primary": {
