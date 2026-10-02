@@ -5,6 +5,8 @@ const required = [
   "config/markets.json",
   "config/catalog.schema.json",
   "server/index.mjs",
+  "config/storefront-cosmetics.json",
+  "public/index.html",
 ];
 
 for (const file of required) {

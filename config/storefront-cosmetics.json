@@ -1,0 +1,73 @@
+{
+  "brand": "Pmcosmetics Hub",
+  "tagline": "مستحضرات تجميل وعناية مختارة",
+  "scope": "cosmetics-only",
+  "categories": [
+    {
+      "id": "skin-care",
+      "nameAr": "العناية بالبشرة",
+      "nameEn": "Skin Care",
+      "icon": "✦"
+    },
+    {
+      "id": "hair-care",
+      "nameAr": "العناية بالشعر",
+      "nameEn": "Hair Care",
+      "icon": "✧"
+    },
+    {
+      "id": "body-care",
+      "nameAr": "العناية بالجسم",
+      "nameEn": "Body Care",
+      "icon": "◌"
+    },
+    {
+      "id": "perfumes",
+      "nameAr": "العطور",
+      "nameEn": "Perfumes",
+      "icon": "◈"
+    },
+    {
+      "id": "korean",
+      "nameAr": "الجمال الكوري",
+      "nameEn": "Korean Beauty",
+      "icon": "◇"
+    },
+    {
+      "id": "kids-care",
+      "nameAr": "عناية الأطفال",
+      "nameEn": "Kids Care",
+      "icon": "♡"
+    }
+  ],
+  "concerns": [
+    "الحماية من الشمس",
+    "البشرة الدهنية والمختلطة",
+    "البشرة الجافة",
+    "البشرة الحساسة",
+    "إصلاح البشرة",
+    "العناية بالشعر",
+    "العناية الشخصية",
+    "مزيلات المكياج"
+  ],
+  "brands": [
+    "The Ordinary",
+    "CeraVe",
+    "La Roche-Posay",
+    "Vichy",
+    "Bioderma",
+    "Uriage",
+    "L’Oréal Professionnel",
+    "Olaplex",
+    "Nivea",
+    "Beesline",
+    "Uriage",
+    "Korean Beauty"
+  ],
+  "policy": {
+    "referenceOnlySource": "AlFouad Pharmacies",
+    "referenceUsage": "taxonomy-and-storefront-reference",
+    "commercialPublication": "PM-owned evidence only",
+    "referenceImages": "not used for commercial PM publication"
+  }
+}
