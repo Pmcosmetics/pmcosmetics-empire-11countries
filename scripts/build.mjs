@@ -9,6 +9,7 @@ const required = [
   "config/brand-identity.json",
   "config/reference-catalog.json",
   "config/auth-identity.json",
+  "config/empire-unified-registry.json",
   "public/auth.html",
   "public/reference-catalog.html",
   "public/pmcosmetics-logo.svg",
