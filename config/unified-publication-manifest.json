@@ -1,7 +1,7 @@
 {
   "version": 2,
   "generatedAt": "2026-10-02",
-  "brand": "Pmcosmetics Hub",
+  "brand": "PM COSMETICS HUB",
   "sourceOfTruth": "Empire Product Master / Evidence Gate",
   "publicationPolicy": {
     "onlyPublishReady": true,
@@ -124,7 +124,7 @@
     "currentBlockedProductsRemainOutOfPublication": true
   },
   "brandIdentity": {
-    "name": "Pmcosmetics Hub",
+    "name": "PM COSMETICS HUB",
     "logo": "/pmcosmetics-logo.svg",
     "primaryPhone": "01055655649",
     "secondaryPhone": "01203151461",
