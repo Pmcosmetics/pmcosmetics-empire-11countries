@@ -235,5 +235,17 @@
       "id": "linear",
       "status": "active_verified"
     }
-  ]
+  ],
+  "identityIntegrationMatrix": {
+    "path": "config/account-integration-matrix.json",
+    "status": "verified_and_versioned",
+    "primaryCommerceDesign": "shukrypeter79@gmail.com",
+    "engineeringIntegration": "shukrypeter102@gmail.com",
+    "backupIdentities": [
+      "shukrypeter72@gmail.com",
+      "petershukry67@gmail.com"
+    ],
+    "apple": "not_verified_as_direct_Empire_connector",
+    "authAllowlistUnchanged": true
+  }
 }
