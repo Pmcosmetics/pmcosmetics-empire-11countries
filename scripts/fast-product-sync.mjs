@@ -327,15 +327,19 @@ class ProductSyncEngine {
     }
   }
 
-  // Main sync orchestrator
+  }
+}
+
+// Main sync orchestrator
 async function main() {
+  const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
   const args = process.argv.slice(2);
   const getArgValue = (name) => {
     const i = args.indexOf(name);
     return i >= 0 && args[i + 1] ? args[i + 1] : null;
   };
 
-  const dryRun = args.includes("--dry-run") || !args.includes("--all");
+  const dryRun = args.includes("--dry-run");
   const requestedTargets = new Set(
     ["--woo", "--shopify", "--noon", "--amazon"]
       .filter(flag => args.includes(flag))
