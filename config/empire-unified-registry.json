@@ -167,5 +167,73 @@
     "catalogRouting": true,
     "referenceCatalogIsolation": true,
     "commercialPublishGate": true
-  }
+  },
+  "lastLiveSync": {
+    "verifiedAt": "2026-10-02",
+    "source": "GitHub + Railway + Supabase + Airtable + Windsor.ai + Shopify",
+    "snapshot": "config/live-sync-snapshot.json"
+  },
+  "supportingIntegrations": [
+    {
+      "id": "github",
+      "status": "active_verified",
+      "detail": "canonical repo/main writable"
+    },
+    {
+      "id": "railway",
+      "status": "active_verified",
+      "detail": "latest deployment SUCCESS; API listening"
+    },
+    {
+      "id": "supabase",
+      "status": "upgrading_verified_runtime",
+      "detail": "SQL accessible; security/performance advisors clean"
+    },
+    {
+      "id": "airtable",
+      "status": "connected",
+      "detail": "canonical registry/evidence base available"
+    },
+    {
+      "id": "notion",
+      "status": "connected",
+      "detail": "command center readable; new blocks limited by plan entitlement"
+    },
+    {
+      "id": "shopify",
+      "status": "connected_verified",
+      "detail": "Pmcosmetics store accessible; 23 products observed; commercial publication gated"
+    },
+    {
+      "id": "windsor_facebook",
+      "status": "connected_verified",
+      "accountCount": 3
+    },
+    {
+      "id": "windsor_google_ads",
+      "status": "connected_verified",
+      "accountCount": 1
+    },
+    {
+      "id": "windsor_google_business_profile",
+      "status": "connected_verified",
+      "accountCount": 1
+    },
+    {
+      "id": "figma",
+      "status": "active_verified"
+    },
+    {
+      "id": "canva",
+      "status": "active_verified"
+    },
+    {
+      "id": "monday",
+      "status": "active_verified"
+    },
+    {
+      "id": "linear",
+      "status": "active_verified"
+    }
+  ]
 }
