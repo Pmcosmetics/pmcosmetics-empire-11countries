@@ -131,44 +131,37 @@
 
 ---
 
-## 🎯 الإجراء الأخير (12 ساعة قبل الإطلاق)
+## 🎯 الإجراء الأخير — بوابة تشغيل آمنة
 
-```bash
-# 1. تشغيل الاختبار الشامل
-npm run validate
-npm test
+    # 1. التحقق الفني
+    npm run validate
+    npm test
 
-# 2. التحقق من المنتجات
-node scripts/complete-execution.mjs
+    # 2. التحقق من حالة الأدلة
+    node scripts/complete-execution.mjs
 
-# 3. اختبار المزامنة
-node scripts/fast-product-sync.mjs --dry-run
+    # 3. تجهيز Feed موثّق خارجيًا
+    export SYNC_INPUT_FILE=data/products/<verified-feed>.json
 
-# 4. بدء الخادم
-npm start
+    # 4. اختبار كامل بدون أي كتابة تجارية
+    node scripts/fast-product-sync.mjs --dry-run --input "$SYNC_INPUT_FILE" --all
 
-# 5. فتح البوابة التجارية
-echo "COMMERCIAL_PUBLISH_GATE=OPEN" >> .env
+    # 5. لا تُفتح COMMERCIAL_PUBLISH_GATE إلا بعد:
+    #    - هوية المنتج + SKU/GTIN
+    #    - صورة PM مطابقة للمنتج
+    #    - إثبات مخزون PM
+    #    - إثبات تكلفة/مصدر الشراء
+    #    - provenance/authorization عند الحاجة
+    #    - QA وPilot قابلة للعكس
 
-# 6. تشغيل المزامنة الحقيقية
-node scripts/fast-product-sync.mjs --all
+    # 6. بعد فتح البوابة بواسطة مسار التشغيل المعتمد فقط:
+    #    فعل القناة المطلوبة صراحةً ثم نفّذ:
+    #    WOOCOMMERCE_SYNC_ENABLED=true node scripts/fast-product-sync.mjs --input "$SYNC_INPUT_FILE" --woo
+    #    أو القنوات الأخرى بنفس النمط
 
-# 7. مراقبة السجلات
-tail -f sync-logs/*.json
-```
+    # 7. تحقق من حالة القناة والسجل بعد كل كتابة
 
----
-
-## 🎉 مبروك! أنت الآن جاهز للإطلاق!
-
-**الخطوات الأولى:**
-1. أخبر المتابعين عن الإطلاق
-2. شغّل الحملات التسويقية
-3. راقب الأداء والمبيعات
-4. استجب لاستفسارات العملاء
-5. حسّن العملية باستمرار
-
----
+> **قاعدة أمان:** لا توجد منتجات تجريبية ثابتة داخل `fast-product-sync.mjs`، ولا يُسمح بأي Live Write عند إغلاق البوابة أو عند غياب دليل المنتج. المنتجات المحجوبة لا تدخل المزامنة التجارية.
 
 ## 📞 الدعم والمساعدة
 
@@ -177,4 +170,4 @@ tail -f sync-logs/*.json
 - **Instagram:** @pm_cosmetics1
 - **الموقع:** pmcosmetics.github.io/pmcosmetics-empire-11countries
 
-**الهدف: أكبر منصة بيع مستحضرات تجميل في MENA وتوسيع عالمي!** 🌍✨
+**الهدف:** تشغيل تجارة PM Cosmetics Hub عبر الأسواق والقنوات الموثقة، مع الحفاظ على قابلية المراجعة والرجوع. 🌍
