@@ -49,6 +49,17 @@ app.get("/", (_req, res) => res.json({
   woocommerce: "/api/woocommerce/status"
 }));
 
+app.get("/api/reference/alfouad", (_req, res) => {
+  res.json({
+    ok: true,
+    reference: "AlFouad Pharmacies",
+    sourceUrl: "https://alfouadpharmacies.com/",
+    mode: "taxonomy-and-storefront-reference",
+    commercialGate: gateState(),
+    policy: "Reference taxonomy/UX only; PM publication still requires PM-owned evidence"
+  });
+});
+
 app.get("/api/health", healthResponse);
 
 const whatsappConfigState = () => ({
