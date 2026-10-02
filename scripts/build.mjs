@@ -7,6 +7,8 @@ const required = [
   "server/index.mjs",
   "config/storefront-cosmetics.json",
   "config/brand-identity.json",
+  "config/reference-catalog.json",
+  "public/reference-catalog.html",
   "public/pmcosmetics-logo.svg",
   "public/index.html",
 ];
