@@ -12,6 +12,7 @@ import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitud
 const require = createRequire(import.meta.url);
 const marketConfig = require("../config/markets.json");
 const storefrontConfig = require("../config/storefront-cosmetics.json");
+const brandConfig = require("../config/brand-identity.json");
 
 const app = express();
 app.use(helmet());
@@ -40,7 +41,7 @@ app.get("/", (_req, res) => res.sendFile("public/index.html", { root: process.cw
 
 app.get("/api/storefront", (_req, res) => res.json({
   ok: true,
-  brand: storefrontConfig.brand,
+  brand: brandConfig.brandName,
   scope: storefrontConfig.scope,
   categories: storefrontConfig.categories,
   concerns: storefrontConfig.concerns,
@@ -61,6 +62,16 @@ app.get("/api/storefront/search", async (req, res) => {
     return res.status(503).json({ ok: false, gate: gateState(), reason: "STOREFRONT_SEARCH_UNAVAILABLE", message: error instanceof Error ? error.message : "Unknown error" });
   }
 });
+
+
+app.get("/api/brand", (_req, res) => res.json({
+  ok: true,
+  brandName: brandConfig.brandName,
+  logo: brandConfig.logo,
+  phones: brandConfig.phones,
+  whatsappCatalog: brandConfig.whatsappCatalog,
+  policy: brandConfig.policy
+}));
 
 app.get("/api/reference/alfouad", (_req, res) => {
   res.json({
@@ -84,9 +95,9 @@ const whatsappConfigState = () => ({
     configured: Boolean(process.env.WHATSAPP_BUSINESS_ACCESS_TOKEN && process.env.WHATSAPP_BUSINESS_PHONE_NUMBER_ID)
   },
   routing: {
-    primary: "https://wa.me/201055655649",
-    backup: "https://wa.me/201203151461",
-    catalog: "https://wa.me/c/201055655649"
+    primary: brandConfig.phones.primary.wa,
+    backup: brandConfig.phones.secondary.wa,
+    catalog: brandConfig.whatsappCatalog
   }
 });
 
@@ -110,8 +121,8 @@ app.get("/api/channel/status", (_req, res) => {
       liveDomain: process.env.RAILWAY_PUBLIC_DOMAIN || "https://pmcosmetics-empire-11countries-production.up.railway.app"
     },
     whatsapp: {
-      primary: process.env.WHATSAPP_PRIMARY_PUBLIC_NUMBER || "201055655649",
-      backup: process.env.WHATSAPP_BACKUP_PUBLIC_NUMBER || "201203151461",
+      primary: process.env.WHATSAPP_PRIMARY_PUBLIC_NUMBER || brandConfig.phones.primary.international,
+      backup: process.env.WHATSAPP_BACKUP_PUBLIC_NUMBER || brandConfig.phones.secondary.international,
       cloudApiConfigured: Boolean(
         process.env.WHATSAPP_BUSINESS_ACCESS_TOKEN &&
         process.env.WHATSAPP_BUSINESS_PHONE_NUMBER_ID
@@ -124,7 +135,7 @@ app.get("/api/channel/status", (_req, res) => {
       note: "Gmail connector unavailable in the current ChatGPT workspace"
     },
     commerce: {
-      canonicalBrand: "Pmcosmetics Hub",
+      canonicalBrand: brandConfig.brandName,
       referenceCatalog: "AlFouad Pharmacies",
       commercialPublication: gateState() === "OPEN" ? "OPEN" : "LOCKED"
     }
