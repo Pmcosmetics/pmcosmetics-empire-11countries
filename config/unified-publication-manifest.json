@@ -12,14 +12,14 @@
     {
       "id": "shopify",
       "group": "commerce",
-      "integration": "windsor.ai",
-      "status": "pending_account_authorization"
+      "integration": "shopify_native",
+      "status": "connected_verified"
     },
     {
       "id": "facebook",
       "group": "social",
       "integration": "windsor.ai",
-      "status": "connected"
+      "status": "connected_verified"
     },
     {
       "id": "instagram",
