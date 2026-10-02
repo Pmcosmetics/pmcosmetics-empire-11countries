@@ -11,11 +11,13 @@ import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitud
 
 const require = createRequire(import.meta.url);
 const marketConfig = require("../config/markets.json");
+const storefrontConfig = require("../config/storefront-cosmetics.json");
 
 const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody = Buffer.from(buf); } }));
+app.use(express.static("public", { index: false }));
 
 const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
 const batchGateState = () => String(process.env.BATCH_COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
@@ -34,20 +36,31 @@ const healthResponse = (_req, res) => res.json({
   architecture: ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]
 });
 
-app.get("/", (_req, res) => res.json({
+app.get("/", (_req, res) => res.sendFile("public/index.html", { root: process.cwd() }));
+
+app.get("/api/storefront", (_req, res) => res.json({
   ok: true,
-  service: "pmcosmetics-empire-11countries",
-  gate: gateState(),
-  message: "PM Cosmetics Hub API is running on Vercel/Railway",
-  health: "/api/health",
-  healthAlias: "/health",
-  readiness: "/api/readiness",
-  products: "/api/products",
-  staging: "/api/products/staging",
-  manus: "/api/manus/status",
-  supabase: "/api/supabase/status",
-  woocommerce: "/api/woocommerce/status"
+  brand: storefrontConfig.brand,
+  scope: storefrontConfig.scope,
+  categories: storefrontConfig.categories,
+  concerns: storefrontConfig.concerns,
+  brands: storefrontConfig.brands,
+  policy: storefrontConfig.policy,
+  gate: gateState()
 }));
+
+app.get("/api/storefront/search", async (req, res) => {
+  const query = String(req.query.q || "").trim().toLowerCase();
+  if (!query) return res.json({ ok: true, gate: gateState(), products: [] });
+  try {
+    const products = await listActiveProducts();
+    const rows = Array.isArray(products) ? products : [];
+    const matched = rows.filter((p) => JSON.stringify(p).toLowerCase().includes(query));
+    return res.json({ ok: true, gate: gateState(), products: matched, count: matched.length });
+  } catch (error) {
+    return res.status(503).json({ ok: false, gate: gateState(), reason: "STOREFRONT_SEARCH_UNAVAILABLE", message: error instanceof Error ? error.message : "Unknown error" });
+  }
+});
 
 app.get("/api/reference/alfouad", (_req, res) => {
   res.json({
