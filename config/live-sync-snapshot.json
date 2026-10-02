@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-02",
+  "canonicalBrand": "Pmcosmetics Hub",
+  "goal": "Synchronize useful verified supporting integrations without opening commercial publication",
+  "infrastructure": {
+    "github": {
+      "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
+      "branch": "main",
+      "headCommit": "4d981ea97d0d53c13139da5a4de9b8c79aea9b61",
+      "permissions": "pull/push/triage"
+    },
+    "railway": {
+      "deploymentId": "22533d56-a369-4d06-8895-97557addc305",
+      "status": "SUCCESS",
+      "commit": "4d981ea97d0d53c13139da5a4de9b8c79aea9b61",
+      "region": "sfo",
+      "gate": "CLOSED",
+      "runtime": "API listening on :8080",
+      "metrics": {
+        "cpuCurrent": 0.00000775,
+        "cpuAverage": 0.00048212277777777787,
+        "memoryCurrentGb": 0.012128256,
+        "memoryAverageGb": 0.029904110933333335
+      }
+    },
+    "supabase": {
+      "projectRef": "rhozehqlpnmzmknlpmvf",
+      "statusObserved": "UPGRADING",
+      "sqlAccessible": true,
+      "database": "Postgres 17.6.1.166",
+      "securityAdvisors": [],
+      "performanceAdvisors": []
+    }
+  },
+  "dataGate": {
+    "productsTotal": 2,
+    "productsActive": 0,
+    "blockedProducts": 73,
+    "blockedByGate": {
+      "Blocked — Identity": 52,
+      "Blocked — Image/Stock": 21
+    },
+    "physicalInventoryRows": 1,
+    "publishReadyProducts": 0,
+    "commercialPublishGate": "CLOSED"
+  },
+  "channels": {
+    "supabaseCommerceChannels": 26,
+    "supabaseActiveChannels": 2,
+    "channelEvents": 0,
+    "channelOrders": 0,
+    "internalOrders": 0,
+    "verifiedSupportingAccounts": {
+      "windsorFacebook": 3,
+      "windsorGoogleAds": 1,
+      "windsorGoogleBusinessProfile": 1,
+      "shopifyStore": true
+    }
+  },
+  "shopify": {
+    "store": "Pmcosmetics",
+    "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
+    "email": "shukrypeter79@gmail.com",
+    "totalProductsObserved": 23,
+    "commercialPublication": "blocked_by_Evidence_Gate"
+  },
+  "identity": {
+    "provider": "Google/Gmail",
+    "allowedEmails": [
+      "shukrypeter79@gmail.com",
+      "shukrypeter102@gmail.com"
+    ],
+    "portal": "/auth",
+    "googleProviderStatus": "READY_FOR_GOOGLE_CLOUD_CLIENT_CREDENTIALS"
+  },
+  "referenceCatalog": {
+    "uniqueProducts": 3218,
+    "categoryRows": 3479,
+    "referenceOnly": true,
+    "source": "AlFouad Pharmacies"
+  },
+  "supportingTools": {
+    "Airtable": "connected",
+    "Notion": "connected_but_free_block_limit_reached_for_new_blocks",
+    "Figma": "active_verified",
+    "Canva": "active_verified",
+    "Monday": "active_verified",
+    "Linear": "active_verified"
+  },
+  "actionPolicy": {
+    "synchronizeOnlyVerifiedSupport": true,
+    "noBulkPublish": true,
+    "noInferredProductData": true,
+    "preserveCommercialGate": true
+  }
+}
