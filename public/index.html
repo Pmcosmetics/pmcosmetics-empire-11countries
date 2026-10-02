@@ -31,9 +31,9 @@ footer{background:#17151a;color:#fff;padding:40px 20px}.foot{max-width:1180px;ma
 <body>
 <div class="top">Pmcosmetics Hub — مستحضرات التجميل فقط • التشغيل المنظم يبدأ من الدليل والمنتج الجاهز</div>
 <header><div class="nav">
-  <a class="logo" href="/"><span>Pmcosmetics Hub</span><small>Beauty • Care • Commerce</small></a>
+  <a class="logo" href="/" aria-label="Pmcosmetics Hub"><img src="/pmcosmetics-logo.svg" alt="Pmcosmetics Hub" style="width:52px;height:52px;vertical-align:middle;margin-left:10px"><span>Pmcosmetics Hub</span><small>Beauty • Care • Commerce</small></a>
   <div class="search"><input id="search" placeholder="ابحثي عن منتج، ماركة أو فئة"/></div>
-  <div class="actions"><span class="pill">العربة 0</span><a class="pill" href="https://wa.me/201055655649">واتساب</a></div>
+  <div class="actions"><span class="pill">العربة 0</span><a class="pill" id="waPrimary" href="https://wa.me/201055655649">واتساب 01055655649</a><a class="pill" id="waSecondary" href="https://wa.me/201203151461">01203151461</a></div>
 </div></header>
 <main>
 <section class="hero"><div class="hero-inner">
@@ -56,8 +56,18 @@ footer{background:#17151a;color:#fff;padding:40px 20px}.foot{max-width:1180px;ma
 <div class="empty"><h3>لم يتم فتح نشر تجاري جماعي بعد</h3><p>لا توجد حاليًا منتجات تحمل حالة <strong>Publish-Ready</strong>، لذلك لن تظهر منتجات مرجعية كأنها مخزون مملوك لـPmcosmetics Hub. عند اعتماد أول منتج، يظهر تلقائيًا في هذا المسار الموحد.</p><a class="cta" href="/api/readiness">فحص الجاهزية</a></div>
 </section>
 </main>
-<footer><div class="foot"><div><strong>Pmcosmetics Hub</strong><p>واجهة مستقلة مستلهمة من منطق تصنيف المتاجر المرجعية، مع هوية Pmcosmetics Hub ونظام Evidence Gate خاص بالإمبراطورية.</p></div><div><p>WhatsApp: 01055655649</p><p>Backup: 01203151461</p></div></div></footer>
+<footer><div class="foot"><div><strong>Pmcosmetics Hub</strong><p>واجهة مستقلة مستلهمة من منطق تصنيف المتاجر المرجعية، مع هوية Pmcosmetics Hub ونظام Evidence Gate خاص بالإمبراطورية.</p></div><div><p><a id="footerPrimary" href="https://wa.me/201055655649">01055655649</a></p><p><a id="footerSecondary" href="https://wa.me/201203151461">01203151461</a></p></div></div></footer>
 <script>
 const q=document.getElementById('search');q?.addEventListener('keydown',e=>{if(e.key==='Enter'){const term=q.value.trim();if(term) location.href='/api/storefront/search?q='+encodeURIComponent(term)}})
 </script>
-</body></html>
+<script>
+fetch('/api/brand').then(r=>r.json()).then(b=>{
+  document.title=b.brandName+' — مستحضرات التجميل';
+  const p=b.phones.primary, s=b.phones.secondary;
+  const set=(id,text,href)=>{const e=document.getElementById(id);if(e){e.textContent=text;e.href=href;}};
+  set('waPrimary','واتساب '+p.local,p.wa);
+  set('waSecondary',s.local,s.wa);
+  set('footerPrimary',p.local,p.wa);
+  set('footerSecondary',s.local,s.wa);
+}).catch(()=>{});
+</script></body></html>
