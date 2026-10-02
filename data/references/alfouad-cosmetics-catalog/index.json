@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "generatedAt": "2026-10-02",
+    "source": "https://alfouadpharmacies.com/",
+    "purpose": "Reference catalog for Pmcosmetics Hub taxonomy and merchandising",
+    "referenceOnly": true,
+    "commercialPublication": "Blocked until each PM product has PM-owned identity, image, stock, cost/provenance evidence and passes the PM Publish Gate",
+    "totalUniqueProducts": 3218,
+    "categories": {
+      "العناية بالبشرة": 1178,
+      "العناية بالشعر": 992,
+      "العناية بالجسم": 921,
+      "العطور": 178,
+      "العناية بالأطفال": 157,
+      "منتجات كورية": 53
+    }
+  },
+  "catalogPath": "all-products.json",
+  "categoryFiles": {
+    "العناية بالبشرة": "categories/skin-care.json",
+    "العناية بالشعر": "categories/hair-care.json",
+    "العناية بالجسم": "categories/body-care.json",
+    "العطور": "categories/perfumes.json",
+    "العناية بالأطفال": "categories/kids-care.json",
+    "منتجات كورية": "categories/korean.json"
+  }
+}
