@@ -170,5 +170,12 @@
     "preserveCommercialPublishGate": true,
     "noSecretsInGit": true,
     "noBulkPublishUntilEvidenceReady": true
+  },
+  "autoSync": {
+    "enabled": true,
+    "lastVerified": "2026-10-02",
+    "source": "live_connectors",
+    "behavior": "sync_verified_accounts_and_connection_states_only",
+    "oauthHumanConsentRequired": true
   }
 }
