@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "generatedAt": "2026-10-02",
   "brand": "Pmcosmetics Hub",
   "sourceOfTruth": "Empire Product Master / Evidence Gate",
@@ -136,5 +136,25 @@
       "primary": "01055655649",
       "secondary": "01203151461"
     }
-  }
+  },
+  "identityHub": {
+    "provider": "Google/Gmail",
+    "allowedEmails": [
+      "shukrypeter79@gmail.com",
+      "shukrypeter102@gmail.com"
+    ],
+    "primaryEmail": "shukrypeter79@gmail.com",
+    "secondaryEmail": "shukrypeter102@gmail.com",
+    "portal": "/auth",
+    "policy": "Exact email allowlist"
+  },
+  "catalogHub": {
+    "commercialSource": "Empire Product Master / Evidence Gate",
+    "referenceSource": "AlFouad Pharmacies",
+    "referenceCatalogPath": "/reference-catalog",
+    "referenceUniqueProducts": 3218,
+    "referenceOnly": true,
+    "commercialGate": "CLOSED"
+  },
+  "registryPath": "config/empire-unified-registry.json"
 }
