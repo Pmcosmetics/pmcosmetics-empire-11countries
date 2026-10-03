@@ -210,6 +210,56 @@
       "sourceStore": "Pmcosmetics",
       "publicationGate": "CLOSED",
       "officialAppUrl": "https://apps.shopify.com/duplicate-store"
+    },
+    "etsy_shopify": {
+      "provider": "Shopify sales channel app",
+      "product": "Etsy Integration",
+      "status": "pending_shopify_app_install_and_etsy_seller_oauth",
+      "parentChannel": "etsy",
+      "capabilities": [
+        "product_sync",
+        "inventory_sync",
+        "order_sync"
+      ],
+      "publicationGate": "CLOSED",
+      "officialAppCandidates": [
+        "https://apps.shopify.com/etsy-integration-dpl",
+        "https://apps.shopify.com/etsy-integration-cedcommerce"
+      ],
+      "note": "Etsy seller authorization is required; current ChatGPT connector is search-only, not seller management."
+    },
+    "tiktok_shop_shopify": {
+      "provider": "Shopify TikTok sales channel",
+      "product": "TikTok Shop",
+      "status": "pending_store_country_eligibility_and_tiktok_shop_authorization",
+      "parentChannel": "tiktok_shop",
+      "capabilities": [
+        "catalog_sync",
+        "inventory_sync",
+        "fulfillment_sync",
+        "order_sync"
+      ],
+      "publicationGate": "CLOSED",
+      "shopifyRequirements": [
+        "verifiable store address",
+        "eligible country",
+        "online store",
+        "TikTok for Business account",
+        "return policy page"
+      ],
+      "eligibleCountries": [
+        "United States",
+        "United Kingdom",
+        "Spain",
+        "Ireland",
+        "France",
+        "Italy",
+        "Germany",
+        "Mexico",
+        "Japan",
+        "Brazil"
+      ],
+      "note": "Egypt is not in Shopify's currently documented TikTok Shop eligible-country list."
     }
   },
   "security": {
