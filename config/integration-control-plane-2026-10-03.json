@@ -303,10 +303,11 @@
           "sku": "DERMAELLE007",
           "masterInventory": 48,
           "shopifyStatus": "DRAFT",
-          "shopifyInventory": 0,
+          "shopifyInventory": 48,
           "nextEvidence": "reconcile inventory + EGP retail price + PM-owned image + GTIN/SKU before activation"
         },
-        "actionBoundary": "No automatic Marketplace listing or inventory overwrite until evidence is reconciled."
+        "actionBoundary": "No automatic Marketplace listing or inventory overwrite until evidence is reconciled.",
+        "nextEvidence": "reconcile EGP retail price + PM-owned image + GTIN/SKU before activation"
       }
     }
   },
