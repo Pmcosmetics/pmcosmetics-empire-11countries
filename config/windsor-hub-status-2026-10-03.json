@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-10-03T16:35:30.798Z",
   "hub": "Windsor.ai",
   "workspaceEmail": "shukrypeter102@gmail.com",
   "dashboard": "https://onboard.windsor.ai/app",
@@ -38,5 +38,14 @@
   "requiredUserAction": "Sign in to Windsor.ai in the browser; no password/OTP is handled in ChatGPT.",
   "loginUrl": "https://onboard.windsor.ai/app",
   "rule": "After login, authorize each pending connector; only accounts returned by Windsor get_connectors are marked connected_verified.",
-  "commercialGate": "CLOSED"
+  "commercialGate": "CLOSED",
+  "runtimeVerification": {
+    "railwayDeploymentId": "b18bb607-c935-4782-a84d-f196ea72f6a8",
+    "railwayStatus": "SUCCESS",
+    "railwayCommit": "39cba9ac811b9531a62ef1ea8c01de34d9c7c61e",
+    "empireHealthHttp": 200,
+    "shopifyWebhookRouteHttp": 200,
+    "shopifyWebhookConfigured": false,
+    "commercialGate": "CLOSED"
+  }
 }
