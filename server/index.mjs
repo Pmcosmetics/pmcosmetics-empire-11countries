@@ -106,7 +106,7 @@ app.get("/api/brand", (_req, res) => res.json({
 const REFERENCE_RAW_BASE = "https://raw.githubusercontent.com/Pmcosmetics/pmcosmetics-empire-11countries/ref/alfouad-cosmetics-catalog-2026-10-02/data/references/alfouad-cosmetics-catalog/categories";
 const referenceCache = new Map();
 
-app.get("/reference-catalog", (_req, res) => res.sendFile("reference-catalog.html", { root: process.cwd() }));
+app.get("/reference-catalog", (_req, res) => res.sendFile("reference-catalog.html", { root: "public" }));
 app.get("/api/reference/catalog", (_req, res) => res.json({ ok: true, ...referenceCatalogConfig, gate: gateState() }));
 app.get("/api/reference/catalog/:category", async (req, res) => {
   const category = referenceCatalogConfig.categories.find((item) => item.id === req.params.category);
