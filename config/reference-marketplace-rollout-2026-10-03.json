@@ -1,0 +1,176 @@
+{
+  "generatedAt": "2026-10-03",
+  "brand": "PM COSMETICS HUB",
+  "source": {
+    "provider": "AlFouad Pharmacies",
+    "catalogPath": "data/references/alfouad-cosmetics-catalog/all-products.json",
+    "uniqueProducts": 3218,
+    "categoryRows": 3479,
+    "categories": {
+      "skin-care": 1178,
+      "hair-care": 992,
+      "body-care": 921,
+      "perfumes": 178,
+      "kids-care": 157,
+      "korean": 53
+    },
+    "referenceOnly": true
+  },
+  "stagingRule": {
+    "mode": "REFERENCE_STAGING",
+    "createDraftOrFeedOnly": true,
+    "neverAutoPublish": true,
+    "commercialGate": "CLOSED",
+    "requiredBeforeCommercialPublish": [
+      "PM-owned product identity",
+      "PM-owned exact image",
+      "PM stock evidence",
+      "cost/provenance evidence",
+      "SKU/GTIN validation",
+      "Publish-Ready + evidenceVerified"
+    ]
+  },
+  "channelRollout": [
+    {
+      "id": "shopify",
+      "target": "draft/catalog staging",
+      "connection": "connected_verified",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "amazon_sp",
+      "target": "seller feed/listing staging",
+      "connection": "authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "etsy",
+      "target": "listing-feed staging",
+      "connection": "seller_authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "temu",
+      "target": "partner-feed staging",
+      "connection": "seller_authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "noon",
+      "target": "seller-feed staging",
+      "connection": "seller_authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "jumia",
+      "target": "seller-feed staging",
+      "connection": "seller_authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "salla",
+      "target": "store import staging",
+      "connection": "store_authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "woocommerce",
+      "target": "product import staging",
+      "connection": "credentials_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "tiktok_shop",
+      "target": "catalog staging",
+      "connection": "authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "google_merchant",
+      "target": "feed staging",
+      "connection": "authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "take_app",
+      "target": "storefront/catalog source",
+      "connection": "storefront_link_registered",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "olx_dubizzle_egypt",
+      "target": "classifieds listing staging",
+      "connection": "seller_connection_pending",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "whatsapp_primary",
+      "target": "catalog/order source",
+      "connection": "public_identity_ready_credentials_pending",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "whatsapp_secondary",
+      "target": "order routing source",
+      "connection": "public_identity_ready_credentials_pending",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "facebook",
+      "target": "organic/catalog content source",
+      "connection": "connected_verified",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "instagram",
+      "target": "content/catalog source",
+      "connection": "authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "tiktok",
+      "target": "content/catalog source",
+      "connection": "authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "snapchat",
+      "target": "content/catalog source",
+      "connection": "authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "telegram",
+      "target": "bot/catalog source",
+      "connection": "bot_credentials_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    },
+    {
+      "id": "talabat",
+      "target": "partner-feed staging",
+      "connection": "partner_authorization_required",
+      "stagedProducts": 3218,
+      "publishableNow": 0
+    }
+  ],
+  "note": "This file registers the complete reference set for downstream channel preparation. It does not claim that 3218 products were published or that unavailable seller APIs were executed."
+}
