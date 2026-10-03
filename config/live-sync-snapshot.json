@@ -7,13 +7,13 @@
     "github": {
       "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
       "branch": "main",
-      "headCommit": "3ee2917629cb82e5e9d444d0abd1afdc4d57ee90",
+      "headCommit": "109fb49995d72dcbb3e13736027c5fb89bf53c88",
       "permissions": "pull/push/triage"
     },
     "railway": {
-      "deploymentId": "4f9fb739-78e0-460a-895e-b0bd956597e8",
+      "deploymentId": "b43b39a0-a3f9-48ec-b00e-58a62ef37f32",
       "status": "SUCCESS",
-      "commit": "3ee2917629cb82e5e9d444d0abd1afdc4d57ee90",
+      "commit": "3ea791314eca3d4dd63d806b49f8bf26d8a66d52",
       "region": "sfo",
       "gate": "CLOSED",
       "runtime": "API listening on :8080",
@@ -75,10 +75,11 @@
     "store": "Pmcosmetics",
     "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
     "email": "shukrypeter79@gmail.com",
-    "totalProductsObserved": 140,
+    "totalProductsObserved": 215,
     "commercialPublication": "blocked_by_Evidence_Gate",
     "draftProductsObserved": 140,
-    "referenceStaging": "active"
+    "referenceStaging": "active",
+    "archivedProductsObserved": 75
   },
   "identity": {
     "provider": "Google/Gmail",
@@ -119,12 +120,13 @@
   },
   "notes": [
     "Reference catalog: 3218 unique products / 3479 category rows.",
-    "Shopify currently contains 140 draft/reference-staged products observed live; additional draft pages exist.",
     "Facebook was synchronized in Supabase to verified_windsor and active=true after live Windsor verification.",
     "Security warning remains: leaked password protection is disabled; no password or secret was stored in GitHub.",
     "Performance findings are informational unused indexes and were not removed because there is no demonstrated runtime need.",
     "Requested marketplace set is now centrally staged as 3218 reference products in the Empire registry; external seller publication remains credential/authorization/evidence gated.",
-    "Kenz and Knooz are not yet verified as standalone seller marketplaces; Kenz is publicly observed as a brand on Jumia and Knooz has ambiguous public identity."
+    "Kenz and Knooz are not yet verified as standalone seller marketplaces; Kenz is publicly observed as a brand on Jumia and Knooz has ambiguous public identity.",
+    "Shopify live verification: 215 products observed; 140 are DRAFT and 75 are ARCHIVED. Commercial publication remains blocked by Evidence Gate.",
+    "GitHub main has documentation-only commits newer than the deployed Railway runtime commit; runtime deployment remains verified and healthy."
   ],
   "marketplaceReferenceStaging": {
     "updatedAt": "2026-10-03",
@@ -176,5 +178,12 @@
     ],
     "supabaseDestinationCredential": "oauth:2481",
     "dashboard": "https://onboard.windsor.ai/app"
+  },
+  "runtimeVerification": {
+    "railwayLatestSuccessDeploymentId": "b43b39a0-a3f9-48ec-b00e-58a62ef37f32",
+    "railwayRuntimeCommit": "3ea791314eca3d4dd63d806b49f8bf26d8a66d52",
+    "githubHeadCommit": "109fb49995d72dcbb3e13736027c5fb89bf53c88",
+    "healthHttp": 200,
+    "commercialGate": "CLOSED"
   }
 }
