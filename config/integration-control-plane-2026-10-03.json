@@ -316,6 +316,30 @@
           "Retail reference price 239 EGP verified from Dr Ahmed El Ezaby",
           "International code 6223007905060 verified",
           "Shopify inventory reconciled to 48"
+        ],
+        "ownerActionRequired": [
+          {
+            "action": "change_store_currency",
+            "path": "Shopify Admin > Settings > General > Store defaults > Currency display > Change store currency > EGP",
+            "reason": "Current shop currency is USD and payment gateway rejects multi-currency market creation."
+          },
+          {
+            "action": "install_meta_channel",
+            "path": "Shopify Admin > Settings > Sales channels > Shopify App Store > Facebook & Instagram > Add channel",
+            "reason": "Facebook & Instagram sales channel is currently available but not installed."
+          }
+        ],
+        "officialReferences": {
+          "currency": "https://help.shopify.com/en/manual/payments/shopify-payments/store-currency/changing-your-store-currency",
+          "meta": "https://help.shopify.com/en/manual/online-sales-channels/social-commerce/facebook-instagram-by-meta/setup"
+        },
+        "state": "READY_FOR_OWNER_ACTION",
+        "nextAutomatableAfterOwnerAction": [
+          "verify EGP is active",
+          "verify DERMAELLE007 base price is 239 EGP",
+          "set product ACTIVE only after commercial gate permits",
+          "install/connect Facebook & Instagram by Meta",
+          "verify catalog sync and product eligibility"
         ]
       }
     }
