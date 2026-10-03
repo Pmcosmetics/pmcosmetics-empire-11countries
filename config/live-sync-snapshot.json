@@ -68,7 +68,8 @@
       "windsorGoogleAds": 1,
       "windsorGoogleBusinessProfile": 1,
       "shopifyStore": true
-    }
+    },
+    "requestedMarketplaceReferenceStaged": 12
   },
   "shopify": {
     "store": "Pmcosmetics",
@@ -121,6 +122,30 @@
     "Shopify currently contains 140 draft/reference-staged products observed live; additional draft pages exist.",
     "Facebook was synchronized in Supabase to verified_windsor and active=true after live Windsor verification.",
     "Security warning remains: leaked password protection is disabled; no password or secret was stored in GitHub.",
-    "Performance findings are informational unused indexes and were not removed because there is no demonstrated runtime need."
-  ]
+    "Performance findings are informational unused indexes and were not removed because there is no demonstrated runtime need.",
+    "Requested marketplace set is now centrally staged as 3218 reference products in the Empire registry; external seller publication remains credential/authorization/evidence gated.",
+    "Kenz and Knooz are not yet verified as standalone seller marketplaces; Kenz is publicly observed as a brand on Jumia and Knooz has ambiguous public identity."
+  ],
+  "marketplaceReferenceStaging": {
+    "updatedAt": "2026-10-03",
+    "uniqueProducts": 3218,
+    "categoryRows": 3479,
+    "requestedChannels": [
+      "salla",
+      "noon",
+      "amazon_sp",
+      "talabat",
+      "jumia",
+      "temu",
+      "olx_dubizzle_egypt",
+      "take_app",
+      "etsy",
+      "kenz",
+      "knooz",
+      "instashop"
+    ],
+    "liveInsertionPolicy": "reference-staged-until-auth-and-commercial-evidence-pass",
+    "commercialPublishGate": "CLOSED",
+    "manifest": "config/marketplace-insertion-2026-10-03.json"
+  }
 }
