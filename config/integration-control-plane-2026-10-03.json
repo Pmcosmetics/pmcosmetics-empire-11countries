@@ -1,0 +1,46 @@
+{
+  "updatedAt": "2026-10-03",
+  "brand": "PM COSMETICS HUB",
+  "purpose": "Integration control plane for Shopify, Google Drive, Make, Zapier, API and webhooks",
+  "liveEmpire": {
+    "railwayHealth": "https://pmcosmetics-empire-11countries-production.up.railway.app/api/health",
+    "railwayReadiness": "https://pmcosmetics-empire-11countries-production.up.railway.app/api/readiness",
+    "railwayChannelStatus": "https://pmcosmetics-empire-11countries-production.up.railway.app/api/channel/status",
+    "whatsappWebhook": "https://pmcosmetics-empire-11countries-production.up.railway.app/api/whatsapp/webhook"
+  },
+  "integrations": {
+    "shopify": {
+      "status": "connected_chatgpt_verified",
+      "store": "Pmcosmetics",
+      "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "currency": "USD",
+      "currentWebhookSubscriptions": 0,
+      "windsorStatus": "pending_browser_authorization",
+      "connectUrl": "https://onboard.windsor.ai/connect?connector=shopify&next=/shopify/authorize",
+      "docs": "https://shopify.dev/docs/api/webhooks/latest"
+    },
+    "googleDrive": {
+      "status": "workspace_connector_unavailable",
+      "reason": "Google Drive plugin is disabled/not available in the current ChatGPT workspace",
+      "apiDocs": "https://developers.google.com/workspace/drive/api/guides/about-sdk"
+    },
+    "make": {
+      "status": "external_webhook_adapter",
+      "nativeChatConnector": "not_found",
+      "webhookDocs": "https://help.make.com/webhooks",
+      "gatewayDocs": "https://apps.make.com/gateway"
+    },
+    "zapier": {
+      "status": "external_webhook_adapter",
+      "nativeChatConnector": "not_found",
+      "webhookDocs": "https://help.zapier.com/hc/en-us/articles/8496288690317-Trigger-Zap-workflows-from-webhooks",
+      "apiDocs": "https://help.zapier.com/hc/en-us/articles/44391646192397-Ways-to-make-API-requests-in-Zapier"
+    }
+  },
+  "security": {
+    "commercialPublishGate": "CLOSED",
+    "noSecretsInGit": "required",
+    "webhookVerification": "required before activating new inbound commercial webhooks",
+    "doctrine": "Evidence -> Validation -> Authorization -> Reversible Pilot -> Verification -> Scale"
+  }
+}
