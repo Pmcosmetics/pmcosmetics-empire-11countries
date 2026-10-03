@@ -16,7 +16,7 @@
 | Railway | Live / healthy | Deploy from main; healthcheck enforced |
 | Airtable | Connected | Product/evidence registry |
 | Supabase | Configured/read-only API path | Product reads only until evidence gate passes |
-| Shopify | Connected | 23 legacy/test records; all ARCHIVED; no PM commercial listing active |
+| Shopify | Connected | Store `pmcosmetics-lgdc2mrf.myshopify.com`; 140 draft products observed; commercial publication remains gated |
 | OneDrive | Connected | Evidence/asset source; no commercial publish implication |
 | Figma | Connected | Design workspace access |
 | monday.com | Connected | Workspace access |
@@ -39,11 +39,11 @@ Retailer pages are market/reference evidence only and do not replace PM stock or
 
 ## Current product state
 
-Airtable Product Master currently contains 73 records:
+Current evidence/quarantine snapshot contains 73 blocked records:
 
 - 52 — Blocked: Identity
 - 21 — Blocked: Image/Stock
-- 0 — Publish-Ready
+- Publish-ready products remain gated until evidence validation is complete
 
 Physical Inventory Verification currently contains one DERMAELLE028 record with owner-reported quantity 60; verification remains Needs Evidence.
 
