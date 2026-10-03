@@ -37,5 +37,7 @@ if (!server.includes("BATCH_COMMERCIAL_PUBLISH_GATE")) throw new Error("Batch co
 if (!server.includes('app.get("/api/whatsapp/status"')) throw new Error("WhatsApp status route is missing");
 if (!server.includes('app.get("/api/whatsapp/webhook"')) throw new Error("WhatsApp webhook verification route is missing");
 if (!server.includes('x-hub-signature-256')) throw new Error("WhatsApp webhook signature guard is missing");
+if (!server.includes('app.post("/api/shopify/webhook"')) throw new Error("Shopify webhook route is missing");
+if (!server.includes('x-shopify-hmac-sha256')) throw new Error("Shopify webhook HMAC guard is missing");
 
 console.log("Validation passed: dynamic commercial gate contract, staging provenance rules, Gate CLOSED default, and products API lock");
