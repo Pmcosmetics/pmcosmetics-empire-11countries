@@ -340,5 +340,49 @@
     "referenceOnly": true,
     "commercialPublishGate": "CLOSED",
     "manifest": "config/marketplace-insertion-2026-10-03.json"
+  },
+  "windsorHub": {
+    "provider": "Windsor.ai",
+    "workspaceEmail": "shukrypeter102@gmail.com",
+    "plan": "Trial",
+    "dashboard": "https://onboard.windsor.ai/app",
+    "role": "Central integration hub for connected marketing/commerce connectors",
+    "connectedNow": {
+      "facebook": [
+        "758458256557661",
+        "689846283340520",
+        "1308509513682283"
+      ],
+      "google_ads": [
+        "663-195-7015"
+      ],
+      "google_business_profile": [
+        "locations/8169383730265167314"
+      ]
+    },
+    "destinations": {
+      "supabase": {
+        "credentialId": "oauth:2481",
+        "label": "Pmcosmetics-empire-11countries",
+        "setupUrl": "https://onboard.windsor.ai/app/destinations/overview#supabase"
+      }
+    },
+    "pendingAuthorization": {
+      "instagram": "https://onboard.windsor.ai/connect?connector=instagram&next=/instagram/authorize",
+      "tiktok": "https://onboard.windsor.ai/connect?connector=tiktok&next=/tiktok/authorize",
+      "tiktok_shop": "https://onboard.windsor.ai/connect?connector=tiktok_shop&next=/tiktok_shop/authorize",
+      "amazon_sp": "https://onboard.windsor.ai/connect?connector=amazon_sp&next=/amazon_sp/authorize",
+      "google_merchant": "https://onboard.windsor.ai/connect?connector=google_merchant&next=/google_merchant/authorize",
+      "woocommerce": "https://onboard.windsor.ai/connect?connector=woocommerce&next=/app/woocommerce",
+      "snapchat": "https://onboard.windsor.ai/connect?connector=snapchat&next=/snapchat/authorize"
+    },
+    "unsupportedOrNoConnector": {
+      "salla": "No Windsor connector exposed",
+      "etsy": "No Windsor connector exposed",
+      "temu": "No Windsor connector exposed",
+      "jumia": "No Windsor connector exposed",
+      "talabat": "No Windsor connector exposed",
+      "instashop": "No Windsor connector exposed"
+    }
   }
 }
