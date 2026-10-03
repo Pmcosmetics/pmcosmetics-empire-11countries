@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-02",
+  "verifiedAt": "2026-10-03",
   "canonicalBrand": "PM COSMETICS HUB",
   "empire": {
     "github": {
@@ -68,6 +68,26 @@
     },
     "talabat": {
       "status": "pending_direct_api"
+    },
+    "shopify_pos": {
+      "status": "pending_pos_channel_verification",
+      "parentStore": "Pmcosmetics",
+      "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "publicationGate": "CLOSED",
+      "catalogSource": "Shopify",
+      "verifiedLocations": [
+        {
+          "name": "My Custom Location",
+          "active": true,
+          "country": "CA"
+        },
+        {
+          "name": "Shop location",
+          "active": true,
+          "country": "US"
+        }
+      ],
+      "note": "Shopify POS is supported as the in-person sales surface; no POS-specific app installation was detected in the current Admin API connection."
     }
   },
   "social": {
