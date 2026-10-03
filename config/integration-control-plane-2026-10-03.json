@@ -58,6 +58,28 @@
       ],
       "officialDocs": "https://docs.m2ecloud.com/docs/shopify-setup-guide/",
       "note": "Do not mark connected until the Shopify app installation and marketplace OAuth authorizations are verified."
+    },
+    "syncx_stock_sync": {
+      "provider": "SyncX",
+      "product": "syncX: Stock Sync & Inventory",
+      "status": "pending_shopify_app_install_and_source_feed_authorization",
+      "sourceStore": "Pmcosmetics",
+      "sourceDomain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "mode": "controlled_inventory_sync",
+      "publicationGate": "CLOSED",
+      "capabilities": [
+        "inventory_sync",
+        "product_import_update",
+        "price_sync",
+        "two_way_sync",
+        "scheduled_sync"
+      ],
+      "guardrails": {
+        "source_of_truth_required": true,
+        "zero_stock_overwrite_blocked_until_source_verified": true,
+        "commercial_publish_gate_preserved": true
+      },
+      "officialAppUrl": "https://apps.shopify.com/stock-sync"
     }
   },
   "security": {
