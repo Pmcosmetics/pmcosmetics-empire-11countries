@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03",
+  "generatedAt": "2026-10-03T15:49:30Z",
   "mode": "OPERATIONAL_REFERENCE_STAGING",
   "brand": "PM COSMETICS HUB",
   "referenceUniqueProducts": 3218,
@@ -12,12 +12,24 @@
     "platform": "Railway",
     "service": "pmcosmetics-empire-11countries",
     "deploymentId": "4f9fb739-78e0-460a-895e-b0bd956597e8",
-    "status": "BUILDING"
+    "status": "SUCCESS",
+    "verifiedAt": "2026-10-03T15:49:30Z"
   },
   "execution": {
     "centralCatalogRegistered": true,
     "multiChannelStagingRegistered": true,
     "commercialPublication": false,
-    "nextOperationalRule": "Continue reference-to-draft/feed staging; publish only after evidenceVerified + Publish-Ready."
-  }
+    "nextOperationalRule": "Continue reference-to-draft/feed staging; publish only after evidenceVerified + Publish-Ready.",
+    "runtimeVerified": true,
+    "supabaseCounts": {
+      "products": 2,
+      "inventoryRows": 2,
+      "blockedProducts": 73,
+      "physicalInventoryVerifications": 1,
+      "activeCommerceChannels": 3
+    },
+    "securityAdvisor": "WARN: leaked password protection disabled",
+    "performanceAdvisor": "INFO: 18 unused indexes; no runtime blocker"
+  },
+  "nextRun": "Continue reference-to-draft/feed staging; no commercial publication until evidenceVerified + Publish-Ready."
 }
