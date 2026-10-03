@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T15:49:30Z",
+  "generatedAt": "2026-10-03T16:45:00Z",
   "mode": "OPERATIONAL_REFERENCE_STAGING",
   "brand": "PM COSMETICS HUB",
   "referenceUniqueProducts": 3218,
@@ -11,9 +11,10 @@
   "deployment": {
     "platform": "Railway",
     "service": "pmcosmetics-empire-11countries",
-    "deploymentId": "4f9fb739-78e0-460a-895e-b0bd956597e8",
+    "deploymentId": "b43b39a0-a3f9-48ec-b00e-58a62ef37f32",
     "status": "SUCCESS",
-    "verifiedAt": "2026-10-03T15:49:30Z"
+    "verifiedAt": "2026-10-03T15:49:30Z",
+    "runtimeCommit": "3ea791314eca3d4dd63d806b49f8bf26d8a66d52"
   },
   "execution": {
     "centralCatalogRegistered": true,
@@ -29,7 +30,15 @@
       "activeCommerceChannels": 3
     },
     "securityAdvisor": "WARN: leaked password protection disabled",
-    "performanceAdvisor": "INFO: 18 unused indexes; no runtime blocker"
+    "performanceAdvisor": "INFO: 18 unused indexes; no runtime blocker",
+    "sourceDrift": "documentation_only_commits_after_runtime_deploy"
   },
-  "nextRun": "Continue reference-to-draft/feed staging; no commercial publication until evidenceVerified + Publish-Ready."
+  "nextRun": "Continue reference-to-draft/feed staging; no commercial publication until evidenceVerified + Publish-Ready.",
+  "githubHeadCommit": "109fb49995d72dcbb3e13736027c5fb89bf53c88",
+  "shopify": {
+    "totalProducts": 215,
+    "draftProducts": 140,
+    "archivedProducts": 75,
+    "commercialPublication": "blocked_by_Evidence_Gate"
+  }
 }
