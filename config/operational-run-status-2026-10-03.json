@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-10-03",
+  "mode": "OPERATIONAL_REFERENCE_STAGING",
+  "brand": "PM COSMETICS HUB",
+  "referenceUniqueProducts": 3218,
+  "referenceCategoryRows": 3479,
+  "shopifyDraftProductsObserved": 140,
+  "shopifyDraftPageHasNextPage": true,
+  "commercialPublishGate": "CLOSED",
+  "publishReadyProducts": 0,
+  "deployment": {
+    "platform": "Railway",
+    "service": "pmcosmetics-empire-11countries",
+    "deploymentId": "4f9fb739-78e0-460a-895e-b0bd956597e8",
+    "status": "BUILDING"
+  },
+  "execution": {
+    "centralCatalogRegistered": true,
+    "multiChannelStagingRegistered": true,
+    "commercialPublication": false,
+    "nextOperationalRule": "Continue reference-to-draft/feed staging; publish only after evidenceVerified + Publish-Ready."
+  }
+}
