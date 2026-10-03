@@ -255,7 +255,7 @@
     },
     {
       "id": "supabase",
-      "status": "upgrading_verified_runtime",
+      "status": "active_verified_with_warning",
       "detail": "SQL accessible; RLS verified; 1 security warning (leaked-password protection disabled) and 17 performance INFO unused-index notices remain"
     },
     {
