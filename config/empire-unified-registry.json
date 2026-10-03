@@ -102,7 +102,7 @@
       "id": "amazon_sp",
       "kind": "marketplace",
       "integration": "windsor.ai",
-      "status": "oauth_pending"
+      "status": "reference_staged_3218_oauth_pending"
     },
     {
       "id": "google_merchant",
@@ -120,7 +120,7 @@
       "id": "salla",
       "kind": "commerce",
       "integration": "direct_api",
-      "status": "direct_integration_pending"
+      "status": "reference_staged_3218_api_token_pending"
     },
     {
       "id": "instashop",
@@ -132,25 +132,25 @@
       "id": "etsy",
       "kind": "marketplace",
       "integration": "direct_api",
-      "status": "direct_integration_pending"
+      "status": "reference_staged_3218_oauth_pending"
     },
     {
       "id": "temu",
       "kind": "marketplace",
       "integration": "direct_api",
-      "status": "direct_integration_pending"
+      "status": "reference_staged_3218_authorization_pending"
     },
     {
       "id": "jumia",
       "kind": "marketplace",
       "integration": "direct_api",
-      "status": "direct_integration_pending"
+      "status": "reference_staged_3218_seller_api_pending"
     },
     {
       "id": "talabat",
       "kind": "marketplace",
       "integration": "direct_api",
-      "status": "direct_integration_pending"
+      "status": "reference_staged_3218_partner_api_pending"
     },
     {
       "id": "whatsapp_primary",
@@ -175,7 +175,7 @@
       "id": "take_app",
       "kind": "commerce",
       "integration": "public_store_link",
-      "status": "storefront_link_registered",
+      "status": "reference_staged_3218_api_pending",
       "url": "https://take.app/ar/pmcosmetics",
       "role": "WhatsApp storefront / order intake"
     },
@@ -183,7 +183,7 @@
       "id": "olx_dubizzle_egypt",
       "kind": "marketplace",
       "integration": "public_classifieds",
-      "status": "seller_connection_pending",
+      "status": "reference_staged_3218_seller_connection_pending",
       "url": "https://www.dubizzle.com.eg/",
       "legacyName": "OLX Egypt",
       "category": "Fashion & Beauty"
@@ -201,6 +201,26 @@
       "integration": "direct_bot_api",
       "status": "bot_credentials_pending",
       "note": "No Telegram connector exposed in current ChatGPT/Windsor integrations; Bot API credentials and channel/bot identifier are required"
+    },
+    {
+      "id": "noon",
+      "kind": "marketplace",
+      "integration": "direct_api",
+      "status": "reference_staged_3218_credentials_pending"
+    },
+    {
+      "id": "kenz",
+      "kind": "marketplace",
+      "integration": "unverified_target",
+      "status": "reference_staged_3218_unverified_marketplace",
+      "note": "Verified as a brand/product presence on Jumia, not as a standalone marketplace account"
+    },
+    {
+      "id": "knooz",
+      "kind": "marketplace",
+      "integration": "unverified_target",
+      "status": "reference_staged_3218_unverified_marketplace",
+      "note": "Public identity is ambiguous; no verified seller integration surface found"
     }
   ],
   "synchronization": {
@@ -312,5 +332,13 @@
     "shopifyBaseCurrencyObserved": "USD",
     "shopifyEgyptMarketAttempt": "blocked_by_payment_gateway_multi_currency_limit",
     "rule": "Never write EGP numeric values into a USD-priced variant field. Store EGP public-retail values as reference/structured data until Shopify base currency or supported multi-currency checkout is configured."
+  },
+  "marketplaceReferenceStaging": {
+    "uniqueProducts": 3218,
+    "categoryRows": 3479,
+    "source": "AlFouad Pharmacies",
+    "referenceOnly": true,
+    "commercialPublishGate": "CLOSED",
+    "manifest": "config/marketplace-insertion-2026-10-03.json"
   }
 }
