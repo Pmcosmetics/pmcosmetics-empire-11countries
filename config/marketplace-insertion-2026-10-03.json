@@ -93,7 +93,31 @@
       "stagedReferenceProducts": 3218,
       "liveInsertion": "unverified_marketplace_target",
       "note": "Knooz public identity is ambiguous; no verified seller integration surface found."
+    },
+    "instashop": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_direct_adapter",
+      "method": "InstaShop partner integration",
+      "required": [
+        "seller/partner authorization",
+        "approved integration"
+      ]
     }
   },
-  "policy": "Stage reference data centrally, but do not publish as PM-owned commercial listings until PM-owned image/stock/cost/provenance evidence passes the commercial gate."
+  "policy": "Stage reference data centrally, but do not publish as PM-owned commercial listings until PM-owned image/stock/cost/provenance evidence passes the commercial gate.",
+  "requestedChannelCount": 12,
+  "requestedChannels": [
+    "salla",
+    "noon",
+    "amazon_sp",
+    "talabat",
+    "jumia",
+    "temu",
+    "olx_dubizzle_egypt",
+    "take_app",
+    "etsy",
+    "kenz",
+    "knooz",
+    "instashop"
+  ]
 }
