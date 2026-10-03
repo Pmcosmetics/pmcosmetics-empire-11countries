@@ -133,6 +133,30 @@
         "excludeZeroPriceUntilVerified": true,
         "commercialPublishGatePreserved": true
       }
+    },
+    "doordash": {
+      "provider": "DoorDash",
+      "product": "DoorDash Sales Channel for Shopify",
+      "status": "pending_eligibility_and_merchant_connection",
+      "sourceStore": "Pmcosmetics",
+      "sourceDomain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "publicationGate": "CLOSED",
+      "eligibility": {
+        "storefrontRequired": "US physical retail storefront",
+        "category": "Beauty",
+        "minimumActiveProducts": 20,
+        "inventoryRequired": true,
+        "imageRequired": true,
+        "descriptionAndPriceRequired": true
+      },
+      "capabilities": [
+        "catalog_sync",
+        "inventory_sync",
+        "order_sync",
+        "local_delivery"
+      ],
+      "officialShopifySetup": "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/doordash/setup",
+      "note": "Current Shopify/DoorDash eligibility documentation specifies a US-based store with a physical retail storefront. No eligible US PM physical location has been verified."
     }
   },
   "security": {
