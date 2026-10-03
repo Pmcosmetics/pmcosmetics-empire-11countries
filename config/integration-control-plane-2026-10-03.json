@@ -157,6 +157,26 @@
       ],
       "officialShopifySetup": "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/doordash/setup",
       "note": "Current Shopify/DoorDash eligibility documentation specifies a US-based store with a physical retail storefront. No eligible US PM physical location has been verified."
+    },
+    "salla_point": {
+      "provider": "Salla",
+      "product": "Salla Point",
+      "status": "pending_salla_store_activation_and_account_authorization",
+      "parentChannel": "salla",
+      "publicationGate": "CLOSED",
+      "capabilities": [
+        "in_store_sales",
+        "event_sales",
+        "branch_sales",
+        "inventory_sync",
+        "order_sync"
+      ],
+      "useCases": [
+        "retail_store",
+        "mobile_booth",
+        "special_events"
+      ],
+      "note": "Salla Point is Salla's POS surface. The current Salla channel is not connected in the Empire, so POS activation cannot be verified yet."
     }
   },
   "security": {
