@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-03",
+  "verifiedAt": "2026-10-03T15:49:30Z",
   "canonicalBrand": "PM COSMETICS HUB",
   "goal": "Synchronize useful verified supporting integrations without opening commercial publication",
   "infrastructure": {
     "github": {
       "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
       "branch": "main",
-      "headCommit": "4d981ea97d0d53c13139da5a4de9b8c79aea9b61",
+      "headCommit": "3ee2917629cb82e5e9d444d0abd1afdc4d57ee90",
       "permissions": "pull/push/triage"
     },
     "railway": {
-      "deploymentId": "22533d56-a369-4d06-8895-97557addc305",
+      "deploymentId": "4f9fb739-78e0-460a-895e-b0bd956597e8",
       "status": "SUCCESS",
-      "commit": "4d981ea97d0d53c13139da5a4de9b8c79aea9b61",
+      "commit": "3ee2917629cb82e5e9d444d0abd1afdc4d57ee90",
       "region": "sfo",
       "gate": "CLOSED",
       "runtime": "API listening on :8080",
@@ -26,11 +26,23 @@
     },
     "supabase": {
       "projectRef": "rhozehqlpnmzmknlpmvf",
-      "statusObserved": "UPGRADING",
+      "statusObserved": "ACTIVE_HEALTHY",
       "sqlAccessible": true,
       "database": "Postgres 17.6.1.166",
-      "securityAdvisors": [],
-      "performanceAdvisors": []
+      "securityAdvisors": [
+        {
+          "level": "WARN",
+          "name": "auth_leaked_password_protection",
+          "count": 1
+        }
+      ],
+      "performanceAdvisors": [
+        {
+          "level": "INFO",
+          "name": "unused_index",
+          "count": 18
+        }
+      ]
     }
   },
   "dataGate": {
@@ -47,7 +59,7 @@
   },
   "channels": {
     "supabaseCommerceChannels": 26,
-    "supabaseActiveChannels": 2,
+    "supabaseActiveChannels": 3,
     "channelEvents": 0,
     "channelOrders": 0,
     "internalOrders": 0,
@@ -62,8 +74,10 @@
     "store": "Pmcosmetics",
     "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
     "email": "shukrypeter79@gmail.com",
-    "totalProductsObserved": 23,
-    "commercialPublication": "blocked_by_Evidence_Gate"
+    "totalProductsObserved": 140,
+    "commercialPublication": "blocked_by_Evidence_Gate",
+    "draftProductsObserved": 140,
+    "referenceStaging": "active"
   },
   "identity": {
     "provider": "Google/Gmail",
@@ -101,5 +115,12 @@
     "officialLogoAssetId": "MAHW7s3NYE4",
     "officialLogoName": "PM COSMETICS HUB — Official Logo",
     "source": "GitHub public/pmcosmetics-logo.svg"
-  }
+  },
+  "notes": [
+    "Reference catalog: 3218 unique products / 3479 category rows.",
+    "Shopify currently contains 140 draft/reference-staged products observed live; additional draft pages exist.",
+    "Facebook was synchronized in Supabase to verified_windsor and active=true after live Windsor verification.",
+    "Security warning remains: leaked password protection is disabled; no password or secret was stored in GitHub.",
+    "Performance findings are informational unused indexes and were not removed because there is no demonstrated runtime need."
+  ]
 }
