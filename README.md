@@ -137,6 +137,8 @@ Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated t
 **2026-10-01 operations sync:** CI gate validation fix merged to `main`; Railway production remains evidence-gated with commercial writes locked until verified product evidence is complete.
 
 **2026-10-01 telemetry sync:** Amplitude server telemetry is env-gated and remains disabled until `AMPLITUDE_API_KEY` is configured in the deployment environment. Commercial publication remains CLOSED.
+
+**2026-10-03 live operations sync:** Railway production deployment is **SUCCESS** with the API health check configured at `/api/health`. Shopify is connected with **215** live catalog records (**140 DRAFT / 75 ARCHIVED / 0 ACTIVE**); catalog-quality blockers remain (195 zero-price variants, 189 missing SKUs, 140 missing featured images, 105 tagged `evidence-pending`). Supabase RLS is enabled on the public tables, with **1 security warning** (leaked-password protection disabled) and **17 performance INFO** unused-index notices. Airtable currently has **0 Publish-Ready products**, so the commercial publication gate remains CLOSED.
 ---
 
 ## 📚 Documentation
