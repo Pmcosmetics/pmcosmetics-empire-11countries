@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-03",
+  "canonicalBrand": "PM COSMETICS HUB",
+  "status": "LAUNCHED",
+  "launchSurface": "Empire",
+  "salesSurfaces": [
+    "shopify_online_store",
+    "shopify_pos",
+    "whatsapp_catalog"
+  ],
+  "scope": "Special Events",
+  "publicationGate": "CLOSED",
+  "executionMode": "controlled_commercial_launch",
+  "safeguards": {
+    "evidenceGateRequired": true,
+    "bulkPublishAllowed": false,
+    "referenceCatalogNotCommercialProof": true
+  },
+  "notes": "Special Events is launched as an operating sales/campaign surface; commercial listing publication remains controlled by the Evidence Gate."
+}
