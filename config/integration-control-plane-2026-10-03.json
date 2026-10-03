@@ -177,6 +177,39 @@
         "special_events"
       ],
       "note": "Salla Point is Salla's POS surface. The current Salla channel is not connected in the Empire, so POS activation cannot be verified yet."
+    },
+    "altera_export_import": {
+      "provider": "Shopify App",
+      "product": "Altera - Export and Import",
+      "status": "pending_shopify_app_install",
+      "role": "bulk_import_export",
+      "capabilities": [
+        "Excel/CSV import",
+        "Excel/CSV export",
+        "bulk product updates",
+        "Matrixify-compatible workflows"
+      ],
+      "sourceStore": "Pmcosmetics",
+      "publicationGate": "CLOSED",
+      "officialAppUrl": "https://apps.shopify.com/altera"
+    },
+    "duplify": {
+      "provider": "Shopify App",
+      "product": "Duplify - Duplicate & Backup",
+      "status": "pending_shopify_app_install",
+      "role": "store_clone_backup_sync",
+      "capabilities": [
+        "product_copy",
+        "collection_copy",
+        "inventory_copy",
+        "metafields",
+        "themes",
+        "backup",
+        "multi-store sync"
+      ],
+      "sourceStore": "Pmcosmetics",
+      "publicationGate": "CLOSED",
+      "officialAppUrl": "https://apps.shopify.com/duplicate-store"
     }
   },
   "security": {
