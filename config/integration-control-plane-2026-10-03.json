@@ -292,55 +292,23 @@
       ],
       "note": "For an Egypt-based store, Shopify documents Facebook/Instagram catalog sync and Facebook Shop; Marketplace availability and seller eligibility are separate Meta-controlled surfaces.",
       "execution": {
-        "status": "EXECUTION_STARTED",
-        "lastChecked": "2026-10-03",
-        "liveBlockers": [
-          "Facebook & Instagram by Meta sales channel is not installed in Shopify",
-          "Shopify store base currency is USD; EGP retail price is stored as verified evidence, not as the base selling price",
-          "Marketplace surface itself is not directly controllable through current ChatGPT/Windsor connector"
-        ],
-        "readyCandidate": {
+        "status": "BLOCKER_RECONCILIATION_COMPLETE",
+        "checkedAt": "2026-10-03",
+        "product": {
           "sku": "DERMAELLE007",
-          "masterInventory": 48,
-          "shopifyStatus": "DRAFT",
-          "shopifyInventory": 48,
+          "inventory": 48,
+          "barcode": "6223007905060",
           "verifiedRetailPriceEGP": 239,
-          "verifiedGTIN": "6223007905060",
-          "pmImageAttachedToShopify": true,
-          "nextEvidence": "Shopify store currency is USD; EGP commercial selling price cannot be written into the base USD price field. Keep product Draft until Egypt pricing is configured through a supported market/price-list path and Meta channel is installed."
+          "shopifyStatus": "DRAFT",
+          "shopifyBasePriceUSD": "0.00"
         },
-        "actionBoundary": "No automatic Marketplace listing or inventory overwrite until evidence is reconciled.",
-        "nextEvidence": "reconcile EGP retail price + PM-owned image + GTIN/SKU before activation",
-        "evidenceResolved": [
-          "PM-owned evidence image attached to Shopify",
-          "Retail reference price 239 EGP verified from Dr Ahmed El Ezaby",
-          "International code 6223007905060 verified",
-          "Shopify inventory reconciled to 48"
+        "blockers": [
+          "Shopify enabled presentment currencies contains USD only",
+          "Egypt market was not created",
+          "Meta sales channel is not installed",
+          "Commercial publish gate remains CLOSED"
         ],
-        "ownerActionRequired": [
-          {
-            "action": "change_store_currency",
-            "path": "Shopify Admin > Settings > General > Store defaults > Currency display > Change store currency > EGP",
-            "reason": "Current shop currency is USD and payment gateway rejects multi-currency market creation."
-          },
-          {
-            "action": "install_meta_channel",
-            "path": "Shopify Admin > Settings > Sales channels > Shopify App Store > Facebook & Instagram > Add channel",
-            "reason": "Facebook & Instagram sales channel is currently available but not installed."
-          }
-        ],
-        "officialReferences": {
-          "currency": "https://help.shopify.com/en/manual/payments/shopify-payments/store-currency/changing-your-store-currency",
-          "meta": "https://help.shopify.com/en/manual/online-sales-channels/social-commerce/facebook-instagram-by-meta/setup"
-        },
-        "state": "READY_FOR_OWNER_ACTION",
-        "nextAutomatableAfterOwnerAction": [
-          "verify EGP is active",
-          "verify DERMAELLE007 base price is 239 EGP",
-          "set product ACTIVE only after commercial gate permits",
-          "install/connect Facebook & Instagram by Meta",
-          "verify catalog sync and product eligibility"
-        ]
+        "safeResolution": "Do not invent USD price or convert EGP without an approved pricing source; install Meta channel and configure Egypt/EGP through Shopify admin/payment eligibility, then activate only after re-verification."
       }
     }
   },
