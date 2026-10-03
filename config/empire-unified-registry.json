@@ -151,13 +151,37 @@
       "id": "whatsapp_primary",
       "kind": "messaging",
       "integration": "meta_waba",
-      "status": "public_identity_ready_credentials_pending"
+      "status": "public_identity_ready_credentials_pending",
+      "phone": "01055655649",
+      "international": "201055655649",
+      "whatsapp": "https://wa.me/201055655649",
+      "catalog": "https://wa.me/c/201055655649"
     },
     {
       "id": "whatsapp_secondary",
       "kind": "messaging",
       "integration": "meta_waba",
-      "status": "public_identity_ready_credentials_pending"
+      "status": "public_identity_ready_credentials_pending",
+      "phone": "01203151461",
+      "international": "201203151461",
+      "whatsapp": "https://wa.me/201203151461"
+    },
+    {
+      "id": "take_app",
+      "kind": "commerce",
+      "integration": "public_store_link",
+      "status": "storefront_link_registered",
+      "url": "https://take.app/ar/pmcosmetics",
+      "role": "WhatsApp storefront / order intake"
+    },
+    {
+      "id": "olx_dubizzle_egypt",
+      "kind": "marketplace",
+      "integration": "public_classifieds",
+      "status": "seller_connection_pending",
+      "url": "https://www.dubizzle.com.eg/",
+      "legacyName": "OLX Egypt",
+      "category": "Fashion & Beauty"
     }
   ],
   "synchronization": {
@@ -166,11 +190,15 @@
     "emailIdentity": true,
     "catalogRouting": true,
     "referenceCatalogIsolation": true,
-    "commercialPublishGate": true
+    "commercialPublishGate": true,
+    "takeAppRouting": true,
+    "olxMarketplaceRegistry": true,
+    "whatsappPrimaryRouting": true,
+    "whatsappSecondaryRouting": true
   },
   "lastLiveSync": {
     "verifiedAt": "2026-10-03",
-    "source": "GitHub + Canva",
+    "source": "GitHub + Canva + live connector/plugin/web verification",
     "snapshot": "config/live-sync-snapshot.json"
   },
   "supportingIntegrations": [
