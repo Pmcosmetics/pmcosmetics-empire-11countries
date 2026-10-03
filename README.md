@@ -89,7 +89,7 @@ npm run validate
 - [x] Documentation
 - [x] Validation scripts
 - [x] Build script
-- [ ] Database Schema Implementation
+- [x] Database Schema Implementation (Supabase schema verified)
 - [x] API Framework Setup (health endpoint + locked product routes)
 - [ ] Authentication System
 
@@ -98,7 +98,7 @@ npm run validate
 ## 🏪 Phase 2: Platform Integration
 
 - [x] WooCommerce Central Backbone (evidence-gated connector)
-- [ ] Shopify Integration
+- [x] Shopify Integration (connected; commercial publication remains evidence-gated)
 - [ ] Instagram Shop Setup
 - [ ] Etsy Listing Integration
 - [ ] WhatsApp Business API
