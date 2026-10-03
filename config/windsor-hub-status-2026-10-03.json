@@ -1,0 +1,42 @@
+{
+  "updatedAt": "2026-10-03",
+  "hub": "Windsor.ai",
+  "workspaceEmail": "shukrypeter102@gmail.com",
+  "dashboard": "https://onboard.windsor.ai/app",
+  "currentState": "Windsor login is required before connector authorization pages can be opened.",
+  "verifiedConnections": {
+    "facebook": [
+      "758458256557661",
+      "689846283340520",
+      "1308509513682283"
+    ],
+    "google_ads": [
+      "663-195-7015"
+    ],
+    "google_business_profile": [
+      "locations/8169383730265167314"
+    ]
+  },
+  "pendingConnectors": {
+    "shopify": "oauth",
+    "instagram": "oauth",
+    "tiktok": "oauth",
+    "tiktok_shop": "oauth",
+    "amazon_sp": "oauth",
+    "google_merchant": "oauth",
+    "woocommerce": "manual",
+    "snapchat": "oauth"
+  },
+  "noWindsorConnector": [
+    "salla",
+    "etsy",
+    "temu",
+    "jumia",
+    "talabat",
+    "instashop"
+  ],
+  "requiredUserAction": "Sign in to Windsor.ai in the browser; no password/OTP is handled in ChatGPT.",
+  "loginUrl": "https://onboard.windsor.ai/app",
+  "rule": "After login, authorize each pending connector; only accounts returned by Windsor get_connectors are marked connected_verified.",
+  "commercialGate": "CLOSED"
+}
