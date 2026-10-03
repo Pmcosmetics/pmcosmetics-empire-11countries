@@ -87,6 +87,22 @@
       "integration": "independent_api",
       "status": "no_chat_connector_found",
       "action": "Partner/API authorization required"
+    },
+    {
+      "id": "take_app",
+      "provider": "Take App",
+      "integration": "public_store_link",
+      "status": "storefront_link_registered",
+      "url": "https://take.app/ar/pmcosmetics",
+      "role": "WhatsApp storefront/order intake"
+    },
+    {
+      "id": "olx_dubizzle_egypt",
+      "provider": "Dubizzle Egypt (OLX)",
+      "integration": "public_classifieds",
+      "status": "seller_connection_pending",
+      "url": "https://www.dubizzle.com.eg/",
+      "category": "Fashion & Beauty"
     }
   ],
   "socialConnections": [
@@ -106,5 +122,22 @@
     "catalogSource": "Empire Product Master / Evidence Gate",
     "referenceCatalog": "isolated",
     "publication": "gated"
-  }
+  },
+  "messagingConnections": [
+    {
+      "id": "whatsapp_primary",
+      "provider": "WhatsApp",
+      "status": "public_identity_ready_credentials_pending",
+      "phone": "01055655649",
+      "wa": "https://wa.me/201055655649",
+      "catalog": "https://wa.me/c/201055655649"
+    },
+    {
+      "id": "whatsapp_secondary",
+      "provider": "WhatsApp",
+      "status": "public_identity_ready_credentials_pending",
+      "phone": "01203151461",
+      "wa": "https://wa.me/201203151461"
+    }
+  ]
 }
