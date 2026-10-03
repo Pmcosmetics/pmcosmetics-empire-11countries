@@ -46,12 +46,15 @@ class PMCosmeticsExecutor {
     console.log('\n📋 Stage 1: تحويل البيانات إلى نموذج موحد');
     console.log('─'.repeat(60));
 
+    const pricingCurrency = String(process.env.PM_BASE_CURRENCY || 'EGP').trim().toUpperCase();
     const normalized = alfouadProducts.map((product, idx) => {
       // Validate required fields
       const errors = [];
+      const localPrice = product.priceLocal && typeof product.priceLocal === 'object' ? product.priceLocal[pricingCurrency] : null;
+      const basePrice = pricingCurrency === 'USD' ? product.priceUSD : localPrice;
       if (!product.sku) errors.push('SKU مفقود');
       if (!product.name) errors.push('الاسم مفقود');
-      if (!product.priceUSD || product.priceUSD <= 0) errors.push('السعر غير صحيح');
+      if (!Number.isFinite(Number(basePrice)) || Number(basePrice) <= 0) errors.push('السعر ' + pricingCurrency + ' مفقود أو غير صحيح');
       if (!product.images || product.images.length === 0) errors.push('الصور مفقودة');
 
       const isValid = errors.length === 0;
@@ -77,8 +80,8 @@ class PMCosmeticsExecutor {
         
         // Pricing Strategy
         pricing: {
-          base_currency: 'USD',
-          base_price: product.priceUSD,
+          base_currency: pricingCurrency,
+          base_price: Number(pricingCurrency === 'USD' ? product.priceUSD : product.priceLocal?.[pricingCurrency]),
           local_prices: product.priceLocal || {},
           last_updated: new Date().toISOString()
         },
@@ -210,7 +213,7 @@ class PMCosmeticsExecutor {
       const csvPath = 'data/products/staged-products.csv';
       const headers = [
         'SKU', 'Name (EN)', 'Name (AR)', 'Brand', 'Category',
-        'Price (USD)', 'Stock', 'Images', 'Markets', 'Status'
+        'Price (' + pricingCurrency + ')', 'Stock', 'Images', 'Markets', 'Status'
       ].join(',');
 
       const rows = validatedProducts.map(p => [
