@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-03",
+  "canonicalBrand": "PM COSMETICS HUB",
+  "primaryPhone": "01055655649",
+  "secondaryPhone": "01203151461",
+  "primaryEmail": "shukrypeter79@gmail.com",
+  "secondaryEmail": "shukrypeter102@gmail.com",
+  "referenceCatalog": {
+    "source": "AlFouad Pharmacies",
+    "uniqueProducts": 3218,
+    "categoryRows": 3479,
+    "referenceOnly": true
+  },
+  "commercialPublishGate": "CLOSED",
+  "channels": {
+    "salla": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_api_token",
+      "method": "Salla Merchant API /products/import",
+      "requiredScope": "products.read_write"
+    },
+    "noon": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_noon_api_credentials",
+      "method": "Noon seller adapter",
+      "required": [
+        "NOON_API_KEY",
+        "NOON_SELLER_ID"
+      ]
+    },
+    "amazon_sp": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_authorization",
+      "method": "Amazon SP-API / JSON_LISTINGS_FEED",
+      "required": [
+        "seller authorization",
+        "SP-API roles"
+      ]
+    },
+    "talabat": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_partner_api_keys",
+      "method": "Talabat Partner API",
+      "required": [
+        "API keys/account manager approval"
+      ]
+    },
+    "jumia": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_seller_api",
+      "method": "Jumia seller integration"
+    },
+    "temu": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_seller_authorization",
+      "method": "Temu Open Platform",
+      "required": [
+        "seller authorization",
+        "app credentials"
+      ]
+    },
+    "olx_dubizzle_egypt": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_seller_connection",
+      "method": "Dubizzle business/seller listing"
+    },
+    "take_app": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "storefront_registered_api_pending",
+      "method": "Take App Merchant API",
+      "storefront": "https://take.app/ar/pmcosmetics",
+      "required": [
+        "Business plan",
+        "API key"
+      ]
+    },
+    "etsy": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "blocked_pending_oauth",
+      "method": "Etsy Open API v3",
+      "required": [
+        "Seller App",
+        "OAuth listings_w"
+      ]
+    },
+    "kenz": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "unverified_marketplace_target",
+      "note": "Kenz is verified publicly as a brand/product presence on Jumia, not as a standalone marketplace account."
+    },
+    "knooz": {
+      "stagedReferenceProducts": 3218,
+      "liveInsertion": "unverified_marketplace_target",
+      "note": "Knooz public identity is ambiguous; no verified seller integration surface found."
+    }
+  },
+  "policy": "Stage reference data centrally, but do not publish as PM-owned commercial listings until PM-owned image/stock/cost/provenance evidence passes the commercial gate."
+}
