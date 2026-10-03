@@ -14,17 +14,22 @@
       "primary": {
         "local": "01055655649",
         "international": "201055655649",
-        "role": "catalog / primary contact",
+        "role": "primary catalog/contact",
         "whatsapp": "https://wa.me/201055655649"
       },
       "secondary": {
         "local": "01203151461",
         "international": "201203151461",
-        "role": "backup / direct contact",
+        "role": "backup/direct contact",
         "whatsapp": "https://wa.me/201203151461"
       }
     },
-    "whatsappCatalog": "https://wa.me/c/201055655649"
+    "whatsappCatalog": "https://wa.me/c/201055655649",
+    "canonicalLogo": "/pmcosmetics-logo.svg",
+    "contactEmails": {
+      "primary": "shukrypeter79@gmail.com",
+      "secondary": "shukrypeter102@gmail.com"
+    }
   },
   "identities": {
     "canonicalProvider": "Google/Gmail",
@@ -214,7 +219,7 @@
   },
   "lastLiveSync": {
     "verifiedAt": "2026-10-03",
-    "source": "GitHub + live plugin/connector verification",
+    "source": "GitHub + Shopify + Supabase + Windsor + reference catalog",
     "snapshot": "config/live-sync-snapshot.json"
   },
   "supportingIntegrations": [
@@ -290,7 +295,8 @@
       "petershukry67@gmail.com"
     ],
     "apple": "not_verified_as_direct_Empire_connector",
-    "authAllowlistUnchanged": true
+    "authAllowlistUnchanged": true,
+    "canonicalBrand": "PM COSMETICS HUB"
   },
   "canva": {
     "status": "active_verified",
@@ -299,5 +305,12 @@
     "officialLogoAssetId": "MAHW7s3NYE4",
     "officialLogoName": "PM COSMETICS HUB — Official Logo",
     "logoSource": "public/pmcosmetics-logo.svg"
+  },
+  "currencyPolicy": {
+    "canonicalEgyptRetailCurrency": "EGP",
+    "publicRetailPriceSource": "AlFouad Pharmacies reference catalog",
+    "shopifyBaseCurrencyObserved": "USD",
+    "shopifyEgyptMarketAttempt": "blocked_by_payment_gateway_multi_currency_limit",
+    "rule": "Never write EGP numeric values into a USD-priced variant field. Store EGP public-retail values as reference/structured data until Shopify base currency or supported multi-currency checkout is configured."
   }
 }
