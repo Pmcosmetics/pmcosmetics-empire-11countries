@@ -80,6 +80,59 @@
         "commercial_publish_gate_preserved": true
       },
       "officialAppUrl": "https://apps.shopify.com/stock-sync"
+    },
+    "google_shopping_multifeed": {
+      "provider": "Shopify product-feed layer",
+      "status": "pending_feed_app_install_and_google_merchant_authorization",
+      "sourceStore": "Pmcosmetics",
+      "sourceDomain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "publicationGate": "CLOSED",
+      "primaryUse": "Google Shopping multi-feed",
+      "feedRequirements": [
+        "PM-owned image",
+        "verified EGP retail price",
+        "SKU/GTIN where applicable",
+        "verified inventory",
+        "product identity/provenance"
+      ],
+      "marketStrategy": {
+        "Egypt": "EGP",
+        "Gulf": "separate localized feed/currency only after market verification",
+        "note": "Do not write EGP values into Shopify's USD base-price field."
+      },
+      "candidateApps": [
+        {
+          "name": "Wixpa Google Shopping Feed",
+          "url": "https://apps.shopify.com/easyfeed-for-google-shopping-feeds",
+          "capabilities": [
+            "multi-feed",
+            "multi-language",
+            "multi-currency",
+            "Google Merchant Center"
+          ]
+        },
+        {
+          "name": "Omega Google & Facebook Feed",
+          "url": "https://apps.shopify.com/google-shopping-feed-pro",
+          "capabilities": [
+            "multi-feed",
+            "real-time inventory/price sync",
+            "multi-language",
+            "multi-currency",
+            "Google Merchant Center"
+          ]
+        }
+      ],
+      "googleMerchant": {
+        "connector": "Windsor.ai",
+        "status": "pending_authorization",
+        "writeEnabled": false
+      },
+      "safeguards": {
+        "excludeOutOfStockUntilVerified": true,
+        "excludeZeroPriceUntilVerified": true,
+        "commercialPublishGatePreserved": true
+      }
     }
   },
   "security": {
