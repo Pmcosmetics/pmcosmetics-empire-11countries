@@ -214,5 +214,73 @@
     "source": "live_connectors",
     "behavior": "sync_verified_accounts_and_connection_states_only",
     "oauthHumanConsentRequired": true
+  },
+  "windsor": {
+    "status": "live_verified",
+    "email": "shukrypeter102@gmail.com",
+    "verifiedAccounts": {
+      "facebook": [
+        "758458256557661",
+        "689846283340520",
+        "1308509513682283"
+      ],
+      "google_ads": [
+        "663-195-7015"
+      ],
+      "google_business_profile": [
+        "locations/8169383730265167314"
+      ]
+    },
+    "pendingAuthorizations": {
+      "instagram": "https://onboard.windsor.ai/connect?connector=instagram&next=/instagram/authorize",
+      "tiktok": "https://onboard.windsor.ai/connect?connector=tiktok&next=/tiktok/authorize",
+      "tiktok_shop": "https://onboard.windsor.ai/connect?connector=tiktok_shop&next=/tiktok_shop/authorize",
+      "amazon_sp": "https://onboard.windsor.ai/connect?connector=amazon_sp&next=/amazon_sp/authorize",
+      "google_merchant": "https://onboard.windsor.ai/connect?connector=google_merchant&next=/google_merchant/authorize",
+      "woocommerce": "https://onboard.windsor.ai/connect?connector=woocommerce&next=/app/woocommerce",
+      "snapchat": "https://onboard.windsor.ai/connect?connector=snapchat&next=/snapchat/authorize",
+      "shopify": "https://onboard.windsor.ai/connect?connector=shopify&next=/shopify/authorize"
+    },
+    "note": "Only accounts returned by live Windsor connector state are marked connected."
+  },
+  "globalConnectionState": {
+    "fullyVerifiedNow": [
+      "GitHub",
+      "Railway",
+      "Supabase",
+      "Airtable",
+      "Shopify",
+      "Facebook Ads",
+      "Google Ads",
+      "Google Business Profile",
+      "Canva",
+      "Figma",
+      "Notion",
+      "Monday",
+      "Linear"
+    ],
+    "pendingHumanAuthorization": [
+      "Instagram",
+      "TikTok",
+      "TikTok Shop",
+      "Amazon SP-API",
+      "Google Merchant Center",
+      "WooCommerce",
+      "Snapchat",
+      "Windsor Shopify connector"
+    ],
+    "pendingDirectApi": [
+      "Salla",
+      "Noon",
+      "Jumia",
+      "Talabat",
+      "Temu",
+      "InstaShop",
+      "Etsy",
+      "Kenz",
+      "Knooz",
+      "Dubizzle/OLX"
+    ],
+    "policy": "No secrets in GitHub; OAuth/manual credentials remain user-entered; commercial publish gate stays CLOSED."
   }
 }
