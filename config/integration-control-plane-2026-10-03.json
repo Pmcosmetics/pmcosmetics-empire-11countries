@@ -297,7 +297,7 @@
         "liveBlockers": [
           "Facebook & Instagram by Meta sales channel is not installed in Shopify",
           "No ACTIVE Shopify product with verified inventory is currently available",
-          "Meta Marketplace listing surface cannot be directly controlled by the current ChatGPT/Windsor connector"
+          "Marketplace listing surface cannot be directly controlled by the current ChatGPT/Windsor connector"
         ],
         "readyCandidate": {
           "sku": "DERMAELLE007",
