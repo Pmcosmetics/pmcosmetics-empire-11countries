@@ -148,7 +148,8 @@
     ],
     "liveInsertionPolicy": "reference-staged-until-auth-and-commercial-evidence-pass",
     "commercialPublishGate": "CLOSED",
-    "manifest": "config/marketplace-insertion-2026-10-03.json"
+    "manifest": "config/marketplace-insertion-2026-10-03.json",
+    "requestedChannelCount": 12
   },
   "windsorHub": {
     "provider": "Windsor.ai",
