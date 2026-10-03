@@ -167,5 +167,18 @@
     "catalogRouting": true,
     "referenceCatalogIsolation": true,
     "commercialPublishGate": true
+  },
+  "canva": {
+    "status": "active_verified",
+    "empireFolderId": "FAHW7imEhgU",
+    "empireFolderUrl": "https://www.canva.com/folder/FAHW7imEhgU",
+    "officialLogoAssetId": "MAHW7s3NYE4",
+    "officialLogoName": "PM COSMETICS HUB — Official Logo",
+    "logoSource": "public/pmcosmetics-logo.svg"
+  },
+  "lastLiveSync": {
+    "verifiedAt": "2026-10-03",
+    "source": "GitHub + Canva",
+    "snapshot": "config/live-sync-snapshot.json"
   }
 }
