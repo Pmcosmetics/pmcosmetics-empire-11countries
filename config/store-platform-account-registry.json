@@ -125,10 +125,16 @@
       "accountId": "663-195-7015"
     },
     "google_business_profile": {
-      "status": "connected_verified",
+      "status": "connected_live_unverified",
       "connector": "windsor.ai",
       "accountId": "locations/8169383730265167314",
-      "name": "P.M Cosmetics"
+      "name": "P.M Cosmetics HUB",
+      "primaryPhone": "01203151461",
+      "category": "متجر مستحضرات تجميل بالجملة",
+      "openStatus": "OPEN",
+      "mapUri": "https://maps.google.com/maps?cid=7777113394597436944",
+      "verificationState": "UNVERIFIED",
+      "note": "Live Windsor data confirms the profile exists and is open but Google verification is not confirmed."
     }
   },
   "messaging": {
