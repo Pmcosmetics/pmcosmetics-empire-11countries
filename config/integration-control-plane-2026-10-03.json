@@ -260,6 +260,37 @@
         "Brazil"
       ],
       "note": "Egypt is not in Shopify's currently documented TikTok Shop eligible-country list."
+    },
+    "facebook_marketplace": {
+      "provider": "Meta / Facebook",
+      "status": "pending_meta_commerce_channel_setup",
+      "distinction": {
+        "marketplace": "not directly managed by current Shopify/Windsor connector",
+        "facebook_shop": "official Shopify->Meta catalog sync surface"
+      },
+      "sourceStore": "Pmcosmetics",
+      "sourceDomain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "currentShopifyPublicationDetected": false,
+      "currentWindsorFacebookAccounts": [
+        "758458256557661",
+        "689846283340520",
+        "1308509513682283"
+      ],
+      "capabilities": [
+        "facebook_catalog_sync",
+        "facebook_shop",
+        "instagram_shopping",
+        "meta_marketing"
+      ],
+      "publicationGate": "CLOSED",
+      "requirements": [
+        "Facebook & Instagram by Meta sales channel installation",
+        "Meta business asset connection",
+        "eligible products",
+        "Google Product Category",
+        "Meta commerce policy compliance"
+      ],
+      "note": "For an Egypt-based store, Shopify documents Facebook/Instagram catalog sync and Facebook Shop; Marketplace availability and seller eligibility are separate Meta-controlled surfaces."
     }
   },
   "security": {
