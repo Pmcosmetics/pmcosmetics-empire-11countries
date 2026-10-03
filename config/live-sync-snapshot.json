@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-03T15:49:30Z",
+  "verifiedAt": "2026-10-03",
   "canonicalBrand": "PM COSMETICS HUB",
   "goal": "Synchronize useful verified supporting integrations without opening commercial publication",
   "infrastructure": {
@@ -147,5 +147,34 @@
     "liveInsertionPolicy": "reference-staged-until-auth-and-commercial-evidence-pass",
     "commercialPublishGate": "CLOSED",
     "manifest": "config/marketplace-insertion-2026-10-03.json"
+  },
+  "windsorHub": {
+    "provider": "Windsor.ai",
+    "workspaceEmail": "shukrypeter102@gmail.com",
+    "connectedVerified": [
+      "facebook",
+      "google_ads",
+      "google_business_profile"
+    ],
+    "authorizationPending": [
+      "shopify",
+      "instagram",
+      "tiktok",
+      "tiktok_shop",
+      "amazon_sp",
+      "google_merchant",
+      "woocommerce",
+      "snapchat"
+    ],
+    "noWindsorConnector": [
+      "salla",
+      "etsy",
+      "temu",
+      "jumia",
+      "talabat",
+      "instashop"
+    ],
+    "supabaseDestinationCredential": "oauth:2481",
+    "dashboard": "https://onboard.windsor.ai/app"
   }
 }
