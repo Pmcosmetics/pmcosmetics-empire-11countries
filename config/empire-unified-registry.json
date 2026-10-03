@@ -349,15 +349,29 @@
     "role": "Central integration hub for connected marketing/commerce connectors",
     "connectedNow": {
       "facebook": [
-        "758458256557661",
-        "689846283340520",
-        "1308509513682283"
+        {
+          "id": "758458256557661",
+          "name": "Peter Shukry"
+        },
+        {
+          "id": "689846283340520",
+          "name": "Peter Shukry"
+        },
+        {
+          "id": "1308509513682283",
+          "name": "WhatsApp Ad Account"
+        }
       ],
       "google_ads": [
-        "663-195-7015"
+        {
+          "id": "663-195-7015"
+        }
       ],
       "google_business_profile": [
-        "locations/8169383730265167314"
+        {
+          "id": "locations/8169383730265167314",
+          "name": "P.M Cosmetics"
+        }
       ]
     },
     "destinations": {
@@ -368,6 +382,7 @@
       }
     },
     "pendingAuthorization": {
+      "shopify": "https://onboard.windsor.ai/connect?connector=shopify&next=/shopify/authorize",
       "instagram": "https://onboard.windsor.ai/connect?connector=instagram&next=/instagram/authorize",
       "tiktok": "https://onboard.windsor.ai/connect?connector=tiktok&next=/tiktok/authorize",
       "tiktok_shop": "https://onboard.windsor.ai/connect?connector=tiktok_shop&next=/tiktok_shop/authorize",
@@ -383,6 +398,16 @@
       "jumia": "No Windsor connector exposed",
       "talabat": "No Windsor connector exposed",
       "instashop": "No Windsor connector exposed"
-    }
+    },
+    "liveVerifiedAt": "2026-10-03",
+    "noWindsorConnector": [
+      "salla",
+      "etsy",
+      "temu",
+      "jumia",
+      "talabat",
+      "instashop"
+    ],
+    "statusRule": "Only accounts returned by Windsor get_connectors are marked connected_verified."
   }
 }
