@@ -296,18 +296,27 @@
         "lastChecked": "2026-10-03",
         "liveBlockers": [
           "Facebook & Instagram by Meta sales channel is not installed in Shopify",
-          "No ACTIVE Shopify product with verified inventory is currently available",
-          "Marketplace listing surface cannot be directly controlled by the current ChatGPT/Windsor connector"
+          "Shopify store base currency is USD; EGP retail price is stored as verified evidence, not as the base selling price",
+          "Marketplace surface itself is not directly controllable through current ChatGPT/Windsor connector"
         ],
         "readyCandidate": {
           "sku": "DERMAELLE007",
           "masterInventory": 48,
           "shopifyStatus": "DRAFT",
           "shopifyInventory": 48,
-          "nextEvidence": "reconcile inventory + EGP retail price + PM-owned image + GTIN/SKU before activation"
+          "verifiedRetailPriceEGP": 239,
+          "verifiedGTIN": "6223007905060",
+          "pmImageAttachedToShopify": true,
+          "nextEvidence": "Shopify store currency is USD; EGP commercial selling price cannot be written into the base USD price field. Keep product Draft until Egypt pricing is configured through a supported market/price-list path and Meta channel is installed."
         },
         "actionBoundary": "No automatic Marketplace listing or inventory overwrite until evidence is reconciled.",
-        "nextEvidence": "reconcile EGP retail price + PM-owned image + GTIN/SKU before activation"
+        "nextEvidence": "reconcile EGP retail price + PM-owned image + GTIN/SKU before activation",
+        "evidenceResolved": [
+          "PM-owned evidence image attached to Shopify",
+          "Retail reference price 239 EGP verified from Dr Ahmed El Ezaby",
+          "International code 6223007905060 verified",
+          "Shopify inventory reconciled to 48"
+        ]
       }
     }
   },
