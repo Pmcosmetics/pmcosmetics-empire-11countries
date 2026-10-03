@@ -29,7 +29,7 @@ The repository remains **closed for unverified product intake and publication** 
 - Products API remains locked while source intake is unverified.
 - No guessed or placeholder product data should be added to production.
 - GitHub Actions CI uses Node.js 20 as the current known-good project runtime.
-- GitHub Pages and Supabase are tracked as separate infrastructure blockers; neither is treated as a verified production storefront/database until independently confirmed.
+- GitHub Pages and Supabase remain separately tracked infrastructure surfaces; Supabase production connectivity and RLS are independently verified, while GitHub Pages still requires separate deployment verification.
 
 **Current verification policy:** a green GitHub workflow requires an actual Job and successful Build + Validate steps; a workflow existing without a Job is not treated as successful.
 
