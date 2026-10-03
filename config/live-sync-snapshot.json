@@ -186,5 +186,14 @@
     "githubHeadCommit": "109fb49995d72dcbb3e13736027c5fb89bf53c88",
     "healthHttp": 200,
     "commercialGate": "CLOSED"
+  },
+  "salesSurfaces": {
+    "shopify_pos": {
+      "status": "pending_pos_channel_verification",
+      "publicationGate": "CLOSED",
+      "connectedStore": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "liveCatalogProducts": 215,
+      "note": "Registered for POS planning; no POS-specific app installation detected in Shopify Admin API connection."
+    }
   }
 }
