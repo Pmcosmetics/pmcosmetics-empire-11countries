@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-03",
+  "brand": "PM COSMETICS HUB",
+  "registrationHub": {
+    "provider": "Google/Gmail",
+    "primary": "shukrypeter79@gmail.com",
+    "secondary": "shukrypeter102@gmail.com",
+    "policy": "Use these two Gmail identities for registration/ownership where provider permits; never store passwords or OTPs in the repository."
+  },
+  "roleAssignment": {
+    "shukrypeter79@gmail.com": "primary commerce/owner identity",
+    "shukrypeter102@gmail.com": "secondary engineering/integration identity"
+  },
+  "channels": {
+    "github": {
+      "ownerIdentity": "shukrypeter102@gmail.com",
+      "status": "registry-linked"
+    },
+    "railway": {
+      "ownerIdentity": "shukrypeter102@gmail.com",
+      "status": "registry-linked"
+    },
+    "supabase": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "project-linked"
+    },
+    "shopify": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "connected_verified"
+    },
+    "facebook": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "connected_verified_via_windsor"
+    },
+    "instagram": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "authorization_required"
+    },
+    "tiktok": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "authorization_required"
+    },
+    "tiktok_shop": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "authorization_required"
+    },
+    "amazon_sp": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "authorization_required"
+    },
+    "google_merchant": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "authorization_required"
+    },
+    "woocommerce": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "credentials_required"
+    },
+    "etsy": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "seller_authorization_required"
+    },
+    "temu": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "seller_authorization_required"
+    },
+    "noon": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "seller_authorization_required"
+    },
+    "jumia": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "seller_authorization_required"
+    },
+    "salla": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "store_authorization_required"
+    },
+    "talabat": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "partner_authorization_required"
+    },
+    "olx_dubizzle_egypt": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "seller_connection_pending"
+    },
+    "take_app": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "storefront_link_registered"
+    },
+    "whatsapp_primary": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "phone": "01055655649",
+      "status": "public_identity_ready_credentials_pending"
+    },
+    "whatsapp_secondary": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "phone": "01203151461",
+      "status": "public_identity_ready_credentials_pending"
+    },
+    "snapchat": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "authorization_required"
+    },
+    "telegram": {
+      "ownerIdentity": "shukrypeter79@gmail.com",
+      "status": "bot_credentials_required"
+    }
+  },
+  "chatGptConnectorStatus": {
+    "gmail": "disabled_by_admin",
+    "google_drive": "disabled_by_admin",
+    "note": "The Gmail addresses are registered in the Empire identity matrix, but this ChatGPT session cannot read/send Gmail or perform Gmail OAuth because the Gmail connector is disabled by admin."
+  },
+  "security": {
+    "secrets": "not stored in GitHub",
+    "otp": "not stored in ChatGPT or GitHub",
+    "commercialPublishGate": "CLOSED"
+  }
+}
