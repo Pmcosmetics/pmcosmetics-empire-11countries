@@ -17,6 +17,22 @@ const SYNC_DIR = 'sync-logs';
 const TIMESTAMP = new Date().toISOString().replace(/[:.]/g, '-');
 const LOG_FILE = join(SYNC_DIR, `sync-${TIMESTAMP}.json`);
 
+function resolvePrice(product, currency) {
+  const code = String(currency || '').trim().toUpperCase();
+  const local = product?.priceLocal && typeof product.priceLocal === 'object' ? product.priceLocal : {};
+  const byCurrency = product?.priceByCurrency && typeof product.priceByCurrency === 'object' ? product.priceByCurrency : {};
+  const candidate = byCurrency[code] ?? local[code] ?? (code === 'USD' ? product?.priceUSD : null);
+  const value = Number(candidate);
+  if (!Number.isFinite(value) || value <= 0) {
+    throw new Error(`PRICE_BLOCKED: valid ${code} price is required; zero/placeholder prices are forbidden`);
+  }
+  return value;
+}
+
+function targetCurrency(envName, fallback = 'USD') {
+  return String(process.env[envName] || fallback).trim().toUpperCase();
+}
+
 class ProductSyncEngine {
   constructor() {
     this.results = {
@@ -52,7 +68,7 @@ class ProductSyncEngine {
           const payload = {
             name: product.name,
             description: product.description || '',
-            regular_price: String(product.priceUSD),
+            regular_price: String(resolvePrice(product, targetCurrency('WOOCOMMERCE_TARGET_CURRENCY'))),
             sku: product.sku,
             manage_stock: true,
             stock_quantity: product.stock,
@@ -139,7 +155,7 @@ class ProductSyncEngine {
               variants: [
                 {
                   option1: 'Default',
-                  price: String(product.priceUSD),
+                  price: String(resolvePrice(product, targetCurrency('SHOPIFY_TARGET_CURRENCY'))),
                   sku: product.sku,
                   inventory_quantity: product.stock,
                   inventory_management: 'shopify'
@@ -207,8 +223,8 @@ class ProductSyncEngine {
             category: product.categoryId || '10000',
             description: product.description || '',
             descriptionAr: product.descriptionAr || product.description || '',
-            price: product.priceUSD,
-            currency: 'USD',
+            price: resolvePrice(product, targetCurrency('NOON_TARGET_CURRENCY')),
+            currency: targetCurrency('NOON_TARGET_CURRENCY'),
             stock: product.stock,
             images: product.images || [],
             status: product.stock > 0 ? 'ACTIVE' : 'INACTIVE',
@@ -396,6 +412,21 @@ async function main() {
   if (!dryRun && gateState() !== "OPEN") {
     console.error("COMMERCIAL_PUBLISH_GATE is CLOSED. Live writes are blocked.");
     process.exit(3);
+  }
+
+  const requiredTargetCurrencies = {
+    woo: targetCurrency('WOOCOMMERCE_TARGET_CURRENCY'),
+    shopify: targetCurrency('SHOPIFY_TARGET_CURRENCY'),
+    noon: targetCurrency('NOON_TARGET_CURRENCY')
+  };
+
+  console.log('💱 Target currencies:', JSON.stringify(requiredTargetCurrencies));
+  if (!dryRun) {
+    for (const target of ['woo', 'shopify', 'noon']) {
+      if (targets.has(target)) {
+        for (const product of gateResult.eligible) resolvePrice(product, requiredTargetCurrencies[target]);
+      }
+    }
   }
 
   const enabledForTarget = {
