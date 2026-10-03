@@ -169,8 +169,8 @@
     "commercialPublishGate": true
   },
   "lastLiveSync": {
-    "verifiedAt": "2026-10-02",
-    "source": "GitHub + Railway + Supabase + Airtable + Windsor.ai + Shopify",
+    "verifiedAt": "2026-10-03",
+    "source": "GitHub + Canva",
     "snapshot": "config/live-sync-snapshot.json"
   },
   "supportingIntegrations": [
@@ -247,5 +247,13 @@
     ],
     "apple": "not_verified_as_direct_Empire_connector",
     "authAllowlistUnchanged": true
+  },
+  "canva": {
+    "status": "active_verified",
+    "empireFolderId": "FAHW7imEhgU",
+    "empireFolderUrl": "https://www.canva.com/folder/FAHW7imEhgU",
+    "officialLogoAssetId": "MAHW7s3NYE4",
+    "officialLogoName": "PM COSMETICS HUB — Official Logo",
+    "logoSource": "public/pmcosmetics-logo.svg"
   }
 }

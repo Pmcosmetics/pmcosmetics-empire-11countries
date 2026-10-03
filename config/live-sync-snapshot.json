@@ -93,5 +93,13 @@
     "noBulkPublish": true,
     "noInferredProductData": true,
     "preserveCommercialGate": true
+  },
+  "canva": {
+    "status": "verified",
+    "folderId": "FAHW7imEhgU",
+    "folderUrl": "https://www.canva.com/folder/FAHW7imEhgU",
+    "officialLogoAssetId": "MAHW7s3NYE4",
+    "officialLogoName": "PM COSMETICS HUB — Official Logo",
+    "source": "GitHub public/pmcosmetics-logo.svg"
   }
 }
