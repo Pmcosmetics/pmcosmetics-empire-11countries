@@ -238,8 +238,8 @@
     "telegramRouting": true
   },
   "lastLiveSync": {
-    "verifiedAt": "2026-10-03",
-    "source": "GitHub + Shopify + Supabase + Windsor + reference catalog",
+    "verifiedAt": "2026-10-03T19:00:00+03:00",
+    "source": "GitHub + Railway + Shopify + Supabase + Airtable + Windsor",
     "snapshot": "config/live-sync-snapshot.json"
   },
   "supportingIntegrations": [
@@ -256,7 +256,7 @@
     {
       "id": "supabase",
       "status": "upgrading_verified_runtime",
-      "detail": "SQL accessible; security/performance advisors clean"
+      "detail": "SQL accessible; RLS verified; 1 security warning (leaked-password protection disabled) and 17 performance INFO unused-index notices remain"
     },
     {
       "id": "airtable",
@@ -271,7 +271,13 @@
     {
       "id": "shopify",
       "status": "connected_verified",
-      "detail": "Pmcosmetics store accessible; 215 products observed in live Shopify catalog; commercial publication gated"
+      "detail": "Pmcosmetics store accessible; 215 products observed (140 DRAFT, 75 ARCHIVED, 0 ACTIVE); commercial publication gated",
+      "catalogQuality": {
+        "zeroPriceVariants": 195,
+        "missingSkuProducts": 189,
+        "missingFeaturedImageProducts": 140,
+        "evidencePendingTagProducts": 105
+      }
     },
     {
       "id": "windsor_facebook",
@@ -409,5 +415,32 @@
       "instashop"
     ],
     "statusRule": "Only accounts returned by Windsor get_connectors are marked connected_verified."
-  }
+  },
+  "openBlockers": [
+    {
+      "id": "supabase-auth-leaked-passwords",
+      "status": "EXTERNAL_SETTING_REQUIRED",
+      "detail": "Enable leaked-password protection in Supabase Auth settings; connector has no project-auth setting write surface"
+    },
+    {
+      "id": "shopify-egp-pricing",
+      "status": "CURRENCY_CONFIGURATION_REQUIRED",
+      "detail": "Shopify base currency is USD; do not write EGP numeric retail prices into USD variant fields"
+    },
+    {
+      "id": "shopify-evidence",
+      "status": "EVIDENCE_GATE_CLOSED",
+      "detail": "Catalog data quality is incomplete; 0 products are commercially publish-ready in Airtable"
+    },
+    {
+      "id": "windsor-oauth",
+      "status": "USER_AUTHORIZATION_REQUIRED",
+      "detail": "Instagram, TikTok, TikTok Shop, Amazon SP, Google Merchant, WooCommerce and Snapchat require provider OAuth/credentials"
+    },
+    {
+      "id": "notion-block-limit",
+      "status": "WORKSPACE_ENTITLEMENT_REQUIRED",
+      "detail": "New Notion page creation is blocked by workspace free-block limit"
+    }
+  ]
 }
