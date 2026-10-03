@@ -1,0 +1,110 @@
+{
+  "generatedAt": "2026-10-03",
+  "canonicalBrand": "PM COSMETICS HUB",
+  "empireRepository": "Pmcosmetics/pmcosmetics-empire-11countries",
+  "commercialPublishGate": "CLOSED",
+  "rule": "No marketplace publication is enabled by this status file; Publish-Ready + evidenceVerified remains required.",
+  "liveCore": {
+    "github": "active_verified",
+    "railway": "active_verified",
+    "supabase": "active_healthy",
+    "shopify": "connected_verified",
+    "facebook_windsor": "connected_verified"
+  },
+  "marketplaceConnections": [
+    {
+      "id": "shopify",
+      "provider": "Shopify",
+      "integration": "shopify_native",
+      "status": "connected_verified"
+    },
+    {
+      "id": "amazon_sp",
+      "provider": "Amazon Seller Central",
+      "integration": "windsor.ai",
+      "status": "authorization_required",
+      "action": "Open Windsor Amazon SP authorization URL"
+    },
+    {
+      "id": "tiktok_shop",
+      "provider": "TikTok Shop",
+      "integration": "windsor.ai",
+      "status": "authorization_required",
+      "action": "Open Windsor TikTok Shop authorization URL"
+    },
+    {
+      "id": "google_merchant",
+      "provider": "Google Merchant Center",
+      "integration": "windsor.ai",
+      "status": "authorization_required",
+      "action": "Open Windsor Google Merchant authorization URL"
+    },
+    {
+      "id": "woocommerce",
+      "provider": "WooCommerce",
+      "integration": "windsor.ai",
+      "status": "credentials_required",
+      "action": "Connect store credentials through Windsor dashboard; never store secrets in Git"
+    },
+    {
+      "id": "etsy",
+      "provider": "Etsy",
+      "integration": "etsy_chat_connector",
+      "status": "search_only_in_chat",
+      "action": "Seller-management integration not exposed by current Etsy tools"
+    },
+    {
+      "id": "temu",
+      "provider": "Temu",
+      "integration": "independent_api",
+      "status": "no_chat_connector_found",
+      "action": "Seller/Partner API credentials required"
+    },
+    {
+      "id": "noon",
+      "provider": "Noon",
+      "integration": "independent_api",
+      "status": "no_chat_connector_found",
+      "action": "Seller/partner credentials or approved integration required"
+    },
+    {
+      "id": "jumia",
+      "provider": "Jumia",
+      "integration": "independent_api",
+      "status": "no_chat_connector_found",
+      "action": "Seller Center/API credentials required"
+    },
+    {
+      "id": "salla",
+      "provider": "Salla",
+      "integration": "independent_api",
+      "status": "no_chat_connector_found",
+      "action": "Store/API authorization required"
+    },
+    {
+      "id": "talabat",
+      "provider": "Talabat",
+      "integration": "independent_api",
+      "status": "no_chat_connector_found",
+      "action": "Partner/API authorization required"
+    }
+  ],
+  "socialConnections": [
+    {
+      "id": "instagram",
+      "integration": "windsor.ai",
+      "status": "authorization_required"
+    },
+    {
+      "id": "tiktok",
+      "integration": "windsor.ai",
+      "status": "authorization_required"
+    }
+  ],
+  "synchronization": {
+    "identity": "centralized",
+    "catalogSource": "Empire Product Master / Evidence Gate",
+    "referenceCatalog": "isolated",
+    "publication": "gated"
+  }
+}
