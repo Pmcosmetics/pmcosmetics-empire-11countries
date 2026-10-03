@@ -182,6 +182,20 @@
       "url": "https://www.dubizzle.com.eg/",
       "legacyName": "OLX Egypt",
       "category": "Fashion & Beauty"
+    },
+    {
+      "id": "snapchat",
+      "kind": "social",
+      "integration": "windsor.ai",
+      "status": "oauth_pending",
+      "authUrl": "https://onboard.windsor.ai/connect?connector=snapchat&next=/snapchat/authorize"
+    },
+    {
+      "id": "telegram",
+      "kind": "messaging",
+      "integration": "direct_bot_api",
+      "status": "bot_credentials_pending",
+      "note": "No Telegram connector exposed in current ChatGPT/Windsor integrations; Bot API credentials and channel/bot identifier are required"
     }
   ],
   "synchronization": {
@@ -194,11 +208,13 @@
     "takeAppRouting": true,
     "olxMarketplaceRegistry": true,
     "whatsappPrimaryRouting": true,
-    "whatsappSecondaryRouting": true
+    "whatsappSecondaryRouting": true,
+    "snapchatRouting": true,
+    "telegramRouting": true
   },
   "lastLiveSync": {
     "verifiedAt": "2026-10-03",
-    "source": "GitHub + Canva + live connector/plugin/web verification",
+    "source": "GitHub + live plugin/connector verification",
     "snapshot": "config/live-sync-snapshot.json"
   },
   "supportingIntegrations": [
