@@ -163,6 +163,18 @@ const whatsappSignatureValid = (req) => {
   return a.length === b.length && timingSafeEqual(a, b);
 };
 
+const shopifySignatureValid = (req) => {
+  const secret = process.env.SHOPIFY_WEBHOOK_SECRET;
+  const signature = String(req.headers["x-shopify-hmac-sha256"] || "");
+  const rawBody = req.rawBody;
+  if (!secret || !rawBody || !signature) return false;
+  const expected = createHmac("sha256", secret).update(rawBody).digest("base64");
+  const a = Buffer.from(signature);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+};
+
+
 app.get("/api/channel/status", (_req, res) => {
   res.json({
     ok: true,
@@ -196,6 +208,35 @@ app.get("/api/channel/status", (_req, res) => {
 app.get("/api/whatsapp/status", (_req, res) => {
   res.json({ ok: true, gate: gateState(), service: "whatsapp-cloud-api", ...whatsappConfigState() });
 });
+
+app.get("/api/shopify/webhook", (_req, res) => {
+  res.json({
+    ok: true,
+    gate: gateState(),
+    service: "shopify-webhook",
+    configured: Boolean(process.env.SHOPIFY_WEBHOOK_SECRET),
+    method: "POST",
+    verification: "X-Shopify-Hmac-Sha256"
+  });
+});
+
+app.post("/api/shopify/webhook", (req, res) => {
+  if (!process.env.SHOPIFY_WEBHOOK_SECRET) {
+    return res.status(503).json({ ok: false, gate: gateState(), reason: "SHOPIFY_WEBHOOK_NOT_CONFIGURED" });
+  }
+  if (!shopifySignatureValid(req)) {
+    return res.status(401).json({ ok: false, gate: gateState(), reason: "SHOPIFY_WEBHOOK_SIGNATURE_INVALID" });
+  }
+  return res.status(200).json({
+    ok: true,
+    gate: gateState(),
+    received: true,
+    processed: false,
+    topic: String(req.headers["x-shopify-topic"] || ""),
+    reason: "WEBHOOK_RECEIVED_GATED"
+  });
+});
+
 
 app.get("/api/whatsapp/webhook", (req, res) => {
   const verifyToken = process.env.WHATSAPP_BUSINESS_VERIFY_TOKEN;
