@@ -35,6 +35,29 @@
       "nativeChatConnector": "not_found",
       "webhookDocs": "https://help.zapier.com/hc/en-us/articles/8496288690317-Trigger-Zap-workflows-from-webhooks",
       "apiDocs": "https://help.zapier.com/hc/en-us/articles/44391646192397-Ways-to-make-API-requests-in-Zapier"
+    },
+    "m2e_multichannel": {
+      "provider": "M2E Cloud",
+      "product": "M2E Multichannel Connect",
+      "status": "pending_shopify_app_install_and_marketplace_authorization",
+      "sourceStore": "Pmcosmetics",
+      "sourceDomain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "publicationGate": "CLOSED",
+      "intendedChannels": [
+        "amazon",
+        "ebay",
+        "walmart",
+        "tiktok_shop",
+        "kauf​​land",
+        "temu"
+      ],
+      "capabilities": [
+        "product_listing",
+        "inventory_sync",
+        "order_sync"
+      ],
+      "officialDocs": "https://docs.m2ecloud.com/docs/shopify-setup-guide/",
+      "note": "Do not mark connected until the Shopify app installation and marketplace OAuth authorizations are verified."
     }
   },
   "security": {
