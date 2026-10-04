@@ -1,16 +1,14 @@
 # WhatsApp Business Routing — PM Cosmetics Hub
 
-## Canonical operational numbers
+## Canonical operational number
 
 - Primary/catalog: `01055655649` → https://wa.me/201055655649
-- Secondary/direct backup: `01203151461` → https://wa.me/201203151461
 - Catalog: https://wa.me/c/201055655649
 
 ## Current state
 
-- Both numbers are already present in the PM Cosmetics Hub Master Registry as verified business identities.
-- The canonical website previously routed every order CTA only to `01055655649`.
-- This change adds explicit primary + secondary contact links to the canonical website footer and keeps the existing catalog URL on the primary number.
+- **01055655649** is the single canonical public WhatsApp Business contact for PM COSMETICS HUB.
+- The public storefront and reference catalog route customer CTAs to the same number.
 - No WhatsApp Cloud API credentials are stored in GitHub.
 - Meta Business Manager/WABA/API authentication is not claimed as completed through this ChatGPT session because no WhatsApp API connector is available here.
 
@@ -26,11 +24,9 @@ The legacy webhook implementation is archived under `archive/legacy-Pm/services/
 
 ## Routing policy
 
-- Catalog CTA → primary `01055655649`
-- Direct/backup contact → secondary `01203151461`
-- Product-specific deep links may target either number only after the product is evidence-gated.
+- Catalog CTA → `01055655649`
+- Product-specific deep links may target only the canonical number after the product is evidence-gated.
 - Do not initiate outbound campaigns without approved templates/consent and current WhatsApp Business policy compliance.
-
 
 ## Cloud API webhook endpoint
 
