@@ -1,4 +1,4 @@
-# PM Cosmetics Hub - Empire 11 Countries 👑
+# PM COSMETICS HUB - Empire 11 Countries 👑
 
 **The Complete E-Commerce Empire for Beauty Products Across 11 Markets**
 
@@ -37,7 +37,7 @@ The repository remains **closed for unverified product intake and publication** 
 
 ## 📊 Platform Architecture
 
-PM Cosmetics Hub - Central Platform
+PM COSMETICS HUB - Central Platform
 - Admin Dashboard & Management
 - Core Database & API Layer
 - Multi-Channel Sales: Shopify, Instagram, Etsy, Jumia, Amazon, TikTok, WhatsApp, Facebook, Local
@@ -155,7 +155,7 @@ Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated t
 
 ## 🎨 Branding
 
-**Logo:** PM Cosmetics Hub (Golden PM + Circle)  
+**Logo:** PM COSMETICS HUB (Golden PM + Circle)  
 **Colors:** Gold (#D4AF37) + Black (#0A0A0A)  
 **Font:** Modern, Premium  
 **Tagline:** "Empowering Beauty Across 11 Countries"
@@ -173,8 +173,8 @@ Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated t
 
 ## 📄 License
 
-Private - PM Cosmetics Hub™
+Private - PM COSMETICS HUB™
 
 ---
 
-**PM Cosmetics Hub — evidence first, validation before publication.**
+**PM COSMETICS HUB — evidence first, validation before publication.**
