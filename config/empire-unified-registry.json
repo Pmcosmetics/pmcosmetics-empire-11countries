@@ -49,7 +49,9 @@
       "currentPublishReadyProducts": 1,
       "publishReadySkus": [
         "DERMAELLE007"
-      ]
+      ],
+      "evidenceGateStatus": "OPEN_FOR_PRODUCT_LEVEL_QA",
+      "globalCommercialPublishGate": "CLOSED"
     },
     "reference": {
       "source": "AlFouad Pharmacies",
