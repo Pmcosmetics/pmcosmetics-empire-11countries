@@ -105,7 +105,11 @@
       "shukrypeter102@gmail.com"
     ],
     "portal": "/auth",
-    "googleProviderStatus": "READY_FOR_GOOGLE_CLOUD_CLIENT_CREDENTIALS"
+    "googleProviderStatus": "READY_FOR_GOOGLE_CLOUD_CLIENT_CREDENTIALS",
+    "canonicalBrand": "PM COSMETICS HUB",
+    "primaryCommerceDesignEmail": "shukrypeter79@gmail.com",
+    "secondaryEngineeringOperationsEmail": "shukrypeter102@gmail.com",
+    "policy": "Keep primary/secondary roles; do not expand auth allowlist automatically."
   },
   "referenceCatalog": {
     "uniqueProducts": 3218,
@@ -136,6 +140,7 @@
     "source": "GitHub public/pmcosmetics-logo.svg"
   },
   "notes": [
+    "2026-10-04 identity sync: canonical brand, email roles, and logo asset references unified across GitHub, Airtable, Notion, and Shopify Files. Shopify administrative store label remains Pmcosmetics because the connected Admin API surface exposes no safe shop-name write.",
     "Reference catalog: 3218 unique products / 3479 category rows.",
     "Facebook was synchronized in Supabase to verified_windsor and active=true after live Windsor verification.",
     "Security warning remains: leaked password protection is disabled; no password or secret was stored in GitHub.",
@@ -213,5 +218,10 @@
       "liveCatalogProducts": 215,
       "note": "Registered for POS planning; no POS-specific app installation detected in Shopify Admin API connection."
     }
+  },
+  "brandAssets": {
+    "github": "https://github.com/Pmcosmetics/pmcosmetics-empire-11countries/blob/main/public/pmcosmetics-logo.svg",
+    "shopify": "https://cdn.shopify.com/s/files/1/1008/2861/0873/files/upload-1791109238239.svg?v=1791109240",
+    "canva": "MAHW7s3NYE4"
   }
 }
