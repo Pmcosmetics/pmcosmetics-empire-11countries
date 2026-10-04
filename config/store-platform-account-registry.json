@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-03",
+  "verifiedAt": "2026-10-04",
   "canonicalBrand": "PM COSMETICS HUB",
   "empire": {
     "github": {
@@ -11,11 +11,18 @@
     "railway": {
       "project": "PM COSMETICS HUB Production",
       "status": "active_verified",
-      "production": true
+      "production": true,
+      "latestDeployment": {
+        "id": "9d3ec031-7283-4b61-9058-a98f6af85232",
+        "status": "SUCCESS",
+        "commit": "a0b7efbbb3f6c2b1eb902f3d037bde019a3e1e63",
+        "branch": "main"
+      }
     },
     "supabase": {
       "projectRef": "rhozehqlpnmzmknlpmvf",
-      "status": "ACTIVE_HEALTHY"
+      "status": "ACTIVE_HEALTHY",
+      "lastChecked": "2026-10-04"
     },
     "airtable": {
       "baseId": "appJWz1djDBgFGKo9",
@@ -29,7 +36,10 @@
       "store": "Pmcosmetics",
       "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
       "accountEmail": "shukrypeter79@gmail.com",
-      "publicationGate": "CLOSED"
+      "publicationGate": "CLOSED",
+      "country": "Egypt",
+      "currency": "EGP",
+      "lastChecked": "2026-10-04"
     },
     "woocommerce": {
       "status": "pending_authorization",
@@ -134,7 +144,8 @@
       "openStatus": "OPEN",
       "mapUri": "https://maps.google.com/maps?cid=7777113394597436944",
       "verificationState": "UNVERIFIED",
-      "note": "Live Windsor data confirms the profile exists and is open but Google verification is not confirmed."
+      "note": "Live Windsor data confirms the profile exists and is open but Google verification is not confirmed.",
+      "lastChecked": "2026-10-04"
     }
   },
   "messaging": {
@@ -216,7 +227,7 @@
   },
   "autoSync": {
     "enabled": true,
-    "lastVerified": "2026-10-03",
+    "lastVerified": "2026-10-04",
     "source": "live_connectors",
     "behavior": "sync_verified_accounts_and_connection_states_only",
     "oauthHumanConsentRequired": true
@@ -327,5 +338,15 @@
       "shopify": "https://onboard.windsor.ai/connect?connector=shopify&next=/shopify/authorize"
     },
     "rule": "Only Windsor-returned account objects count as connected."
+  },
+  "catalogSync": {
+    "lastChecked": "2026-10-04",
+    "publishReadyProducts": 1,
+    "publishReadySkus": [
+      "DERMAELLE007"
+    ],
+    "blockedProducts": 73,
+    "commercialPublishGate": "CLOSED",
+    "source": "Supabase Product Master + Product Evidence Gate"
   }
 }
