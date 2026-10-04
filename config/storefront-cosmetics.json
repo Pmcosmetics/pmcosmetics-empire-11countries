@@ -1,7 +1,23 @@
 {
   "brand": "PM COSMETICS HUB",
-  "tagline": "مستحضرات تجميل وعناية مختارة",
+  "tagline": "Empowering Beauty Across 11 Countries",
   "scope": "cosmetics-only",
+  "brandIdentity": {
+    "logo": "PM Cosmetics Hub (Golden PM + Circle)",
+    "colors": {
+      "gold": "#D4AF37",
+      "black": "#0A0A0A"
+    },
+    "font": "Modern, Premium",
+    "tagline": "Empowering Beauty Across 11 Countries"
+  },
+  "contact": {
+    "email": "tech@pmcosmetics.hub",
+    "whatsapp": "Business Channel",
+    "whatsappNumber": "+201055655649",
+    "instagram": "@pm_cosmetics1",
+    "website": "https://pmcosmetics.github.io/pmcosmetics-empire-11countries"
+  },
   "categories": [
     {
       "id": "skin-care",
