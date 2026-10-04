@@ -147,7 +147,6 @@ const whatsappConfigState = () => ({
   },
   routing: {
     primary: brandConfig.phones.primary.wa,
-    backup: brandConfig.phones.secondary.wa,
     catalog: brandConfig.whatsappCatalog
   }
 });
@@ -185,7 +184,6 @@ app.get("/api/channel/status", (_req, res) => {
     },
     whatsapp: {
       primary: process.env.WHATSAPP_PRIMARY_PUBLIC_NUMBER || brandConfig.phones.primary.international,
-      backup: process.env.WHATSAPP_BACKUP_PUBLIC_NUMBER || brandConfig.phones.secondary.international,
       cloudApiConfigured: Boolean(
         process.env.WHATSAPP_BUSINESS_ACCESS_TOKEN &&
         process.env.WHATSAPP_BUSINESS_PHONE_NUMBER_ID
