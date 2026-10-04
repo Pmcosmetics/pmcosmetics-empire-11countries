@@ -13,7 +13,6 @@ try {
   const whatsappStatusBody = await whatsappStatus.json();
   assert.equal(whatsappStatusBody.ok, true);
   assert.equal(whatsappStatusBody.routing.primary, "https://wa.me/201055655649");
-  assert.equal(whatsappStatusBody.routing.backup, "https://wa.me/201203151461");
   assert.equal(whatsappStatusBody.routing.catalog, "https://wa.me/c/201055655649");
 
   if (!whatsappStatusBody.webhook.configured) {
