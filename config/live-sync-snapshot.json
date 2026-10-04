@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-03",
+  "verifiedAt": "2026-10-04",
   "canonicalBrand": "PM COSMETICS HUB",
   "goal": "Synchronize useful verified supporting integrations without opening commercial publication",
   "infrastructure": {
@@ -47,15 +47,27 @@
   },
   "dataGate": {
     "productsTotal": 2,
-    "productsActive": 0,
+    "productsActive": 1,
     "blockedProducts": 73,
     "blockedByGate": {
-      "Blocked — Identity": 52,
-      "Blocked — Image/Stock": 21
+      "Blocked — Identity": 60,
+      "Blocked — Image/Stock": 12
     },
     "physicalInventoryRows": 1,
-    "publishReadyProducts": 0,
-    "commercialPublishGate": "CLOSED"
+    "publishReadyProducts": 1,
+    "commercialPublishGate": "CLOSED",
+    "publishReadySkus": [
+      "DERMAELLE007"
+    ],
+    "currentCanonicalPublishReady": {
+      "sku": "DERMAELLE007",
+      "gtin": "6223007905060",
+      "pmStock": 48,
+      "costEGP": 260,
+      "evidenceStatus": "Publish-Ready",
+      "authorization": "Verified",
+      "exactImageEvidence": "verified_connected_OneDrive_QA"
+    }
   },
   "channels": {
     "supabaseCommerceChannels": 26,
@@ -185,7 +197,8 @@
     "railwayRuntimeCommit": "3ea791314eca3d4dd63d806b49f8bf26d8a66d52",
     "githubHeadCommit": "109fb49995d72dcbb3e13736027c5fb89bf53c88",
     "healthHttp": 200,
-    "commercialGate": "CLOSED"
+    "commercialGate": "CLOSED",
+    "verifiedAt": "2026-10-04"
   },
   "salesSurfaces": {
     "shopify_pos": {
