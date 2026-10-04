@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-02",
+  "generatedAt": "2026-10-04",
   "brand": "PM COSMETICS HUB",
   "sourceOfTruth": "Empire Product Master / Evidence Gate",
   "publicationPolicy": {
@@ -109,7 +109,18 @@
     }
   ],
   "currentEvidence": {
-    "publishReadyProducts": 0
+    "publishReadyProducts": 1,
+    "publishReadySkus": [
+      "DERMAELLE007"
+    ],
+    "primaryPublishReady": {
+      "sku": "DERMAELLE007",
+      "gtin": "6223007905060",
+      "pmStock": 48,
+      "acquisitionCostEGP": 260,
+      "status": "Publish-Ready",
+      "authorizationDocument": "Verified"
+    }
   },
   "executionMode": "operational_pilot",
   "blockerIsolation": {
@@ -120,7 +131,7 @@
   "pilot": {
     "purpose": "Keep Empire live and channel-ready while individual products complete evidence",
     "productScope": "Publish-Ready only",
-    "currentPublishReadyProducts": 0,
+    "currentPublishReadyProducts": 1,
     "currentBlockedProductsRemainOutOfPublication": true
   },
   "brandIdentity": {
