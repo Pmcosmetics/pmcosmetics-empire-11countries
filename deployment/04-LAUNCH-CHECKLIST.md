@@ -165,9 +165,11 @@
 
 ## 📞 الدعم والمساعدة
 
-- **البريد الإلكتروني:** support@pmcosmetics.hub
-- **WhatsApp:** +201055655649
+- **البريد الإلكتروني:** tech@pmcosmetics.hub
+- **WhatsApp:** Business Channel (+201055655649)
 - **Instagram:** @pm_cosmetics1
-- **الموقع:** pmcosmetics.github.io/pmcosmetics-empire-11countries
+- **الموقع:** https://pmcosmetics.github.io/pmcosmetics-empire-11countries
+
+**الهوية المعتمدة:** PM COSMETICS HUB — Empowering Beauty Across 11 Countries
 
 **الهدف:** تشغيل تجارة PM Cosmetics Hub عبر الأسواق والقنوات الموثقة، مع الحفاظ على قابلية المراجعة والرجوع. 🌍
