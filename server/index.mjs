@@ -71,6 +71,9 @@ app.get("/api/empire/registry", (_req, res) => res.json({
 app.get("/api/storefront", (_req, res) => res.json({
   ok: true,
   brand: brandConfig.brandName,
+  tagline: storefrontConfig.tagline,
+  logo: brandConfig.logo,
+  contact: brandConfig.contact,
   scope: storefrontConfig.scope,
   categories: storefrontConfig.categories,
   concerns: storefrontConfig.concerns,
