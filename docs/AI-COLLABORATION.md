@@ -1,7 +1,7 @@
 # AI Collaboration Layer
 
 ## Purpose
-Use GitHub Copilot and Meta AI as assistive layers around the Pmcosmetics Hub control plane.
+Use GitHub Copilot and Meta AI as assistive layers around the PM COSMETICS HUB control plane.
 
 ## Operating model
 ChatGPT -> Products OS -> Supabase -> GitHub -> runtime/integrations (Airtable, Vercel, Railway, Manus, WooCommerce, Shopify/marketplaces)
@@ -23,9 +23,9 @@ AI assistants:
 - The live public schema contains a products table (2 rows) and inventory table (2 rows); the two current product rows are inactive, so there is no active commercial product in the current Product Master snapshot.
 - blocked_products contains 73 records: 1 Active, 6 Archived, 66 Needs Review. These remain evidence-gated records and do not open publication.
 - Google Drive is not currently available through the connected ChatGPT tools because the Google Drive connector is disabled by administrator policy.
-- Dropbox account access is available, but the PM Cosmetics Hub folder is currently empty and a filename-only search returned no products.csv. The large-source ingestion/reconciliation work is tracked in GitHub Issue #23.
+- Dropbox account access is available, but the PM COSMETICS HUB folder is currently empty and a filename-only search returned no products.csv. The large-source ingestion/reconciliation work is tracked in GitHub Issue #23.
 - The canonical GitHub main commit b7f1dd4bff3f9b2f59b0f50c5360b769b0785 was pushed on 2026-10-02.
-- On that commit, PM Cosmetics Hub CI, Actions Heartbeat, Actions Startup Smoke Test, CodeQL Advanced, and Code Quality all completed successfully. The Notify CI failures workflow was skipped as expected because the preceding checks were successful.
+- On that commit, PM COSMETICS HUB CI, Actions Heartbeat, Actions Startup Smoke Test, CodeQL Advanced, and Code Quality all completed successfully. The Notify CI failures workflow was skipped as expected because the preceding checks were successful.
 - The commercial Publish Gate remains CLOSED until the real product source passes identity, provenance, SKU/GTIN, stock, cost, image, and reconciliation checks.
 
 ## Current blockers
