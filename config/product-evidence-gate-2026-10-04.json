@@ -6,7 +6,7 @@
     "name": "Product Evidence Gate",
     "workflowStatus": "ENFORCED_AND_AUDITED",
     "commercialPublishGate": "CLOSED",
-    "publishReadyProducts": 0,
+    "publishReadyProducts": 1,
     "blockedProducts": 73,
     "referenceProducts": 3218,
     "referenceCategoryRows": 3479
@@ -30,22 +30,14 @@
   },
   "priorityQueue": [
     {
-      "sku": "DERMAELLE007",
-      "product": "Dermaelle Hyalubalance Sebum Control Cleansing Gel 200ml",
-      "status": "BLOCKED_IMAGE_STOCK",
-      "blocker": [
-        "physical inventory verification",
-        "PM-owned exact image"
-      ]
-    },
-    {
       "sku": "DERMAELLE028",
       "product": "Dermaelle Advanced Retinol Multi-Peptides Serum 30ml",
       "status": "BLOCKED_IMAGE_IDENTITY",
       "blocker": [
         "exact variant identity/barcode",
         "PM-owned exact image",
-        "inventory reconciliation"
+        "inventory reconciliation",
+        "authorization document"
       ]
     },
     {
@@ -66,6 +58,19 @@
     "Canonical brand and logo unified",
     "Latest Railway production deployment is successful"
   ],
-  "nextAcceptanceAction": "Attach PM-owned exact product image + physical stock evidence + acquisition cost/provenance for the selected candidate, then run QA and promote only that candidate to Publish-Ready.",
-  "sourceOfTruth": "Supabase Product Master + blocked_products + physical_inventory_verifications + Empire registry"
+  "nextAcceptanceAction": "Promote only candidates that independently satisfy all publishReadyRule checks. Current completed candidate: DERMAELLE007. Next candidates remain blocked until PM-owned image/stock/cost/provenance evidence is verified.",
+  "sourceOfTruth": "Supabase Product Master + blocked_products + physical_inventory_verifications + Empire registry",
+  "completedEvidence": [
+    {
+      "sku": "DERMAELLE007",
+      "product": "Dermaelle Hyalubalance Sebum Control Cleansing Gel 200ml",
+      "status": "Publish-Ready",
+      "gtin": "6223007905060",
+      "pmStock": 48,
+      "acquisitionCostEGP": 260,
+      "imageEvidence": "Connected OneDrive QA record",
+      "authorizationStatus": "Verified",
+      "qaPassedAt": "2026-10-04"
+    }
+  ]
 }
