@@ -3,7 +3,8 @@
   "tagline": "Empowering Beauty Across 11 Countries",
   "scope": "cosmetics-only",
   "brandIdentity": {
-    "logo": "PM Cosmetics Hub (Golden PM + Circle)",
+    "logoAsset": "/pmcosmetics-logo.svg",
+    "logoName": "PM COSMETICS HUB — Official Logo",
     "colors": {
       "gold": "#D4AF37",
       "black": "#0A0A0A"
@@ -14,7 +15,8 @@
   "contact": {
     "email": "tech@pmcosmetics.hub",
     "whatsapp": "Business Channel",
-    "whatsappNumber": "+201055655649",
+    "primaryWhatsappNumber": "+201055655649",
+    "secondaryWhatsappNumber": "+201203151461",
     "instagram": "@pm_cosmetics1",
     "website": "https://pmcosmetics.github.io/pmcosmetics-empire-11countries"
   },
@@ -77,7 +79,6 @@
     "Olaplex",
     "Nivea",
     "Beesline",
-    "Uriage",
     "Korean Beauty"
   ],
   "policy": {
