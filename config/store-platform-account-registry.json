@@ -2,6 +2,27 @@
   "schemaVersion": 1,
   "verifiedAt": "2026-10-04",
   "canonicalBrand": "PM COSMETICS HUB",
+  "identity": {
+    "primaryEmails": [
+      "shukrypeter79@gmail.com",
+      "shukrypeter102@gmail.com"
+    ],
+    "backupEmails": [
+      "shukrypeter72@gmail.com",
+      "petershukry67@gmail.com"
+    ],
+    "notionWorkspaceMembersVerified": true,
+    "notionVerifiedEmails": [
+      "shukrypeter79@gmail.com",
+      "shukrypeter102@gmail.com",
+      "shukrypeter72@gmail.com",
+      "petershukry67@gmail.com"
+    ],
+    "apple": {
+      "status": "not_verified_as_direct_Empire_connector",
+      "action": "manual/provider-specific connection only"
+    }
+  },
   "empire": {
     "github": {
       "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
@@ -13,212 +34,54 @@
       "status": "active_verified",
       "production": true,
       "latestDeployment": {
-        "id": "9d3ec031-7283-4b61-9058-a98f6af85232",
         "status": "SUCCESS",
         "commit": "a0b7efbbb3f6c2b1eb902f3d037bde019a3e1e63",
         "branch": "main"
       }
     },
-    "supabase": {
-      "projectRef": "rhozehqlpnmzmknlpmvf",
-      "status": "ACTIVE_HEALTHY",
-      "lastChecked": "2026-10-04"
-    },
-    "airtable": {
-      "baseId": "appJWz1djDBgFGKo9",
-      "name": "PM Cosmetics Hub",
-      "status": "connected"
-    }
-  },
-  "commerce": {
-    "shopify": {
-      "status": "connected_verified",
-      "store": "Pmcosmetics",
-      "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
-      "accountEmail": "shukrypeter79@gmail.com",
-      "publicationGate": "CLOSED",
-      "country": "Egypt",
-      "currency": "EGP",
-      "lastChecked": "2026-10-04"
-    },
-    "woocommerce": {
-      "status": "pending_authorization",
-      "connector": "windsor.ai",
-      "connectUrl": "https://onboard.windsor.ai/connect?connector=woocommerce&next=/app/woocommerce"
-    },
-    "tiktok_shop": {
-      "status": "pending_authorization",
-      "connector": "windsor.ai",
-      "connectUrl": "https://onboard.windsor.ai/connect?connector=tiktok_shop&next=/tiktok_shop/authorize"
-    },
-    "amazon_sp": {
-      "status": "pending_authorization",
-      "connector": "windsor.ai",
-      "connectUrl": "https://onboard.windsor.ai/connect?connector=amazon_sp&next=/amazon_sp/authorize"
-    },
-    "google_merchant": {
-      "status": "pending_authorization",
-      "connector": "windsor.ai",
-      "connectUrl": "https://onboard.windsor.ai/connect?connector=google_merchant&next=/google_merchant/authorize"
-    },
-    "salla": {
-      "status": "pending_direct_api"
-    },
-    "instashop": {
-      "status": "pending_direct_api"
-    },
-    "etsy": {
-      "status": "pending_direct_api"
-    },
-    "temu": {
-      "status": "pending_direct_api"
-    },
-    "jumia": {
-      "status": "pending_direct_api"
-    },
-    "talabat": {
-      "status": "pending_direct_api"
-    },
-    "shopify_pos": {
-      "status": "pending_pos_channel_verification",
-      "parentStore": "Pmcosmetics",
-      "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
-      "publicationGate": "CLOSED",
-      "catalogSource": "Shopify",
-      "verifiedLocations": [
-        {
-          "name": "My Custom Location",
-          "active": true,
-          "country": "CA"
-        },
-        {
-          "name": "Shop location",
-          "active": true,
-          "country": "US"
-        }
-      ],
-      "note": "Shopify POS is supported as the in-person sales surface; no POS-specific app installation was detected in the current Admin API connection."
-    }
-  },
-  "social": {
-    "facebook": {
-      "status": "connected_verified",
-      "connector": "windsor.ai",
-      "accounts": [
-        {
-          "id": "758458256557661",
-          "name": "Peter Shukry"
-        },
-        {
-          "id": "689846283340520",
-          "name": "Peter Shukry"
-        },
-        {
-          "id": "1308509513682283",
-          "name": "WhatsApp Ad Account"
-        }
-      ]
-    },
-    "instagram": {
-      "status": "pending_authorization",
-      "connector": "windsor.ai",
-      "connectUrl": "https://onboard.windsor.ai/connect?connector=instagram&next=/instagram/authorize"
-    },
-    "tiktok": {
-      "status": "pending_authorization",
-      "connector": "windsor.ai",
-      "connectUrl": "https://onboard.windsor.ai/connect?connector=tiktok&next=/tiktok/authorize"
-    },
-    "google_ads": {
-      "status": "connected_verified",
-      "connector": "windsor.ai",
-      "accountId": "663-195-7015"
-    },
-    "google_business_profile": {
-      "status": "connected_live_unverified",
-      "connector": "windsor.ai",
-      "accountId": "locations/8169383730265167314",
-      "name": "P.M Cosmetics HUB",
-      "primaryPhone": "01203151461",
-      "category": "متجر مستحضرات تجميل بالجملة",
-      "openStatus": "OPEN",
-      "mapUri": "https://maps.google.com/maps?cid=7777113394597436944",
-      "verificationState": "UNVERIFIED",
-      "note": "Live Windsor data confirms the profile exists and is open but Google verification is not confirmed.",
-      "lastChecked": "2026-10-04"
-    }
+    "supabase": {"projectRef": "rhozehqlpnmzmknlpmvf", "status": "ACTIVE_HEALTHY"},
+    "airtable": {"baseId": "appJWz1djDBgFGKo9", "name": "PM Cosmetics Hub", "status": "connected"}
   },
   "messaging": {
     "whatsapp_primary": {
-      "status": "public_identity_ready_credentials_pending",
       "number": "01055655649",
       "ownerEmail": "shukrypeter79@gmail.com",
-      "identityLinkStatus": "owner_declared_linked",
-      "apiVerificationStatus": "not_independently_verified",
       "catalogUrl": "https://wa.me/c/201055655649",
-      "metaCloudApi": {
-        "status": "pending_owner_authorization",
-        "connectorAvailableInChat": false,
-        "requiredSecrets": [
-          "WHATSAPP_BUSINESS_ACCESS_TOKEN",
-          "WHATSAPP_BUSINESS_PHONE_NUMBER_ID",
-          "WHATSAPP_BUSINESS_VERIFY_TOKEN",
-          "WHATSAPP_WEBHOOK_SECRET"
-        ],
-        "ownerEmail": "shukrypeter79@gmail.com",
-        "phoneNumber": "01055655649",
-        "catalogUrl": "https://wa.me/c/201055655649"
-      }
+      "identityLinkStatus": "owner_declared_linked",
+      "apiVerificationStatus": "not_independently_verified"
     },
     "whatsapp_secondary": {
-      "status": "public_identity_ready_credentials_pending",
-      "number": "01203151461"
+      "number": "01203151461",
+      "identityLinkStatus": "owner_declared_linked"
     }
   },
-  "statusMonitoring": {
-    "statuspage": {
-      "status": "pending_authorization",
-      "connector": "windsor.ai",
-      "connectUrl": "https://onboard.windsor.ai/connect?connector=statuspage&next=/app/statuspage"
-    }
+  "commerce": {
+    "shopify": {"status": "connected_verified", "store": "Pmcosmetics", "accountEmail": "shukrypeter79@gmail.com", "publicationGate": "CLOSED"},
+    "woocommerce": {"status": "pending_authorization"},
+    "tiktok_shop": {"status": "pending_authorization"},
+    "amazon_sp": {"status": "pending_authorization"},
+    "google_merchant": {"status": "pending_authorization"},
+    "salla": {"status": "pending_direct_api"},
+    "instashop": {"status": "pending_direct_api"},
+    "etsy": {"status": "pending_direct_api"},
+    "temu": {"status": "pending_direct_api"},
+    "jumia": {"status": "pending_direct_api"},
+    "talabat": {"status": "pending_direct_api"}
   },
-  "workspaceTools": {
-    "notion": {
-      "status": "connected",
-      "verifiedEmails": [
-        "shukrypeter102@gmail.com",
-        "shukrypeter79@gmail.com",
-        "petershukry67@gmail.com",
-        "shukrypeter72@gmail.com"
-      ]
-    },
-    "figma": {
-      "status": "connected_verified",
-      "accountEmail": "shukrypeter79@gmail.com"
-    },
-    "canva": {
-      "status": "connected_verified"
-    },
-    "monday": {
-      "status": "connected_verified"
-    },
-    "linear": {
-      "status": "connected_verified"
-    }
+  "social": {
+    "facebook": {"status": "connected_verified"},
+    "instagram": {"status": "pending_authorization"},
+    "tiktok": {"status": "pending_authorization"},
+    "google_ads": {"status": "connected_verified", "accountId": "663-195-7015"},
+    "google_business_profile": {"status": "connected_live_unverified", "name": "P.M Cosmetics HUB", "primaryPhone": "01203151461"}
   },
-  "identity": {
-    "empireAuthAllowlist": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com"
-    ],
-    "backupEmails": [
-      "shukrypeter72@gmail.com",
-      "petershukry67@gmail.com"
-    ],
-    "apple": {
-      "status": "not_verified_as_direct_Empire_connector",
-      "action": "manual/provider-specific connection only"
-    }
+  "catalogSync": {
+    "lastChecked": "2026-10-04",
+    "publishReadyProducts": 1,
+    "publishReadySkus": ["DERMAELLE007"],
+    "blockedProducts": 73,
+    "commercialPublishGate": "CLOSED",
+    "source": "Supabase Product Master + Product Evidence Gate"
   },
   "policy": {
     "preserveCommercialPublishGate": true,
@@ -227,126 +90,8 @@
   },
   "autoSync": {
     "enabled": true,
-    "lastVerified": "2026-10-04",
     "source": "live_connectors",
     "behavior": "sync_verified_accounts_and_connection_states_only",
     "oauthHumanConsentRequired": true
-  },
-  "windsor": {
-    "status": "live_verified",
-    "email": "shukrypeter102@gmail.com",
-    "verifiedAccounts": {
-      "facebook": [
-        "758458256557661",
-        "689846283340520",
-        "1308509513682283"
-      ],
-      "google_ads": [
-        "663-195-7015"
-      ],
-      "google_business_profile": [
-        "locations/8169383730265167314"
-      ]
-    },
-    "pendingAuthorizations": {
-      "instagram": "https://onboard.windsor.ai/connect?connector=instagram&next=/instagram/authorize",
-      "tiktok": "https://onboard.windsor.ai/connect?connector=tiktok&next=/tiktok/authorize",
-      "tiktok_shop": "https://onboard.windsor.ai/connect?connector=tiktok_shop&next=/tiktok_shop/authorize",
-      "amazon_sp": "https://onboard.windsor.ai/connect?connector=amazon_sp&next=/amazon_sp/authorize",
-      "google_merchant": "https://onboard.windsor.ai/connect?connector=google_merchant&next=/google_merchant/authorize",
-      "woocommerce": "https://onboard.windsor.ai/connect?connector=woocommerce&next=/app/woocommerce",
-      "snapchat": "https://onboard.windsor.ai/connect?connector=snapchat&next=/snapchat/authorize",
-      "shopify": "https://onboard.windsor.ai/connect?connector=shopify&next=/shopify/authorize"
-    },
-    "note": "Only accounts returned by live Windsor connector state are marked connected."
-  },
-  "globalConnectionState": {
-    "fullyVerifiedNow": [
-      "GitHub",
-      "Railway",
-      "Supabase",
-      "Airtable",
-      "Shopify",
-      "Facebook Ads",
-      "Google Ads",
-      "Google Business Profile",
-      "Canva",
-      "Figma",
-      "Notion",
-      "Monday",
-      "Linear"
-    ],
-    "pendingHumanAuthorization": [
-      "Instagram",
-      "TikTok",
-      "TikTok Shop",
-      "Amazon SP-API",
-      "Google Merchant Center",
-      "WooCommerce",
-      "Snapchat",
-      "Windsor Shopify connector"
-    ],
-    "pendingDirectApi": [
-      "Salla",
-      "Noon",
-      "Jumia",
-      "Talabat",
-      "Temu",
-      "InstaShop",
-      "Etsy",
-      "Kenz",
-      "Knooz",
-      "Dubizzle/OLX"
-    ],
-    "policy": "No secrets in GitHub; OAuth/manual credentials remain user-entered; commercial publish gate stays CLOSED."
-  },
-  "windsorLiveVerification": {
-    "userEmail": "shukrypeter102@gmail.com",
-    "connected": [
-      "facebook",
-      "google_ads",
-      "google_business_profile"
-    ],
-    "pending": [
-      "instagram",
-      "tiktok",
-      "tiktok_shop",
-      "amazon_sp",
-      "google_merchant",
-      "woocommerce",
-      "snapchat",
-      "shopify"
-    ],
-    "pendingAccountsConfirmedEmpty": [
-      "instagram",
-      "tiktok",
-      "tiktok_shop",
-      "amazon_sp",
-      "google_merchant",
-      "woocommerce",
-      "snapchat",
-      "shopify"
-    ],
-    "authorizationUrls": {
-      "instagram": "https://onboard.windsor.ai/connect?connector=instagram&next=/instagram/authorize",
-      "tiktok": "https://onboard.windsor.ai/connect?connector=tiktok&next=/tiktok/authorize",
-      "tiktok_shop": "https://onboard.windsor.ai/connect?connector=tiktok_shop&next=/tiktok_shop/authorize",
-      "amazon_sp": "https://onboard.windsor.ai/connect?connector=amazon_sp&next=/amazon_sp/authorize",
-      "google_merchant": "https://onboard.windsor.ai/connect?connector=google_merchant&next=/google_merchant/authorize",
-      "woocommerce": "https://onboard.windsor.ai/connect?connector=woocommerce&next=/app/woocommerce",
-      "snapchat": "https://onboard.windsor.ai/connect?connector=snapchat&next=/snapchat/authorize",
-      "shopify": "https://onboard.windsor.ai/connect?connector=shopify&next=/shopify/authorize"
-    },
-    "rule": "Only Windsor-returned account objects count as connected."
-  },
-  "catalogSync": {
-    "lastChecked": "2026-10-04",
-    "publishReadyProducts": 1,
-    "publishReadySkus": [
-      "DERMAELLE007"
-    ],
-    "blockedProducts": 73,
-    "commercialPublishGate": "CLOSED",
-    "source": "Supabase Product Master + Product Evidence Gate"
   }
 }
