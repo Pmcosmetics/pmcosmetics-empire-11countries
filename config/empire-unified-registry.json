@@ -46,7 +46,10 @@
       "sourceOfTruth": "Empire Product Master / Evidence Gate",
       "publishRule": "Publish-Ready + evidenceVerified only",
       "commercialGate": "CLOSED",
-      "currentPublishReadyProducts": 0
+      "currentPublishReadyProducts": 1,
+      "publishReadySkus": [
+        "DERMAELLE007"
+      ]
     },
     "reference": {
       "source": "AlFouad Pharmacies",
