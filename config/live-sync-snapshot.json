@@ -28,8 +28,13 @@
       "projectRef": "rhozehqlpnmzmknlpmvf",
       "statusObserved": "ACTIVE_HEALTHY",
       "sqlAccessible": true,
-      "database": "Postgres 17.6.1.166",
+      "database": "Postgres 17.11.0.002",
       "securityAdvisors": [
+        {
+          "level": "WARN",
+          "name": "auth_allow_anonymous_sign_ins",
+          "count": 3
+        },
         {
           "level": "WARN",
           "name": "auth_leaked_password_protection",
@@ -40,7 +45,7 @@
         {
           "level": "INFO",
           "name": "unused_index",
-          "count": 18
+          "count": 20
         }
       ]
     }
