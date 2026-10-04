@@ -243,8 +243,8 @@
     "telegramRouting": true
   },
   "lastLiveSync": {
-    "verifiedAt": "2026-10-04T09:48:00+03:00",
-    "source": "GitHub + Railway + Shopify + Supabase + Airtable + Windsor",
+    "verifiedAt": "2026-10-04T12:29:00+03:00",
+    "source": "GitHub + Railway + Supabase + Airtable + Windsor.ai + Shopify + Product Evidence Gate",
     "snapshot": "config/live-sync-snapshot.json"
   },
   "supportingIntegrations": [
