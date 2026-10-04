@@ -241,7 +241,7 @@
     "telegramRouting": true
   },
   "lastLiveSync": {
-    "verifiedAt": "2026-10-03T19:00:00+03:00",
+    "verifiedAt": "2026-10-04T09:48:00+03:00",
     "source": "GitHub + Railway + Shopify + Supabase + Airtable + Windsor",
     "snapshot": "config/live-sync-snapshot.json"
   },
@@ -433,7 +433,7 @@
     {
       "id": "shopify-evidence",
       "status": "EVIDENCE_GATE_CLOSED",
-      "detail": "Catalog data quality is incomplete; 0 products are commercially publish-ready in Airtable"
+      "detail": "Product Master has 1 Publish-Ready SKU (DERMAELLE007); 72 products remain blocked/held. Global Commercial Publish Gate remains CLOSED, so no commercial publication is permitted yet."
     },
     {
       "id": "windsor-oauth",
