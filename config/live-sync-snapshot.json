@@ -7,13 +7,13 @@
     "github": {
       "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
       "branch": "main",
-      "headCommit": "109fb49995d72dcbb3e13736027c5fb89bf53c88",
+      "headCommit": "8de0bd6169a9a283914c547391c4d2408c294cad",
       "permissions": "pull/push/triage"
     },
     "railway": {
-      "deploymentId": "b43b39a0-a3f9-48ec-b00e-58a62ef37f32",
+      "deploymentId": "327aa59d-231f-43f3-adfe-cbadcc2f50a5",
       "status": "SUCCESS",
-      "commit": "3ea791314eca3d4dd63d806b49f8bf26d8a66d52",
+      "commit": "8de0bd6169a9a283914c547391c4d2408c294cad",
       "region": "sfo",
       "gate": "CLOSED",
       "runtime": "API listening on :8080",
@@ -138,7 +138,7 @@
     "Requested marketplace set is now centrally staged as 3218 reference products in the Empire registry; external seller publication remains credential/authorization/evidence gated.",
     "Kenz and Knooz are not yet verified as standalone seller marketplaces; Kenz is publicly observed as a brand on Jumia and Knooz has ambiguous public identity.",
     "Shopify live verification: 215 products observed; 140 are DRAFT and 75 are ARCHIVED. Commercial publication remains blocked by Evidence Gate.",
-    "GitHub main has documentation-only commits newer than the deployed Railway runtime commit; runtime deployment remains verified and healthy."
+    "Live sync reconciled 2026-10-04: GitHub main and Railway production both run commit 8de0bd6169a9a283914c547391c4d2408c294cad; Product Evidence Gate has 1 Publish-Ready SKU (DERMAELLE007) and global Commercial Publish Gate remains CLOSED."
   ],
   "marketplaceReferenceStaging": {
     "updatedAt": "2026-10-03",
@@ -193,9 +193,9 @@
     "dashboard": "https://onboard.windsor.ai/app"
   },
   "runtimeVerification": {
-    "railwayLatestSuccessDeploymentId": "b43b39a0-a3f9-48ec-b00e-58a62ef37f32",
-    "railwayRuntimeCommit": "3ea791314eca3d4dd63d806b49f8bf26d8a66d52",
-    "githubHeadCommit": "109fb49995d72dcbb3e13736027c5fb89bf53c88",
+    "railwayLatestSuccessDeploymentId": "327aa59d-231f-43f3-adfe-cbadcc2f50a5",
+    "railwayRuntimeCommit": "8de0bd6169a9a283914c547391c4d2408c294cad",
+    "githubHeadCommit": "8de0bd6169a9a283914c547391c4d2408c294cad",
     "healthHttp": 200,
     "commercialGate": "CLOSED",
     "verifiedAt": "2026-10-04"
