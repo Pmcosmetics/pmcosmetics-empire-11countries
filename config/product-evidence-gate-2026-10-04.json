@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-04",
+  "canonicalBrand": "PM COSMETICS HUB",
+  "gate": {
+    "name": "Product Evidence Gate",
+    "workflowStatus": "ENFORCED_AND_AUDITED",
+    "commercialPublishGate": "CLOSED",
+    "publishReadyProducts": 0,
+    "blockedProducts": 73,
+    "referenceProducts": 3218,
+    "referenceCategoryRows": 3479
+  },
+  "publishReadyRule": [
+    "PM-owned product identity",
+    "PM-owned exact image",
+    "PM stock evidence",
+    "cost/provenance evidence",
+    "SKU/GTIN validation",
+    "QA pass",
+    "evidenceVerified=true",
+    "publishable=true"
+  ],
+  "evidencePolicy": {
+    "retailerEvidence": "identity/reference only",
+    "referenceCatalog": "never auto-publish",
+    "whatsappCatalog": "customer/catalog source; live catalog contents not machine-readable in current connector session",
+    "noInference": true,
+    "noSyntheticSkuOrGtin": true
+  },
+  "priorityQueue": [
+    {
+      "sku": "DERMAELLE007",
+      "product": "Dermaelle Hyalubalance Sebum Control Cleansing Gel 200ml",
+      "status": "BLOCKED_IMAGE_STOCK",
+      "blocker": [
+        "physical inventory verification",
+        "PM-owned exact image"
+      ]
+    },
+    {
+      "sku": "DERMAELLE028",
+      "product": "Dermaelle Advanced Retinol Multi-Peptides Serum 30ml",
+      "status": "BLOCKED_IMAGE_IDENTITY",
+      "blocker": [
+        "exact variant identity/barcode",
+        "PM-owned exact image",
+        "inventory reconciliation"
+      ]
+    },
+    {
+      "sku": "86067",
+      "product": "CeraVe Hydrating Cleanser 236ml",
+      "status": "BLOCKED_IMAGE_STOCK",
+      "blocker": [
+        "PM-owned stock evidence",
+        "PM-owned exact image",
+        "PM acquisition cost"
+      ]
+    }
+  ],
+  "safeActionsCompleted": [
+    "Reference catalog isolated from commercial inventory",
+    "Evidence-gated publication rules retained",
+    "Commercial bulk publishing remains locked",
+    "Canonical brand and logo unified",
+    "Latest Railway production deployment is successful"
+  ],
+  "nextAcceptanceAction": "Attach PM-owned exact product image + physical stock evidence + acquisition cost/provenance for the selected candidate, then run QA and promote only that candidate to Publish-Ready.",
+  "sourceOfTruth": "Supabase Product Master + blocked_products + physical_inventory_verifications + Empire registry"
+}
