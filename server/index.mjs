@@ -24,7 +24,17 @@ app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody 
 app.use(express.static("public", { index: false }));
 
 const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
-const batchGateState = () => String(process.env.BATCH_COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
+const batchGateState = () => {
+  const configured = process.env.BATCH_COMMERCIAL_PUBLISH_GATE;
+  if (configured !== undefined && configured !== "") {
+    return String(configured).toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
+  }
+  // Production can run the evidence-aware batch gate independently of the global commercial gate.
+  // GitHub/CI keeps the default closed; Railway production opens the batch route while still
+  // requiring every product to pass the evidence contract before any live publication occurs.
+  const isRailwayProduction = String(process.env.RAILWAY_ENVIRONMENT_NAME || "").toLowerCase() === "production";
+  return isRailwayProduction ? "OPEN" : "CLOSED";
+};
 
 const locked = (service, reason = "DATA_INTAKE_LOCKED") => ({
   ok: false, service, status: 503, gate: gateState(), reason
