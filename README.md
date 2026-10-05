@@ -185,3 +185,13 @@ Private - PM COSMETICS HUB™
 ---
 
 **PM COSMETICS HUB — evidence first, validation before publication.**
+
+
+## 🔗 Connection Center
+
+Central live connection page for Windsor.ai and external seller authorization:
+
+- Connection Center: /ops/connections.html
+- Windsor only reports an account as connected after the provider account appears in the live connector list.
+- Etsy Seller and WhatsApp Cloud API are not exposed as Windsor connectors and require their provider-native authorization paths.
+- Commercial Publish Gate remains CLOSED during authorization and reconciliation.
