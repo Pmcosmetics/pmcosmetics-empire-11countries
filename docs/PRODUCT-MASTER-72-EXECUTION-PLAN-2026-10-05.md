@@ -17,7 +17,7 @@
 - Identity evidence must be independently verifiable from PM-owned evidence; retailer/reference data can support identification but cannot prove PM ownership.
 
 ### Execution sequence
-1. Freeze the 59-record working list and assign a unique remediation case per SKU/source_record_id.
+1. Freeze the 52-record Identity working list and assign a unique remediation case per SKU/source_record_id.
 2. Normalize brand/name/size and deduplicate by GTIN, then source SKU, then exact brand+name+size signature.
 3. Recover exact PM-owned SKU/GTIN evidence from supplier invoices, packaging/barcode photos, purchase records, or controlled source files.
 4. Resolve ambiguous matches one record at a time; never auto-promote multi-hit matches.
