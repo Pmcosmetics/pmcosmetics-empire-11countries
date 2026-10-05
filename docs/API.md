@@ -99,3 +99,7 @@ The following routes require a valid Supabase bearer token and are not public st
 - GET /api/products/staging
 
 Invalid or missing tokens return HTTP 401/403 according to the server-side auth result.
+
+
+### Write-route authorization rule
+All product-publish and sync write endpoints require a valid Supabase bearer token in addition to the commercial/evidence gates. The batch commercial gate defaults to CLOSED and can only be opened explicitly through server-side deployment configuration.
