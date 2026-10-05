@@ -1,7 +1,7 @@
 {
   "provider": "google",
   "mode": "google_oauth_plus_gmail_magic_link",
-  "status": "READY_FOR_GOOGLE_CLOUD_CLIENT_CREDENTIALS",
+  "status": "PENDING_GOOGLE_PROVIDER_CONFIGURATION",
   "allowedEmails": [
     "shukrypeter79@gmail.com",
     "shukrypeter102@gmail.com"
@@ -19,5 +19,5 @@
   },
   "oauthCallbackUrl": "https://rhozehqlpnmzmknlpmvf.supabase.co/auth/v1/callback",
   "empireUrl": "https://pmcosmetics-empire-11countries-production.up.railway.app",
-  "notes": "Google Provider client credentials are the remaining external setup. Supabase publishable key is configured in Railway; allowed Gmail identities are exact-match restricted."
+  "notes": "Google Provider client credentials are the remaining external setup. Supabase publishable key is configured in Railway; allowed Gmail identities are exact-match restricted. Do not treat Gmail identity configuration as proof that external merchant connectors are authenticated."
 }
