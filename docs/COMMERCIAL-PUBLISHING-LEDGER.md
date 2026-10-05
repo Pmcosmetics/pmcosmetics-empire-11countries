@@ -6,7 +6,7 @@
 
 ## 1. Publication gate
 - Commercial Publish Gate: **CLOSED**
-- Batch Commercial Publish Gate: **OPEN in Railway Production (evidence-aware)**
+- Batch Commercial Publish Gate: **CLOSED**
 - Controlled pilot exception: **DERMAELLE007 is ACTIVE**
 - Rationale: the system is evidence-gated and must not publish products without verified SKU/GTIN, PM stock, acquisition cost, exact image evidence, provenance, and required authorization.
 
