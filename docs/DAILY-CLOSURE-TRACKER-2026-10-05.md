@@ -48,3 +48,5 @@
 **نسبة الإنجاز → البنود المغلقة → البنود المتعثرة → سبب التعثر → الإجراء التالي → قرار GO/NO-GO**
 
 **Commercial Publish Gate:** CLOSED — 1/73 Publish-Ready فقط؛ 72 سجلًا ما زالت داخل remediation.
+
+**Evidence Closure Queue:** `docs/PM-PUBLISH-BATCH-01-EVIDENCE-CLOSURE-QUEUE-2026-10-05.md` — 161 evidence items tracked; execution order: Product → Facebook/Shopify → remaining channel authorization → QA → Rollback → Release.
