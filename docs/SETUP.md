@@ -125,3 +125,7 @@ Production credentials belong only in Railway/Vercel secret storage. Never commi
 ## Current live currency rule
 
 The connected Shopify Egypt shop is verified as EGP. Keep Egyptian retail values in EGP. Any non-EGP channel requires an explicit target currency and verified conversion policy.
+
+
+## Batch publication safety
+`BATCH_COMMERCIAL_PUBLISH_GATE` defaults to `CLOSED`. It is never implicitly opened by the Railway production environment. Any explicit opening requires product-level evidence verification and authorized operator access.
