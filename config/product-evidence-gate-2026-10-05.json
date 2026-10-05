@@ -7,10 +7,10 @@
     "workflowStatus": "ENFORCED_AND_AUDITED",
     "commercialPublishGate": "CLOSED",
     "publishReadyProducts": 1,
-    "blockedProducts": 73,
+    "blockedProducts": 72,
     "blockedBreakdown": {
-      "Blocked — Identity": 59,
-      "Blocked — Image/Stock": 13
+      "Blocked — Identity": 52,
+      "Blocked — Image/Stock": 20
     },
     "referenceProducts": 3218,
     "referenceCategoryRows": 3479
