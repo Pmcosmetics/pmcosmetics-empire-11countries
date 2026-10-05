@@ -1,11 +1,11 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PM COSMETICS HUB — Google / Gmail Identity</title>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PM COSMETICS HUB — Gmail Identity</title>
 <style>
 :root{--ink:#17151a;--muted:#746d75;--line:#ece7ec;--brand:#5d3a52;--gold:#d4af37;--soft:#fbf8fb}*{box-sizing:border-box}body{margin:0;font-family:Arial,system-ui,sans-serif;background:linear-gradient(180deg,#fff,#fbf8fb);color:var(--ink)}.wrap{max-width:820px;margin:auto;padding:28px}.brand{display:flex;align-items:center;gap:12px;margin-bottom:30px}.brand img{width:58px;height:58px}.brand strong{font-size:20px}.brand small{display:block;color:var(--muted);margin-top:3px}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 10px 35px #00000009;margin-bottom:18px}.status{display:inline-block;padding:7px 10px;border-radius:999px;background:#fff4d8;border:1px solid #ead89c;color:#654c09;font-weight:700;font-size:12px}.h1{font-size:34px;margin:14px 0 8px}.p{color:var(--muted);line-height:1.8}.btn{width:100%;border:0;border-radius:13px;padding:14px 16px;font-weight:800;cursor:pointer;font-size:15px;margin-top:10px}.google{background:#17151a;color:#fff}.mail{background:#fff;border:1px solid var(--line)}.account{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin-top:10px}.account span{color:var(--muted);font-size:13px}.msg{min-height:24px;margin-top:14px;font-size:13px}.ok{color:#176b3a}.err{color:#9d1c1c}.small{font-size:11px;color:var(--muted);line-height:1.6}a{color:var(--brand)}</style></head><body><div class="wrap">
 <div class="brand"><img src="/pmcosmetics-logo.svg" alt="PM COSMETICS HUB"><div><strong>PM COSMETICS HUB</strong><small>Empire Identity Hub</small></div></div>
-<div class="card"><span class="status">GMAIL IDENTITY</span><div class="h1">تسجيل وربط الإمبراطورية</div><div class="p">الحسابان المسموحان للهوية الموحدة هما <strong>shukrypeter79@gmail.com</strong> و<strong>shukrypeter102@gmail.com</strong>. أي حساب Google آخر يُرفض عند التحقق.</div>
-<button id="google" class="btn google">المتابعة باستخدام Google</button><button id="logout" class="btn mail" hidden>تسجيل الخروج</button><div id="msg" class="msg"></div>
-<div class="small">حالة Google OAuth الحالية: يحتاج تفعيل Google Provider في مشروع Supabase وإضافة Client ID/Secret من Google Cloud. هذا لا يغير بيانات دخول أي متجر خارجي.</div></div>
-<div class="card"><strong>دخول Gmail بدون كلمة مرور</strong><div class="p">يمكن إرسال رابط دخول إلى أحد الحسابين مباشرة عند تفعيل البريد في Supabase.</div>
+<div class="card"><span class="status">GMAIL MAGIC LINK</span><div class="h1">دخول الإمبراطورية عبر Gmail</div><div class="p">هوية Empire التشغيلية متاحة عبر رابط Gmail للحسابين المصرح بهما فقط: <strong>shukrypeter79@gmail.com</strong> و<strong>shukrypeter102@gmail.com</strong>. Google OAuth أصبح اختياريًا.</div>
+<button id="google" class="btn google" disabled>Google OAuth — اختياري</button><div id="msg" class="msg"></div>
+<div class="small">Google OAuth اختياري، ولا يوقف دخول Gmail عبر الرابط السحري. إعداد Google Provider يبقى مهمة خارجية مستقلة.</div></div>
+<div class="card"><strong>دخول Gmail — المسار الأساسي</strong><div class="p">أرسل رابط دخول آمن إلى أحد الحسابين المصرح بهما. هذا هو مسار الدخول التشغيلي ولا يعتمد على تفعيل Google OAuth.</div>
 <div class="account"><span>الحساب الأساسي<br><strong>shukrypeter79@gmail.com</strong></span><button class="btn mail" style="width:auto;margin:0" data-email="shukrypeter79@gmail.com">إرسال رابط</button></div>
 <div class="account"><span>الحساب الاحتياطي<br><strong>shukrypeter102@gmail.com</strong></span><button class="btn mail" style="width:auto;margin:0" data-email="shukrypeter102@gmail.com">إرسال رابط</button></div>
 <div id="mailmsg" class="msg"></div></div>
@@ -22,18 +22,20 @@
 <div class="card"><strong>قاعدة الربط</strong><div class="p">Gmail يحدد هوية مستخدم Empire. أما Shopify وWooCommerce وMeta وWindsor وغيرها فتظل كل منها تحتاج جلسة OAuth أو مفاتيحها الخاصة، ثم تُربط بهذه الهوية داخل Registry.</div><a href="/">العودة إلى Empire</a></div>
 </div>
 <script type="module">
-let cfg={"provider":"google","mode":"google_oauth_plus_gmail_magic_link","status":"SERVER_VERIFIED_ALLOWLIST_PROVIDER_PENDING","allowedEmails":["shukrypeter79@gmail.com","shukrypeter102@gmail.com"],"primaryEmail":"shukrypeter79@gmail.com","secondaryEmail":"shukrypeter102@gmail.com","supabaseProjectRef":"rhozehqlpnmzmknlpmvf","supabaseUrl":"https://rhozehqlpnmzmknlpmvf.supabase.co","redirectPath":"/auth","policy":{"exactEmailAllowlist":true,"passwordlessGmail":true,"googleOAuth":true,"connectorCredentialsRemainProviderSpecific":true}};
-const msg=document.getElementById('msg'),mailmsg=document.getElementById('mailmsg'),logout=document.getElementById('logout');
+const cfg={"provider":"google","mode":"gmail_magic_link_primary_google_optional","status":"READY_GMAIL_MAGIC_LINK_GOOGLE_OPTIONAL","allowedEmails":["shukrypeter79@gmail.com","shukrypeter102@gmail.com"],"primaryEmail":"shukrypeter79@gmail.com","secondaryEmail":"shukrypeter102@gmail.com","supabaseProjectRef":"rhozehqlpnmzmknlpmvf","supabaseUrl":"https://rhozehqlpnmzmknlpmvf.supabase.co","redirectPath":"/auth","policy":{"exactEmailAllowlist":true,"passwordlessGmail":true,"googleOAuth":true,"connectorCredentialsRemainProviderSpecific":true}};
+const msg=document.getElementById('msg'),mailmsg=document.getElementById('mailmsg');
 let supabaseClient=null;
 try{
  const m=await import('https://esm.sh/@supabase/supabase-js@2.117.2');
- const res=await fetch('/api/auth/config',{cache:'no-store'}); const live=await res.json();
- cfg={...cfg,...live};
+ const res=await fetch('/api/auth/config'); const live=await res.json();
  if(live.supabaseUrl&&live.publishableKey) supabaseClient=m.createClient(live.supabaseUrl,live.publishableKey);
+ const googleReady=String(live.status||"").toUpperCase()==="READY_GOOGLE_AND_GMAIL_MAGIC_LINK";
+ document.getElementById("google").disabled=!googleReady;
+ document.getElementById("msg").innerHTML=googleReady?"" : "<span class=\"ok\">Gmail Magic Link هو مسار الدخول الأساسي حاليًا؛ Google OAuth اختياري.</span>";
 }catch(e){}
 function allowed(email){return cfg.allowedEmails.includes(String(email||'').toLowerCase())}
 document.getElementById('google').onclick=async()=>{
- if(!supabaseClient){msg.innerHTML='<span class="err">خدمة الهوية غير مهيأة بعد في البيئة الحية.</span>';return}
+ if(!supabaseClient){msg.innerHTML='<span class="err">خدمة Gmail غير مهيأة بعد في البيئة الحية.</span>';return}
  const {error}=await supabaseClient.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+cfg.redirectPath,queryParams:{access_type:'offline',prompt:'select_account'}}});
  if(error) msg.innerHTML='<span class="err">'+error.message+'</span>';
 };
@@ -45,28 +47,12 @@ for(const b of document.querySelectorAll('[data-email]')) b.onclick=async()=>{
  b.disabled=false;
  mailmsg.innerHTML=error?'<span class="err">'+error.message+'</span>':'<span class="ok">تم طلب رابط الدخول على '+email+'</span>';
 };
-async function syncServerSession(){
- if(!supabaseClient) return;
- const {data}=await supabaseClient.auth.getSession();
- const accessToken=data.session?.access_token;
- if(!accessToken){
-   logout.hidden=true;
-   return;
- }
- const check=await fetch('/api/auth/session',{headers:{Authorization:'Bearer '+accessToken},cache:'no-store'});
- const body=await check.json();
- if(!check.ok||!body.authenticated){
-   await supabaseClient.auth.signOut();
-   logout.hidden=true;
-   msg.innerHTML='<span class="err">تعذر اعتماد هذه الجلسة: '+(body.reason||'AUTH_FAILED')+'</span>';
-   return;
- }
- logout.hidden=false;
- msg.innerHTML='<span class="ok">تم اعتماد هوية Empire خادميًا: '+body.user.email+'</span>';
-}
 if(supabaseClient){
- supabaseClient.auth.onAuthStateChange(()=>{ void syncServerSession(); });
- await syncServerSession();
+ const {data}=await supabaseClient.auth.getUser();
+ if(data.user){
+   const email=data.user.email;
+   if(!allowed(email)){await supabaseClient.auth.signOut();msg.innerHTML='<span class="err">هذا الحساب غير مصرح له بالدخول إلى Empire.</span>'}
+   else msg.innerHTML='<span class="ok">تم التحقق من الهوية: '+email+'</span>';
+ }
 }
-logout.onclick=async()=>{ if(supabaseClient){ await supabaseClient.auth.signOut(); } logout.hidden=true; msg.innerHTML='<span class="ok">تم تسجيل الخروج.</span>'; };
 </script></body></html>
