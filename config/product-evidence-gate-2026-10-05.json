@@ -57,7 +57,8 @@
     "bulkPublication": "DISABLED",
     "currentAcceptedSku": "DERMAELLE007",
     "sourceOfTruth": "Supabase Product Master + blocked_products + physical_inventory_verifications + Empire registry",
-    "runtimeDeployment": "9c0c72fe-2cb1-4e01-b4c9-71cb68a16f9a",
-    "runtimeCommit": "376d50a305204e9a2db8186da64e8e8672a3c348"
+    "runtimeDeployment": "UNVERIFIED_IN_CURRENT_SESSION",
+    "runtimeCommit": null,
+    "runtimeVerificationNote": "Current session can verify GitHub main, but cannot independently verify Railway runtime from this workspace; do not treat prior deployment metadata as proof of current runtime."
   }
 }
