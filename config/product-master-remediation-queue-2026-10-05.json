@@ -1,0 +1,1169 @@
+{
+  "generatedAt": "2026-10-05",
+  "source": "data/products/staging-evidence.json",
+  "sourceVerifiedAt": "2026-10-05",
+  "canonicalTotal": 73,
+  "publishReady": 1,
+  "nonReady": 72,
+  "blockedIdentity": 52,
+  "blockedImageStock": 20,
+  "historicalCountWarning": "Older gate snapshots contain different splits; this manifest is based on the current staging-evidence.json and is the execution triage source.",
+  "queue": {
+    "identity": [
+      {
+        "source_record_id": "rec3ri3ASUmNlq0CH",
+        "sku": null,
+        "name": "إيموجي ألوها هاواي مزيل عرق 150 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec3skCGOj7hYb181",
+        "sku": null,
+        "name": "أحمر الخدود السائل شيجلام كولور بلوم سوايب رايت",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec4c8el56YMzgvPP",
+        "sku": null,
+        "name": "أحمر شفاه بوم مطفي يدوم طويلًا دينامات من شيجلام نو ماين كاركتر",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec4rlfzJ8fQvRDHC",
+        "sku": null,
+        "name": "ست آيفز مقشر المشمش 150 جم",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec6IT76qgpZYU8LX",
+        "sku": null,
+        "name": "دوف غسول اليدين المنعش 500 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec75iQo1GnvOxLvg",
+        "sku": null,
+        "name": "الإفريقي الخام جل الصبار 150 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec9ZGCjoyPN2G3X8",
+        "sku": null,
+        "name": "إنشانتور تشارمينج لوشن للجسم 250 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recCE82DSsI4TAEcr",
+        "sku": null,
+        "name": "جوانس سبراى منشط للشعر 120 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recEy9xtt04gK99XI",
+        "sku": null,
+        "name": "سيروم الشعر أتركتا ريفورس 200 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recF077TDvXYtyLtB",
+        "sku": null,
+        "name": "أليجون زيت تان 200 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recFmTX7oT1DpoBWl",
+        "sku": null,
+        "name": "ايشادو مضغوط من تكنيك مكون 15 لون هوت لوف مطفي",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recHDFqtCc6IjQ223",
+        "sku": null,
+        "name": "برتي وومان ماسكارا PWC-017",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recHUn5QjiQ2LJcQd",
+        "sku": null,
+        "name": "جل الاستحمام المغذي بعمق من دوف 500 مل مستورد",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recIxn9Th0VOa1mWP",
+        "sku": null,
+        "name": "جل استحمام كاماي بجوز الهند 1 لتر",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recJTdQPy0r0iDaCO",
+        "sku": null,
+        "name": "برتي وومان ماسكارا سبيكترا لاش PWC-008",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recJUyMJ5E0G3IO0P",
+        "sku": null,
+        "name": "تيلوفيل فيري بيري غسول الجسم 500 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recKlz1jjwceGaBmo",
+        "sku": null,
+        "name": "أمبولات الصبار إيفا بزيت الأرجان 4 قطع",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recLgcl9atgmCLHEx",
+        "sku": null,
+        "name": "باليت أحمر خدود شيجلام فلورال فلاش – فلورال فلاش",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recMO6nr1HFIckwny",
+        "sku": null,
+        "name": "بريمو بلس لوشن ملطف للبشرة 120 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recO5R1URfvHNwKbs",
+        "sku": null,
+        "name": "أديداس كول داون أكتيف سكين آند مايند جل استحمام 400 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recONCuVq2WwpNnsJ",
+        "sku": null,
+        "name": "سيروم إعادة هيكلة الشعر بالكيراتين 100 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recOt9K6WE8SwsRa7",
+        "sku": null,
+        "name": "مود هاواي غسول اليدين 500 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recPuPw7afgUZPvp1",
+        "sku": "DERMAELLE008",
+        "name": "Dermaelle Face Cleanser Gel for Oily/Acne Skin with Salicylic Acid 200ml",
+        "gtin": null,
+        "status": "Archived",
+        "missing": {
+          "sku": false,
+          "gtin": true,
+          "pm_stock": false,
+          "cost": false,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": false
+        }
+      },
+      {
+        "source_record_id": "recQGjthxiZFJ4a17",
+        "sku": null,
+        "name": "بادي ميلك الكريمي بجوز الهند من موود إيل 200 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recQzS7b8n7fIxhYt",
+        "sku": null,
+        "name": "سيروليز مصل الشعر 120 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recScWyNevt2owvbK",
+        "sku": null,
+        "name": "سيرم لوريال ميتال ديتوكس 50 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recTdlwPy0nUUKEVy",
+        "sku": null,
+        "name": "بلسم توب هير لمكافحة تساقط الشعر 250 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recWQmyyOQquzlWGp",
+        "sku": null,
+        "name": "بلوبيك زيت للشعر 150 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recWXGf5i8fPQG3oi",
+        "sku": null,
+        "name": "أحمر خدود سائل ملون من شيجلام – روز ريتشوال 5.2 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recY9uJ6NvKU20d0U",
+        "sku": null,
+        "name": "أكسجين أو وايت كريم المضاد للبقع البنية 50 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recYzQ4jiLxdXGYZX",
+        "sku": null,
+        "name": "البيسين ليكويد لمنع تساقط الشعر 200 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recaXYS2tzfMt7csY",
+        "sku": null,
+        "name": "تيتيلو شامبو المضاد لتساقط الشعر عبوة 200 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recajaFeWMwTCy2Eh",
+        "sku": null,
+        "name": "جل العناية بعد الحلاقة للبشرة الحساسة من باليا 150 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recbiwOslHfMqC9qS",
+        "sku": null,
+        "name": "هير ميست إيفا جولدن أور 100 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "reccRyvSvdBwUfuPZ",
+        "sku": null,
+        "name": "جونسون كريم ترطيب الجسم لجميع أنواع البشرة 100 جم",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recdOQ8IEWi2a3Bme",
+        "sku": null,
+        "name": "جونسون كريم للجسم ترطيب 24 ساعة 300 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "receOKZPfZ9qSQCKh",
+        "sku": null,
+        "name": "موود وايلد روز بادي ميلك 200 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "receXmm1nUhIE3cg3",
+        "sku": null,
+        "name": "أديداس باور بوستر جل الاستحمام 400 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recgpG0sIFxWLkwNW",
+        "sku": null,
+        "name": "أديداس فريش إندورانس جل الاستحمام 3 في 1 400 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "reckdjDVGnkaHBJQh",
+        "sku": null,
+        "name": "إمبريال ليذر غسول الجسم المريح 500 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recm0uXEYu6Le8xD3",
+        "sku": null,
+        "name": "إيزو هيدرين هيدرا ستور غسول الجسم 250 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recnghMmZfxrwqogF",
+        "sku": null,
+        "name": "أروما شامبو المضاد لتساقط الشعر 250 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recpA0UlzsJT9NUAl",
+        "sku": null,
+        "name": "بيو سوفت زيت تسمير البشرة 200 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recpTlga90KnUAHZJ",
+        "sku": null,
+        "name": "إنفينيتي ناتشورالز مقشر الجسم بزيت النعناع 325 جم",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recqAUHCvagAS2ABU",
+        "sku": null,
+        "name": "تريشوب للتحكم في تساقط الشعر 400 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recrYmupp7WywWbCG",
+        "sku": null,
+        "name": "اكس غسول الجسم والشعر والوجه 3 في 1 دارك 250 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recuRtnyDmCUyXFd6",
+        "sku": null,
+        "name": "سيروم الشعر كابيكسي 120 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recueH0stdV2qjd13",
+        "sku": null,
+        "name": "بيزلاين مزيل عرق رول اون للتبييض الطبيعي انستانت وايت 2 × 50 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recviM32AI1Bo0nzk",
+        "sku": null,
+        "name": "إيتود كوري سيروم رموش",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recxmcvMsiFxInS28",
+        "sku": null,
+        "name": "ذا هير أديكت عطر الشعر 50 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recz9nyk5TK1dUZuF",
+        "sku": null,
+        "name": "برو فين بخاخ الجسم للبشرة المعرضة لحب الشباب 120 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "reczYvcrnQyEQqzPK",
+        "sku": null,
+        "name": "بلوبيل روزاليا لوشن الشعر 120 مل",
+        "gtin": null,
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": true,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": true,
+          "authorization": true
+        }
+      }
+    ],
+    "imageStock": [
+      {
+        "source_record_id": "rec0UZA5dMtLyTkSd",
+        "sku": null,
+        "name": "أديداس إنرجي كيك أكتيف سكين-مايند جل استحمام 400 مل",
+        "gtin": "3616303861124",
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec1UD91ma98UwYpC",
+        "sku": "94906",
+        "name": "CeraVe SA Smoothing Cream Moisturiser 177ml",
+        "gtin": "3337875684095",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": false
+        }
+      },
+      {
+        "source_record_id": "rec1aSnqBzyqPKm94",
+        "sku": "86067",
+        "name": "CeraVe Hydrating Cleanser 236ml",
+        "gtin": "3337875597180",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec2mU5Xykqn6UNpS",
+        "sku": null,
+        "name": "برايمر مرطب من بورجوا هيلثي ميكس كلين آند فيجان 30 مل",
+        "gtin": "3616303915551",
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec2r7p8JwRCI077r",
+        "sku": "103973",
+        "name": "SVR Xerial 10 Lait 200ml",
+        "gtin": "3662361002412",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": false
+        }
+      },
+      {
+        "source_record_id": "rec3FYaVUEONPXv3i",
+        "sku": "97987",
+        "name": "إنفينيتي ناتشورالز كريم مرطب للجسم بخلاصة الفراولة 250 مل",
+        "gtin": "6222019614809",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "rec5mLIdPjjwmpzV5",
+        "sku": "DERMAELLE028",
+        "name": "Dermaelle Advanced Retinol Multi-Peptides Serum 30ml",
+        "gtin": null,
+        "status": "Archived",
+        "missing": {
+          "sku": false,
+          "gtin": true,
+          "pm_stock": false,
+          "cost": false,
+          "exact_image": false,
+          "evidence_source": false,
+          "authorization": false
+        }
+      },
+      {
+        "source_record_id": "recAPpElJMFtLhT73",
+        "sku": "98210",
+        "name": "ACM MEDISUN Mattifying Gel SPF 50+ 40ml",
+        "gtin": "3760095254296",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": false
+        }
+      },
+      {
+        "source_record_id": "recEde1qCw6ju79IV",
+        "sku": "103971",
+        "name": "SVR سيبيا كلير هيدرا كريم 40 مل",
+        "gtin": "3662361003594",
+        "status": "Archived",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recHp2aOIn7K9pSww",
+        "sku": "78704",
+        "name": "فازلين تونك الشعر 200 مل",
+        "gtin": "6281006450172",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recPlXygmcg98TwdE",
+        "sku": "100004",
+        "name": "بيوليك سيروم مكثف لإحياء البشرة 30 مل",
+        "gtin": "5902802707833",
+        "status": "Archived",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recS8h9PFioqNNsre",
+        "sku": "94964",
+        "name": "إيفا مقشر الجسم ناتشورال جلو 250 جم",
+        "gtin": "6223001382706",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recUS5ftlrQXc6nWr",
+        "sku": "101023",
+        "name": "كريم الاستحمام إيفا برائحة الموكا 370 مل",
+        "gtin": "6223001388746",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recUpqX9F9446kaeg",
+        "sku": "85855",
+        "name": "بايو أويل زيت علاجي للجنسين 125 مل",
+        "gtin": "6001159114741",
+        "status": "Archived",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recVjFp6TPT45jwxT",
+        "sku": "82197",
+        "name": "بيزلاين كريم لتبييض المنطقة الحساسة 50 مل",
+        "gtin": "5281018003145",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recVnQuQ6xMCw2ejB",
+        "sku": "97158",
+        "name": "CeraVe Blemish Control Gel Moisturiser",
+        "gtin": "3337875782357",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": false
+        }
+      },
+      {
+        "source_record_id": "recizyxrfZqWlRj0V",
+        "sku": "75305",
+        "name": "ACM Sebionex Mattifying Gel SPF 50 40ml",
+        "gtin": "3760095250564",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": false
+        }
+      },
+      {
+        "source_record_id": "recnr0S5GwzFNDXni",
+        "sku": "86069",
+        "name": "CeraVe Eye Repair Cream for Dark Circles & Puffiness 14ml",
+        "gtin": "3337875597272",
+        "status": "Needs Review",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": false
+        }
+      },
+      {
+        "source_record_id": "rectUWc2cvgO3FbRv",
+        "sku": null,
+        "name": "أديداس فيكتوري ليج جل الاستحمام 3 في 1 400 مل",
+        "gtin": "3616303459147",
+        "status": "Needs Review",
+        "missing": {
+          "sku": true,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      },
+      {
+        "source_record_id": "recxhwYSrwfI9noYJ",
+        "sku": "90467",
+        "name": "Pantene Pro-V Smooth & Silky Leave-In Conditioner 275 ml",
+        "gtin": "8001090151780",
+        "status": "Archived",
+        "missing": {
+          "sku": false,
+          "gtin": false,
+          "pm_stock": true,
+          "cost": true,
+          "exact_image": true,
+          "evidence_source": false,
+          "authorization": true
+        }
+      }
+    ]
+  }
+}
