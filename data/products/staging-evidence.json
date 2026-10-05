@@ -1,14 +1,14 @@
 {
   "source": "Airtable — PM Cosmetics Hub",
-  "source_verified_at": "2026-10-04",
+  "source_verified_at": "2026-10-05",
   "gate": "CLOSED",
   "publishable": false,
-  "note": "Live Evidence snapshot reconciled 2026-10-04 from Airtable PM Cosmetics Hub Product Master. DERMAELLE007 is now Publish-Ready after QA; global Commercial Publish Gate remains CLOSED. External retailer evidence remains identity/reference only.",
+  "note": "Live Evidence snapshot reconciled 2026-10-05 from Supabase Product Master + Product Evidence Gate. DERMAELLE007 is Publish-Ready after QA; global Commercial Publish Gate remains CLOSED. External retailer evidence remains identity/reference only.",
   "current_counts": {
     "products": 73,
     "publish_ready": 1,
-    "blocked_image_stock": 12,
-    "blocked_identity": 60,
+    "blocked_image_stock": 13,
+    "blocked_identity": 59,
     "archived": 6
   },
   "products": [
