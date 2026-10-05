@@ -1,7 +1,7 @@
 {
   "provider": "google",
-  "mode": "google_oauth_plus_gmail_magic_link",
-  "status": "PENDING_GOOGLE_PROVIDER_CONFIGURATION",
+  "mode": "gmail_magic_link_primary_google_optional",
+  "status": "READY_GMAIL_MAGIC_LINK_GOOGLE_OPTIONAL",
   "allowedEmails": [
     "shukrypeter79@gmail.com",
     "shukrypeter102@gmail.com"
@@ -14,10 +14,10 @@
   "policy": {
     "exactEmailAllowlist": true,
     "passwordlessGmail": true,
-    "googleOAuth": true,
+    "googleOAuth": "optional",
     "connectorCredentialsRemainProviderSpecific": true
   },
   "oauthCallbackUrl": "https://rhozehqlpnmzmknlpmvf.supabase.co/auth/v1/callback",
   "empireUrl": "https://pmcosmetics-empire-11countries-production.up.railway.app",
-  "notes": "Google Provider client credentials are the remaining external setup. Supabase publishable key is configured in Railway; allowed Gmail identities are exact-match restricted. Do not treat Gmail identity configuration as proof that external merchant connectors are authenticated."
+  "notes": "Gmail Magic Link is the primary operational identity path. Google OAuth is optional and becomes available after external Google Provider configuration."
 }
