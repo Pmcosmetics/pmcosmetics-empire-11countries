@@ -146,7 +146,7 @@ Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated t
 
 **2026-10-05 security sync:** Production security review is recorded in `docs/SECURITY.md`. Git secrets review passed with no live credential pattern found; production credentials remain environment/secret-store based. HTTPS is enforced at the deployment edge and in application configuration, auth endpoints are rate-limited, core commerce RLS is verified, and GDPR/PCI/Egypt/Saudi/UAE compliance remains explicitly **not signed off** pending legal/contractual/data-flow evidence.
 
-**2026-10-05 product reconciliation:** `DERMAELLE007` is cross-linked across Airtable, Supabase, and Shopify. Airtable marks it **Publish-Ready** and the controlled pilot is live in Shopify. An archived Shopify duplicate with the same SKU is retained for audit history; no deletion or bulk activation was performed. The Product Master currently contains **73** records: **1 Publish-Ready**, **51 Blocked — Identity**, and **21 Blocked — Image/Stock**.
+**2026-10-05 product reconciliation:** `DERMAELLE007` is cross-linked across Airtable, Supabase, and Shopify. Airtable marks it **Publish-Ready** and the controlled pilot is live in Shopify. An archived Shopify duplicate with the same SKU is retained for audit history; no deletion or bulk activation was performed. The Product Master currently contains **73** records: **1 Publish-Ready**, **52 Blocked — Identity**, and **20 Blocked — Image/Stock**.
 
 ---
 
