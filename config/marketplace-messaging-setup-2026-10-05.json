@@ -1,0 +1,117 @@
+{
+  "updatedAt": "2026-10-05",
+  "brand": "PM COSMETICS HUB",
+  "purpose": "Controlled setup plan for Etsy, WhatsApp Business API, Jumia, and Amazon channels",
+  "commercialPublishGate": "CLOSED",
+  "sourceOfTruth": "Empire Product Master / Evidence Gate",
+  "pilot": {
+    "sku": "DERMAELLE007",
+    "gtin": "6223007905060",
+    "pmStock": 48,
+    "verifiedRetailPriceEGP": 239,
+    "rule": "No channel publication until channel authorization, product evidence, and reversible verification are complete."
+  },
+  "channels": {
+    "etsy": {
+      "status": "SELLER_APP_AUTHORIZATION_PENDING",
+      "integration": "Etsy Open API v3",
+      "ownShopMode": true,
+      "required": [
+        "Active Etsy shop in good standing",
+        "Register an Etsy Seller App",
+        "Etsy API keystring + shared secret",
+        "OAuth 2.0 authorization with listings read/write scopes as required",
+        "HTTPS callback URL",
+        "PKCE + state validation",
+        "Product image, title, description, price, quantity, shipping/readiness data"
+      ],
+      "syncScopes": [
+        "listings",
+        "inventory",
+        "orders"
+      ],
+      "publication": "Draft-first; activate only after evidence gate and Etsy validation"
+    },
+    "whatsapp_business_api": {
+      "status": "CREDENTIALS_PENDING",
+      "integration": "Meta WhatsApp Business Platform / Cloud API",
+      "primaryPhone": "01055655649",
+      "secondaryPhone": "01203151461",
+      "required": [
+        "Meta Business Portfolio",
+        "WhatsApp Business Account (WABA)",
+        "Verified business phone number",
+        "Phone Number ID",
+        "Business access token stored only in secret storage",
+        "Webhook verification token + app secret stored only in secret storage",
+        "HTTPS webhook endpoint",
+        "Message templates approved before business-initiated messaging"
+      ],
+      "currentPublicIdentity": [
+        "https://wa.me/201055655649",
+        "https://wa.me/201203151461",
+        "https://wa.me/c/201055655649"
+      ],
+      "syncScopes": [
+        "inbound lead/order events",
+        "order status messages",
+        "catalog/order links"
+      ],
+      "publication": "No bulk outbound messaging; policy-compliant opt-in and template workflow required"
+    },
+    "jumia": {
+      "status": "SELLER_CENTER_API_AUTHORIZATION_PENDING",
+      "integration": "Jumia Seller Center / provider API",
+      "market": "Egypt",
+      "required": [
+        "Active Jumia seller account",
+        "Seller Center/API authorization",
+        "Seller/shop identifier",
+        "API credentials or approved integration credentials",
+        "Verified shipping/returns/tax configuration",
+        "Product identity, price, stock, images, and category mapping"
+      ],
+      "syncScopes": [
+        "product listing",
+        "inventory",
+        "orders"
+      ],
+      "publication": "Pilot only; no bulk marketplace publication while Commercial Publish Gate is CLOSED"
+    },
+    "amazon": {
+      "status": "SELLER_CENTRAL_AUTHORIZATION_PENDING",
+      "integration": "Amazon Seller Central + Selling Partner API (SP-API)",
+      "marketplace": "Egypt",
+      "sellerEntryPoint": "https://sellercentral.amazon.eg/",
+      "required": [
+        "Active Amazon Seller Central account",
+        "Professional selling account for a private SP-API app",
+        "Developer registration",
+        "SP-API app registration",
+        "Seller authorization/self-authorization",
+        "LWA client credentials and refresh token in secret storage",
+        "Required SP-API roles/scopes",
+        "Marketplace/product compliance validation"
+      ],
+      "syncScopes": [
+        "catalog",
+        "listings",
+        "inventory",
+        "orders"
+      ],
+      "publication": "Pilot only; Amazon authorization and product eligibility must be verified first"
+    }
+  },
+  "safety": {
+    "noSecretsInGit": true,
+    "noClientSuppliedPublishEligibility": true,
+    "evidenceRequiredBeforePublication": true,
+    "reversiblePilotRequired": true
+  },
+  "executionOrder": [
+    "Amazon Seller Central + SP-API authorization",
+    "WhatsApp Business Platform credentials + webhook verification",
+    "Jumia Seller Center/API authorization",
+    "Etsy Seller App + OAuth authorization"
+  ]
+}
