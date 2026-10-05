@@ -42,6 +42,6 @@ No guessed product data, secret, credential, bulk publish, or irreversible catal
 4. Continue the one-product reversible pilot path only after the authoritative Evidence Gate remains green.
 ## Railway certification status
 - Current session: **NOT CERTIFIED** for runtime synchronization.
-- Reason: direct Railway runtime access is unavailable in this workspace and the Railway connector is not connected.
+- Reason: the current session did not return independent Railway runtime evidence (running commit SHA + /api/health response).
 - A prior snapshot references runtime SHA `376d50a305204e9a2db8186da64e8e8672a3c348`, but that SHA does not exist in the current GitHub repository; it is not accepted as proof of the running version.
 - Commercial Publish Gate remains **policy-closed** in the code/configuration, but the live runtime gate must be re-read before certification.
