@@ -37,7 +37,7 @@ node scripts/sync-to-woocommerce.mjs
 
 ```env
 SHOPIFY_STORE_URL=your-store.myshopify.com
-SHOPIFY_ACCESS_TOKEN=shpat_xxxxx
+SHOPIFY_ACCESS_TOKEN=
 SHOPIFY_API_VERSION=2024-01
 ```
 
@@ -51,7 +51,7 @@ SHOPIFY_API_VERSION=2024-01
 
 2. **نسخ التوكن:**
 ```bash
-echo "SHOPIFY_ACCESS_TOKEN=" > .env
+# Set SHOPIFY_ACCESS_TOKEN only in Railway/Vercel secret storage; never write it to Git.
 ```
 
 3. **اختبار:**
@@ -154,3 +154,14 @@ railway link
 railway env add WOOCOMMERCE_URL https://...
 railway env add WOOCOMMERCE_CONSUMER_KEY ck_...
 ```
+
+## 🔐 Security rule for all credentials
+
+Production credentials are environment variables/secrets only. Do **not** paste real tokens into Markdown, code, commits, screenshots, issues, or chat.
+
+Use the provider's secret store (Railway/Vercel/Supabase as applicable) for:
+- Shopify, Meta/WhatsApp, Instagram, Amazon SP-API, Jumia, Etsy, Noon and WooCommerce credentials
+- webhook verification secrets and access tokens
+- monitoring/API credentials
+
+The repository may contain only blank variables or clearly synthetic placeholders in `.env.example`.
