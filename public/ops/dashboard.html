@@ -106,7 +106,7 @@ async function select(table, query="*"){
 }
 
 async function load(){
-  const [products,inventory,currencies,prices,orders,customers,reporting,commercial,channels]=await Promise.all([
+  const [products,inventory,currencies,_prices,orders,customers,reporting,_commercial,_channels]=await Promise.all([
     select("products","id,sku,name,base_price,currency,is_active,updated_at"),
     select("inventory","product_id,location_code,quantity,reserved,updated_at"),
     select("currencies","code,name,symbol,is_active"),
