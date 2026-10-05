@@ -367,3 +367,11 @@ Required evidence for final sign-off:
 6. Appropriate PCI DSS v4.x validation path (SAQ/ROC and service-provider responsibility matrix).
 7. Incident/breach response contacts and tested recovery procedure.
 
+
+## Supabase Advisor snapshot — 2026-10-05
+
+Current security advisor findings:
+- **1 actionable warning:** leaked password protection is disabled in Supabase Auth. This is an external project-auth setting and has not been changed through the connected toolset.
+- **3 anonymous-access heuristic warnings:** the listed policies are explicitly scoped to the `authenticated` role when inspected in `pg_policies` for `currencies`, `customer_profiles`, and `product_prices`. Treat these as advisor heuristics, not evidence that `anon` currently has access. Re-check after any policy migration.
+
+Advisor remediation link for the password-protection control: https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection
