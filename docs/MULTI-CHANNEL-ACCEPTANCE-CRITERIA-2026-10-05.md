@@ -48,3 +48,40 @@ The final sign-off package must contain:
 7. Final status: PASS or FAIL.
 
 A channel becomes **PRODUCTION PILOT ACCEPTED** only after the owner, integration engineer and QA have signed the evidence package. The global Commercial Publish Gate remains CLOSED for all products other than the explicitly approved pilot.
+
+## Official Evidence Scope — All Empire Channels
+
+Official evidence source declared by PM COSMETICS:
+https://drive.google.com/drive/folders/1eTlPxA3hBxnNO7aR6qFo70qqRKCjpriY
+
+This source applies to **all channels in the Empire registry**, not only the five pilot channels.
+
+Registered channel scope:
+- facebook
+- shopify
+- instagram
+- tiktok
+- tiktok_shop
+- amazon_sp
+- google_merchant
+- woocommerce
+- salla
+- instashop
+- etsy
+- temu
+- jumia
+- talabat
+- whatsapp_primary
+- whatsapp_secondary
+- take_app
+- olx_dubizzle_egypt
+- snapchat
+- telegram
+- noon
+- kenz
+- knooz
+
+The same acceptance model applies channel-by-channel:
+**Authorization → Catalog/Content → Sync → Reconciliation → Rollback → Final Sign-off**.
+
+A channel remains **Pending Verification** until the underlying official evidence can be read and mapped to its test IDs. Presence of a link or account name alone is not treated as proof of successful connection.
