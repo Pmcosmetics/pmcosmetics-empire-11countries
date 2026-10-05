@@ -68,10 +68,10 @@ REFRESH_TOKEN_EXPIRY=7d
 ```
 
 ### Session Management
-- Use secure session cookies
-- Enable HttpOnly flag
-- Set Secure flag (HTTPS only)
-- Use SameSite=Strict
+- Supabase Auth manages the user session
+- Server-side API authorization verifies the bearer access token against Supabase Auth
+- HTTPS is required for production
+- Do not put service-role or provider API keys in browser code
 
 ### Role-Based Access Control (RBAC)
 - Admin: Full system access
@@ -237,16 +237,15 @@ HTTPS_ONLY=true
 ## 📋 Compliance
 
 ### GDPR
-- ✅ User consent for data collection
-- ✅ Right to access data
-- ✅ Right to deletion
-- ✅ Data portability
+- ⚠️ Applicability and legal basis must be assessed per actual processing
+- ⚠️ Access, deletion, portability and consent/other legal-basis workflows must be operationally validated before sign-off
+- ⚠️ International transfers and processor/subprocessor terms must be documented
 
 ### PCI DSS (Payment Card Industry)
-- ✅ Never store full card numbers
-- ✅ Use tokenized payments
-- ✅ Encrypt payment data
-- ✅ Regular security audits
+- ✅ Never store full card numbers in the PM application database
+- ⚠️ Use tokenized/redirected payment processing where applicable
+- ⚠️ PCI scope, SAQ/ROC and service-provider responsibilities must be validated against the actual payment flow
+- ⚠️ Regular security validation remains required before claiming compliance
 
 ### Local Regulations
 - Comply with country-specific laws
