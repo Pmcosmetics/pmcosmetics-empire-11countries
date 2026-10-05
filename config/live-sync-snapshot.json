@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-04",
+  "verifiedAt": "2026-10-05",
   "canonicalBrand": "PM COSMETICS HUB",
   "goal": "Synchronize useful verified supporting integrations without opening commercial publication",
   "infrastructure": {
@@ -55,8 +55,8 @@
     "productsActive": 1,
     "blockedProducts": 73,
     "blockedByGate": {
-      "Blocked — Identity": 60,
-      "Blocked — Image/Stock": 12
+      "Blocked — Identity": 59,
+      "Blocked — Image/Stock": 13
     },
     "physicalInventoryRows": 1,
     "publishReadyProducts": 1,
@@ -203,12 +203,12 @@
     "dashboard": "https://onboard.windsor.ai/app"
   },
   "runtimeVerification": {
-    "railwayLatestSuccessDeploymentId": "327aa59d-231f-43f3-adfe-cbadcc2f50a5",
-    "railwayRuntimeCommit": "8de0bd6169a9a283914c547391c4d2408c294cad",
-    "githubHeadCommit": "8de0bd6169a9a283914c547391c4d2408c294cad",
+    "railwayLatestSuccessDeploymentId": "9c0c72fe-2cb1-4e01-b4c9-71cb68a16f9a",
+    "railwayRuntimeCommit": "376d50a305204e9a2db8186da64e8e8672a3c348",
+    "githubHeadCommit": "376d50a305204e9a2db8186da64e8e8672a3c348",
     "healthHttp": 200,
     "commercialGate": "CLOSED",
-    "verifiedAt": "2026-10-04"
+    "verifiedAt": "2026-10-05T04:33:53Z"
   },
   "salesSurfaces": {
     "shopify_pos": {
