@@ -374,3 +374,7 @@ Current security advisor findings:
 - **3 anonymous-access heuristic warnings:** the listed policies are explicitly scoped to the `authenticated` role when inspected in `pg_policies` for `currencies`, `customer_profiles`, and `product_prices`. Treat these as advisor heuristics, not evidence that `anon` currently has access. Re-check after any policy migration.
 
 Advisor remediation link for the password-protection control: https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection
+
+
+## Publication authorization hardening
+Sensitive sync and batch-publish routes require server-verified Supabase authentication. The batch commercial publication gate defaults to `CLOSED` and is never implicitly opened by the production environment.
