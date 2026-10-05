@@ -1,5 +1,6 @@
 import express from "express";
 import helmet from "helmet";
+import { rateLimit as createRateLimit } from "express-rate-limit";
 import cors from "cors";
 import { createRequire } from "node:module";
 import { createHmac, timingSafeEqual } from "node:crypto";
@@ -8,6 +9,7 @@ import { getManusStatus, pullManusProducts, validateManusProducts } from "./inte
 import { isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
 import { evaluateBatch } from "../scripts/batch-gate.mjs";
 import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitude.mjs";
+import { authConfigSnapshot, bearerTokenFromRequest, verifyAccessToken } from "./integrations/auth.mjs";
 
 const require = createRequire(import.meta.url);
 const marketConfig = require("../config/markets.json");
@@ -18,9 +20,34 @@ const authIdentityConfig = require("../config/auth-identity.json");
 const empireRegistry = require("../config/empire-unified-registry.json");
 
 const app = express();
+app.set("trust proxy", 1);
 app.use(helmet());
 app.use(cors());
 app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody = Buffer.from(buf); } }));
+
+const HTTPS_ONLY = String(process.env.HTTPS_ONLY || "true").toLowerCase() === "true";
+const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS || 15 * 60 * 1000);
+const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS || 60);
+
+const rateLimit = createRateLimit({
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  limit: RATE_LIMIT_MAX_REQUESTS,
+  standardHeaders: "draft-8",
+  legacyHeaders: true,
+  handler: (_req, res) => res.status(429).json({
+    ok: false,
+    reason: "RATE_LIMITED"
+  })
+});
+
+app.use((req, res, next) => {
+  const forwardedProto = String(req.headers["x-forwarded-proto"] || "").split(",")[0].trim().toLowerCase();
+  if (HTTPS_ONLY && forwardedProto === "http") {
+    return res.redirect(308, "https://" + req.get("host") + req.originalUrl);
+  }
+  return next();
+});
+
 app.use(express.static("public", { index: false }));
 
 const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
@@ -29,16 +56,25 @@ const batchGateState = () => {
   if (configured !== undefined && configured !== "") {
     return String(configured).toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
   }
-  // Production can run the evidence-aware batch gate independently of the global commercial gate.
-  // GitHub/CI keeps the default closed; Railway production opens the batch route while still
-  // requiring every product to pass the evidence contract before any live publication occurs.
-  const isRailwayProduction = String(process.env.RAILWAY_ENVIRONMENT_NAME || "").toLowerCase() === "production";
-  return isRailwayProduction ? "OPEN" : "CLOSED";
+  return "CLOSED";
 };
 
 const locked = (service, reason = "DATA_INTAKE_LOCKED") => ({
   ok: false, service, status: 503, gate: gateState(), reason
 });
+
+const requireEmpireAuth = async (req, res, next) => {
+  const result = await verifyAccessToken(bearerTokenFromRequest(req));
+  if (!result.ok) {
+    return res.status(result.status || 401).json({
+      ok: false,
+      authenticated: false,
+      reason: result.reason || "AUTH_REQUIRED"
+    });
+  }
+  req.empireAuth = result;
+  return next();
+};
 
 const healthResponse = (_req, res) => res.json({
   ok: true,
@@ -53,22 +89,45 @@ const healthResponse = (_req, res) => res.json({
 app.get("/", (_req, res) => res.sendFile("public/index.html", { root: process.cwd() }));
 
 app.get("/auth", (_req, res) => res.sendFile("auth.html", { root: "public" }));
-app.get("/api/auth/config", (_req, res) => res.json({
-  ok: true,
-  provider: authIdentityConfig.provider,
-  mode: authIdentityConfig.mode,
-  status: authIdentityConfig.status,
-  allowedEmails: authIdentityConfig.allowedEmails,
-  primaryEmail: authIdentityConfig.primaryEmail,
-  secondaryEmail: authIdentityConfig.secondaryEmail,
-  supabaseUrl: process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl,
-  publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || "",
-  redirectPath: authIdentityConfig.redirectPath
-}));
+app.use("/api/auth", rateLimit);
+
+app.get("/api/auth/config", (_req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  return res.json({
+    ok: true,
+    ...authConfigSnapshot(),
+    primaryEmail: authIdentityConfig.primaryEmail,
+    secondaryEmail: authIdentityConfig.secondaryEmail,
+    supabaseUrl: process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl,
+    publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || "",
+  });
+});
+
+app.get("/api/auth/session", async (req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  const result = await verifyAccessToken(bearerTokenFromRequest(req));
+  if (!result.ok) {
+    return res.status(result.status || 401).json({
+      ok: false,
+      authenticated: false,
+      reason: result.reason,
+    });
+  }
+  return res.json({
+    ok: true,
+    authenticated: true,
+    user: {
+      id: result.user.id,
+      email: result.email,
+      role: result.user.role || null,
+      lastSignInAt: result.user.last_sign_in_at || null,
+    },
+  });
+});
 
 
 
-app.get("/api/empire/registry", (_req, res) => res.json({
+app.get("/api/empire/registry", rateLimit, requireEmpireAuth, (_req, res) => res.json({
   ok: true,
   registry: empireRegistry,
   runtime: {
@@ -188,7 +247,7 @@ const shopifySignatureValid = (req) => {
 };
 
 
-app.get("/api/channel/status", (_req, res) => {
+app.get("/api/channel/status", rateLimit, requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -280,7 +339,7 @@ app.get("/api/amplitude/status", (_req, res) => res.json({ ok: true, ...getAmpli
 app.get("/health", healthResponse);
 app.get("/favicon.ico", (_req, res) => res.status(204).end());
 
-app.get("/api/readiness", (_req, res) => {
+app.get("/api/readiness", rateLimit, requireEmpireAuth, (_req, res) => {
   const gate = gateState();
   const manus = getManusStatus();
   const woocommerce = getWooStatus();
@@ -322,7 +381,7 @@ app.get("/api/readiness", (_req, res) => {
   return res.json(response);
 });
 
-app.get("/api/supabase/status", (_req, res) => {
+app.get("/api/supabase/status", rateLimit, requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -331,7 +390,7 @@ app.get("/api/supabase/status", (_req, res) => {
   });
 });
 
-app.get("/api/manus/status", (_req, res) => {
+app.get("/api/manus/status", rateLimit, requireEmpireAuth, (_req, res) => {
   res.json({ ok: true, gate: gateState(), service: "manus-catalog-adapter", ...getManusStatus() });
 });
 
@@ -355,7 +414,7 @@ app.post("/api/manus/import", async (req, res) => {
   }
 });
 
-app.post("/api/manus/woocommerce/sync", async (req, res) => {
+app.post("/api/manus/woocommerce/sync", rateLimit, requireEmpireAuth, async (req, res) => {
   try {
     const products = Array.isArray(req.body?.products) ? req.body.products : await pullManusProducts();
     const dryRun = req.body?.dryRun !== false;
@@ -376,7 +435,7 @@ app.post("/api/manus/woocommerce/sync", async (req, res) => {
   }
 });
 
-app.get("/api/woocommerce/status", (_req, res) => {
+app.get("/api/woocommerce/status", rateLimit, requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -385,7 +444,7 @@ app.get("/api/woocommerce/status", (_req, res) => {
   });
 });
 
-app.get("/api/woocommerce/check", async (_req, res) => {
+app.get("/api/woocommerce/check", rateLimit, requireEmpireAuth, async (_req, res) => {
   const result = await checkWooConnection();
   res.status(result.reachable ? 200 : result.configured ? 502 : 200).json({
     ...result,
@@ -393,7 +452,7 @@ app.get("/api/woocommerce/check", async (_req, res) => {
   });
 });
 
-app.post("/api/woocommerce/sync", async (req, res) => {
+app.post("/api/woocommerce/sync", rateLimit, requireEmpireAuth, async (req, res) => {
   try {
     const products = Array.isArray(req.body?.products) ? req.body.products : [];
     const dryRun = req.body?.dryRun !== false;
@@ -451,7 +510,7 @@ app.get("/api/products", async (_req, res) => {
   }
 });
 
-app.get("/api/products/staging", (_req, res) => res.json({
+app.get("/api/products/staging", rateLimit, requireEmpireAuth, (_req, res) => res.json({
   ok: true,
   gate: gateState(),
   publishable: false,
@@ -459,7 +518,7 @@ app.get("/api/products/staging", (_req, res) => res.json({
   feed: "/data/products/staging-evidence.json"
 }));
 
-app.post("/api/products/batch/readiness", (req, res) => {
+app.post("/api/products/batch/readiness", rateLimit, requireEmpireAuth, (req, res) => {
   const result = evaluateBatch(req.body?.products);
   void trackAmplitudeEvent("batch_readiness_checked", {
     inputCount: result.inputCount,
@@ -479,7 +538,7 @@ app.post("/api/products/batch/readiness", (req, res) => {
   });
 });
 
-app.post("/api/products/batch/publish", async (req, res) => {
+app.post("/api/products/batch/publish", rateLimit, requireEmpireAuth, async (req, res) => {
   const products = Array.isArray(req.body?.products) ? req.body.products : [];
   const dryRun = req.body?.dryRun !== false;
   const result = evaluateBatch(products);

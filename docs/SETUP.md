@@ -93,3 +93,39 @@ Keep only these in Railway secret storage:
 - WHATSAPP_WEBHOOK_SECRET
 
 Meta verification must complete before the integration is considered live. The commercial publication gate remains independent and CLOSED.
+
+## Authentication and Operations Dashboard
+
+Authentication uses Supabase Auth with server-side exact-email allowlist verification.
+
+Allowed administration identities:
+- shukrypeter79@gmail.com
+- shukrypeter102@gmail.com
+
+Authentication endpoints:
+- GET /api/auth/config
+- GET /api/auth/session
+
+Authenticated operations UI:
+- /ops/dashboard.html
+
+The dashboard reads catalog, inventory, currencies, orders, customer analytics and reporting from Supabase. It does not bypass the Product Evidence Gate or Commercial Publish Gate.
+
+## Security deployment controls
+
+Recommended production variables:
+
+HTTPS_ONLY=true
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=60
+COMMERCIAL_PUBLISH_GATE=CLOSED
+
+Production credentials belong only in Railway/Vercel secret storage. Never commit or paste live provider credentials into Git, documentation, issues, or chat.
+
+## Current live currency rule
+
+The connected Shopify Egypt shop is verified as EGP. Keep Egyptian retail values in EGP. Any non-EGP channel requires an explicit target currency and verified conversion policy.
+
+
+## Batch publication safety
+`BATCH_COMMERCIAL_PUBLISH_GATE` defaults to `CLOSED`. It is never implicitly opened by the Railway production environment. Any explicit opening requires product-level evidence verification and authorized operator access.

@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-10-05",
+  "canonicalBrand": "PM COSMETICS HUB",
+  "source": "Windsor.ai live connector inspection",
+  "rule": "Only accounts returned by the live Windsor connector list are marked connected.",
+  "connected": {
+    "facebook": {
+      "status": "connected",
+      "accountCount": 3
+    },
+    "shopify": {
+      "status": "connected_natively",
+      "windsorStatus": "authorization_pending"
+    }
+  },
+  "pending": {
+    "instagram": "oauth",
+    "amazon_sp": "oauth",
+    "google_merchant": "oauth",
+    "tiktok_shop": "oauth",
+    "snapchat": "oauth",
+    "wordpress": "manual_credentials",
+    "woocommerce": "manual_credentials"
+  },
+  "not_available_in_windsor": {
+    "etsy": "seller_management_connector_not_exposed",
+    "whatsapp_cloud_api": "connector_not_exposed"
+  },
+  "commercialPublishGate": "CLOSED",
+  "connectionCenter": "/ops/connections.html"
+}

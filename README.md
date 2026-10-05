@@ -91,7 +91,7 @@ npm run validate
 - [x] Build script
 - [x] Database Schema Implementation (Supabase schema verified)
 - [x] API Framework Setup (health endpoint + locked product routes)
-- [ ] Authentication System
+- [x] Authentication System foundation (Supabase Auth + server-side exact-email allowlist + Google/Magic Link UI) — Google Provider client credentials remain external setup
 
 ---
 
@@ -109,12 +109,12 @@ npm run validate
 
 ## 📦 Phase 3: Features
 
-- [ ] Product Catalog Management
-- [ ] Inventory Management
-- [ ] Multi-Currency Pricing
-- [ ] Order Management
-- [ ] Customer Analytics
-- [ ] Reporting Dashboard
+- [x] Product Catalog Management (Supabase-backed Operations Dashboard)
+- [x] Inventory Management (Supabase-backed Operations Dashboard)
+- [x] Multi-Currency Pricing foundation (7 active currencies; target currency required for non-EGP channels)
+- [x] Order Management foundation (orders schema + Operations Dashboard; external ingestion remains channel-gated)
+- [x] Customer Analytics foundation (analytics view + Operations Dashboard)
+- [x] Reporting Dashboard (Supabase reporting snapshot + authenticated Operations Dashboard)
 
 ---
 
@@ -141,6 +141,10 @@ Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated t
 **2026-10-04 currency safety sync:** Live Shopify Admin metadata reports the connected shop currency as **EGP** in Egypt. The Empire therefore keeps the primary catalog currency as EGP and must not auto-convert Egyptian retail prices into USD. The sync engine continues to block zero/placeholder prices and requires an explicit target currency for any non-EGP channel.
 
 **2026-10-05 live reconciliation sync:** Live Shopify currently reports **215** total catalog products with **1 ACTIVE** product and **214 non-ACTIVE** products. The active product is `DERMAELLE007`, priced at **239 EGP**, with **48** units confirmed at the Shopify `Shop location`. The store currently exposes Online Store, Shop, Point of Sale, and Inbox publications. The Commercial Publish Gate remains **CLOSED**.
+
+**2026-10-05 authentication sync:** The Empire now performs server-side Supabase Auth token verification through `/auth/v1/user` and enforces the exact allowlist `shukrypeter79@gmail.com` / `shukrypeter102@gmail.com`. The public auth page still supports Google OAuth and passwordless email links. Google Provider client credentials remain the only external Auth setup dependency.
+
+**2026-10-05 security sync:** Production security review is recorded in `docs/SECURITY.md`. Git secrets review passed with no live credential pattern found; production credentials remain environment/secret-store based. HTTPS is enforced at the deployment edge and in application configuration, auth endpoints are rate-limited, core commerce RLS is verified, and GDPR/PCI/Egypt/Saudi/UAE compliance remains explicitly **not signed off** pending legal/contractual/data-flow evidence.
 
 **2026-10-05 product reconciliation:** `DERMAELLE007` is cross-linked across Airtable, Supabase, and Shopify. Airtable marks it **Publish-Ready** and the controlled pilot is live in Shopify. An archived Shopify duplicate with the same SKU is retained for audit history; no deletion or bulk activation was performed. The Product Master currently contains **73** records: **1 Publish-Ready**, **51 Blocked — Identity**, and **21 Blocked — Image/Stock**.
 
@@ -181,3 +185,13 @@ Private - PM COSMETICS HUB™
 ---
 
 **PM COSMETICS HUB — evidence first, validation before publication.**
+
+
+## 🔗 Connection Center
+
+Central live connection page for Windsor.ai and external seller authorization:
+
+- Connection Center: /ops/connections.html
+- Windsor only reports an account as connected after the provider account appears in the live connector list.
+- Etsy Seller and WhatsApp Cloud API are not exposed as Windsor connectors and require their provider-native authorization paths.
+- Commercial Publish Gate remains CLOSED during authorization and reconciliation.

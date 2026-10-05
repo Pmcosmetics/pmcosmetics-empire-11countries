@@ -68,10 +68,10 @@ REFRESH_TOKEN_EXPIRY=7d
 ```
 
 ### Session Management
-- Use secure session cookies
-- Enable HttpOnly flag
-- Set Secure flag (HTTPS only)
-- Use SameSite=Strict
+- Supabase Auth manages the user session
+- Server-side API authorization verifies the bearer access token against Supabase Auth
+- HTTPS is required for production
+- Do not put service-role or provider API keys in browser code
 
 ### Role-Based Access Control (RBAC)
 - Admin: Full system access
@@ -237,16 +237,15 @@ HTTPS_ONLY=true
 ## 📋 Compliance
 
 ### GDPR
-- ✅ User consent for data collection
-- ✅ Right to access data
-- ✅ Right to deletion
-- ✅ Data portability
+- ⚠️ Applicability and legal basis must be assessed per actual processing
+- ⚠️ Access, deletion, portability and consent/other legal-basis workflows must be operationally validated before sign-off
+- ⚠️ International transfers and processor/subprocessor terms must be documented
 
 ### PCI DSS (Payment Card Industry)
-- ✅ Never store full card numbers
-- ✅ Use tokenized payments
-- ✅ Encrypt payment data
-- ✅ Regular security audits
+- ✅ Never store full card numbers in the PM application database
+- ⚠️ Use tokenized/redirected payment processing where applicable
+- ⚠️ PCI scope, SAQ/ROC and service-provider responsibilities must be validated against the actual payment flow
+- ⚠️ Regular security validation remains required before claiming compliance
 
 ### Local Regulations
 - Comply with country-specific laws
@@ -319,3 +318,63 @@ Permissions-Policy: geolocation=(), microphone=(), camera=()
 ---
 
 **Security is everyone's responsibility. Always prioritize security!** 🔐
+
+
+---
+
+# 🔎 2026-10-05 Production Security Audit Addendum
+
+## Current deployment evidence
+
+- Canonical GitHub repository: `Pmcosmetics/pmcosmetics-empire-11countries`
+- Railway production service: `pmcosmetics-empire-11countries`
+- Railway deployment state at audit time: **ONLINE / SUCCESS**
+- Railway public domain: `pmcosmetics-empire-11countries-production.up.railway.app`
+- Railway runtime region observed: **SFO**
+- Supabase project: `rhozehqlpnmzmknlpmvf`
+- Supabase database region observed: **eu-west-1**
+- Configured markets: **11** (Egypt, Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, Oman, Jordan, Palestine, Lebanon, Iran)
+
+## Control results
+
+| Control | Status | Evidence / action |
+|---|---|---|
+| No secrets in Git | **PASS WITH LIMITATION** | Repository review found no real credential values; common token-pattern searches found no live-token pattern. A synthetic `shpat_xxxxx` documentation placeholder was removed on the security branch. GitHub code search is not a formal secret-scanning certificate. |
+| Credentials in environment variables | **PASS** | `.env`/production secrets are excluded from Git. `.env.example` contains blank non-secret templates. Production credentials are defined as environment-variable names in the Railway service configuration. |
+| HTTPS only | **PASS** | Railway public networking requires TLS and redirects plaintext HTTP at the edge. The app now also enforces HTTPS when `HTTPS_ONLY=true` and rate-limits `/api/auth`. |
+| Encryption in transit | **PASS** | Production app uses HTTPS; Supabase API access uses HTTPS. Railway manages TLS certificates for its public domain. |
+| Encryption at rest | **PLATFORM-MANAGED / VERIFY CONTRACTUALLY** | The connected tools do not expose an independent cryptographic-at-rest attestation for this deployment. Verify current provider security/compliance terms and contract/DPA before legal sign-off. |
+| Authentication | **IMPLEMENTED** | Server verifies Supabase access tokens against `/auth/v1/user` and enforces the exact PM allowlist. |
+| RLS for core commerce tables | **VERIFIED** | Products, inventory, orders, order_items, customer_profiles, product_prices and commerce_channels have RLS enabled with authenticated/admin policies. |
+| Customer/reporting views | **RESTRICTED TO AUTHENTICATED** | `customer_analytics`, `commercial_dashboard`, and `reporting_dashboard` are granted to the `authenticated` role, not `anon`. One allowlisted admin/staff account is currently mapped in `admin_users`. Continue RBAC review before adding operators. |
+| PCI DSS | **NOT SIGNED OFF** | Current commerce schema contains no PAN/card-number field. Final PCI scope still depends on the actual payment flow, processor, checkout architecture, contracts and applicable SAQ/ROC. |
+| GDPR | **CONDITIONAL / NOT SIGNED OFF** | Current market configuration has no EU market, but GDPR can still apply when Article 3 conditions are met. Privacy, legal basis, rights handling, retention, records of processing and international transfer safeguards remain to be validated. |
+| Egypt PDPL | **CONDITIONAL / ACTION REQUIRED** | Egypt's PDPL No. 151/2020 and Executive Regulations No. 816/2025 are the current framework. DPO/governance, notices/consent, retention and cross-border controls must be mapped to the live data flows. |
+| Saudi PDPL | **CONDITIONAL / TRANSFER REVIEW REQUIRED** | Saudi rules apply to processing of Saudi residents' data and regulate transfers outside the Kingdom. The current Supabase EU and Railway SFO deployment therefore requires a documented transfer assessment/safeguards before Saudi personal-data processing is treated as compliant. |
+| UAE PDPL | **CONDITIONAL / TRANSFER REVIEW REQUIRED** | UAE Federal Decree-Law No. 45 of 2021 includes cross-border transfer requirements. The current non-UAE hosting regions require a documented transfer/privacy assessment before UAE personal-data processing is treated as compliant. |
+
+## Compliance gate
+
+The project **must not be described as “GDPR compliant”, “PCI compliant”, “Egypt PDPL compliant”, “Saudi PDPL compliant”, or “UAE PDPL compliant”** until the remaining legal, contractual and operational checks are completed.
+
+Required evidence for final sign-off:
+1. Data inventory and data-flow map by market and provider.
+2. Processor/subprocessor list and current DPAs.
+3. Privacy notice, consent/legal-basis matrix, retention schedule and deletion/DSAR workflow.
+4. International-transfer assessment and safeguards for applicable jurisdictions.
+5. Payment-flow diagram proving whether the PM application touches cardholder data.
+6. Appropriate PCI DSS v4.x validation path (SAQ/ROC and service-provider responsibility matrix).
+7. Incident/breach response contacts and tested recovery procedure.
+
+
+## Supabase Advisor snapshot — 2026-10-05
+
+Current security advisor findings:
+- **1 actionable warning:** leaked password protection is disabled in Supabase Auth. This is an external project-auth setting and has not been changed through the connected toolset.
+- **3 anonymous-access heuristic warnings:** the listed policies are explicitly scoped to the `authenticated` role when inspected in `pg_policies` for `currencies`, `customer_profiles`, and `product_prices`. Treat these as advisor heuristics, not evidence that `anon` currently has access. Re-check after any policy migration.
+
+Advisor remediation link for the password-protection control: https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection
+
+
+## Publication authorization hardening
+Sensitive sync and batch-publish routes require server-verified Supabase authentication. The batch commercial publication gate defaults to `CLOSED` and is never implicitly opened by the production environment.
