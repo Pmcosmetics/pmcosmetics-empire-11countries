@@ -19,9 +19,56 @@ const authIdentityConfig = require("../config/auth-identity.json");
 const empireRegistry = require("../config/empire-unified-registry.json");
 
 const app = express();
+app.set("trust proxy", 1);
 app.use(helmet());
 app.use(cors());
 app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody = Buffer.from(buf); } }));
+
+const HTTPS_ONLY = String(process.env.HTTPS_ONLY || "true").toLowerCase() === "true";
+const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS || 15 * 60 * 1000);
+const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS || 60);
+const authRateBuckets = new Map();
+
+const rateLimit = (req, res, next) => {
+  const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
+  const key = forwarded || req.ip || "unknown";
+  const now = Date.now();
+  let bucket = authRateBuckets.get(key);
+
+  if (!bucket || now - bucket.startedAt >= RATE_LIMIT_WINDOW_MS) {
+    bucket = { startedAt: now, count: 0 };
+  }
+
+  bucket.count += 1;
+  authRateBuckets.set(key, bucket);
+
+  if (authRateBuckets.size > 5000) {
+    for (const [bucketKey, value] of authRateBuckets) {
+      if (now - value.startedAt >= RATE_LIMIT_WINDOW_MS) authRateBuckets.delete(bucketKey);
+    }
+  }
+
+  if (bucket.count > RATE_LIMIT_MAX_REQUESTS) {
+    return res.status(429).json({
+      ok: false,
+      reason: "RATE_LIMITED",
+      retryAfterMs: Math.max(0, RATE_LIMIT_WINDOW_MS - (now - bucket.startedAt))
+    });
+  }
+
+  res.setHeader("X-RateLimit-Limit", String(RATE_LIMIT_MAX_REQUESTS));
+  res.setHeader("X-RateLimit-Remaining", String(Math.max(0, RATE_LIMIT_MAX_REQUESTS - bucket.count)));
+  return next();
+};
+
+app.use((req, res, next) => {
+  const forwardedProto = String(req.headers["x-forwarded-proto"] || "").split(",")[0].trim().toLowerCase();
+  if (HTTPS_ONLY && forwardedProto === "http") {
+    return res.redirect(308, "https://" + req.get("host") + req.originalUrl);
+  }
+  return next();
+});
+
 app.use(express.static("public", { index: false }));
 
 const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
@@ -54,6 +101,8 @@ const healthResponse = (_req, res) => res.json({
 app.get("/", (_req, res) => res.sendFile("public/index.html", { root: process.cwd() }));
 
 app.get("/auth", (_req, res) => res.sendFile("auth.html", { root: "public" }));
+app.use("/api/auth", rateLimit);
+
 app.get("/api/auth/config", (_req, res) => {
   res.setHeader("Cache-Control", "no-store");
   return res.json({
