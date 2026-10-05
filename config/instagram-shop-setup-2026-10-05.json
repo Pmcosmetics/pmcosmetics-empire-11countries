@@ -1,0 +1,48 @@
+{
+  "updatedAt": "2026-10-05",
+  "channel": "instagram_shop",
+  "brand": "PM COSMETICS HUB",
+  "status": "READY_FOR_ACCOUNT_AUTHORIZATION",
+  "market": "Egypt",
+  "commercialPublishGate": "CLOSED",
+  "sourceStore": {
+    "name": "Pmcosmetics",
+    "domain": "pmcosmetics-lgdc2mrf.myshopify.com"
+  },
+  "requiredAssets": [
+    "Meta Business Portfolio",
+    "Facebook Page",
+    "Instagram Professional account",
+    "verified domain/storefront",
+    "Shopify Facebook & Instagram by Meta sales channel"
+  ],
+  "currentBlockers": [
+    "Meta sales channel is not installed in Shopify",
+    "Meta/Instagram account authorization is not available in the current connector session",
+    "Shopify storefront accessibility is not independently verified from the current inspection environment",
+    "Product catalog is evidence-gated; bulk publication remains disabled"
+  ],
+  "pilot": {
+    "sku": "DERMAELLE007",
+    "gtin": "6223007905060",
+    "pmStock": 48,
+    "verifiedRetailPriceEGP": 239,
+    "allowedAfterPrerequisites": [
+      "Meta account connection verified",
+      "Instagram Professional account connected to Facebook Page",
+      "Meta Commerce eligibility approved",
+      "Shopify Meta channel connected",
+      "pilot product remains Publish-Ready under PM Evidence Gate",
+      "reversible pilot verification completed"
+    ]
+  },
+  "acceptance": [
+    "Instagram Professional account connected to the correct Meta Business Portfolio and Facebook Page",
+    "Shopify Facebook & Instagram by Meta channel shows connected",
+    "Catalog sync completes without product errors",
+    "Only the verified pilot product is enabled for the channel",
+    "Instagram product tagging becomes available after Meta approval",
+    "No unverified product is published"
+  ],
+  "nextAction": "Connect Shopify and Meta accounts through the authorized Shopify/Meta UI, then run catalog sync and verify the DERMAELLE007 pilot."
+}
