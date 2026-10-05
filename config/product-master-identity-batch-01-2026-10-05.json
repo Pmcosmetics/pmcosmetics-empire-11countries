@@ -1,0 +1,207 @@
+{
+  "generatedAt": "2026-10-05",
+  "workstream": "Product Master — Identity",
+  "batch": "IDENTITY-01",
+  "source": "data/products/staging-evidence.json",
+  "sourceVerifiedAt": "2026-10-05",
+  "totalIdentityBacklog": 52,
+  "batchSize": 10,
+  "principle": "Order by currently evidenced completeness; when records tie, use explicit product-code/variant clarity as a secondary heuristic. No identity field is inferred.",
+  "acceptanceBase": {
+    "mustHave": [
+      "PM-owned exact product identity (brand + exact name + size/variant)",
+      "Valid PM SKU",
+      "Valid GTIN/barcode",
+      "Unique deterministic evidence linkage",
+      "QA pass",
+      "evidenceValidated=true"
+    ],
+    "reject": [
+      "guessed or synthetic SKU/GTIN",
+      "ambiguous multi-match",
+      "retailer/reference data treated as proof of PM ownership"
+    ]
+  },
+  "records": [
+    {
+      "order": 1,
+      "source_record_id": "recPuPw7afgUZPvp1",
+      "sku": "DERMAELLE008",
+      "name": "Dermaelle Face Cleanser Gel for Oily/Acne Skin with Salicylic Acid 200ml",
+      "current": {
+        "gtin": null,
+        "evidence_source": true,
+        "pm_stock": 60,
+        "pm_cost_egp": 540,
+        "image_evidence": false,
+        "authorization": "Required — Not Uploaded",
+        "status": "Archived"
+      },
+      "missing_for_identity": [
+        "GTIN/Barcode"
+      ],
+      "acceptance": "Verify the exact 200ml variant from PM-owned packaging/source evidence, capture the GTIN/barcode, confirm it maps uniquely to DERMAELLE008, then pass QA and set evidenceValidated=true. Do not promote to Publish-Ready in this batch.",
+      "execution_note": "Fastest candidate because SKU and source evidence already exist."
+    },
+    {
+      "order": 2,
+      "source_record_id": "recJTdQPy0r0iDaCO",
+      "sku": null,
+      "name": "برتي وومان ماسكارا سبيكترا لاش PWC-008",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Obtain PM-owned packaging/invoice evidence for PWC-008, record a valid PM SKU and GTIN, establish a unique exact product match, then QA and evidenceValidated=true."
+    },
+    {
+      "order": 3,
+      "source_record_id": "recHDFqtCc6IjQ223",
+      "sku": null,
+      "name": "برتي وومان ماسكارا PWC-017",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Obtain PM-owned packaging/invoice evidence for PWC-017, record a valid PM SKU and GTIN, establish a unique exact product match, then QA and evidenceValidated=true."
+    },
+    {
+      "order": 4,
+      "source_record_id": "receXmm1nUhIE3cg3",
+      "sku": null,
+      "name": "أديداس باور بوستر جل الاستحمام 400 مل",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Verify the exact Adidas Power Booster 400ml variant from PM-owned packaging/barcode evidence; assign only the SKU actually present in PM source records; validate GTIN and deterministic linkage; QA."
+    },
+    {
+      "order": 5,
+      "source_record_id": "recgpG0sIFxWLkwNW",
+      "sku": null,
+      "name": "أديداس فريش إندورانس جل الاستحمام 3 في 1 400 مل",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Verify exact 3-in-1 400ml variant from PM-owned packaging/barcode evidence; validate SKU + GTIN + unique linkage; QA and evidenceValidated=true."
+    },
+    {
+      "order": 6,
+      "source_record_id": "recO5R1URfvHNwKbs",
+      "sku": null,
+      "name": "أديداس كول داون أكتيف سكين آند مايند جل استحمام 400 مل",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Verify exact Cool Down Active Skin & Mind 400ml variant from PM-owned packaging/barcode evidence; validate SKU + GTIN + unique linkage; QA and evidenceValidated=true."
+    },
+    {
+      "order": 7,
+      "source_record_id": "reckdjDVGnkaHBJQh",
+      "sku": null,
+      "name": "إمبريال ليذر غسول الجسم المريح 500 مل",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Verify the exact 500ml Imperial Leather variant from PM-owned packaging/barcode evidence; validate SKU + GTIN + unique linkage; QA and evidenceValidated=true."
+    },
+    {
+      "order": 8,
+      "source_record_id": "recKlz1jjwceGaBmo",
+      "sku": null,
+      "name": "أمبولات الصبار إيفا بزيت الأرجان 4 قطع",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Verify exact Eva aloe/argan ampoule 4-piece pack from PM-owned packaging evidence; validate SKU + GTIN + unique linkage; QA and evidenceValidated=true."
+    },
+    {
+      "order": 9,
+      "source_record_id": "recueH0stdV2qjd13",
+      "sku": null,
+      "name": "بيزلاين مزيل عرق رول اون للتبييض الطبيعي انستانت وايت 2 × 50 مل",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Verify exact Beesline Instant White 2×50ml pack from PM-owned packaging/barcode evidence; validate SKU + GTIN + unique linkage; QA and evidenceValidated=true."
+    },
+    {
+      "order": 10,
+      "source_record_id": "recHUn5QjiQ2LJcQd",
+      "sku": null,
+      "name": "جل الاستحمام المغذي بعمق من دوف 500 مل مستورد",
+      "current": {
+        "gtin": null,
+        "evidence_source": false,
+        "status": "Needs Review"
+      },
+      "missing_for_identity": [
+        "PM SKU",
+        "GTIN/Barcode",
+        "deterministic evidence/source link"
+      ],
+      "acceptance": "Verify exact imported Dove 500ml Deep Nourishing Shower Gel variant from PM-owned packaging/barcode evidence; validate SKU + GTIN + unique linkage; QA and evidenceValidated=true."
+    }
+  ],
+  "batchExit": [
+    "Every record has explicit evidence references.",
+    "No ambiguous or guessed identifiers remain.",
+    "Identity closure is recorded only after QA and evidenceValidated=true.",
+    "Closed identity records move to the Image/Stock gate; no automatic publication.",
+    "Global Commercial Publish Gate remains CLOSED."
+  ]
+}
