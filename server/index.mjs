@@ -77,11 +77,7 @@ const batchGateState = () => {
   if (configured !== undefined && configured !== "") {
     return String(configured).toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
   }
-  // Production can run the evidence-aware batch gate independently of the global commercial gate.
-  // GitHub/CI keeps the default closed; Railway production opens the batch route while still
-  // requiring every product to pass the evidence contract before any live publication occurs.
-  const isRailwayProduction = String(process.env.RAILWAY_ENVIRONMENT_NAME || "").toLowerCase() === "production";
-  return isRailwayProduction ? "OPEN" : "CLOSED";
+  return "CLOSED";
 };
 
 const locked = (service, reason = "DATA_INTAKE_LOCKED") => ({
@@ -439,7 +435,7 @@ app.post("/api/manus/import", async (req, res) => {
   }
 });
 
-app.post("/api/manus/woocommerce/sync", async (req, res) => {
+app.post("/api/manus/woocommerce/sync", requireEmpireAuth, async (req, res) => {
   try {
     const products = Array.isArray(req.body?.products) ? req.body.products : await pullManusProducts();
     const dryRun = req.body?.dryRun !== false;
@@ -477,7 +473,7 @@ app.get("/api/woocommerce/check", requireEmpireAuth, async (_req, res) => {
   });
 });
 
-app.post("/api/woocommerce/sync", async (req, res) => {
+app.post("/api/woocommerce/sync", requireEmpireAuth, async (req, res) => {
   try {
     const products = Array.isArray(req.body?.products) ? req.body.products : [];
     const dryRun = req.body?.dryRun !== false;
@@ -543,7 +539,7 @@ app.get("/api/products/staging", requireEmpireAuth, (_req, res) => res.json({
   feed: "/data/products/staging-evidence.json"
 }));
 
-app.post("/api/products/batch/readiness", (req, res) => {
+app.post("/api/products/batch/readiness", requireEmpireAuth, (req, res) => {
   const result = evaluateBatch(req.body?.products);
   void trackAmplitudeEvent("batch_readiness_checked", {
     inputCount: result.inputCount,
@@ -563,7 +559,7 @@ app.post("/api/products/batch/readiness", (req, res) => {
   });
 });
 
-app.post("/api/products/batch/publish", async (req, res) => {
+app.post("/api/products/batch/publish", requireEmpireAuth, async (req, res) => {
   const products = Array.isArray(req.body?.products) ? req.body.products : [];
   const dryRun = req.body?.dryRun !== false;
   const result = evaluateBatch(products);
