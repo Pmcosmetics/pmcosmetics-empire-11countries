@@ -1,5 +1,6 @@
 import express from "express";
 import helmet from "helmet";
+import { rateLimit as createRateLimit } from "express-rate-limit";
 import cors from "cors";
 import { createRequire } from "node:module";
 import { createHmac, timingSafeEqual } from "node:crypto";
@@ -27,39 +28,17 @@ app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody 
 const HTTPS_ONLY = String(process.env.HTTPS_ONLY || "true").toLowerCase() === "true";
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS || 15 * 60 * 1000);
 const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS || 60);
-const authRateBuckets = new Map();
 
-const rateLimit = (req, res, next) => {
-  const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
-  const key = forwarded || req.ip || "unknown";
-  const now = Date.now();
-  let bucket = authRateBuckets.get(key);
-
-  if (!bucket || now - bucket.startedAt >= RATE_LIMIT_WINDOW_MS) {
-    bucket = { startedAt: now, count: 0 };
-  }
-
-  bucket.count += 1;
-  authRateBuckets.set(key, bucket);
-
-  if (authRateBuckets.size > 5000) {
-    for (const [bucketKey, value] of authRateBuckets) {
-      if (now - value.startedAt >= RATE_LIMIT_WINDOW_MS) authRateBuckets.delete(bucketKey);
-    }
-  }
-
-  if (bucket.count > RATE_LIMIT_MAX_REQUESTS) {
-    return res.status(429).json({
-      ok: false,
-      reason: "RATE_LIMITED",
-      retryAfterMs: Math.max(0, RATE_LIMIT_WINDOW_MS - (now - bucket.startedAt))
-    });
-  }
-
-  res.setHeader("X-RateLimit-Limit", String(RATE_LIMIT_MAX_REQUESTS));
-  res.setHeader("X-RateLimit-Remaining", String(Math.max(0, RATE_LIMIT_MAX_REQUESTS - bucket.count)));
-  return next();
-};
+const rateLimit = createRateLimit({
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  limit: RATE_LIMIT_MAX_REQUESTS,
+  standardHeaders: "draft-8",
+  legacyHeaders: true,
+  handler: (_req, res) => res.status(429).json({
+    ok: false,
+    reason: "RATE_LIMITED"
+  })
+});
 
 app.use((req, res, next) => {
   const forwardedProto = String(req.headers["x-forwarded-proto"] || "").split(",")[0].trim().toLowerCase();
