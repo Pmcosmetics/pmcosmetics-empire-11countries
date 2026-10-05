@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "batchId": "PM-PUBLISH-BATCH-01-2026-10-05",
+  "generatedAt": "2026-10-05T16:47:00+03:00",
+  "purpose": "First controlled commercial publication batch; only Product Master records already Publish-Ready are in scope.",
+  "releaseState": "PREPARED_NOT_ACTIVATED",
+  "globalCommercialPublishGate": "CLOSED",
+  "productScope": {
+    "totalInBatch": 1,
+    "products": [
+      {
+        "source_record_id": "reclIZoMx9pq6pR3W",
+        "sku": "DERMAELLE007",
+        "gtin": "6223007905060",
+        "name": "Dermaelle Hyalubalance Sebum Control Cleansing Gel 200ml",
+        "status": "Publish-Ready",
+        "publish_gate": "Publish-Ready",
+        "pm_stock": 48,
+        "pm_cost_egp": 260,
+        "image_evidence_url": "https://onedrive.live.com?cid=f6bbc81bc64793ee&id=F6BBC81BC64793EE!s6dedac3ab6134186be7721bdd4232792",
+        "evidence_source_url": "https://alfouadpharmacies.com/en/products/dermaelle-hyalubalance-sebum-cleans-200ml",
+        "source_type": "A — Dermaelle Direct",
+        "authorization_status": "Verified",
+        "qa_verified_at": "2026-10-04",
+        "approved_retail_price_egp": 239,
+        "activation_rule": "Publish-Ready + evidenceVerified + channel acceptance + global Commercial Publish Gate OPEN"
+      }
+    ]
+  },
+  "channelScope": {
+    "totalRegistered": 23,
+    "rule": "Every registered channel is tracked; no channel may activate until its own authorization, catalog, sync, reconciliation, rollback and sign-off gates pass.",
+    "channels": [
+      {
+        "id": "facebook",
+        "kind": "social",
+        "integration": "windsor.ai",
+        "status": "connected_verified",
+        "batchRole": "CANDIDATE_AFTER_CHANNEL_SIGNOFF",
+        "activation": "HOLD"
+      },
+      {
+        "id": "shopify",
+        "kind": "commerce",
+        "integration": "shopify_native",
+        "status": "connected_verified",
+        "batchRole": "CURRENT_CONTROLLED_PILOT",
+        "activation": "HOLD"
+      },
+      {
+        "id": "instagram",
+        "kind": "social",
+        "integration": "windsor.ai",
+        "status": "oauth_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "tiktok",
+        "kind": "social",
+        "integration": "windsor.ai",
+        "status": "oauth_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "tiktok_shop",
+        "kind": "commerce",
+        "integration": "windsor.ai",
+        "status": "oauth_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "amazon_sp",
+        "kind": "marketplace",
+        "integration": "windsor.ai",
+        "status": "reference_staged_3218_oauth_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "google_merchant",
+        "kind": "commerce",
+        "integration": "windsor.ai",
+        "status": "oauth_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "woocommerce",
+        "kind": "commerce",
+        "integration": "windsor.ai",
+        "status": "manual_credentials_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "salla",
+        "kind": "commerce",
+        "integration": "direct_api",
+        "status": "reference_staged_3218_api_token_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "instashop",
+        "kind": "marketplace",
+        "integration": "direct_api",
+        "status": "direct_integration_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "etsy",
+        "kind": "marketplace",
+        "integration": "direct_api",
+        "status": "reference_staged_3218_oauth_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "temu",
+        "kind": "marketplace",
+        "integration": "direct_api",
+        "status": "reference_staged_3218_authorization_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "jumia",
+        "kind": "marketplace",
+        "integration": "direct_api",
+        "status": "reference_staged_3218_seller_api_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "talabat",
+        "kind": "marketplace",
+        "integration": "direct_api",
+        "status": "reference_staged_3218_partner_api_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "whatsapp_primary",
+        "kind": "messaging",
+        "integration": "meta_waba",
+        "status": "public_identity_ready_credentials_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "whatsapp_secondary",
+        "kind": "messaging",
+        "integration": "meta_waba",
+        "status": "public_identity_ready_credentials_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "take_app",
+        "kind": "commerce",
+        "integration": "public_store_link",
+        "status": "reference_staged_3218_api_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "olx_dubizzle_egypt",
+        "kind": "marketplace",
+        "integration": "public_classifieds",
+        "status": "reference_staged_3218_seller_connection_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "snapchat",
+        "kind": "social",
+        "integration": "windsor.ai",
+        "status": "oauth_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "telegram",
+        "kind": "messaging",
+        "integration": "direct_bot_api",
+        "status": "bot_credentials_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "noon",
+        "kind": "marketplace",
+        "integration": "direct_api",
+        "status": "reference_staged_3218_credentials_pending",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "kenz",
+        "kind": "marketplace",
+        "integration": "unverified_target",
+        "status": "reference_staged_3218_unverified_marketplace",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      },
+      {
+        "id": "knooz",
+        "kind": "marketplace",
+        "integration": "unverified_target",
+        "status": "reference_staged_3218_unverified_marketplace",
+        "batchRole": "PENDING_AUTHORIZATION",
+        "activation": "HOLD"
+      }
+    ]
+  },
+  "preActivationGates": [
+    "Product identity exact and PM-owned",
+    "Valid unique SKU and GTIN",
+    "PM-owned exact image for the exact variant",
+    "PM stock evidence reconciled; baseline 48 units",
+    "Acquisition cost/provenance verified; 260 EGP baseline",
+    "Authorization/evidence record verified",
+    "QA PASS and evidenceVerified=true",
+    "Channel authorization verified with zero permission errors",
+    "Catalog contains exactly DERMAELLE007; no blocked product is exposed",
+    "Mandatory channel fields complete at 100%",
+    "Sync test PASS with zero blocking errors",
+    "SKU/GTIN/price/stock reconciliation PASS; approved retail price 239 EGP; pre-first-order stock drift 0",
+    "Rollback test PASS with recovery verification PASS",
+    "Named owner + Integration Engineer + QA sign-off recorded",
+    "Global Commercial Publish Gate explicitly OPEN for this release"
+  ],
+  "numericAcceptance": {
+    "pilotProductsExposed": 1,
+    "skuMapping": "1:1",
+    "gtinMatch": "100%",
+    "mandatoryFields": "100%",
+    "blockingProviderErrors": 0,
+    "unintendedProductsPublished": 0,
+    "approvedPriceDriftEgp": 0,
+    "preFirstOrderStockDriftUnits": 0,
+    "rollbackRecovery": "PASS"
+  },
+  "activationProcedure": [
+    "Keep batch in HOLD until all product and channel gates are evidenced.",
+    "Approve only channels whose individual sign-off is PASS.",
+    "Open the global Commercial Publish Gate only for the approved release scope.",
+    "Publish DERMAELLE007 only; do not include any of the remaining 72 records.",
+    "Immediately run post-publish reconciliation for SKU, GTIN, price, stock, image and status.",
+    "If any critical threshold fails, stop writes and execute rollback."
+  ],
+  "outOfScope": [
+    "52 Blocked — Identity records",
+    "20 Blocked — Image/Stock records"
+  ],
+  "sourceRefs": {
+    "productMasterPath": "data/products/staging-evidence.json",
+    "productMasterSha": "3730af4992e8d4a975e99c031dac095758371947",
+    "channelRegistryPath": "config/empire-unified-registry.json",
+    "channelRegistrySha": "21fcb91e28e03d6816f14c44b22e12bd1db493da",
+    "acceptanceCriteria": "docs/MULTI-CHANNEL-ACCEPTANCE-CRITERIA-2026-10-05.md"
+  }
+}
