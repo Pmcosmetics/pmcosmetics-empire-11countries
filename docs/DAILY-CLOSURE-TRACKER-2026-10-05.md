@@ -6,7 +6,7 @@
 
 | المهمة | المالك | الموعد | الحالة | العائق | الإجراء التالي |
 |---|---|---|---|---|---|
-| تثبيت رقم Product Master المرجعي | Product Master Owner + QA | 2026-10-05 | **قيد التنفيذ** | تعارض بين بعض snapshots القديمة وملف الـqueue التنفيذي | اعتماد `config/product-master-remediation-queue-2026-10-05.json` كمرجع تنفيذي وتوثيق رقم واحد نهائي |
+| تثبيت رقم Product Master المرجعي | Product Master Owner + QA | 2026-10-05 | **مغلق** | تم حل التعارض في المصدر الحالي؛ 73 = 1 جاهز + 52 هوية + 20 صورة/مخزون | تثبيت الـqueue والمصدر الحاليين كمرجع تنفيذي وعدم إعادة فتح العدّ إلا عند تغيّر المصدر |
 | اعتماد مجلد الأدلة الرسمي | Audit/QA Owner | 2026-10-05 | **قيد التنفيذ** | Google Drive/Docs/Sheets غير مقروءة مباشرة من بيئة العمل الحالية | اعتبار الرابط مصدرًا رسميًا معلنًا، وإبقاء أي دليل غير قابل للقراءة Pending Verification حتى إتاحته/رفعه |
 | إعادة تحقق DERMAELLE007 | Product QA + Inventory Owner | 2026-10-05 | **جاهز** | لا عائق ظاهر؛ يحتاج reconciliation دوري | تنفيذ فحص SKU/GTIN/الهوية/الصورة/المخزون/التكلفة/Authorization وتسجيل النتيجة |
 | إغلاق Identity — الدفعة الحالية | Product Master Owner + Procurement/QA | 2026-10-08 | **مفتوح** | نقص SKU/GTIN/هوية وأدلة ملكية لعدد كبير من السجلات | تنفيذ دفعة Identity-01 ثم الانتقال بالتتابع حتى تصفية كامل طابور Identity |
@@ -47,4 +47,4 @@
 في نهاية كل يوم تُسجل:
 **نسبة الإنجاز → البنود المغلقة → البنود المتعثرة → سبب التعثر → الإجراء التالي → قرار GO/NO-GO**
 
-**Commercial Publish Gate:** CLOSED until all required gates pass.
+**Commercial Publish Gate:** CLOSED — 1/73 Publish-Ready فقط؛ 72 سجلًا ما زالت داخل remediation.
