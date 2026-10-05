@@ -1,7 +1,7 @@
 {
   "provider": "google",
   "mode": "google_oauth_plus_gmail_magic_link",
-  "status": "PENDING_GOOGLE_PROVIDER_CONFIGURATION",
+  "status": "SERVER_VERIFIED_ALLOWLIST_PROVIDER_PENDING",
   "allowedEmails": [
     "shukrypeter79@gmail.com",
     "shukrypeter102@gmail.com"
@@ -19,5 +19,5 @@
   },
   "oauthCallbackUrl": "https://rhozehqlpnmzmknlpmvf.supabase.co/auth/v1/callback",
   "empireUrl": "https://pmcosmetics-empire-11countries-production.up.railway.app",
-  "notes": "Google Provider client credentials are the remaining external setup. Supabase publishable key is configured in Railway; allowed Gmail identities are exact-match restricted. Do not treat Gmail identity configuration as proof that external merchant connectors are authenticated."
+  "notes": "Server-side Supabase Auth verification is implemented: bearer access tokens are verified against /auth/v1/user and exact allowed-email matching is enforced. Google Provider client credentials remain the external setup step."
 }
