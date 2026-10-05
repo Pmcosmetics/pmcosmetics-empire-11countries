@@ -88,6 +88,19 @@ const locked = (service, reason = "DATA_INTAKE_LOCKED") => ({
   ok: false, service, status: 503, gate: gateState(), reason
 });
 
+const requireEmpireAuth = async (req, res, next) => {
+  const result = await verifyAccessToken(bearerTokenFromRequest(req));
+  if (!result.ok) {
+    return res.status(result.status || 401).json({
+      ok: false,
+      authenticated: false,
+      reason: result.reason || "AUTH_REQUIRED"
+    });
+  }
+  req.empireAuth = result;
+  return next();
+};
+
 const healthResponse = (_req, res) => res.json({
   ok: true,
   service: "pmcosmetics-empire-11countries",
@@ -139,7 +152,7 @@ app.get("/api/auth/session", async (req, res) => {
 
 
 
-app.get("/api/empire/registry", (_req, res) => res.json({
+app.get("/api/empire/registry", requireEmpireAuth, (_req, res) => res.json({
   ok: true,
   registry: empireRegistry,
   runtime: {
@@ -259,7 +272,7 @@ const shopifySignatureValid = (req) => {
 };
 
 
-app.get("/api/channel/status", (_req, res) => {
+app.get("/api/channel/status", requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -351,7 +364,7 @@ app.get("/api/amplitude/status", (_req, res) => res.json({ ok: true, ...getAmpli
 app.get("/health", healthResponse);
 app.get("/favicon.ico", (_req, res) => res.status(204).end());
 
-app.get("/api/readiness", (_req, res) => {
+app.get("/api/readiness", requireEmpireAuth, (_req, res) => {
   const gate = gateState();
   const manus = getManusStatus();
   const woocommerce = getWooStatus();
@@ -393,7 +406,7 @@ app.get("/api/readiness", (_req, res) => {
   return res.json(response);
 });
 
-app.get("/api/supabase/status", (_req, res) => {
+app.get("/api/supabase/status", requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -402,7 +415,7 @@ app.get("/api/supabase/status", (_req, res) => {
   });
 });
 
-app.get("/api/manus/status", (_req, res) => {
+app.get("/api/manus/status", requireEmpireAuth, (_req, res) => {
   res.json({ ok: true, gate: gateState(), service: "manus-catalog-adapter", ...getManusStatus() });
 });
 
@@ -447,7 +460,7 @@ app.post("/api/manus/woocommerce/sync", async (req, res) => {
   }
 });
 
-app.get("/api/woocommerce/status", (_req, res) => {
+app.get("/api/woocommerce/status", requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -456,7 +469,7 @@ app.get("/api/woocommerce/status", (_req, res) => {
   });
 });
 
-app.get("/api/woocommerce/check", async (_req, res) => {
+app.get("/api/woocommerce/check", requireEmpireAuth, async (_req, res) => {
   const result = await checkWooConnection();
   res.status(result.reachable ? 200 : result.configured ? 502 : 200).json({
     ...result,
@@ -522,7 +535,7 @@ app.get("/api/products", async (_req, res) => {
   }
 });
 
-app.get("/api/products/staging", (_req, res) => res.json({
+app.get("/api/products/staging", requireEmpireAuth, (_req, res) => res.json({
   ok: true,
   gate: gateState(),
   publishable: false,
