@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PM COSMETICS HUB — Operations Dashboard</title>
+<style>
+:root{--bg:#0a0a0a;--panel:#111;--line:#2b2b2b;--gold:#d4af37;--text:#fff;--muted:#a8a8a8;--ok:#38c172;--warn:#f0ad4e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,system-ui,sans-serif}
+a{color:var(--gold);text-decoration:none}.wrap{max-width:1240px;margin:auto;padding:24px}
+header{display:flex;justify-content:space-between;gap:18px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}
+.brand{display:flex;gap:12px;align-items:center}.brand img{width:54px;height:54px}.brand h1{font-size:23px;margin:0}.brand p{color:var(--muted);margin:5px 0 0;font-size:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#151515;color:#fff;border-radius:999px;padding:10px 14px;cursor:pointer}.btn.primary{background:var(--gold);color:#0a0a0a;border-color:var(--gold);font-weight:700}
+.gate{display:inline-flex;align-items:center;gap:8px;border:1px solid #594d21;background:#17130a;color:var(--gold);padding:8px 12px;border-radius:999px;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}.label{color:var(--muted);font-size:12px}.value{font-size:30px;font-weight:800;margin-top:7px}.sub{font-size:12px;color:var(--muted);margin-top:5px}
+.section{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:18px}.section h2{margin:0 0 14px;font-size:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:10px;text-align:right;white-space:nowrap}th{color:var(--gold);font-weight:700}td.muted{color:var(--muted)}
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;border:1px solid var(--line)}.badge.ok{color:var(--ok);border-color:#245d3b}.badge.warn{color:var(--warn);border-color:#6a4c20}
+.notice{padding:12px;border-radius:12px;background:#141414;color:#c6c6c6;font-size:12px;line-height:1.7;border:1px solid var(--line)}
+.error{color:#ff7777}.hidden{display:none}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.wrap{padding:14px}header{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><img src="/pmcosmetics-logo.svg" alt="PM COSMETICS HUB"><div><h1>PM COSMETICS HUB — Operations</h1><p>Catalog • Inventory • Pricing • Orders • Customers • Reporting</p></div></div>
+  <div class="actions"><span class="gate" id="gate">Commercial Gate: CLOSED</span><button class="btn" id="refresh">تحديث</button><button class="btn" id="logout">خروج</button></div>
+</header>
+
+<div id="loading" class="notice">جارِ التحقق من هوية المشرف وتحميل بيانات التشغيل…</div>
+<div id="app" class="hidden">
+  <div class="grid">
+    <div class="card"><div class="label">المنتجات النشطة</div><div class="value" id="mProducts">—</div><div class="sub">Product Catalog Management</div></div>
+    <div class="card"><div class="label">الوحدات المتاحة</div><div class="value" id="mInventory">—</div><div class="sub">Inventory Management</div></div>
+    <div class="card"><div class="label">العملات النشطة</div><div class="value" id="mCurrencies">—</div><div class="sub">Multi-Currency Pricing</div></div>
+    <div class="card"><div class="label">الطلبات</div><div class="value" id="mOrders">—</div><div class="sub">Order Management</div></div>
+  </div>
+
+  <div class="two">
+    <section class="section"><h2>Product Catalog Management</h2><div class="table-wrap"><table><thead><tr><th>SKU</th><th>المنتج</th><th>السعر</th><th>الحالة</th></tr></thead><tbody id="productsBody"></tbody></table></div></section>
+    <section class="section"><h2>Inventory Management</h2><div class="table-wrap"><table><thead><tr><th>SKU</th><th>الموقع</th><th>الكمية</th><th>محجوز</th><th>متاح</th></tr></thead><tbody id="inventoryBody"></tbody></table></div></section>
+  </div>
+
+  <section class="section"><h2>Multi-Currency Pricing</h2><div class="table-wrap"><table><thead><tr><th>العملة</th><th>الاسم</th><th>الرمز</th><th>نشطة</th></tr></thead><tbody id="currenciesBody"></tbody></table></div></section>
+
+  <div class="two">
+    <section class="section"><h2>Order Management</h2><div id="ordersSummary" class="notice"></div><div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>Order</th><th>القناة</th><th>الحالة</th><th>الإجمالي</th><th>العملة</th></tr></thead><tbody id="ordersBody"></tbody></table></div></section>
+    <section class="section"><h2>Customer Analytics</h2><div class="grid" style="grid-template-columns:repeat(2,1fr);margin:0 0 12px"><div class="card"><div class="label">العملاء</div><div class="value" id="mCustomers">—</div></div><div class="card"><div class="label">إجمالي قيمة الطلبات</div><div class="value" id="mCustomerValue">—</div></div></div><div class="table-wrap"><table><thead><tr><th>العميل</th><th>الدولة</th><th>الطلبات</th><th>القيمة</th></tr></thead><tbody id="customersBody"></tbody></table></div></section>
+  </div>
+
+  <section class="section"><h2>Reporting Dashboard</h2><div class="grid" style="grid-template-columns:repeat(5,1fr)">
+    <div class="card"><div class="label">المخزون</div><div class="value" id="rInv">—</div></div>
+    <div class="card"><div class="label">الطلبات المفتوحة</div><div class="value" id="rOpen">—</div></div>
+    <div class="card"><div class="label">الإيراد المحجوز</div><div class="value" id="rRevenue">—</div></div>
+    <div class="card"><div class="label">القنوات النشطة</div><div class="value" id="rChannels">—</div></div>
+    <div class="card"><div class="label">QA Publish-Ready snapshot</div><div class="value" id="rQA">—</div></div>
+  </div><div class="notice" id="reportNote"></div></section>
+
+  <div class="notice">
+    <strong>حالة التشغيل:</strong> البيانات الحالية مرتبطة بـSupabase. يمكن عرض وإدارة بيانات المنتجات والمخزون والأسعار والطلبات والتحليلات من هذه الواجهة بعد المصادقة. عمليات النشر التجاري الخارجي لا تُفتح من هذه الصفحة، وتظل خاضعة لـProduct Evidence Gate وCommercial Publish Gate.
+  </div>
+</div>
+<div id="fatal" class="notice error hidden"></div>
+</div>
+
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.117.2";
+
+let supabase, session;
+
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+
+function rowsHtml(rows, columns, empty="لا توجد بيانات"){
+  if(!rows.length) return '<tr><td colspan="'+columns+'" class="muted">'+empty+'</td></tr>';
+  return rows.join("");
+}
+function fmt(v){ return Number(v||0).toLocaleString("ar-EG"); }
+
+async function boot(){
+  try{
+    const cfg=await fetch("/api/auth/config",{cache:"no-store"}).then(r=>r.json());
+    supabase=createClient(cfg.supabaseUrl,cfg.publishableKey);
+    const s=await supabase.auth.getSession();
+    session=s.data.session;
+    if(!session){
+      location.href="/auth";
+      return;
+    }
+    const verify=await fetch("/api/auth/session",{headers:{Authorization:"Bearer "+session.access_token},cache:"no-store"}).then(r=>r.json());
+    if(!verify.authenticated){ await supabase.auth.signOut(); location.href="/auth"; return; }
+    $("loading").classList.add("hidden");
+    $("app").classList.remove("hidden");
+    await load();
+  }catch(e){
+    $("loading").classList.add("hidden"); $("fatal").textContent="تعذر تحميل لوحة التشغيل: "+(e?.message||e); $("fatal").classList.remove("hidden");
+  }
+}
+
+async function select(table, query="*"){
+  const {data,error}=await supabase.from(table).select(query);
+  if(error) throw error;
+  return data||[];
+}
+
+async function load(){
+  const [products,inventory,currencies,prices,orders,customers,reporting,commercial,channels]=await Promise.all([
+    select("products","id,sku,name,base_price,currency,is_active,updated_at"),
+    select("inventory","product_id,location_code,quantity,reserved,updated_at"),
+    select("currencies","code,name,symbol,is_active"),
+    select("product_prices","product_id,currency_code,amount,price_type,source,is_active,effective_from"),
+    select("orders","id,order_number,channel_code,status,total_amount,currency,created_at,updated_at"),
+    select("customer_analytics","customer_id,full_name,country_code,total_orders,total_order_value,last_order_at"),
+    select("reporting_dashboard","active_products,inventory_products,inventory_units,available_units,total_orders,open_orders,booked_revenue,customers,active_channels,publish_qa_ready_products"),
+    select("commercial_dashboard","active_products,inventory_locations,units_in_inventory,total_orders,open_orders,customers,active_channels"),
+    select("commerce_channels","code,name,is_active")
+  ]);
+
+  const byProduct=Object.fromEntries(products.map(p=>[p.id,p]));
+  const activeProducts=products.filter(p=>p.is_active);
+  const activeCurrencies=currencies.filter(c=>c.is_active);
+
+  $("mProducts").textContent=fmt(activeProducts.length);
+  $("mInventory").textContent=fmt(inventory.reduce((n,x)=>n+Math.max(0,(x.quantity||0)-(x.reserved||0)),0));
+  $("mCurrencies").textContent=fmt(activeCurrencies.length);
+  $("mOrders").textContent=fmt(orders.length);
+  $("mCustomers").textContent=fmt(customers.length);
+  $("mCustomerValue").textContent=customers.reduce((n,x)=>n+Number(x.total_order_value||0),0).toLocaleString("ar-EG",{maximumFractionDigits:2});
+
+  $("productsBody").innerHTML=rowsHtml(activeProducts.map(p=>'<tr><td>'+esc(p.sku)+'</td><td>'+esc(p.name)+'</td><td>'+fmt(p.base_price)+' '+esc(p.currency)+'</td><td><span class="badge ok">ACTIVE</span></td></tr>'),4,"لا توجد منتجات نشطة");
+
+  $("inventoryBody").innerHTML=rowsHtml(inventory.map(x=>{const p=byProduct[x.product_id]||{};const avail=Math.max(0,(x.quantity||0)-(x.reserved||0));return '<tr><td>'+esc(p.sku||x.product_id)+'</td><td>'+esc(x.location_code)+'</td><td>'+fmt(x.quantity)+'</td><td>'+fmt(x.reserved)+'</td><td>'+fmt(avail)+'</td></tr>'}),5);
+
+  $("currenciesBody").innerHTML=rowsHtml(currencies.map(c=>'<tr><td>'+esc(c.code)+'</td><td>'+esc(c.name)+'</td><td>'+esc(c.symbol)+'</td><td>'+(c.is_active?'<span class="badge ok">ACTIVE</span>':'<span class="badge">INACTIVE</span>')+'</td></tr>'),4);
+
+  $("ordersSummary").textContent=orders.length?"إجمالي الطلبات المسجلة: "+fmt(orders.length):"لا توجد طلبات حاليًا في Supabase. استقبال الطلبات من القنوات الخارجية يظل مرتبطًا بتوثيق موصلات القنوات والـwebhooks.";
+  $("ordersBody").innerHTML=rowsHtml(orders.map(o=>'<tr><td>'+esc(o.order_number)+'</td><td>'+esc(o.channel_code)+'</td><td>'+esc(o.status)+'</td><td>'+fmt(o.total_amount)+'</td><td>'+esc(o.currency)+'</td></tr>'),5,"لا توجد طلبات");
+
+  $("customersBody").innerHTML=rowsHtml(customers.map(c=>'<tr><td>'+esc(c.full_name||c.customer_id)+'</td><td>'+esc(c.country_code)+'</td><td>'+fmt(c.total_orders)+'</td><td>'+fmt(c.total_order_value)+'</td></tr>'),4,"لا توجد بيانات عملاء مشتقة حتى الآن");
+
+  const r=reporting[0]||{};
+  $("rInv").textContent=fmt(r.available_units);
+  $("rOpen").textContent=fmt(r.open_orders);
+  $("rRevenue").textContent=fmt(r.booked_revenue);
+  $("rChannels").textContent=fmt(r.active_channels);
+  $("rQA").textContent=fmt(r.publish_qa_ready_products);
+  $("reportNote").textContent="آخر snapshot في reporting_dashboard يعكس "+fmt(r.active_products)+" منتج نشط و"+fmt(r.available_units)+" وحدة متاحة و"+fmt(r.total_orders)+" طلب. يتم عرض القيم كما هي من المصدر دون اختلاق بيانات. المراجعة التجارية النهائية تبقى في Product Evidence Gate.";
+
+  $("gate").textContent="Commercial Gate: CLOSED";
+  $("gate").className="gate";
+}
+
+$("refresh").addEventListener("click",load);
+$("logout").addEventListener("click",async()=>{await supabase.auth.signOut();location.href="/auth";});
+supabase?.auth?.onAuthStateChange?.(()=>{});
+boot();
+</script>
+</body>
+</html>
