@@ -16,7 +16,10 @@
     "folder": "https://drive.google.com/drive/folders/1eTlPxA3hBxnNO7aR6qFo70qqRKCjpriY",
     "auditDoc": "https://docs.google.com/document/d/1FaHM39qff5ogJIKKUY7_JHqerAX-_9MJFcvabFa7Geo/edit?usp=sharing",
     "auditSheet": "https://docs.google.com/spreadsheets/d/1YsiY5xemo2ssz4_hzjFeFErkbSAM7KfbrTxVTOPbZ28/edit?usp=sharing",
-    "verificationStatus": "PENDING — links declared official; contents not independently readable in current workspace"
+    "verificationStatus": "PENDING — share redirect is registered; Drive contents are not independently readable in current workspace",
+    "shareLink": "https://l.meta.ai/?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F1eTlPxA3hBxnNO7aR6qFo70qqRKCjpriY&h=AUCMELfmuSJMN2M_zbMPUn3PPSn0deBB7K972mtgK3gKDzS1-IgVpC6u7ONTlkkNR3Nt587pxRAd5KSrII-FuN68oyxeqfjjkxyt12cPPiu3N89vhLoqMCEbrNG5GNtJfPdTf5TlCW382pSCj8AP8A",
+    "shareLinkStatus": "OFFICIAL_SHARE_REDIRECT_TO_SAME_DRIVE_FOLDER",
+    "folderId": "1eTlPxA3hBxnNO7aR6qFo70qqRKCjpriY"
   },
   "sourceFiles": [
     "config/release-batch-01-2026-10-05.json",
