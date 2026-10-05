@@ -1,12 +1,13 @@
 # PM COSMETICS HUB — Product Master 72-Record Execution Plan — 2026-10-05
 
 ## 0. Authoritative count reconciliation
-- Working set: 72 non-ready records out of 73 Product Master records.
-- Latest Product Evidence Gate file classifies them as 59 `Blocked — Identity` + 13 `Blocked — Image/Stock`.
-- Older README/integration snapshots contain different historical splits; these must not be treated as current. Reconcile the working ledger to the latest Evidence Gate before batch work starts.
+- Working set: 72 non-ready records out of 73 Product Master records, confirmed in `data/products/staging-evidence.json` verified 2026-10-05.
+- Current staging evidence file classifies them as 52 `Blocked — Identity` + 20 `Blocked — Image/Stock`.
+- Older README/integration snapshots contain different historical splits; these must not be treated as current. Use the current staging evidence file as the execution triage source; historical snapshots are retained only for audit context.
+- Canonical remediation queue: `config/product-master-remediation-queue-2026-10-05.json`.
 - Global Commercial Publish Gate remains CLOSED throughout this program.
 
-## 1. Workstream A — Identity (59 records)
+## 1. Workstream A — Identity (52 records)
 ### Required evidence per record
 - PM-owned product identity: brand, exact product name, exact size/variant.
 - Valid PM SKU.
@@ -25,7 +26,7 @@
 ### Identity closure criterion
 A record leaves `Blocked — Identity` only when the exact PM-owned identity is established, SKU and GTIN are present and validated, the product has a unique deterministic match to its evidence/source record, and QA marks `evidenceValidated=true`. The record may then enter the Image/Stock gate; it is not yet Publish-Ready unless all other evidence gates also pass.
 
-## 2. Workstream B — Image/Stock (13 records)
+## 2. Workstream B — Image/Stock (20 records)
 ### Required evidence per record
 - PM-owned exact product image matching the exact variant/size.
 - PM stock proof and reconciled quantity from a PM-owned source.
@@ -52,7 +53,7 @@ A record leaves `Blocked — Image/Stock` only when identity is already verified
 - After each batch, reconcile Product Master -> Supabase blocked_products -> evidence registry.
 
 ## 4. Priority order
-1. Reconcile the 59/13 count and produce the canonical 72-record queue.
+1. Reconcile the current 52/20 count and use the canonical 72-record queue.
 2. Finish records with near-complete Identity evidence first.
 3. Resolve high-value / high-confidence candidates next, including DERMAELLE028 and 86067.
 4. Clear Image/Stock blockers for records whose identities are already fully verified.
