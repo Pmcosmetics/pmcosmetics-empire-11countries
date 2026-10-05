@@ -6,7 +6,7 @@
 
 ## 1. Publication gate
 - Commercial Publish Gate: **CLOSED**
-- Batch Commercial Publish Gate: **CLOSED**
+- Batch Commercial Publish Gate: **OPEN in Railway Production (evidence-aware)**
 - Controlled pilot exception: **DERMAELLE007 is ACTIVE**
 - Rationale: the system is evidence-gated and must not publish products without verified SKU/GTIN, PM stock, acquisition cost, exact image evidence, provenance, and required authorization.
 
@@ -81,7 +81,7 @@ Infrastructure is healthy. The remaining commercial blocker is **evidence covera
 - 21 require PM image/stock evidence
 - 51 require identity/SKU/GTIN evidence
 
-No second product currently meets the complete evidence contract needed for safe batch publication.
+No second product currently meets the complete evidence contract needed for safe live batch publication at this checkpoint; the batch gate is open so future evidence-qualified products can enter without changing the global commercial gate.
 
 Notion Command Center documentation is currently constrained by the workspace block limit; the durable operational record for this phase is maintained in GitHub and Airtable until Notion capacity is available.
 
@@ -91,7 +91,7 @@ Notion Command Center documentation is currently constrained by the workspace bl
 - Pilot cross-system verification: 2026-10-05
 - Railway Production deployment `c8076c56-71dd-475a-8080-1fd0e8ae81a2`: success
 - Railway healthcheck `/api/health`: success
-- Runtime gate: CLOSED
-- Batch gate: CLOSED
+- Runtime/global commercial gate: CLOSED
+- Batch gate: OPEN in Railway Production; each product remains evidence-gated
 
 **Policy:** Keep the commercial gate closed globally while allowing only explicitly verified pilot exceptions. Do not bulk-publish unverified products.
