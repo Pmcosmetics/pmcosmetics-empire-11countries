@@ -106,16 +106,13 @@ async function select(table, query="*"){
 }
 
 async function load(){
-  const [products,inventory,currencies,_prices,orders,customers,reporting,_commercial,_channels]=await Promise.all([
+  const [products,inventory,currencies,orders,customers,reporting]=await Promise.all([
     select("products","id,sku,name,base_price,currency,is_active,updated_at"),
     select("inventory","product_id,location_code,quantity,reserved,updated_at"),
     select("currencies","code,name,symbol,is_active"),
-    select("product_prices","product_id,currency_code,amount,price_type,source,is_active,effective_from"),
     select("orders","id,order_number,channel_code,status,total_amount,currency,created_at,updated_at"),
     select("customer_analytics","customer_id,full_name,country_code,total_orders,total_order_value,last_order_at"),
     select("reporting_dashboard","active_products,inventory_products,inventory_units,available_units,total_orders,open_orders,booked_revenue,customers,active_channels,publish_qa_ready_products"),
-    select("commercial_dashboard","active_products,inventory_locations,units_in_inventory,total_orders,open_orders,customers,active_channels"),
-    select("commerce_channels","code,name,is_active")
   ]);
 
   const byProduct=Object.fromEntries(products.map(p=>[p.id,p]));
