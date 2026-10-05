@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T16:45:00Z",
+  "generatedAt": "2026-10-05T05:00:00Z",
   "mode": "OPERATIONAL_REFERENCE_STAGING",
   "brand": "PM COSMETICS HUB",
   "referenceUniqueProducts": 3218,
@@ -7,26 +7,29 @@
   "shopifyDraftProductsObserved": 140,
   "shopifyDraftPageHasNextPage": true,
   "commercialPublishGate": "CLOSED",
-  "publishReadyProducts": 0,
+  "publishReadyProducts": 1,
   "deployment": {
     "platform": "Railway",
     "service": "pmcosmetics-empire-11countries",
-    "deploymentId": "b43b39a0-a3f9-48ec-b00e-58a62ef37f32",
+    "deploymentId": "9c0c72fe-2cb1-4e01-b4c9-71cb68a16f9a",
     "status": "SUCCESS",
-    "verifiedAt": "2026-10-03T15:49:30Z",
-    "runtimeCommit": "3ea791314eca3d4dd63d806b49f8bf26d8a66d52"
+    "verifiedAt": "2026-10-05T04:33:53Z",
+    "runtimeCommit": "376d50a305204e9a2db8186da64e8e8672a3c348"
   },
   "execution": {
     "centralCatalogRegistered": true,
     "multiChannelStagingRegistered": true,
     "commercialPublication": false,
-    "nextOperationalRule": "Continue reference-to-draft/feed staging; publish only after evidenceVerified + Publish-Ready.",
+    "nextOperationalRule": "Continue evidence-gated pilot; publish only Publish-Ready + evidenceVerified products. Global commercial gate remains CLOSED.",
     "runtimeVerified": true,
     "supabaseCounts": {
       "products": 2,
       "inventoryRows": 2,
       "blockedProducts": 73,
+      "blockedIdentity": 59,
+      "blockedImageStock": 13,
       "physicalInventoryVerifications": 1,
+      "publishReadyProducts": 1,
       "activeCommerceChannels": 3
     },
     "securityAdvisor": "WARN: leaked password protection disabled",
@@ -34,7 +37,7 @@
     "sourceDrift": "documentation_only_commits_after_runtime_deploy"
   },
   "nextRun": "Continue reference-to-draft/feed staging; no commercial publication until evidenceVerified + Publish-Ready.",
-  "githubHeadCommit": "109fb49995d72dcbb3e13736027c5fb89bf53c88",
+  "githubHeadCommit": "376d50a305204e9a2db8186da64e8e8672a3c348",
   "shopify": {
     "totalProducts": 215,
     "draftProducts": 140,
