@@ -8,6 +8,20 @@ const server = app.listen(0);
 const { port } = server.address();
 
 try {
+  const authConfig = await fetch(`http://127.0.0.1:${port}/api/auth/config`);
+  assert.equal(authConfig.status, 200);
+  const authConfigBody = await authConfig.json();
+  assert.equal(authConfigBody.ok, true);
+  assert.equal(authConfigBody.serverVerification, true);
+  assert.equal(authConfigBody.exactEmailAllowlist, true);
+  assert.equal(authConfigBody.allowedEmailCount, 2);
+
+  const authSession = await fetch(`http://127.0.0.1:${port}/api/auth/session`);
+  assert.equal(authSession.status, 401);
+  const authSessionBody = await authSession.json();
+  assert.equal(authSessionBody.authenticated, false);
+  assert.equal(authSessionBody.reason, "AUTH_TOKEN_MISSING");
+
   const whatsappStatus = await fetch(`http://127.0.0.1:${port}/api/whatsapp/status`);
   assert.equal(whatsappStatus.status, 200);
   const whatsappStatusBody = await whatsappStatus.json();
