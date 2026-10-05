@@ -8,6 +8,7 @@ import { getManusStatus, pullManusProducts, validateManusProducts } from "./inte
 import { isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
 import { evaluateBatch } from "../scripts/batch-gate.mjs";
 import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitude.mjs";
+import { authConfigSnapshot, bearerTokenFromRequest, verifyAccessToken } from "./integrations/auth.mjs";
 
 const require = createRequire(import.meta.url);
 const marketConfig = require("../config/markets.json");
@@ -53,18 +54,39 @@ const healthResponse = (_req, res) => res.json({
 app.get("/", (_req, res) => res.sendFile("public/index.html", { root: process.cwd() }));
 
 app.get("/auth", (_req, res) => res.sendFile("auth.html", { root: "public" }));
-app.get("/api/auth/config", (_req, res) => res.json({
-  ok: true,
-  provider: authIdentityConfig.provider,
-  mode: authIdentityConfig.mode,
-  status: authIdentityConfig.status,
-  allowedEmails: authIdentityConfig.allowedEmails,
-  primaryEmail: authIdentityConfig.primaryEmail,
-  secondaryEmail: authIdentityConfig.secondaryEmail,
-  supabaseUrl: process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl,
-  publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || "",
-  redirectPath: authIdentityConfig.redirectPath
-}));
+app.get("/api/auth/config", (_req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  return res.json({
+    ok: true,
+    ...authConfigSnapshot(),
+    primaryEmail: authIdentityConfig.primaryEmail,
+    secondaryEmail: authIdentityConfig.secondaryEmail,
+    supabaseUrl: process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl,
+    publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || "",
+  });
+});
+
+app.get("/api/auth/session", async (req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  const result = await verifyAccessToken(bearerTokenFromRequest(req));
+  if (!result.ok) {
+    return res.status(result.status || 401).json({
+      ok: false,
+      authenticated: false,
+      reason: result.reason,
+    });
+  }
+  return res.json({
+    ok: true,
+    authenticated: true,
+    user: {
+      id: result.user.id,
+      email: result.email,
+      role: result.user.role || null,
+      lastSignInAt: result.user.last_sign_in_at || null,
+    },
+  });
+});
 
 
 
