@@ -3,15 +3,15 @@
 ## Canonical control point
 - GitHub: Pmcosmetics/pmcosmetics-empire-11countries
 - Branch: main
-- Latest observed commit: 58b45fc5f6aff13457cdc4969cc81a13a643aee0
-- Latest commit purpose: authoritative evidence-only batch publication; server verification is required and client-supplied eligibility flags are not trusted.
+- Latest observed commit: `72e7d800efdbffec9ab5c86e01d189a03493d88b`
+- Latest commit purpose: adds the live-sync verification script; the preceding main history also contains the authoritative evidence-only batch publication hardening.
 - Commercial Publish Gate: CLOSED.
 
 ## Current product/commercial state
 The canonical README on main records the latest 2026-10-05 reconciliation:
 - Shopify: 215 catalog products observed; 1 ACTIVE and 214 non-ACTIVE.
 - Active pilot SKU: DERMAELLE007, price 239 EGP, 48 units at Shopify Shop location.
-- Product Master: 73 records = 1 Publish-Ready, 51 Blocked — Identity, 21 Blocked — Image/Stock.
+- Product Master: 73 records = 1 Publish-Ready, 52 Blocked — Identity, 20 Blocked — Image/Stock. Older 51/21 and 59/13 splits are historical and not the current execution source.
 - No bulk activation or deletion was performed.
 - An archived Shopify duplicate for the pilot SKU is retained for audit history.
 - Primary catalog currency remains EGP; non-EGP channels require explicit target currency.
@@ -40,3 +40,8 @@ No guessed product data, secret, credential, bulk publish, or irreversible catal
 2. Complete the Shopify ChatGPT connector authorization outside this session before attempting direct Shopify operations.
 3. Reconcile any older snapshots against the latest main evidence before treating them as authoritative.
 4. Continue the one-product reversible pilot path only after the authoritative Evidence Gate remains green.
+## Railway certification status
+- Current session: **NOT CERTIFIED** for runtime synchronization.
+- Reason: direct Railway runtime access is unavailable in this workspace and the Railway connector is not connected.
+- A prior snapshot references runtime SHA `376d50a305204e9a2db8186da64e8e8672a3c348`, but that SHA does not exist in the current GitHub repository; it is not accepted as proof of the running version.
+- Commercial Publish Gate remains **policy-closed** in the code/configuration, but the live runtime gate must be re-read before certification.
