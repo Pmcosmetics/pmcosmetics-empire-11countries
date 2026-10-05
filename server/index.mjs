@@ -6,7 +6,7 @@ import { createRequire } from "node:module";
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { checkWooConnection, getWooStatus, syncWooProducts } from "./integrations/woocommerce.mjs";
 import { getManusStatus, pullManusProducts, validateManusProducts } from "./integrations/manus.mjs";
-import { isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
+import { getActiveProductsBySkus, isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
 import { evaluateBatch } from "../scripts/batch-gate.mjs";
 import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitude.mjs";
 import { authConfigSnapshot, bearerTokenFromRequest, verifyAccessToken } from "./integrations/auth.mjs";
@@ -16,6 +16,7 @@ const marketConfig = require("../config/markets.json");
 const storefrontConfig = require("../config/storefront-cosmetics.json");
 const brandConfig = require("../config/brand-identity.json");
 const referenceCatalogConfig = require("../config/reference-catalog.json");
+const evidenceSnapshot = require("../data/products/staging-evidence.json");
 const authIdentityConfig = require("../config/auth-identity.json");
 const empireRegistry = require("../config/empire-unified-registry.json");
 
@@ -51,6 +52,71 @@ app.use((req, res, next) => {
 app.use(express.static("public", { index: false }));
 
 const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
+const authoritativePublishReadyBySku = new Map(
+  (Array.isArray(evidenceSnapshot.products) ? evidenceSnapshot.products : [])
+    .filter((product) =>
+      product?.sku &&
+      product?.status === "Publish-Ready" &&
+      product?.publish_gate === "Publish-Ready"
+    )
+    .map((product) => [String(product.sku).trim(), product])
+);
+
+const reconcileBatchProducts = async (products) => {
+  const list = Array.isArray(products) ? products : [];
+  const skus = list
+    .map((product) => String(product?.sku ?? product?.SKU ?? "").trim())
+    .filter(Boolean);
+
+  const activeProducts = await getActiveProductsBySkus(skus);
+  const activeBySku = new Map(
+    (Array.isArray(activeProducts) ? activeProducts : [])
+      .map((product) => [String(product?.sku || "").trim(), product])
+  );
+
+  return list.map((input) => {
+    const sku = String(input?.sku ?? input?.SKU ?? "").trim();
+    const evidence = authoritativePublishReadyBySku.get(sku);
+    const catalog = activeBySku.get(sku);
+    const authorizationStatus = String(evidence?.authorization_status || "");
+    const authorizationRequired = authorizationStatus.includes("Required");
+    const authorizationVerified = authorizationStatus === "Verified";
+    const imageUrl = String(catalog?.image_url || "").trim();
+
+    const authoritativeReady = Boolean(
+      evidence &&
+      catalog &&
+      Number(evidence.pm_stock) > 0 &&
+      Number(evidence.pm_cost_egp) > 0 &&
+      String(evidence.gtin?.text || evidence.gtin || "").trim() &&
+      String(evidence.image_evidence_url || "").trim() &&
+      imageUrl &&
+      String(evidence.source_type || "").trim() &&
+      evidence.source_type !== "Unresolved" &&
+      (!authorizationRequired || authorizationVerified)
+    );
+
+    return {
+      ...input,
+      sku,
+      name: String(catalog?.name || evidence?.name || input?.name || "").trim(),
+      gtin: String(evidence?.gtin?.text || evidence?.gtin || input?.gtin || "").trim(),
+      stock: authoritativeReady ? Number(evidence.pm_stock) : 0,
+      pm_stock: authoritativeReady ? Number(evidence.pm_stock) : 0,
+      cost: authoritativeReady ? Number(evidence.pm_cost_egp) : 0,
+      imageUrl: authoritativeReady ? imageUrl : "",
+      public_price: authoritativeReady ? String(catalog.base_price) : "",
+      retail_price: authoritativeReady ? String(catalog.base_price) : "",
+      provenanceVerified: authoritativeReady,
+      imageVerified: authoritativeReady,
+      authorizationRequired,
+      authorizationVerified,
+      publishable: authoritativeReady,
+      evidenceVerified: authoritativeReady
+    };
+  });
+};
+
 const batchGateState = () => {
   const configured = process.env.BATCH_COMMERCIAL_PUBLISH_GATE;
   if (configured !== undefined && configured !== "") {
@@ -518,29 +584,52 @@ app.get("/api/products/staging", rateLimit, requireEmpireAuth, (_req, res) => re
   feed: "/data/products/staging-evidence.json"
 }));
 
-app.post("/api/products/batch/readiness", rateLimit, requireEmpireAuth, (req, res) => {
-  const result = evaluateBatch(req.body?.products);
-  void trackAmplitudeEvent("batch_readiness_checked", {
-    inputCount: result.inputCount,
-    eligibleCount: result.eligibleCount,
-    blockedCount: result.blockedCount,
-    batchGate: batchGateState()
-  });
-  return res.json({
-    ok: true,
-    gate: gateState(),
-    batchGate: batchGateState(),
-    mode: "EVIDENCE_AWARE_BATCH",
-    ...result,
-    publishableNow: result.inputCount > 0 &&
-      result.eligibleCount === result.inputCount &&
-      batchGateState() === "OPEN"
-  });
+app.post("/api/products/batch/readiness", rateLimit, requireEmpireAuth, async (req, res) => {
+  try {
+    const reconciled = await reconcileBatchProducts(req.body?.products);
+    const result = evaluateBatch(reconciled);
+    void trackAmplitudeEvent("batch_readiness_checked", {
+      inputCount: result.inputCount,
+      eligibleCount: result.eligibleCount,
+      blockedCount: result.blockedCount,
+      batchGate: batchGateState()
+    });
+    return res.json({
+      ok: true,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      mode: "EVIDENCE_AWARE_BATCH",
+      sourceOfTruth: "data/products/staging-evidence.json + Supabase active Product Master",
+      ...result,
+      publishableNow: result.inputCount > 0 &&
+        result.eligibleCount === result.inputCount &&
+        batchGateState() === "OPEN"
+    });
+  } catch (error) {
+    return res.status(503).json({
+      ok: false,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      reason: "BATCH_EVIDENCE_RECONCILIATION_FAILED",
+      message: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
 });
 
 app.post("/api/products/batch/publish", rateLimit, requireEmpireAuth, async (req, res) => {
-  const products = Array.isArray(req.body?.products) ? req.body.products : [];
   const dryRun = req.body?.dryRun !== false;
+  let products;
+  try {
+    products = await reconcileBatchProducts(req.body?.products);
+  } catch (error) {
+    return res.status(503).json({
+      ok: false,
+      gate: gateState(),
+      batchGate: batchGateState(),
+      reason: "BATCH_EVIDENCE_RECONCILIATION_FAILED",
+      message: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
   const result = evaluateBatch(products);
 
   if (products.length === 0) {
