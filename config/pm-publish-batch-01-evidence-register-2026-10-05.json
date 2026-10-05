@@ -19,14 +19,24 @@
     "verificationStatus": "PENDING — share redirect is registered; Drive contents are not independently readable in current workspace",
     "shareLink": "https://l.meta.ai/?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F1eTlPxA3hBxnNO7aR6qFo70qqRKCjpriY&h=AUCMELfmuSJMN2M_zbMPUn3PPSn0deBB7K972mtgK3gKDzS1-IgVpC6u7ONTlkkNR3Nt587pxRAd5KSrII-FuN68oyxeqfjjkxyt12cPPiu3N89vhLoqMCEbrNG5GNtJfPdTf5TlCW382pSCj8AP8A",
     "shareLinkStatus": "OFFICIAL_SHARE_REDIRECT_TO_SAME_DRIVE_FOLDER",
-    "folderId": "1eTlPxA3hBxnNO7aR6qFo70qqRKCjpriY"
+    "folderId": "1eTlPxA3hBxnNO7aR6qFo70qqRKCjpriY",
+    "additionalEvidenceFolders": [
+      {
+        "folderId": "1zHQXeZ1V6__Fqdu0sD9LN-AjphGcbUu-",
+        "driveUrl": "https://drive.google.com/drive/folders/1zHQXeZ1V6__Fqdu0sD9LN-AjphGcbUu-",
+        "shareLink": "https://l.meta.ai/?u=https%3A%2F%2Fdrive.google.com%2Fdrive%2Ffolders%2F1zHQXeZ1V6__Fqdu0sD9LN-AjphGcbUu-&h=AUCMELfmuSJMN2M_zbMPUn3PPSn0deBB7K972mtgK3gKDzS1-IgVpC6u7ONTlkkNR3Nt587pxRAd5KSrII-FuN68oyxeqfjjkxyt12cPPiu3N89vhLoqMCEbrNG5GNtJfPdTf5TlCW382pSCj8AP8A",
+        "role": "ADDITIONAL_EVIDENCE_FOLDER",
+        "verificationStatus": "PENDING — folder contents are not independently readable in current workspace",
+        "addedAt": "2026-10-05T16:47:00+03:00"
+      }
+    ]
   },
   "sourceFiles": [
     "config/release-batch-01-2026-10-05.json",
     "docs/FULL-CHANNEL-TEST-MATRIX-2026-10-05.md",
     "docs/MULTI-CHANNEL-ACCEPTANCE-CRITERIA-2026-10-05.md"
   ],
-  "evidencePolicy": "A Drive link is a reference until the underlying artifact is readable and mapped to the evidence_id/test ID. No evidence may be inferred from filename or account presence alone.",
+  "evidencePolicy": "A Drive link is a reference until the underlying artifact is readable and mapped to the evidence_id/test ID. No evidence may be inferred from filename or account presence alone. Additional Drive folders may supplement the primary official folder, but do not override it unless explicitly designated as the canonical evidence source.",
   "channelCount": 23,
   "evidenceCount": 161,
   "statuses": {
