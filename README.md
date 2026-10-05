@@ -138,11 +138,12 @@ Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated t
 
 **2026-10-01 telemetry sync:** Amplitude server telemetry is env-gated and remains disabled until `AMPLITUDE_API_KEY` is configured in the deployment environment. Commercial publication remains CLOSED.
 
-**2026-10-04 currency safety sync:** Live Shopify Admin metadata now reports the connected shop currency as **EGP** in Egypt. The Empire therefore keeps the primary catalog currency as EGP and must not auto-convert Egyptian retail prices into USD. The sync engine continues to block zero/placeholder prices and requires an explicit target currency for any non-EGP channel.
+**2026-10-04 currency safety sync:** Live Shopify Admin metadata reports the connected shop currency as **EGP** in Egypt. The Empire therefore keeps the primary catalog currency as EGP and must not auto-convert Egyptian retail prices into USD. The sync engine continues to block zero/placeholder prices and requires an explicit target currency for any non-EGP channel.
 
-**2026-10-04 live reconciliation sync:** Railway production deployment remains **SUCCESS** with the API health check configured at `/api/health`. Shopify live reconciliation reports **216** total catalog records (**134 DRAFT / 82 ARCHIVED / 0 ACTIVE**). Supabase RLS is enabled on the public tables. Airtable currently has **1 Publish-Ready product (DERMAELLE007)**, but the commercial publication gate remains CLOSED because evidence/publication controls still govern activation.
+**2026-10-05 live reconciliation sync:** Live Shopify currently reports **215** total catalog products with **1 ACTIVE** product and **214 non-ACTIVE** products. The active product is `DERMAELLE007`, priced at **239 EGP**, with **48** units confirmed at the Shopify `Shop location`. The store currently exposes Online Store, Shop, Point of Sale, and Inbox publications. The Commercial Publish Gate remains **CLOSED**.
 
-**2026-10-05 product reconciliation:** `DERMAELLE007` is now cross-linked across Airtable and Shopify. Live Shopify record is **DRAFT**, SKU `DERMAELLE007`, price **239 EGP**, inventory **48**; the matching Supabase product is **active** with quantity **48** and price **239 EGP**. The archived duplicate SKU remains historical and unpublishable; no deletion or activation was performed.
+**2026-10-05 product reconciliation:** `DERMAELLE007` is cross-linked across Airtable, Supabase, and Shopify. Airtable marks it **Publish-Ready** and the controlled pilot is live in Shopify. An archived Shopify duplicate with the same SKU is retained for audit history; no deletion or bulk activation was performed. The Product Master currently contains **73** records: **1 Publish-Ready**, **51 Blocked — Identity**, and **21 Blocked — Image/Stock**.
+
 ---
 
 ## 📚 Documentation
