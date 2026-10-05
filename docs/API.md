@@ -85,3 +85,17 @@ The dashboard does not bypass the commercial/evidence gates.
 - No product or credential data is fabricated
 
 See docs/SECURITY.md for the production security/compliance status.
+
+## Protected administration/status routes
+
+The following routes require a valid Supabase bearer token and are not public storefront APIs:
+- GET /api/empire/registry
+- GET /api/readiness
+- GET /api/channel/status
+- GET /api/supabase/status
+- GET /api/manus/status
+- GET /api/woocommerce/status
+- GET /api/woocommerce/check
+- GET /api/products/staging
+
+Invalid or missing tokens return HTTP 401/403 according to the server-side auth result.
