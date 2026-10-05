@@ -148,7 +148,7 @@ app.get("/api/auth/session", async (req, res) => {
 
 
 
-app.get("/api/empire/registry", requireEmpireAuth, (_req, res) => res.json({
+app.get("/api/empire/registry", rateLimit, requireEmpireAuth, (_req, res) => res.json({
   ok: true,
   registry: empireRegistry,
   runtime: {
@@ -268,7 +268,7 @@ const shopifySignatureValid = (req) => {
 };
 
 
-app.get("/api/channel/status", requireEmpireAuth, (_req, res) => {
+app.get("/api/channel/status", rateLimit, requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -360,7 +360,7 @@ app.get("/api/amplitude/status", (_req, res) => res.json({ ok: true, ...getAmpli
 app.get("/health", healthResponse);
 app.get("/favicon.ico", (_req, res) => res.status(204).end());
 
-app.get("/api/readiness", requireEmpireAuth, (_req, res) => {
+app.get("/api/readiness", rateLimit, requireEmpireAuth, (_req, res) => {
   const gate = gateState();
   const manus = getManusStatus();
   const woocommerce = getWooStatus();
@@ -402,7 +402,7 @@ app.get("/api/readiness", requireEmpireAuth, (_req, res) => {
   return res.json(response);
 });
 
-app.get("/api/supabase/status", requireEmpireAuth, (_req, res) => {
+app.get("/api/supabase/status", rateLimit, requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -411,7 +411,7 @@ app.get("/api/supabase/status", requireEmpireAuth, (_req, res) => {
   });
 });
 
-app.get("/api/manus/status", requireEmpireAuth, (_req, res) => {
+app.get("/api/manus/status", rateLimit, requireEmpireAuth, (_req, res) => {
   res.json({ ok: true, gate: gateState(), service: "manus-catalog-adapter", ...getManusStatus() });
 });
 
@@ -435,7 +435,7 @@ app.post("/api/manus/import", async (req, res) => {
   }
 });
 
-app.post("/api/manus/woocommerce/sync", requireEmpireAuth, async (req, res) => {
+app.post("/api/manus/woocommerce/sync", rateLimit, requireEmpireAuth, async (req, res) => {
   try {
     const products = Array.isArray(req.body?.products) ? req.body.products : await pullManusProducts();
     const dryRun = req.body?.dryRun !== false;
@@ -456,7 +456,7 @@ app.post("/api/manus/woocommerce/sync", requireEmpireAuth, async (req, res) => {
   }
 });
 
-app.get("/api/woocommerce/status", requireEmpireAuth, (_req, res) => {
+app.get("/api/woocommerce/status", rateLimit, requireEmpireAuth, (_req, res) => {
   res.json({
     ok: true,
     gate: gateState(),
@@ -465,7 +465,7 @@ app.get("/api/woocommerce/status", requireEmpireAuth, (_req, res) => {
   });
 });
 
-app.get("/api/woocommerce/check", requireEmpireAuth, async (_req, res) => {
+app.get("/api/woocommerce/check", rateLimit, requireEmpireAuth, async (_req, res) => {
   const result = await checkWooConnection();
   res.status(result.reachable ? 200 : result.configured ? 502 : 200).json({
     ...result,
@@ -473,7 +473,7 @@ app.get("/api/woocommerce/check", requireEmpireAuth, async (_req, res) => {
   });
 });
 
-app.post("/api/woocommerce/sync", requireEmpireAuth, async (req, res) => {
+app.post("/api/woocommerce/sync", rateLimit, requireEmpireAuth, async (req, res) => {
   try {
     const products = Array.isArray(req.body?.products) ? req.body.products : [];
     const dryRun = req.body?.dryRun !== false;
@@ -531,7 +531,7 @@ app.get("/api/products", async (_req, res) => {
   }
 });
 
-app.get("/api/products/staging", requireEmpireAuth, (_req, res) => res.json({
+app.get("/api/products/staging", rateLimit, requireEmpireAuth, (_req, res) => res.json({
   ok: true,
   gate: gateState(),
   publishable: false,
@@ -539,7 +539,7 @@ app.get("/api/products/staging", requireEmpireAuth, (_req, res) => res.json({
   feed: "/data/products/staging-evidence.json"
 }));
 
-app.post("/api/products/batch/readiness", requireEmpireAuth, (req, res) => {
+app.post("/api/products/batch/readiness", rateLimit, requireEmpireAuth, (req, res) => {
   const result = evaluateBatch(req.body?.products);
   void trackAmplitudeEvent("batch_readiness_checked", {
     inputCount: result.inputCount,
@@ -559,7 +559,7 @@ app.post("/api/products/batch/readiness", requireEmpireAuth, (req, res) => {
   });
 });
 
-app.post("/api/products/batch/publish", requireEmpireAuth, async (req, res) => {
+app.post("/api/products/batch/publish", rateLimit, requireEmpireAuth, async (req, res) => {
   const products = Array.isArray(req.body?.products) ? req.body.products : [];
   const dryRun = req.body?.dryRun !== false;
   const result = evaluateBatch(products);
