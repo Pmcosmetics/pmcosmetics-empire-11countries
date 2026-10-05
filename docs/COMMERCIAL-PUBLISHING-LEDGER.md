@@ -32,10 +32,10 @@ Airtable Product Master contains **73** controlled product records:
 - Airtable gate: Publish-Ready
 - Live Shopify URL: https://pmcosmetics-lgdc2mrf.myshopify.com/products/dermaelle-hyalubalance-sebum-control-cleansing-gel-200ml-1
 
-## 3. Shopify live state
-- Total products: **216**
-- Draft: **134**
-- Archived: **82**
+## 3. Shopify live state (recorded reconciliation)
+- Total products: **215**
+- Draft: **140**
+- Archived: **75**
 - Active before pilot: **0**
 - Controlled pilot now active: **1**
 - Currency: **EGP**
@@ -89,9 +89,11 @@ Notion Command Center documentation is currently constrained by the workspace bl
 - GitHub CI for commit `5b92f39554c55735f9d2af8bfe0312458da6da05`: success
 - Commercial rollout ledger commit: `3e421a6554e0ee2d4ba4e4379f48f0c1dd31d3d1`
 - Pilot cross-system verification: 2026-10-05
-- Railway Production deployment `c8076c56-71dd-475a-8080-1fd0e8ae81a2`: success
-- Railway healthcheck `/api/health`: success
-- Runtime/global commercial gate: CLOSED
-- Batch gate: OPEN in Railway Production; each product remains evidence-gated
+- Railway Production deployment metadata in this ledger is historical; current-session runtime SHA and `/api/health` are not independently verified.
+- Runtime/global commercial gate: **NOT CERTIFIED IN CURRENT SESSION; policy default remains CLOSED**.
+- Batch gate: **NOT CERTIFIED IN CURRENT SESSION**; evidence-aware evaluation remains separate from permission to perform live commercial writes.
 
 **Policy:** Keep the commercial gate closed globally while allowing only explicitly verified pilot exceptions. Do not bulk-publish unverified products.
+
+
+**Synchronization correction:** GitHub `main` is now observed at `72e7d800efdbffec9ab5c86e01d189a03493d88b`. Prior runtime metadata is treated as historical until a Railway-connected check proves the deployed commit and `/api/health` response.
