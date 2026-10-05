@@ -245,7 +245,7 @@
       "githubMainHead": "72e7d800efdbffec9ab5c86e01d189a03493d88b",
       "railwayRuntimeCommit": null,
       "railwayRuntimeVerification": "NOT_CERTIFIED_IN_CURRENT_SESSION",
-      "reason": "Railway connector unavailable and prior recorded runtime SHA is not present in the current repository.",
+      "reason": "Railway runtime evidence was not returned in the current session; prior recorded runtime SHA is not present in the current repository.",
       "globalCommercialPublishGate": "POLICY_CLOSED"
     }
   },
