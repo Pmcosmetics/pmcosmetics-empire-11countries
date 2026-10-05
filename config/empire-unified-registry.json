@@ -276,7 +276,7 @@
     {
       "id": "shopify",
       "status": "connected_verified",
-      "detail": "Pmcosmetics store accessible; 215 products observed (140 DRAFT, 75 ARCHIVED, 0 ACTIVE); commercial publication gated",
+      "detail": "Pmcosmetics store accessible; 215 products observed with 1 ACTIVE and 214 non-ACTIVE; DERMAELLE007 is the active controlled-pilot SKU at 239 EGP with 48 units. Commercial publication remains gated.",
       "catalogQuality": {
         "zeroPriceVariants": 195,
         "missingSkuProducts": 189,
@@ -340,9 +340,9 @@
   "currencyPolicy": {
     "canonicalEgyptRetailCurrency": "EGP",
     "publicRetailPriceSource": "AlFouad Pharmacies reference catalog",
-    "shopifyBaseCurrencyObserved": "USD",
-    "shopifyEgyptMarketAttempt": "blocked_by_payment_gateway_multi_currency_limit",
-    "rule": "Never write EGP numeric values into a USD-priced variant field. Store EGP public-retail values as reference/structured data until Shopify base currency or supported multi-currency checkout is configured."
+    "shopifyBaseCurrencyObserved": "EGP",
+    "shopifyEgyptMarketAttempt": "live_egp_catalog_currency_verified",
+    "rule": "Keep Egyptian retail prices in EGP for the connected Egypt shop. Never auto-convert EGP values into USD. Any non-EGP channel requires an explicit target currency and verified conversion policy before numeric publication."
   },
   "marketplaceReferenceStaging": {
     "uniqueProducts": 3218,
