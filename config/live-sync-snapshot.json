@@ -7,16 +7,16 @@
     "github": {
       "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
       "branch": "main",
-      "headCommit": "8de0bd6169a9a283914c547391c4d2408c294cad",
+      "headCommit": "72e7d800efdbffec9ab5c86e01d189a03493d88b",
       "permissions": "pull/push/triage"
     },
     "railway": {
       "deploymentId": "327aa59d-231f-43f3-adfe-cbadcc2f50a5",
-      "status": "SUCCESS",
-      "commit": "8de0bd6169a9a283914c547391c4d2408c294cad",
+      "status": "UNVERIFIED_IN_CURRENT_SESSION",
+      "commit": null,
       "region": "sfo",
-      "gate": "CLOSED",
-      "runtime": "API listening on :8080",
+      "gate": "UNVERIFIED",
+      "runtime": "UNVERIFIED",
       "metrics": {
         "cpuCurrent": 0.00000775,
         "cpuAverage": 0.00048212277777777787,
@@ -148,7 +148,8 @@
     "Requested marketplace set is now centrally staged as 3218 reference products in the Empire registry; external seller publication remains credential/authorization/evidence gated.",
     "Kenz and Knooz are not yet verified as standalone seller marketplaces; Kenz is publicly observed as a brand on Jumia and Knooz has ambiguous public identity.",
     "Shopify live verification: 215 products observed; 140 are DRAFT and 75 are ARCHIVED. Commercial publication remains blocked by Evidence Gate.",
-    "Live sync reconciled 2026-10-04: GitHub main and Railway production both run commit 8de0bd6169a9a283914c547391c4d2408c294cad; Product Evidence Gate has 1 Publish-Ready SKU (DERMAELLE007) and global Commercial Publish Gate remains CLOSED."
+    "Live sync reconciled 2026-10-04: GitHub main and Railway production both run commit 8de0bd6169a9a283914c547391c4d2408c294cad; Product Evidence Gate has 1 Publish-Ready SKU (DERMAELLE007) and global Commercial Publish Gate remains CLOSED.",
+    "2026-10-05 reconciliation correction: GitHub main is 72e7d800efdbffec9ab5c86e01d189a03493d88b. Prior recorded runtime SHA 376d50a305204e9a2db8186da64e8e8672a3c348 does not exist in this repository and is therefore not accepted as current runtime evidence."
   ],
   "marketplaceReferenceStaging": {
     "updatedAt": "2026-10-03",
@@ -203,12 +204,23 @@
     "dashboard": "https://onboard.windsor.ai/app"
   },
   "runtimeVerification": {
-    "railwayLatestSuccessDeploymentId": "9c0c72fe-2cb1-4e01-b4c9-71cb68a16f9a",
-    "railwayRuntimeCommit": "376d50a305204e9a2db8186da64e8e8672a3c348",
-    "githubHeadCommit": "376d50a305204e9a2db8186da64e8e8672a3c348",
-    "healthHttp": 200,
-    "commercialGate": "CLOSED",
-    "verifiedAt": "2026-10-05T04:33:53Z"
+    "historical": {
+      "railwayLatestSuccessDeploymentId": "9c0c72fe-2cb1-4e01-b4c9-71cb68a16f9a",
+      "railwayRuntimeCommit": "376d50a305204e9a2db8186da64e8e8672a3c348",
+      "githubHeadCommit": "376d50a305204e9a2db8186da64e8e8672a3c348",
+      "healthHttp": 200,
+      "commercialGate": "CLOSED",
+      "verifiedAt": "2026-10-05T04:33:53Z"
+    },
+    "currentSession": {
+      "githubHeadCommit": "72e7d800efdbffec9ab5c86e01d189a03493d88b",
+      "railwayRuntimeCommit": null,
+      "healthHttp": null,
+      "commercialGate": "UNVERIFIED",
+      "verificationStatus": "BLOCKED_NO_RAILWAY_CONNECTOR_AND_DIRECT_RUNTIME_UNREACHABLE_FROM_WORKSPACE",
+      "checkedAt": "2026-10-05T22:48:00+03:00"
+    },
+    "rule": "A Railway runtime is certified only when its running commit SHA and /api/health response are independently observed."
   },
   "salesSurfaces": {
     "shopify_pos": {

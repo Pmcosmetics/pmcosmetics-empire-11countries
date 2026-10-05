@@ -240,7 +240,14 @@
     "whatsappPrimaryRouting": true,
     "whatsappSecondaryRouting": true,
     "snapchatRouting": true,
-    "telegramRouting": true
+    "telegramRouting": true,
+    "currentAssessment": {
+      "githubMainHead": "72e7d800efdbffec9ab5c86e01d189a03493d88b",
+      "railwayRuntimeCommit": null,
+      "railwayRuntimeVerification": "NOT_CERTIFIED_IN_CURRENT_SESSION",
+      "reason": "Railway connector unavailable and prior recorded runtime SHA is not present in the current repository.",
+      "globalCommercialPublishGate": "POLICY_CLOSED"
+    }
   },
   "lastLiveSync": {
     "verifiedAt": "2026-10-04T12:29:00+03:00",
@@ -429,8 +436,8 @@
     },
     {
       "id": "shopify-egp-pricing",
-      "status": "CURRENCY_CONFIGURATION_REQUIRED",
-      "detail": "Shopify base currency is USD; do not write EGP numeric retail prices into USD variant fields"
+      "status": "OBSERVED_EGP__NO_USD_AUTOCONVERSION",
+      "detail": "Recorded 2026-10-05 Shopify Egypt reconciliation reports EGP. Keep EGP values in EGP; any non-EGP channel requires an explicit target currency."
     },
     {
       "id": "shopify-evidence",
