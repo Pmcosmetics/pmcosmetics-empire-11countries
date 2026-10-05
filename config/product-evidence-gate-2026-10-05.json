@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-05",
+  "canonicalBrand": "PM COSMETICS HUB",
+  "gate": {
+    "name": "Product Evidence Gate",
+    "workflowStatus": "ENFORCED_AND_AUDITED",
+    "commercialPublishGate": "CLOSED",
+    "publishReadyProducts": 1,
+    "blockedProducts": 73,
+    "blockedBreakdown": {
+      "Blocked — Identity": 59,
+      "Blocked — Image/Stock": 13
+    },
+    "referenceProducts": 3218,
+    "referenceCategoryRows": 3479
+  },
+  "publishReadyRule": [
+    "PM-owned product identity",
+    "PM-owned exact image",
+    "PM stock evidence",
+    "cost/provenance evidence",
+    "SKU/GTIN validation",
+    "QA pass",
+    "evidenceVerified=true",
+    "publishable=true"
+  ],
+  "evidencePolicy": {
+    "retailerEvidence": "identity/reference only",
+    "referenceCatalog": "never auto-publish",
+    "whatsappCatalog": "customer/catalog source; live catalog contents not machine-readable in current connector session",
+    "noInference": true,
+    "noSyntheticSkuOrGtin": true
+  },
+  "completedEvidence": [
+    {
+      "sku": "DERMAELLE007",
+      "product": "Dermaelle Hyalubalance Sebum Control Cleansing Gel 200ml",
+      "status": "Publish-Ready",
+      "gtin": "6223007905060",
+      "pmStock": 48,
+      "acquisitionCostEGP": 260,
+      "imageEvidence": "Connected OneDrive QA record",
+      "authorizationStatus": "Verified",
+      "qaPassedAt": "2026-10-04",
+      "livePilotStatus": "ACTIVE in Shopify"
+    }
+  ],
+  "blockersForNextCandidates": [
+    "DERMAELLE028: exact variant identity/barcode + PM-owned exact image + inventory reconciliation + authorization document",
+    "86067 / CeraVe Hydrating Cleanser 236ml: PM-owned stock + PM-owned exact image + PM acquisition cost",
+    "Remaining blocked records: PM-owned evidence must independently satisfy the full rule"
+  ],
+  "acceptance": {
+    "productLevelGate": "OPEN_FOR_VERIFIED_CANDIDATES",
+    "globalCommercialPublishGate": "CLOSED",
+    "bulkPublication": "DISABLED",
+    "currentAcceptedSku": "DERMAELLE007",
+    "sourceOfTruth": "Supabase Product Master + blocked_products + physical_inventory_verifications + Empire registry",
+    "runtimeDeployment": "9c0c72fe-2cb1-4e01-b4c9-71cb68a16f9a",
+    "runtimeCommit": "376d50a305204e9a2db8186da64e8e8672a3c348"
+  }
+}
