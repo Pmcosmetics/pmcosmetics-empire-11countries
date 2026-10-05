@@ -217,7 +217,7 @@
       "railwayRuntimeCommit": null,
       "healthHttp": null,
       "commercialGate": "UNVERIFIED",
-      "verificationStatus": "BLOCKED_NO_RAILWAY_CONNECTOR_AND_DIRECT_RUNTIME_UNREACHABLE_FROM_WORKSPACE",
+      "verificationStatus": "NO_RAILWAY_RUNTIME_EVIDENCE_RETURNED_IN_CURRENT_SESSION",
       "checkedAt": "2026-10-05T22:48:00+03:00"
     },
     "rule": "A Railway runtime is certified only when its running commit SHA and /api/health response are independently observed."
