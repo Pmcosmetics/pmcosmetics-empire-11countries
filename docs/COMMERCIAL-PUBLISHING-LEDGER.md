@@ -13,8 +13,8 @@
 ## 2. Current product evidence state
 Airtable Product Master contains **73** controlled product records:
 - **1 Publish-Ready / published pilot:** DERMAELLE007
-- **21 Blocked — Image/Stock**
-- **51 Blocked — Identity**
+- **20 Blocked — Image/Stock**
+- **52 Blocked — Identity**
 
 ### Published pilot
 - Product: Dermaelle Hyalubalance Sebum Control Cleansing Gel 200ml
@@ -78,8 +78,8 @@ No retailer listing is treated as proof of PM-owned stock, PM-owned image, cost,
 
 ## 7. Current blockers
 Infrastructure is healthy. The remaining commercial blocker is **evidence coverage for the other 72 controlled records**:
-- 21 require PM image/stock evidence
-- 51 require identity/SKU/GTIN evidence
+- 20 require PM image/stock evidence
+- 52 require identity/SKU/GTIN evidence
 
 No second product currently meets the complete evidence contract needed for safe live batch publication at this checkpoint; the batch gate is open so future evidence-qualified products can enter without changing the global commercial gate.
 
