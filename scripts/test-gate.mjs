@@ -59,6 +59,19 @@ try {
 
   await assertAuthRequired(`http://127.0.0.1:${port}/api/readiness`);
 
+  const metaStatus = await fetch(`http://127.0.0.1:${port}/api/meta/status`);
+  assert.equal(metaStatus.status, 200);
+  const metaStatusBody = await metaStatus.json();
+  assert.equal(metaStatusBody.ok, true);
+  assert.equal(metaStatusBody.integration, "Meta AI");
+  assert.equal(metaStatusBody.readOnly, true);
+  assert.equal(metaStatusBody.gate, "CLOSED");
+  assert.equal(metaStatusBody.commercialWrites, "LOCKED");
+  assert.equal(metaStatusBody.batchPublishGate, "CLOSED");
+  assert.ok(Array.isArray(metaStatusBody.publishReadyProducts));
+  assert.equal(metaStatusBody.publishReadyProducts.length, 1);
+  assert.equal(metaStatusBody.publishReadyProducts[0]?.sku, "DERMAELLE007");
+
   await assertAuthRequired(`http://127.0.0.1:${port}/api/manus/status`);
 
   const manusImport = await fetch(`http://127.0.0.1:${port}/api/manus/import`, {
