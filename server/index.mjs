@@ -405,6 +405,37 @@ app.get("/api/amplitude/status", (_req, res) => res.json({ ok: true, ...getAmpli
 app.get("/health", healthResponse);
 app.get("/favicon.ico", (_req, res) => res.status(204).end());
 
+app.get("/api/meta/status", rateLimit, (_req, res) => {
+  const gate = gateState();
+  const blockedWrites = gate !== "OPEN";
+  const publishReadyProducts = Array.from(authoritativePublishReadyBySku.values()).map((product) => ({
+    sku: String(product.sku || "").trim(),
+    name: String(product.name || "").trim(),
+    status: String(product.status || "").trim(),
+    publishGate: String(product.publish_gate || "").trim()
+  }));
+
+  return res.json({
+    ok: true,
+    service: "pmcosmetics-empire-11countries",
+    integration: "Meta AI",
+    readOnly: true,
+    gate,
+    mode: blockedWrites ? "CONTROLLED_PILOT" : "COMMERCIAL",
+    commercialWrites: blockedWrites ? "LOCKED" : "GATE_OPEN",
+    batchPublishGate: batchGateState(),
+    publishReadyCount: publishReadyProducts.length,
+    publishReadyProducts,
+    externalWriteRoutes: {
+      shopify: "LOCKED_BY_GATE",
+      noon: "LOCKED_BY_GATE",
+      amazon: "LOCKED_BY_GATE",
+      jumia: "LOCKED_BY_GATE"
+    },
+    note: "Public read-only status for Meta AI; protected operational readiness remains at /api/readiness"
+  });
+});
+
 app.get("/api/readiness", rateLimit, requireEmpireAuth, (_req, res) => {
   const gate = gateState();
   const manus = getManusStatus();
