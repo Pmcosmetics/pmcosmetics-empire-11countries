@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "PM COSMETICS HUB Empire Template System",
+  "version": "1.0.0",
+  "status": "active",
+  "sourceOfTruth": "Product Master",
+  "gatePolicy": {
+    "evidenceFirst": true,
+    "publicationRequiresReady": true,
+    "allowAutoPriceConversion": false,
+    "allowPlaceholderData": false,
+    "allowGuessedIdentity": false
+  },
+  "templates": [
+    {
+      "id": "product-evidence",
+      "name": "Product Evidence",
+      "purpose": "Collect and validate identity, image, stock, cost, barcode and ownership evidence."
+    },
+    {
+      "id": "product-master",
+      "name": "Product Master",
+      "purpose": "Canonical product record consumed by every downstream channel."
+    },
+    {
+      "id": "channel-listing",
+      "name": "Channel Listing",
+      "purpose": "Render a validated Product Master record for a specific sales channel."
+    },
+    {
+      "id": "market",
+      "name": "Market",
+      "purpose": "Apply a country-specific currency, language, timezone and channel policy."
+    },
+    {
+      "id": "evidence-review",
+      "name": "Evidence Review",
+      "purpose": "Make the final evidence-backed Ready/Blocked decision."
+    },
+    {
+      "id": "publish",
+      "name": "Publish",
+      "purpose": "Create or update channel publication only for Ready products."
+    },
+    {
+      "id": "verification",
+      "name": "Verification",
+      "purpose": "Confirm the live result and preserve an auditable receipt."
+    },
+    {
+      "id": "operations-audit",
+      "name": "Operations Audit",
+      "purpose": "Record runtime, CI, sync, gate and channel health without changing commercial state."
+    }
+  ],
+  "lifecycle": [
+    "intake",
+    "evidence",
+    "validation",
+    "review",
+    "ready",
+    "publish",
+    "verify",
+    "complete"
+  ],
+  "blockedStates": [
+    "missing_identity",
+    "missing_image",
+    "missing_stock",
+    "missing_cost",
+    "conflicting_identity",
+    "invalid_price",
+    "missing_target_currency",
+    "channel_not_authorized"
+  ]
+}
