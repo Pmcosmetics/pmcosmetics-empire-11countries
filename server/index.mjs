@@ -61,6 +61,14 @@ const authoritativePublishReadyBySku = new Map(
     )
     .map((product) => [String(product.sku).trim(), product])
 );
+);
+
+const productEvidenceGateState = () => {
+  const configured = String(process.env.PRODUCT_EVIDENCE_GATE || "").toUpperCase();
+  return configured === "OPEN" && authoritativePublishReadyBySku.size > 0 ? "OPEN" : "CLOSED";
+};
+
+const commercialCatalogLiveState = () => String(process.env.COMMERCIAL_CATALOG_LIVE || "").toLowerCase() === "true";
 
 const reconcileBatchProducts = async (products) => {
   const list = Array.isArray(products) ? products : [];
@@ -146,6 +154,8 @@ const healthResponse = (_req, res) => res.json({
   ok: true,
   service: "pmcosmetics-empire-11countries",
   gate: gateState(),
+  productEvidenceGate: productEvidenceGateState(),
+  commercialCatalogLive: commercialCatalogLiveState(),
   runtime: "Vercel/Railway",
   dataSource: isSupabaseConfigured() ? "Supabase" : "Airtable",
   supabaseConfigured: isSupabaseConfigured(),
@@ -285,6 +295,8 @@ app.get("/api/start", (_req, res) => {
     runtime: "node scripts/start.mjs",
     port: Number(process.env.PORT || 3000),
     gate,
+    productEvidenceGate: productEvidenceGateState(),
+    commercialCatalogLive: commercialCatalogLiveState(),
     commercialWrites: gate === "OPEN" ? "GATE_OPEN" : "LOCKED",
     readOnly: true,
     healthcheck: "/api/health",
@@ -556,6 +568,8 @@ app.get("/api/meta/status", rateLimit, (_req, res) => {
     integration: "Meta AI",
     readOnly: true,
     gate,
+    productEvidenceGate: productEvidenceGateState(),
+    commercialCatalogLive: commercialCatalogLiveState(),
     mode: blockedWrites ? "CONTROLLED_PILOT" : "COMMERCIAL",
     commercialWrites: blockedWrites ? "LOCKED" : "GATE_OPEN",
     batchPublishGate: batchGateState(),
