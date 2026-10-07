@@ -3,7 +3,8 @@
 ## Canonical control point
 - GitHub: Pmcosmetics/pmcosmetics-empire-11countries
 - Branch: main
-- Latest observed commit: `1b868449956ef34836e6419ebb24b9dd2bb35d4a`
+- Latest observed application-code commit: `1b868449956ef34836e6419ebb24b9dd2bb35d4a`
+- Later commits on `main` in this correction pass are audit/configuration-record updates only; they do not change the application-code baseline.
 - Latest commit purpose: adds the live-sync verification script; the preceding main history also contains the authoritative evidence-only batch publication hardening.
 - Commercial Publish Gate: CLOSED.
 
