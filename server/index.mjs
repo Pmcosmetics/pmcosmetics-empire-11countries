@@ -276,6 +276,25 @@ app.get("/api/reference/alfouad", (_req, res) => {
 
 app.get("/api/health", healthResponse);
 
+app.get("/api/start", (_req, res) => {
+  const gate = gateState();
+  return res.json({
+    ok: true,
+    service: "pmcosmetics-empire-11countries",
+    started: true,
+    runtime: "node scripts/start.mjs",
+    port: Number(process.env.PORT || 3000),
+    gate,
+    commercialWrites: gate === "OPEN" ? "GATE_OPEN" : "LOCKED",
+    readOnly: true,
+    healthcheck: "/api/health",
+    workspaceHub: "/api/workspace/hub?action=status",
+    workspaceHubSync: "/api/workspace/hub?action=sync",
+    message: "PM Cosmetics Hub API is running."
+  });
+});
+
+
 const getWorkspaceHubSnapshot = async () => {
   const readyEvidence = Array.from(authoritativePublishReadyBySku.values()).map((product) => ({
     sku: String(product.sku || "").trim(),
