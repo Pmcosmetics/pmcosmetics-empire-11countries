@@ -61,7 +61,6 @@ const authoritativePublishReadyBySku = new Map(
     )
     .map((product) => [String(product.sku).trim(), product])
 );
-);
 
 const productEvidenceGateState = () => {
   const configured = String(process.env.PRODUCT_EVIDENCE_GATE || "").toUpperCase();
