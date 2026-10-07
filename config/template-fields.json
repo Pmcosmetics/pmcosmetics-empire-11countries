@@ -1,0 +1,102 @@
+{
+  "productEvidence": {
+    "identity": [
+      "sku",
+      "barcode",
+      "brand",
+      "name",
+      "size_or_variant"
+    ],
+    "ownership": [
+      "source_name",
+      "source_reference",
+      "pm_owned_image"
+    ],
+    "commercial": [
+      "retail_price",
+      "wholesale_price",
+      "cost_price",
+      "currency"
+    ],
+    "inventory": [
+      "stock_quantity",
+      "stock_location",
+      "stock_proof"
+    ],
+    "evidence": [
+      "identity_proof",
+      "image_proof",
+      "stock_proof",
+      "cost_proof"
+    ],
+    "decision": [
+      "evidence_status",
+      "blocker_code",
+      "reviewed_at",
+      "reviewer"
+    ]
+  },
+  "productMaster": {
+    "canonical": [
+      "sku",
+      "name",
+      "nameAr",
+      "brand",
+      "category",
+      "subcategory",
+      "status"
+    ],
+    "markets": [
+      "markets"
+    ],
+    "pricing": [
+      "pricing"
+    ],
+    "inventory": [
+      "inventory"
+    ],
+    "media": [
+      "media"
+    ],
+    "metadata": [
+      "metadata"
+    ],
+    "seo": [
+      "seo"
+    ]
+  },
+  "channelListing": {
+    "required": [
+      "sku",
+      "channel",
+      "market",
+      "title",
+      "description",
+      "image_urls",
+      "price",
+      "currency"
+    ],
+    "safety": [
+      "source_product_id",
+      "evidence_status",
+      "target_currency_explicit"
+    ]
+  },
+  "publicationReceipt": {
+    "required": [
+      "sku",
+      "channel",
+      "market",
+      "published_id",
+      "published_at",
+      "price",
+      "currency",
+      "verification_status"
+    ],
+    "audit": [
+      "source_commit",
+      "evidence_reference",
+      "request_id"
+    ]
+  }
+}
