@@ -242,10 +242,10 @@
     "snapchatRouting": true,
     "telegramRouting": true,
     "currentAssessment": {
-      "githubMainHead": "1b868449956ef34836e6419ebb24b9dd2bb35d4a",
+      "githubMainHead": "3d7a96d905afa9949a903088a3a13a03b167dbce",
       "railwayRuntimeCommit": null,
       "railwayRuntimeVerification": "NOT_CERTIFIED_IN_CURRENT_SESSION",
-      "reason": "Railway runtime evidence was not returned in the current session; prior recorded runtime SHA is not present in the current repository.",
+      "reason": "Railway runtime evidence was not returned in the current session; the current GitHub main head is 3d7a96d905afa9949a903088a3a13a03b167dbce, while Railway running SHA remains unobserved.",
       "globalCommercialPublishGate": "POLICY_CLOSED"
     }
   },
@@ -263,7 +263,7 @@
     {
       "id": "railway",
       "status": "connected_runtime_unverified",
-      "detail": "Current session has no independent runtime proof (running commit SHA + /api/health); prior deployment metadata is historical and is not accepted as current-runtime evidence."
+      "detail": "Current session has no independent runtime proof (running commit SHA + /api/health); current GitHub main is 3d7a96d905afa9949a903088a3a13a03b167dbce. Prior deployment metadata is historical and not accepted as current-runtime evidence."
     },
     {
       "id": "supabase",
