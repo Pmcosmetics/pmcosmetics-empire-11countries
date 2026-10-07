@@ -276,6 +276,122 @@ app.get("/api/reference/alfouad", (_req, res) => {
 
 app.get("/api/health", healthResponse);
 
+const getWorkspaceHubSnapshot = async () => {
+  const readyEvidence = Array.from(authoritativePublishReadyBySku.values()).map((product) => ({
+    sku: String(product.sku || "").trim(),
+    name: String(product.name || "").trim(),
+    status: String(product.status || "").trim(),
+    publishGate: String(product.publish_gate || "").trim()
+  })).filter((product) => product.sku);
+
+  let activeProducts = [];
+  let activeCatalogError = null;
+  try {
+    const rows = await listActiveProducts();
+    activeProducts = Array.isArray(rows) ? rows : [];
+  } catch (error) {
+    activeCatalogError = error?.code || "ACTIVE_CATALOG_READ_FAILED";
+  }
+
+  const readyBySku = new Map(readyEvidence.map((product) => [product.sku, product]));
+  const activeBySku = new Map(
+    activeProducts
+      .map((product) => [String(product?.sku || "").trim(), product])
+      .filter(([sku]) => sku)
+  );
+
+  const activeWithReadyEvidence = activeProducts
+    .map((product) => String(product?.sku || "").trim())
+    .filter((sku) => sku && readyBySku.has(sku));
+  const activeWithoutReadyEvidence = activeProducts
+    .map((product) => String(product?.sku || "").trim())
+    .filter((sku) => sku && !readyBySku.has(sku));
+  const readyEvidenceNotActive = readyEvidence
+    .map((product) => product.sku)
+    .filter((sku) => !activeBySku.has(sku));
+
+  const reconciliationAvailable = !activeCatalogError;
+  const reconciled = reconciliationAvailable &&
+    activeWithoutReadyEvidence.length === 0 &&
+    readyEvidenceNotActive.length === 0;
+
+  return {
+    service: "pmcosmetics-empire-11countries",
+    gate: gateState(),
+    commercialWrites: gateState() === "OPEN" ? "GATE_OPEN" : "LOCKED",
+    batchPublishGate: batchGateState(),
+    readOnly: true,
+    publicationGatePreserved: true,
+    sourceOfTruth: [
+      "data/products/staging-evidence.json",
+      "Supabase active Product Master",
+      "config/empire-unified-registry.json"
+    ],
+    evidence: {
+      totalRecords: Array.isArray(evidenceSnapshot.products) ? evidenceSnapshot.products.length : 0,
+      publishReady: readyEvidence.length
+    },
+    activeCatalog: {
+      totalActive: activeProducts.length,
+      publishReadyAligned: activeWithReadyEvidence.length,
+      activeWithoutPublishReadyEvidence: activeWithoutReadyEvidence.length
+    },
+    reconciliation: {
+      available: reconciliationAvailable,
+      status: !reconciliationAvailable ? "UNAVAILABLE" : reconciled ? "ALIGNED" : "DRIFT_DETECTED",
+      activeWithoutPublishReadyEvidence: activeWithoutReadyEvidence,
+      publishReadyNotActive: readyEvidenceNotActive,
+      error: activeCatalogError
+    },
+    publishReadyProducts: readyEvidence,
+    sync: {
+      mode: "READ_ONLY_RECONCILIATION",
+      writePerformed: false,
+      externalChannelsWritten: [],
+      nextSafeAction: reconciled
+        ? "Keep commercial writes locked; continue only with evidence-gated operations."
+        : "Resolve reconciliation drift before any publication attempt."
+    }
+  };
+};
+
+app.get("/api/workspace/hub", rateLimit, async (req, res) => {
+  const action = String(req.query.action || "status").trim().toLowerCase();
+  if (action !== "status" && action !== "sync") {
+    return res.status(400).json({
+      ok: false,
+      gate: gateState(),
+      reason: "WORKSPACE_HUB_ACTION_NOT_SUPPORTED",
+      supportedActions: ["status", "sync"]
+    });
+  }
+
+  try {
+    const snapshot = await getWorkspaceHubSnapshot();
+    return res.json({
+      ok: true,
+      action,
+      ...(action === "sync"
+        ? {
+            syncExecuted: true,
+            syncMode: "READ_ONLY_RECONCILIATION",
+            writePerformed: false
+          }
+        : {}),
+      ...snapshot
+    });
+  } catch (error) {
+    return res.status(503).json({
+      ok: false,
+      action,
+      gate: gateState(),
+      reason: "WORKSPACE_HUB_UNAVAILABLE",
+      message: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+});
+
+
 const whatsappConfigState = () => ({
   webhook: {
     configured: Boolean(process.env.WHATSAPP_BUSINESS_VERIFY_TOKEN && process.env.WHATSAPP_WEBHOOK_SECRET),

@@ -15,6 +15,9 @@ Product publication is evidence-gated.
 ## Public runtime endpoints
 
 ### Health & readiness
+- GET /api/workspace/hub?action=status
+- GET /api/workspace/hub?action=sync (read-only reconciliation; no external writes)
+
 - GET /api/health
 - GET /health
 - GET /api/readiness
