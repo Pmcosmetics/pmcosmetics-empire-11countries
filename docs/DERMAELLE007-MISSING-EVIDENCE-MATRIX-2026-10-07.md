@@ -12,7 +12,7 @@ Decision: HOLD — NO PILOT AUTHORIZATION
 - Bulk Publish: DISABLED
 - Railway Runtime: NOT CERTIFIED
 - Issue #90: OPEN — Economic Approval Pending
-- Current main: 3d7a96d905afa9949a903088a3a13a03b167dbce
+- Current main at audit checkpoint: dcf4c686b1158f217d20d276b3bd76d7e02046d6
 
 ## Missing Evidence Matrix
 
@@ -40,7 +40,7 @@ Decision: HOLD — NO PILOT AUTHORIZATION
 | 20 | Economics | Net contribution per unit | Base delta is -21 EGP before additional costs | HOLD | Formula populated from evidenced costs |
 | 21 | Economics | Net margin | Cannot be approved from incomplete cost stack | HOLD | Margin calculated from approved evidence |
 | 22 | Economics | Issue #90 Economic Decision | OPEN / PENDING | HOLD | Economic Decision = APPROVED with evidence attached |
-| 23 | Sync | Current GitHub main SHA | 3d7a96d905afa9949a903088a3a13a03b167dbce | PASS | SHA recorded at final sign-off |
+| 23 | Sync | Current GitHub main SHA | dcf4c686b1158f217d20d276b3bd76d7e02046d6 (audit checkpoint) | PASS | Re-read branch head before final sign-off |
 | 24 | Sync | Running Railway SHA | Not independently verified | HOLD | Running SHA equals approved commit and is evidenced |
 | 25 | Sync | Railway /api/health | Not independently verified in the current gate record | HOLD | Endpoint returns healthy result with timestamp |
 | 26 | Sync | 1:1 SKU/GTIN/name/image/price/stock reconciliation | Not fully demonstrated across pilot surfaces | HOLD | All fields reconcile with zero blocking discrepancy |
@@ -69,7 +69,7 @@ Decision: HOLD — NO PILOT AUTHORIZATION
 4. Approved economic decision recorded against Issue #90.
 5. One selected pilot channel with current authorization, account permission, controlled-write proof and listing mapping.
 6. Current sync reconciliation across SKU/GTIN/name/image/price/stock.
-7. Current Railway running SHA and /api/health evidence if Railway is part of the pilot path.
+7. Current Railway running SHA and /api/health evidence if Railway is part of the pilot path. Current Railway connector account reports 0 accessible projects, so no runtime proof was obtainable from the connected Railway context.
 8. Executed rollback test with evidence, including restore and post-rollback reconciliation.
 9. Final timestamped sign-off package covering all PASS/HOLD items.
 
