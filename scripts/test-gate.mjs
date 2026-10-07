@@ -22,7 +22,7 @@ try {
   assert.equal(authConfigBody.ok, true);
   assert.equal(authConfigBody.serverVerification, true);
   assert.equal(authConfigBody.exactEmailAllowlist, true);
-  assert.equal(authConfigBody.allowedEmailCount, 2);
+  assert.equal(authConfigBody.allowedEmailCount, 4);
 
   const authSession = await fetch(`http://127.0.0.1:${port}/api/auth/session`);
   assert.equal(authSession.status, 401);
