@@ -278,7 +278,10 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
     // The caller still gets a complete accounting of what was held back.
   }
 
-  const publishable = liveEligible;
+  const publishable = liveEligible.map((item) => ({
+    ...item,
+    status: "publish"
+  }));
   const existing = await listAllProducts();
   const existingBySku = new Map(
     existing
