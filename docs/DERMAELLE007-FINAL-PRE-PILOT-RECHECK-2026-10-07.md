@@ -43,7 +43,7 @@
 | Asset provenance | Source URL/file ID/evidence ID recorded | [ ] |
 | Channel rendering | Preview matches approved asset | [ ] |
 
-**Important:** historical records contain conflicting image-evidence references. Treat the image as PASS only after the current PM-owned asset is directly readable and rechecked.
+**Image-evidence reconciliation:** the current canonical Product Evidence Gate record (2026-10-05) names the **Connected OneDrive QA record** as the accepted image evidence. Earlier 2026-09-27 records stating that no PM-owned image was found are historical snapshots and are superseded for the current gate. External Dermaelle/AlFouad images confirm product identity/variant only; they do not prove PM ownership. The underlying OneDrive asset was not independently re-read in this current connector session, so that readback remains a final pre-Pilot verification item.
 
 **Image pass condition:** 5/5 checks PASS.
 
