@@ -195,3 +195,14 @@ Central live connection page for Windsor.ai and external seller authorization:
 - Windsor only reports an account as connected after the provider account appears in the live connector list.
 - Etsy Seller and WhatsApp Cloud API are not exposed as Windsor connectors and require their provider-native authorization paths.
 - Commercial Publish Gate remains CLOSED during authorization and reconciliation.
+
+
+## 🧩 Empire Template System
+
+The reusable Template System standardizes Product Evidence → Product Master → Market → Channel Listing → Evidence Review → Publish → Verify → Operations Audit. It accelerates execution without bypassing the Evidence Gate, price/currency safety rules, or publication controls.
+
+- Specification: `docs/TEMPLATE-SYSTEM.md`
+- Registry: `config/template-system.json`
+- Field contracts: `config/template-fields.json`
+
+**Templates accelerate execution; evidence controls publication.**
