@@ -290,7 +290,7 @@ const getWorkspaceHubSnapshot = async () => {
     const rows = await listActiveProducts();
     activeProducts = Array.isArray(rows) ? rows : [];
   } catch (error) {
-    activeCatalogError = error instanceof Error ? error.message : "Unknown error";
+    activeCatalogError = error?.code || "ACTIVE_CATALOG_READ_FAILED";
   }
 
   const readyBySku = new Map(readyEvidence.map((product) => [product.sku, product]));
