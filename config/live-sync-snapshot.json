@@ -7,7 +7,7 @@
     "github": {
       "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
       "branch": "main",
-      "headCommit": "72e7d800efdbffec9ab5c86e01d189a03493d88b",
+      "headCommit": "1b868449956ef34836e6419ebb24b9dd2bb35d4a",
       "permissions": "pull/push/triage"
     },
     "railway": {
@@ -149,7 +149,7 @@
     "Kenz and Knooz are not yet verified as standalone seller marketplaces; Kenz is publicly observed as a brand on Jumia and Knooz has ambiguous public identity.",
     "Shopify live verification: 215 products observed; 140 are DRAFT and 75 are ARCHIVED. Commercial publication remains blocked by Evidence Gate.",
     "Live sync reconciled 2026-10-04: GitHub main and Railway production both run commit 8de0bd6169a9a283914c547391c4d2408c294cad; Product Evidence Gate has 1 Publish-Ready SKU (DERMAELLE007) and global Commercial Publish Gate remains CLOSED.",
-    "2026-10-05 reconciliation correction: GitHub main is 72e7d800efdbffec9ab5c86e01d189a03493d88b. Prior recorded runtime SHA 376d50a305204e9a2db8186da64e8e8672a3c348 does not exist in this repository and is therefore not accepted as current runtime evidence."
+    "2026-10-07 reconciliation correction: GitHub main is 1b868449956ef34836e6419ebb24b9dd2bb35d4a. Prior recorded runtime SHA 376d50a305204e9a2db8186da64e8e8672a3c348 does not exist in this repository and is therefore not accepted as current runtime evidence."
   ],
   "marketplaceReferenceStaging": {
     "updatedAt": "2026-10-03",
@@ -213,7 +213,7 @@
       "verifiedAt": "2026-10-05T04:33:53Z"
     },
     "currentSession": {
-      "githubHeadCommit": "72e7d800efdbffec9ab5c86e01d189a03493d88b",
+      "githubHeadCommit": "1b868449956ef34836e6419ebb24b9dd2bb35d4a",
       "railwayRuntimeCommit": null,
       "healthHttp": null,
       "commercialGate": "UNVERIFIED",
