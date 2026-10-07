@@ -11,6 +11,8 @@
 
 ## 1. تعريف المنتج المعتمد
 
+**Image-evidence reconciliation:** The current canonical Product Evidence Gate record accepts the Connected OneDrive QA record. Earlier 2026-09-27 records that did not locate a PM-owned image are historical snapshots and are superseded for the current execution gate. Public Dermaelle/AlFouad imagery may confirm identity and 200ml variant only; it is not used as PM ownership proof.
+
 | الحقل | القيمة المعتمدة |
 |---|---|
 | SKU | DERMAELLE007 |
@@ -42,7 +44,8 @@
 
 ### A2. الدليل
 - [ ] فتح/قراءة دليل الهوية الفعلي.
-- [ ] فتح/قراءة دليل الصورة PM-owned للنسخة الصحيحة.
+- [x] سجل Product Evidence Gate الحالي يعتمد **Connected OneDrive QA record** لصورة DERMAELLE007.
+- [ ] إعادة قراءة أصل OneDrive نفسه في جلسة التحقق الحالية، وتسجيل Evidence ID / asset reference.
 - [ ] فتح/قراءة دليل المخزون الحالي.
 - [ ] فتح/قراءة دليل التكلفة/المصدر.
 - [ ] فتح/قراءة دليل التفويض.
