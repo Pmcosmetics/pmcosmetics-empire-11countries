@@ -454,5 +454,17 @@
       "status": "WORKSPACE_ENTITLEMENT_REQUIRED",
       "detail": "New Notion page creation is blocked by workspace free-block limit"
     }
-  ]
+  ],
+  "lastEvidenceGateCheck": {
+    "verifiedAt": "2026-10-07",
+    "source": "Supabase live",
+    "productsTotal": 2,
+    "activeProducts": 1,
+    "publishReadyProducts": 1,
+    "blockedProducts": 72,
+    "identityBlocked": 59,
+    "imageStockBlocked": 13,
+    "primaryPublishReadySku": "DERMAELLE007",
+    "globalCommercialGate": "CLOSED"
+  }
 }
