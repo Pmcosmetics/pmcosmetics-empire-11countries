@@ -262,8 +262,8 @@
     },
     {
       "id": "railway",
-      "status": "active_verified",
-      "detail": "latest deployment SUCCESS; API listening"
+      "status": "connected_runtime_unverified",
+      "detail": "Current session has no independent runtime proof (running commit SHA + /api/health); prior deployment metadata is historical and is not accepted as current-runtime evidence."
     },
     {
       "id": "supabase",
