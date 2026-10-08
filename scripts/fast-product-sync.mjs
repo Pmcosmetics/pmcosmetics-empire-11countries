@@ -10,6 +10,7 @@
 
 import axios from 'axios';
 import { evaluateBatch } from './batch-gate.mjs';
+import { evaluateTemplateSyncBatch } from './template-sync-gate.mjs';
 import { writeFile, readFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -401,12 +402,22 @@ async function main() {
   const gateInput = sourceProducts.map(normalizeForGate);
   const gateResult = evaluateBatch(gateInput);
 
+  const targetCurrency = String(
+    process.env.WOOCOMMERCE_TARGET_CURRENCY ||
+    process.env.SYNC_TARGET_CURRENCY ||
+    ""
+  ).trim().toUpperCase();
+
+  const templateGate = evaluateTemplateSyncBatch(gateResult.eligible, { targetCurrency });
+
   console.log(`\n📦 Input products: ${gateResult.inputCount}`);
   console.log(`✅ Evidence-ready: ${gateResult.eligibleCount}`);
-  console.log(`⛔ Blocked: ${gateResult.blockedCount}`);
+  console.log(`🧩 Template-ready for ${targetCurrency || "UNSET"}: ${templateGate.eligibleCount}`);
+  console.log(`⛔ Blocked by evidence: ${gateResult.blockedCount}`);
+  console.log(`⛔ Blocked by template sync gate: ${templateGate.blockedCount}`);
 
-  if (gateResult.blockedCount > 0) {
-    console.log("Blocked products are excluded from commercial sync until product-level evidence is complete.");
+  if (gateResult.blockedCount > 0 || templateGate.blockedCount > 0) {
+    console.log("Blocked products are excluded from commercial sync until Product Master, Evidence Gate and target currency requirements are complete.");
   }
 
   if (!dryRun && gateState() !== "OPEN") {
@@ -449,14 +460,19 @@ async function main() {
   engine.results.validation = gateResult;
   engine.results.stats.total = gateResult.inputCount;
 
-  const eligibleProducts = gateResult.eligible;
+  const eligibleProducts = templateGate.eligible;
+
+  if (templateGate.blockedCount > 0 && !dryRun) {
+    console.error("TEMPLATE_SYNC_GATE is blocking live channel writes.");
+    process.exit(5);
+  }
 
   if (dryRun) {
     console.log("🧪 DRY-RUN: no external platform writes will be performed.");
     await engine.exportLocal(eligibleProducts);
     engine.results.stats.synced = eligibleProducts.length;
     engine.results.stats.failed = 0;
-    engine.results.stats.skipped = gateResult.blockedCount;
+    engine.results.stats.skipped = gateResult.blockedCount + templateGate.blockedCount;
   } else {
     const jobs = [];
     if (targets.has("woo")) jobs.push(engine.syncToWooCommerce(eligibleProducts));
