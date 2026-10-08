@@ -156,6 +156,7 @@ const requireEmpireAuth = async (req, res, next) => {
 const healthResponse = (_req, res) => res.json({
   ok: true,
   service: "pmcosmetics-empire-11countries",
+  commitSha: process.env.RAILWAY_GIT_COMMIT_SHA || process.env.VERCEL_GIT_COMMIT_SHA || process.env.GITHUB_SHA || "unknown",
   gate: gateState(),
   productEvidenceGate: productEvidenceGateState(),
   commercialCatalogLive: commercialCatalogLiveState(),

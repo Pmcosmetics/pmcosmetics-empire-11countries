@@ -29,6 +29,8 @@ Product publication is evidence-gated.
 - GET /api/storefront
 - GET /api/storefront/search?q=...
 
+`/api/health` includes `commitSha` from `RAILWAY_GIT_COMMIT_SHA` for GitHub-triggered Railway deployments. A value of `unknown` means the running build cannot yet be tied to a source commit.
+
 ### Authentication
 - GET /api/auth/config
 - GET /api/auth/session
