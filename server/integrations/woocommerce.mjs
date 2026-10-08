@@ -273,6 +273,12 @@ export async function syncWooProducts(products, { dryRun = true } = {}) {
   const config = getWooConfig();
   if (!config.enabled) throw new Error("WOOCOMMERCE_SYNC_ENABLED is not true");
   if (!getWooStatus().configured) throw new Error("WooCommerce integration is not fully configured");
+
+  const commercialGate = String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase();
+  if (commercialGate !== "OPEN") {
+    throw new Error("COMMERCIAL_PUBLISH_GATE is CLOSED. Live WooCommerce writes are blocked.");
+  }
+
   if (blockedByEvidence > 0) {
     // Never publish unverified products; publish only the evidence-qualified subset.
     // The caller still gets a complete accounting of what was held back.
