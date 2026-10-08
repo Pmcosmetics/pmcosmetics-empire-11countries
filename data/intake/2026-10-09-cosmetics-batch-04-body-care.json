@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "batch_id": "PMHUB-INTAKE-2026-10-09-04",
+  "source": "user-supplied product intake; AlFouad references are taxonomy/reference only and are not PM ownership or stock evidence.",
+  "commercial_publish_gate": "CLOSED",
+  "currency": "EGP",
+  "records": [
+    {
+      "intake_id": "PMHUB-INTAKE-004-001",
+      "category": "تفتيح / جسم",
+      "brand": "Bioderma",
+      "name": "Bioderma Pigmentbio Sensitive Areas",
+      "size_ml": 75,
+      "price_egp": 749,
+      "description": "عناية مخصصة للمناطق الخارجية المعرضة للتصبغ والاحتكاك، للمساعدة على تحسين مظهر البقع وتوحيد اللون.",
+      "source_url": "https://alfouadpharmacies.com/collections/body-care",
+      "duplicate_candidates": [
+        "PMHUB-INTAKE-001-002"
+      ],
+      "status": "DUPLICATE_REVIEW"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-004-002",
+      "category": "مزيل عرق",
+      "brand": "Derma Active",
+      "name": "Derma Active Roll-On",
+      "pack_quantity": 2,
+      "size_ml_each": 60,
+      "price_egp": 199,
+      "compare_at_price_egp": 400,
+      "description": "رول أون للتحكم في التعرق والعناية اليومية بمنطقة الإبط.",
+      "source_url": "https://alfouadpharmacies.com/collections/body-care",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-004-003",
+      "category": "ترطيب الجسم",
+      "brand": "CeraVe",
+      "name": "CeraVe Moisturising Cream",
+      "size_ml": 340,
+      "price_egp": 850,
+      "description": "كريم مرطب للوجه والجسم يساعد على ترطيب البشرة ودعم حاجزها الواقي.",
+      "source_url": "https://alfouadpharmacies.com/collections/body-care",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-004-004",
+      "category": "ترطيب الجسم",
+      "brand": "CeraVe",
+      "name": "CeraVe Moisturising Cream",
+      "size_ml": 454,
+      "price_egp": 1050,
+      "description": "تركيبة مرطبة مناسبة للبشرة الجافة جدًا، للاستخدام على الوجه والجسم.",
+      "source_url": "https://alfouadpharmacies.com/collections/body-care",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-004-005",
+      "category": "مناطق حساسة",
+      "brand": "Dermaelle",
+      "name": "Dermaelle Hyaluwhite Intimate Cleanser",
+      "size_ml": 200,
+      "price_egp": 145,
+      "compare_at_price_egp": 245,
+      "description": "منظف لطيف للاستخدام اليومي في العناية بالمناطق الحساسة.",
+      "source_url": "https://alfouadpharmacies.com/collections/body-care",
+      "duplicate_candidates": [
+        "PMHUB-INTAKE-002-009"
+      ],
+      "status": "DUPLICATE_REVIEW"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-004-006",
+      "category": "مناطق حساسة",
+      "brand": "Beesline",
+      "name": "Beesline Whitening Sensitive Zone Wash",
+      "size_ml": 200,
+      "price_egp": 449,
+      "description": "غسول مخصص للتنظيف والعناية بالمناطق الحساسة.",
+      "source_url": "https://alfouadpharmacies.com/collections/intimate-care",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-004-007",
+      "category": "مناطق حساسة",
+      "brand": "Uriage",
+      "name": "Uriage Gyn-Phy Gel",
+      "size_ml": 200,
+      "price_egp": 655,
+      "description": "جل تنظيف لطيف للعناية اليومية بالمناطق الحساسة.",
+      "source_url": "https://alfouadpharmacies.com/collections/intimate-care",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-004-008",
+      "category": "إزالة الشعر",
+      "brand": "Veet",
+      "name": "Veet Wax Strips للبشرة الحساسة",
+      "pack_quantity": 12,
+      "price_egp": 108,
+      "description": "شرائح شمع جاهزة لإزالة الشعر ومصممة للبشرة الحساسة.",
+      "source_url": "https://alfouadpharmacies.com/collections/body-care",
+      "status": "NEEDS_EVIDENCE"
+    }
+  ]
+}
