@@ -909,7 +909,11 @@ app.post("/api/products/batch/publish", rateLimit, requireEmpireAuth, async (req
     return res.status(400).json({ ok: false, gate: gateState(), batchGate: batchGateState(), reason: "NO_PRODUCTS" });
   }
 
-  // Safe bulk-publish default: skip blocked products and continue with evidence-qualified products.\n  // Callers may explicitly set allowPartial=false to preserve all-or-nothing validation.\n  const allowPartial = req.body?.allowPartial !== false;\n\n  if (result.blockedCount > 0 && !allowPartial) {
+  // Safe bulk-publish default: skip blocked products and continue with evidence-qualified products.
+  // Callers may explicitly set allowPartial=false to preserve all-or-nothing validation.
+  const allowPartial = req.body?.allowPartial !== false;
+
+  if (result.blockedCount > 0 && !allowPartial) {
     return res.status(422).json({
       ok: false,
       gate: gateState(),
