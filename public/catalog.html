@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="description" content="كتالوج PM Cosmetics Hub — واجهة منظمة للمنتجات والصور والأسعار والأوصاف مع روابط التواصل الرسمية.">
+<title>كتالوج المنتجات | PM Cosmetics Hub</title>
+<style>
+:root{--bg:#080808;--panel:#111;--panel2:#171717;--gold:#D4AF37;--gold2:#f4df91;--ink:#f7f4e9;--muted:#b6b1a5;--line:rgba(212,175,55,.23);--white:#fff;--good:#8bd7ae;--radius:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,rgba(212,175,55,.09),transparent 32%),var(--bg);color:var(--ink);font-family:Arial,"Segoe UI",system-ui,sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}button,input,select{font:inherit}.topline{padding:9px 16px;text-align:center;background:#050505;border-bottom:1px solid var(--line);color:var(--gold2);font-size:12px;letter-spacing:.3px}.wrap{width:min(1240px,calc(100% - 34px));margin:auto}.head{position:sticky;top:0;z-index:20;background:rgba(8,8,8,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px;min-width:220px}.brand img{width:58px;height:58px;object-fit:contain}.brand strong{display:block;font-family:Georgia,serif;letter-spacing:1.6px;color:var(--gold);font-size:15px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.6px;margin-top:3px}.navlinks{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.link{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:10px 14px;font-size:12px;color:var(--ink);transition:.2s}.link:hover{border-color:var(--gold);color:var(--gold2)}.link.primary{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;border-color:transparent;font-weight:800}.hero{padding:56px 0 30px;display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--gold2);border:1px solid var(--line);background:rgba(212,175,55,.06);border-radius:999px;padding:8px 13px;font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,5.5vw,66px);line-height:1.05;letter-spacing:-.5px;margin:20px 0 15px}h1 span{color:var(--gold)}.intro{color:#d0cbbf;max-width:720px;font-size:16px;line-height:1.9;margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.seal{border:1px solid var(--line);border-radius:28px;padding:26px;background:linear-gradient(145deg,#161616,#0b0b0b);box-shadow:0 20px 55px rgba(0,0,0,.35)}.seal img{display:block;width:88px;height:88px;margin:0 auto 15px}.seal h2{text-align:center;font-family:Georgia,serif;color:var(--gold);letter-spacing:1px;font-size:17px;margin:0 0 8px}.seal p{text-align:center;color:var(--muted);font-size:12px;line-height:1.8;margin:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0 28px}.stat{padding:16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025)}.stat strong{display:block;font-size:23px;color:var(--gold2);font-weight:800}.stat span{display:block;font-size:11px;color:var(--muted);margin-top:4px}.disclaimer{margin:8px 0 24px;padding:14px 16px;border:1px solid rgba(244,223,145,.23);border-right:3px solid var(--gold);border-radius:12px;color:#d9d0b8;font-size:12px;line-height:1.8;background:rgba(212,175,55,.045)}.tools{display:grid;grid-template-columns:minmax(240px,1fr) 230px 180px;gap:12px;margin:18px 0 12px}.field{width:100%;border:1px solid #34312a;border-radius:13px;background:#101010;color:#fff;outline:none;padding:13px 15px;min-height:49px}.field:focus{border-color:var(--gold)}.resultbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:14px 0 18px;color:var(--muted);font-size:12px;flex-wrap:wrap}.resultbar strong{color:var(--gold2)}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.product{border:1px solid #29261f;border-radius:19px;overflow:hidden;background:linear-gradient(180deg,#141414,#0d0d0d);display:flex;flex-direction:column;min-width:0;transition:transform .2s,border-color .2s,box-shadow .2s}.product:hover{transform:translateY(-3px);border-color:rgba(212,175,55,.65);box-shadow:0 14px 35px rgba(0,0,0,.25)}.photo{aspect-ratio:1/1;background:#f8f7f3;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}.photo img{width:100%;height:100%;object-fit:contain;padding:8px}.noimg{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;color:#66582e;gap:10px}.noimg img{width:62px;height:62px;padding:0}.noimg span{font-size:11px}.category-tag{position:absolute;top:10px;right:10px;border-radius:999px;background:rgba(10,10,10,.85);border:1px solid var(--line);padding:5px 9px;font-size:10px;color:var(--gold2);max-width:85%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pbody{padding:15px;display:flex;flex-direction:column;flex:1}.brandtag{font-size:10px;color:var(--gold);font-weight:800;letter-spacing:.5px}.name{font-size:14px;line-height:1.55;font-weight:800;margin:7px 0 9px;min-height:43px;overflow-wrap:anywhere}.desc{color:#aaa69b;font-size:11px;line-height:1.7;flex:1;min-height:36px}.priceRow{border-top:1px solid #29261f;margin-top:13px;padding-top:12px;display:flex;align-items:end;justify-content:space-between;gap:8px}.priceLabel{font-size:10px;color:var(--muted)}.price{color:var(--gold2);font-weight:800;font-size:18px;white-space:nowrap}.sku{color:#777267;font-size:10px;margin-top:8px;direction:ltr;text-align:right}.pbuttons{display:grid;grid-template-columns:1fr;gap:7px;margin-top:13px}.btn{display:flex;justify-content:center;align-items:center;text-align:center;border-radius:10px;padding:10px 9px;font-size:11px;border:1px solid var(--line);color:var(--gold2);background:rgba(212,175,55,.04)}.btn.main{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#101010;font-weight:800;border-color:transparent}.empty{grid-column:1/-1;border:1px dashed var(--line);padding:45px 20px;text-align:center;color:var(--muted);border-radius:18px}.pagination{display:flex;justify-content:center;align-items:center;gap:12px;margin:27px 0 50px}.pagination button{cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:10px 17px;background:#111;color:var(--gold2)}.pagination button:disabled{opacity:.35;cursor:not-allowed}.pageinfo{font-size:12px;color:var(--muted)}.stores{margin:44px 0 56px;padding:28px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,rgba(212,175,55,.055),transparent 60%)}.sectionhead{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:18px}.sectionhead h2{font-size:24px;margin:0;color:var(--gold2)}.sectionhead p{color:var(--muted);font-size:12px;margin:5px 0 0}.storegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.store{border:1px solid #393226;border-radius:15px;padding:15px;background:#0c0c0c;min-height:108px;display:flex;flex-direction:column;justify-content:space-between}.store strong{font-size:13px;color:#f5f0dc}.store span{font-size:10px;color:var(--muted);line-height:1.6}.store em{font-size:10px;color:var(--gold);font-style:normal;margin-top:8px}.contact{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0 35px}.foot{border-top:1px solid var(--line);background:#050505;padding:26px 0;color:var(--muted);font-size:11px}.footinner{display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}.foot strong{color:var(--gold)}.foot a{color:var(--gold2)}.loading{grid-column:1/-1;text-align:center;padding:50px;color:var(--muted)}@media(max-width:980px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.storegrid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr .6fr}.tools{grid-template-columns:1fr 1fr}.tools input{grid-column:1/-1}}@media(max-width:680px){.wrap{width:calc(100% - 24px)}.nav{padding:10px 0;min-height:70px;align-items:flex-start}.brand{min-width:0}.brand img{width:49px;height:49px}.brand strong{font-size:12px}.brand small{font-size:9px}.navlinks .optional{display:none}.link{padding:9px 11px;font-size:11px}.hero{padding-top:34px;grid-template-columns:1fr}.seal{display:none}h1{font-size:41px}.stats{gap:7px}.stat{padding:12px}.stat strong{font-size:19px}.tools{grid-template-columns:1fr}.tools input{grid-column:auto}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pbody{padding:11px}.name{font-size:12px;min-height:50px}.price{font-size:15px}.stores{padding:18px 13px}.storegrid{grid-template-columns:repeat(2,1fr)}.sectionhead{align-items:start;flex-direction:column}.intro{font-size:14px}}@media(max-width:380px){.grid{grid-template-columns:1fr}.product{max-width:360px;width:100%;margin:auto}}
+</style>
+</head>
+<body>
+<div class="topline">PM COSMETICS HUB <span aria-hidden="true">✦</span> Luxury Beauty • Empowering Beauty Across 11 Countries</div>
+<header class="head"><div class="wrap nav">
+<a class="brand" href="/" aria-label="الرئيسية PM Cosmetics Hub"><img src="/pmcosmetics-logo.svg" alt="شعار PM Cosmetics Hub"><span><strong>PM COSMETICS HUB</strong><small>EMPOWERING BEAUTY ACROSS 11 COUNTRIES</small></span></a>
+<nav class="navlinks"><a class="link" href="/business-profile.html">الملف التجاري</a><a class="link optional" href="/">الرئيسية</a><a class="link primary" href="https://wa.me/201055655649">تواصل واتساب</a></nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div>
+<span class="eyebrow"><span class="dot"></span> كتالوج منظم • نسخة تجهيز تجاري</span>
+<h1>الجمال يبدأ<br><span>باختيارك.</span></h1>
+<p class="intro">كتالوج PM Cosmetics Hub بتصميم موحّد يضع اسم الصنف وصورته وسعره ووصفه في مكان واضح، مع سهولة البحث والتصفح والتواصل المباشر.</p>
+<div class="actions"><a class="link primary" href="#products">تصفّح الأصناف</a><a class="link" href="/business-profile.html">روابط المتاجر والملف التجاري</a><a class="link" href="https://wa.me/c/201055655649">كتالوج واتساب</a></div>
+<div class="stats"><div class="stat"><strong id="totalCount">—</strong><span>سجلًا في ملف الاستيراد</span></div><div class="stat"><strong id="visibleCount">—</strong><span>صنفًا مطابقًا لفئات التجميل</span></div><div class="stat"><strong>3</strong><span>أرقام تواصل مباشرة</span></div></div>
+</div><aside class="seal"><img src="/pmcosmetics-logo.svg" alt=""><h2>PM COSMETICS HUB</h2><p>هوية سوداء وذهبية راقية<br>كتالوج واضح وتجربة عربية متجاوبة<br>مصر • الخليج • 11 سوقًا</p></aside></section>
+<div class="disclaimer"><strong>ملاحظة تجارية مهمة:</strong> هذه نسخة عرض وتجهيز مبنية على ملف مرجعي. السعر والصورة والوصف لا تعني وحدها أن المنتج مملوك أو متوفر بمخزون PM أو جاهز للنشر. يتم تأكيد السعر والتوافر قبل الطلب؛ ولم يتم اختلاق صور أو بيانات ناقصة.</div>
+<section id="products">
+<div class="sectionhead"><div><h2>كتالوج المنتجات</h2><p>ابحث بالاسم أو الماركة أو الوصف، ثم اختر الفئة المناسبة.</p></div></div>
+<div class="tools"><input class="field" id="search" type="search" placeholder="ابحث عن صنف أو ماركة…" aria-label="البحث عن المنتجات"><select class="field" id="category" aria-label="تصفية الفئة"><option value="">كل فئات التجميل</option></select><select class="field" id="sort" aria-label="ترتيب المنتجات"><option value="name">ترتيب: الاسم</option><option value="price-low">السعر: الأقل أولًا</option><option value="price-high">السعر: الأعلى أولًا</option></select></div>
+<div class="resultbar"><span id="resultText">جارٍ تحميل بيانات الأصناف…</span><span>العملة المعروضة في الملف: <strong>الجنيه المصري</strong></span></div>
+<div class="grid" id="grid"><div class="loading">جارٍ تحميل الكتالوج وتجهيز البطاقات…</div></div>
+<div class="pagination"><button id="prev" type="button" disabled>السابق</button><span class="pageinfo" id="pageInfo">—</span><button id="next" type="button" disabled>التالي</button></div>
+</section>
+<section class="stores">
+<div class="sectionhead"><div><h2>المتاجر والقنوات الرسمية</h2><p>روابط معروفة ومباشرة فقط؛ لا نعرض رابط متجر عام قبل التحقق منه.</p></div><a class="link" href="/business-profile.html">عرض الملف التجاري الكامل</a></div>
+<div class="storegrid">
+<a class="store" href="https://pmcosmetics-lgdc2mrf.myshopify.com" target="_blank" rel="noopener"><strong>Shopify Store</strong><span>متجر PM الإلكتروني</span><em>فتح المتجر ↗</em></a>
+<a class="store" href="https://wa.me/c/201055655649" target="_blank" rel="noopener"><strong>WhatsApp Catalog</strong><span>كتالوج واتساب الرسمي</span><em>فتح الكتالوج ↗</em></a>
+<a class="store" href="https://www.instagram.com/pm_cosmetics1/" target="_blank" rel="noopener"><strong>Instagram</strong><span>@pm_cosmetics1</span><em>فتح الحساب ↗</em></a>
+<a class="store" href="https://pmcosmetics-empire-11countries-production.up.railway.app/" target="_blank" rel="noopener"><strong>PM Empire Website</strong><span>واجهة المتجر والإمبراطورية</span><em>فتح الموقع ↗</em></a>
+<a class="store" href="https://github.com/Pmcosmetics/pmcosmetics-empire-11countries" target="_blank" rel="noopener"><strong>GitHub Repository</strong><span>المستودع التقني للمشروع</span><em>عرض المشروع ↗</em></a>
+<a class="store" href="https://pmcosmetics.github.io/pmcosmetics-empire-11countries/" target="_blank" rel="noopener"><strong>Business Web Profile</strong><span>صفحة التعريف المنشورة</span><em>فتح الصفحة ↗</em></a>
+<a class="store" href="mailto:tech@pmcosmetics.hub"><strong>Business Email</strong><span>tech@pmcosmetics.hub</span><em>إرسال بريد ↗</em></a>
+<div class="store"><strong>القنوات الأخرى</strong><span>WooCommerce • Salla • Etsy • Jumia • Amazon • Noon • Temu • Talabat</span><em>روابط المتاجر العامة تحتاج إلى تأكيد</em></div>
+</div>
+<div class="contact"><a class="link primary" href="https://wa.me/201055655649">واتساب 01055655649</a><a class="link" href="https://wa.me/201203151461">واتساب 01203151461</a><a class="link" href="https://wa.me/201270677739">واتساب 01270677739</a></div>
+</section>
+</main>
+<footer class="foot"><div class="wrap footinner"><div><strong>PM COSMETICS HUB</strong> · Empowering Beauty Across 11 Countries</div><div>حقوق العلامة والهوية محفوظة لـ PM Cosmetics Hub</div><div><a href="/business-profile.html">الملف التجاري</a> · <a href="mailto:tech@pmcosmetics.hub">تواصل معنا</a></div></div></footer>
+<script>
+(function(){
+"use strict";
+const CSV_URL="/api/catalog/master.csv";
+const $=id=>document.getElementById(id);
+const esc=value=>String(value===undefined||value===null?"":value).replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]);});
+function parseCSV(text){
+ const rows=[];let row=[],field="",quoted=false;
+ for(let i=0;i<text.length;i++){const c=text[i];
+  if(quoted){if(c==='"'){if(text[i+1]==='"'){field+='"';i++;}else quoted=false;}else field+=c;}
+  else{if(c==='"')quoted=true;else if(c===","){row.push(field);field="";}
+   else if(c==="\n"){row.push(field.replace(/\r$/,""));field="";if(row.some(v=>v!==""))rows.push(row);row=[];}
+   else field+=c;}
+ }
+ if(field!==""||row.length){row.push(field.replace(/\r$/,""));if(row.some(v=>v!==""))rows.push(row);}
+ if(!rows.length)return[];
+ const headers=rows.shift();
+ return rows.map(values=>{const obj={};headers.forEach((key,i)=>obj[key]=values[i]||"");return obj;});
+}
+function isBeauty(p){
+ const cat=String(p.category||"").toLowerCase();
+ const name=String(p.product||"").toLowerCase();
+ const beautyCategory=/(العناية بالبشرة|العناية بالشعر|العناية بالجسم|العطور|المكياج|منتجات تجميل وعناية|skin care|skincare|hair care|haircare|body care|perfume|fragrance|makeup|make-up|cosmetic|beauty care)/i.test(cat);
+ const nonBeauty=/(blood glucose|accu-chek|test strip|lancet|nebulizer|blood pressure|pressure monitor|glucometer|amipride|amiprostone|medicine|medical device|diet supplement|dietary supplement|vitamin|supplement|acai berry diet|collagen tablets|hair skin.{0,10}nails|syrup|inhaler|mg [0-9]{1,3} tab)/i.test(name);
+ return beautyCategory&&!nonBeauty;
+}
+function priceValue(p){const raw=String(p.price_egp||"").trim();const n=Number(raw);return raw!==""&&Number.isFinite(n)&&n>0?n:null;}
+function money(n){return new Intl.NumberFormat("ar-EG",{maximumFractionDigits:2}).format(n)+" ج.م";}
+function shortDesc(s){const value=String(s||"").replace(/\s+/g," ").trim();if(!value)return "الوصف التفصيلي يحتاج إلى مراجعة قبل النشر التجاري.";return value.length>145?value.slice(0,142).trim()+"…":value;}
+function inquiryLink(p){
+ const msg="مرحبًا PM Cosmetics Hub، أريد الاستفسار عن هذا الصنف فقط قبل تأكيد الطلب:\n"+(p.product||"منتج")+"\n"+(p.brand||"")+"\nSKU: "+(p.sku||"غير متوفر")+"\nبرجاء تأكيد السعر الحالي والتوافر الفعلي.";
+ return "https://wa.me/201055655649?text="+encodeURIComponent(msg);
+}
+let all=[],filtered=[],page=1;const PAGE_SIZE=24;
+function fillCategories(items){
+ const select=$("category");const names=Array.from(new Set(items.map(p=>String(p.category||"").trim()).filter(Boolean))).sort((a,b)=>a.localeCompare(b,"ar"));
+ names.forEach(name=>{const option=document.createElement("option");option.value=name;option.textContent=name;select.appendChild(option);});
+}
+function render(){
+ const query=$("search").value.trim().toLocaleLowerCase();const category=$("category").value;const sort=$("sort").value;
+ filtered=all.filter(p=>{
+  const matchCategory=!category||String(p.category||"").trim()===category;
+  const text=[p.product,p.brand,p.category,p.description,p.sku].join(" ").toLocaleLowerCase();
+  return matchCategory&&(!query||text.includes(query));
+ });
+ filtered.sort((a,b)=>{
+  if(sort==="price-low")return (priceValue(a)??Infinity)-(priceValue(b)??Infinity);
+  if(sort==="price-high")return (priceValue(b)??-1)-(priceValue(a)??-1);
+  return String(a.product||"").localeCompare(String(b.product||""),"en",{sensitivity:"base"});
+ });
+ const pages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE));page=Math.min(page,pages);
+ const start=(page-1)*PAGE_SIZE;const rows=filtered.slice(start,start+PAGE_SIZE);
+ $("visibleCount").textContent=new Intl.NumberFormat("en-US").format(all.length);
+ $("resultText").innerHTML="النتائج: <strong>"+new Intl.NumberFormat("en-US").format(filtered.length)+"</strong> صنف";
+ $("pageInfo").textContent="صفحة "+page+" من "+pages;
+ $("prev").disabled=page<=1;$("next").disabled=page>=pages;
+ if(!rows.length){$("grid").innerHTML='<div class="empty">لا توجد نتائج مطابقة. غيّر كلمة البحث أو الفئة.</div>';return;}
+ $("grid").innerHTML=rows.map(p=>{
+  const name=String(p.product||"اسم الصنف غير مكتمل").trim();const image=String(p.image||"").trim();const price=priceValue(p);
+  const img=image?'<img loading="lazy" src="'+esc(image)+'" alt="'+esc(name)+'" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">':"";
+  const noimg='<div class="noimg"'+(image?' style="display:none"':"")+'><img src="/pmcosmetics-logo.svg" alt=""><span>الصورة غير متوفرة في الملف</span></div>';
+  const priceText=price===null?"السعر يحتاج إلى مراجعة":money(price);
+  const description=shortDesc(p.description);
+  return '<article class="product"><div class="photo">'+img+noimg+'<span class="category-tag">'+esc(p.category||"فئة غير محددة")+'</span></div><div class="pbody"><div class="brandtag">'+esc(p.brand||"PM COSMETICS HUB")+'</div><div class="name">'+esc(name)+'</div><div class="desc">'+esc(description)+'</div><div class="priceRow"><div><div class="priceLabel">السعر المسجل في الملف</div><div class="price">'+esc(priceText)+'</div></div></div><div class="sku">SKU: '+esc(p.sku||"غير محدد")+'</div><div class="pbuttons"><a class="btn main" href="'+esc(inquiryLink(p))+'" target="_blank" rel="noopener">استفسار عن السعر والتوافر ↗</a></div></div></article>';
+ }).join("");
+}
+$("search").addEventListener("input",function(){page=1;render();});
+$("category").addEventListener("change",function(){page=1;render();});
+$("sort").addEventListener("change",function(){page=1;render();});
+$("prev").addEventListener("click",function(){if(page>1){page--;render();$("products").scrollIntoView({behavior:"smooth"});}});
+$("next").addEventListener("click",function(){if(page<Math.ceil(filtered.length/PAGE_SIZE)){page++;render();$("products").scrollIntoView({behavior:"smooth"});}});
+fetch(CSV_URL,{headers:{"Accept":"text/csv"}}).then(function(response){if(!response.ok)throw new Error("تعذر تحميل الملف");return response.text();}).then(function(text){
+ const rows=parseCSV(text);$("totalCount").textContent=new Intl.NumberFormat("en-US").format(rows.length);
+ all=rows.filter(isBeauty);
+ fillCategories(all);render();
+}).catch(function(){
+ $("grid").innerHTML='<div class="empty">تعذر تحميل ملف المنتجات الآن. يمكنك استخدام كتالوج واتساب أو التواصل مباشرة.</div>';
+ $("resultText").textContent="تعذر تحميل بيانات الأصناف";$("totalCount").textContent="—";$("visibleCount").textContent="—";
+});
+})();
+</script>
+</body>
+</html>
