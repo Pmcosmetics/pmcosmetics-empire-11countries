@@ -8,6 +8,7 @@ import { checkWooConnection, getWooStatus, syncWooProducts } from "./integration
 import { getManusStatus, pullManusProducts, validateManusProducts } from "./integrations/manus.mjs";
 import { getActiveProductsBySkus, isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
 import { evaluateBatch } from "../scripts/batch-gate.mjs";
+import { evaluateTemplateSyncBatch } from "../scripts/template-sync-gate.mjs";
 import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitude.mjs";
 import { authConfigSnapshot, bearerTokenFromRequest, verifyAccessToken } from "./integrations/auth.mjs";
 
@@ -119,7 +120,10 @@ const reconcileBatchProducts = async (products) => {
       authorizationRequired,
       authorizationVerified,
       publishable: authoritativeReady,
-      evidenceVerified: authoritativeReady
+      evidenceVerified: authoritativeReady,
+      status: String(evidence?.status || "").trim(),
+      publish_gate: String(evidence?.publish_gate || "").trim(),
+      archived: String(evidence?.status || "").trim().toLowerCase() === "archived"
     };
   });
 };
@@ -345,6 +349,31 @@ const getWorkspaceHubSnapshot = async () => {
     activeWithoutReadyEvidence.length === 0 &&
     readyEvidenceNotActive.length === 0;
 
+  const templateSync = evaluateTemplateSyncBatch(
+    activeProducts.map((product) => {
+      const sku = String(product?.sku || "").trim();
+      const evidence = readyBySku.get(sku);
+      const evidenceRecord = (Array.isArray(evidenceSnapshot.products) ? evidenceSnapshot.products : [])
+        .find((item) => String(item?.sku || "").trim() === sku);
+      return {
+        ...product,
+        sku,
+        status: evidence?.status || "",
+        publish_gate: evidence?.publishGate || "",
+        publishable: Boolean(evidence),
+        evidenceVerified: Boolean(evidence),
+        gtin: String(evidenceRecord?.gtin?.text || evidenceRecord?.gtin || "").trim(),
+        imageUrl: String(product?.image_url || "").trim(),
+        stock: evidenceRecord ? Number(evidenceRecord.pm_stock || 0) : 0,
+        cost: evidenceRecord ? Number(evidenceRecord.pm_cost_egp || 0) : 0,
+        retail_price: product?.base_price,
+        public_price: product?.base_price,
+        priceLocal: { EGP: product?.base_price }
+      };
+    }),
+    { targetCurrency: process.env.WOOCOMMERCE_TARGET_CURRENCY || "EGP" }
+  );
+
   return {
     service: "pmcosmetics-empire-11countries",
     gate: gateState(),
@@ -378,6 +407,14 @@ const getWorkspaceHubSnapshot = async () => {
       mode: "READ_ONLY_RECONCILIATION",
       writePerformed: false,
       externalChannelsWritten: [],
+      templateGate: {
+        enforced: true,
+        targetCurrency: String(process.env.WOOCOMMERCE_TARGET_CURRENCY || "EGP").toUpperCase(),
+        inputCount: templateSync.inputCount,
+        readyCount: templateSync.eligibleCount,
+        blockedCount: templateSync.blockedCount,
+        blocked: templateSync.blocked.map(({ sku, targetCurrency, reasons }) => ({ sku, targetCurrency, reasons }))
+      },
       nextSafeAction: reconciled
         ? "Keep commercial writes locked; continue only with evidence-gated operations."
         : "Resolve reconciliation drift before any publication attempt."
@@ -668,8 +705,37 @@ app.post("/api/manus/woocommerce/sync", rateLimit, requireEmpireAuth, async (req
       return res.status(503).json(locked("manus-woocommerce-sync", "COMMERCIAL_PUBLISH_GATE_CLOSED"));
     }
 
-    const result = await syncWooProducts(products, { dryRun });
-    return res.json({ ok: true, source: "Manus", ...result, gate: dryRun ? gateState() : "OPEN" });
+    const targetCurrency = String(req.body?.targetCurrency || process.env.WOOCOMMERCE_TARGET_CURRENCY || "").trim().toUpperCase();
+    const prepared = await reconcileBatchProducts(products);
+    const templateGate = evaluateTemplateSyncBatch(prepared, { targetCurrency });
+
+    if (templateGate.blockedCount > 0) {
+      return res.status(dryRun ? 200 : 422).json({
+        ok: dryRun,
+        source: "Manus",
+        dryRun,
+        gate: gateState(),
+        templateGate: {
+          enforced: true,
+          targetCurrency,
+          inputCount: templateGate.inputCount,
+          readyCount: templateGate.eligibleCount,
+          blockedCount: templateGate.blockedCount,
+          blocked: templateGate.blocked.map(({ sku, targetCurrency: currency, reasons }) => ({ sku, targetCurrency: currency, reasons }))
+        },
+        reason: "TEMPLATE_SYNC_GATE_BLOCKED",
+        message: "Only Product Master records that are Publish-Ready and explicitly priced in the target currency may reach a channel sync."
+      });
+    }
+
+    const result = await syncWooProducts(templateGate.eligible, { dryRun });
+    return res.json({
+      ok: true,
+      source: "Manus",
+      templateGate: { enforced: true, targetCurrency, readyCount: templateGate.eligibleCount, blockedCount: 0 },
+      ...result,
+      gate: dryRun ? gateState() : "OPEN"
+    });
   } catch (error) {
     return res.status(502).json({
       ok: false,
@@ -710,13 +776,41 @@ app.post("/api/woocommerce/sync", rateLimit, requireEmpireAuth, async (req, res)
       return res.status(503).json(locked("woocommerce-sync", "COMMERCIAL_PUBLISH_GATE_CLOSED"));
     }
 
+    const targetCurrency = String(req.body?.targetCurrency || process.env.WOOCOMMERCE_TARGET_CURRENCY || "").trim().toUpperCase();
+    const prepared = await reconcileBatchProducts(products);
+    const templateGate = evaluateTemplateSyncBatch(prepared, { targetCurrency });
+
     void trackAmplitudeEvent("woocommerce_sync_requested", {
       dryRun,
       productCount: products.length,
+      templateReadyCount: templateGate.eligibleCount,
+      templateBlockedCount: templateGate.blockedCount,
       gate: gateState()
     });
-    const result = await syncWooProducts(products, { dryRun });
-    return res.json({ ...result, gate: dryRun ? gateState() : "OPEN" });
+
+    if (templateGate.blockedCount > 0) {
+      return res.status(dryRun ? 200 : 422).json({
+        ok: dryRun,
+        gate: gateState(),
+        templateGate: {
+          enforced: true,
+          targetCurrency,
+          inputCount: templateGate.inputCount,
+          readyCount: templateGate.eligibleCount,
+          blockedCount: templateGate.blockedCount,
+          blocked: templateGate.blocked.map(({ sku, targetCurrency: currency, reasons }) => ({ sku, targetCurrency: currency, reasons }))
+        },
+        reason: "TEMPLATE_SYNC_GATE_BLOCKED",
+        message: "Sync stopped before channel payload generation."
+      });
+    }
+
+    const result = await syncWooProducts(templateGate.eligible, { dryRun });
+    return res.json({
+      ...result,
+      templateGate: { enforced: true, targetCurrency, readyCount: templateGate.eligibleCount, blockedCount: 0 },
+      gate: dryRun ? gateState() : "OPEN"
+    });
   } catch (error) {
     return res.status(502).json({
       ok: false,
