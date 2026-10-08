@@ -48,11 +48,13 @@ try {
   assert.equal(amplitudeBody.ok, true);
   assert.equal(amplitudeBody.configured, false);
 
+  process.env.RAILWAY_GIT_COMMIT_SHA = "test-railway-commit";
   const health = await fetch(`http://127.0.0.1:${port}/api/health`);
   assert.equal(health.status, 200);
   const healthBody = await health.json();
   assert.equal(healthBody.ok, true);
   assert.equal(healthBody.gate, "CLOSED");
+  assert.equal(healthBody.commitSha, "test-railway-commit");
   assert.equal(healthBody.service, "pmcosmetics-empire-11countries");
   assert.equal(healthBody.supabaseConfigured, healthBody.dataSource === "Supabase");
   assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]);
