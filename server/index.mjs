@@ -252,6 +252,22 @@ app.get("/api/storefront/search", async (req, res) => {
 });
 
 
+app.get("/api/markets", (_req, res) => res.json({
+  ok: true,
+  brand: brandConfig.brandName,
+  tagline: storefrontConfig.tagline,
+  markets: (Array.isArray(marketConfig.markets) ? marketConfig.markets : []).map((market) => ({
+    id: market.id,
+    name: market.name,
+    currency: market.currencyCode || market.currency,
+    currencySymbol: market.currencySymbol || "",
+    language: market.language || "ar",
+    region: market.region || "MENA",
+    channels: Array.isArray(market.channels) ? market.channels : [],
+    storefrontAvailability: "confirm-before-order"
+  }))
+}));
+
 app.get("/api/brand", (_req, res) => res.json({
   ok: true,
   brandName: brandConfig.brandName,
