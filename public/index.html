@@ -35,7 +35,7 @@ a.card{display:block;color:inherit;text-decoration:none;transition:transform .2s
 <header><div class="nav">
   <a class="logo" href="/" aria-label="PM COSMETICS HUB"><img src="/pmcosmetics-logo.svg" alt="PM COSMETICS HUB" style="width:52px;height:52px;vertical-align:middle;margin-left:10px"><span style="color:var(--gold)">PM COSMETICS HUB</span><small>Empowering Beauty Across 11 Countries</small></a>
   <div class="search"><input id="search" placeholder="ابحثي عن منتج، ماركة أو فئة"/></div>
-  <div class="actions"><a class="pill" href="/catalog.html">الكتالوج</a><a class="pill" href="/business-profile.html">الملف التجاري</a><a class="pill" href="#markets">11 دولة</a><span class="pill">العربة 0</span><a class="pill" id="waPrimary" href="https://wa.me/201055655649">واتساب 01055655649</a><a class="pill" id="waSecondary" href="https://wa.me/201203151461">01203151461</a><a class="pill" id="waThird" href="https://wa.me/201270677739">01270677739</a></div>
+  <div class="actions"><a class="pill" href="/catalog.html">الكتالوج</a><a class="pill" href="/business-profile.html">الملف التجاري</a><a class="pill" href="#markets">11 دولة</a><span class="pill">العربة 0</span><a class="pill" id="waPrimary" href="https://wa.me/201055655649">واتساب 01055655649</a><a class="pill" id="waSecondary" href="tel:+201203151461">اتصال 01203151461</a><a class="pill" id="waThird" href="tel:+201270677739">اتصال 01270677739</a></div>
 </div></header>
 <main>
 <section class="hero"><div class="hero-inner">
@@ -77,9 +77,10 @@ fetch('/api/brand').then(r=>r.json()).then(b=>{
   const p=b.phones.primary, s=b.phones.secondary, t=b.phones.tertiary;
   const set=(id,text,href)=>{const e=document.getElementById(id);if(e){e.textContent=text;e.href=href;}};
   set('waPrimary','واتساب '+p.local,p.wa);
-  set('waSecondary',s.local,s.wa);
+  set('waSecondary','اتصال '+s.local,'tel:+'+s.international);
   set('footerPrimary',p.local,p.wa);
-  set('footerSecondary',s.local,s.wa);\n  if(t){set('waThird',t.local,t.wa);set('footerThird',t.local,t.wa);}
+  set('footerSecondary',s.local,'tel:+'+s.international);
+  if(t){set('waThird','اتصال '+t.local,'tel:+'+t.international);set('footerThird',t.local,'tel:+'+t.international);}
 }).catch(()=>{});
 </script><script>
 (function(){
