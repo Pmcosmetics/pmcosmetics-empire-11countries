@@ -8,7 +8,9 @@
 ## Current state
 
 - **01055655649** is the single canonical public WhatsApp Business contact for PM COSMETICS HUB.
-- The public storefront and reference catalog route customer CTAs to the same number.
+- All default WhatsApp CTAs on the non-catalog storefront and business-profile page use `01055655649`.
+- Secondary (`01203151461`) and tertiary (`01270677739`) numbers are direct-call links only on those pages.
+- The product/catalog page and product data were intentionally left unchanged in this pass.
 - No WhatsApp Cloud API credentials are stored in GitHub.
 - Meta Business Manager/WABA/API authentication is not claimed as completed through this ChatGPT session because no WhatsApp API connector is available here.
 
