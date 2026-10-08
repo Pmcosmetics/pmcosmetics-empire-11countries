@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0",
+  "batch_id": "PMHUB-INTAKE-2026-10-09-02",
+  "source": "user-supplied product intake; AlFouad collection page references are taxonomy/reference only and are not treated as PM ownership or stock evidence.",
+  "commercial_publish_gate": "CLOSED",
+  "rule": "Do not publish or activate until PM ownership/stock, image rights, identity, cost/provenance and QA evidence are complete.",
+  "currency": "EGP",
+  "duplicate_policy": "Exact/near-exact duplicates are retained as intake records but must be canonicalized before Product Master publication.",
+  "records": [
+    {
+      "intake_id": "PMHUB-INTAKE-002-001",
+      "category": "سيروم / عناية مركزة",
+      "brand": "Dermaelle",
+      "name": "Dermaelle Skin Booster Serum",
+      "size_ml": 30,
+      "price_egp": 414,
+      "compare_at_price_egp": 690,
+      "description": "سيروم مركز لدعم نضارة البشرة وترطيبها وتحسين مظهر الخطوط والملمس، بتركيبة تحتوي على ريتينول وفيتامين C ونياسيناميد وهيالورونيك وسنتيلا.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-002",
+      "category": "واقي شمس",
+      "brand": "Bioderma",
+      "name": "Bioderma Photoderm XDefense Ultra Fluid SPF50+",
+      "size_ml": 40,
+      "price_egp": 999,
+      "description": "واقي شمس عالي الحماية بتركيبة فلويد خفيفة للاستخدام اليومي والحماية من الأشعة فوق البنفسجية.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-003",
+      "category": "واقي شمس للبشرة الدهنية",
+      "brand": "La Roche-Posay",
+      "name": "La Roche Anthelios Gel-Cream SPF50+",
+      "size_ml": 50,
+      "price_egp": 1070,
+      "description": "واقي شمس عالي الحماية بملمس جل-كريم مناسب للبشرة التي تميل للدهون واللمعان.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "duplicate_of_intake_id": "PMHUB-INTAKE-001-003",
+      "status": "DUPLICATE_REVIEW"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-004",
+      "category": "واقي شمس للبشرة الدهنية",
+      "brand": "La Roche-Posay",
+      "name": "La Roche Anthelios Fluid Oil Control SPF50+",
+      "size_ml": 50,
+      "price_egp": 1050,
+      "description": "فلويد واقٍ من الشمس مع تركيز على التحكم في اللمعان والدهون للاستخدام اليومي.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-005",
+      "category": "تفتيح / بقع",
+      "brand": "Isis",
+      "name": "Isis Neotone Sensitive",
+      "size_ml": 30,
+      "price_egp": 1025,
+      "description": "منتج مخصص للعناية بالبشرة الحساسة التي تعاني من تفاوت اللون والبقع الداكنة.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-006",
+      "category": "تنظيف البشرة الدهنية",
+      "brand": "Vichy",
+      "name": "Vichy Normaderm Intensive Gel",
+      "size_ml": 400,
+      "price_egp": 1140,
+      "description": "جل تنظيف مكثف مخصص للبشرة الدهنية والمختلطة للمساعدة على إزالة الدهون والشوائب وتنظيف المسام.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-007",
+      "category": "إصلاح وتهدئة",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Cicaplast Baume B5+",
+      "size_ml": 100,
+      "price_egp": 1300,
+      "description": "بلسم مرمم ومهدئ للبشرة الجافة أو المتهيجة، مصمم لدعم حاجز البشرة وحمايتها.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-008",
+      "category": "واقي شمس / تصبغات",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Anthelios Anti-Dark Spot Fluid SPF50+",
+      "size_ml": 50,
+      "price_egp": 1100,
+      "description": "واقي شمس عالي الحماية موجه أيضًا للعناية بمظهر البقع والتصبغات.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-009",
+      "category": "عناية بالمناطق الحساسة",
+      "brand": "Dermaelle",
+      "name": "Dermaelle Hyaluwhite Intimate Cleanser",
+      "size_ml": 200,
+      "price_egp": 145,
+      "compare_at_price_egp": 245,
+      "description": "منظف لطيف للمناطق الحساسة، موجه للنظافة والعناية اليومية.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-010",
+      "category": "تفتيح وتنظيف",
+      "brand": "Bioderma",
+      "name": "Bioderma Pigmentbio Foaming Cream",
+      "size_ml": 200,
+      "price_egp": 849,
+      "description": "منظف كريمي رغوي ضمن خط Pigmentbio، يجمع بين تنظيف البشرة والعناية بمظهر تفاوت اللون.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-011",
+      "category": "ترطيب للبشرة المعرضة للجفاف",
+      "brand": "La Roche-Posay",
+      "name": "La Roche Effaclar H Iso-Biome Cream",
+      "size_ml": 40,
+      "price_egp": 920,
+      "description": "كريم مرطب ومهدئ موجه للبشرة الدهنية المعرضة للجفاف أو عدم الراحة، خصوصًا ضمن روتين العناية بحب الشباب.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-012",
+      "category": "سيروم مضاد للشيخوخة",
+      "brand": "La Roche-Posay",
+      "name": "La Roche Hyalu B5 Serum",
+      "size_ml": 30,
+      "price_egp": 1430,
+      "description": "سيروم يعتمد على حمض الهيالورونيك للمساعدة على ترطيب البشرة وتحسين مظهر الخطوط وفقدان المرونة.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-013",
+      "category": "تصبغات / توحيد اللون",
+      "brand": "Eucerin",
+      "name": "Eucerin Anti-Pigment Dual Serum",
+      "size_ml": 30,
+      "price_egp": 2300,
+      "description": "سيروم مزدوج للعناية بالبقع وفرط التصبغ، ويعتمد على Thiamidol مع حمض الهيالورونيك.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-014",
+      "category": "إصلاح حاجز البشرة",
+      "brand": "Avène",
+      "name": "Avène Cicalfate+ Restorative Protective Cream",
+      "size_ml": 40,
+      "price_egp": 709,
+      "description": "كريم ترميم وحماية للبشرة الحساسة والمتهيجة، يساعد على تهدئة البشرة ودعم حاجزها.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002-015",
+      "category": "ترطيب / تحكم في الدهون",
+      "brand": "CeraVe",
+      "name": "CeraVe Oil Control Moisturising Gel-Cream",
+      "size_ml": 52,
+      "price_egp": 660,
+      "description": "مرطب جل خفيف يساعد على ترطيب البشرة والتحكم في اللمعان دون ترك إحساس دهني.",
+      "source_url": "https://alfouadpharmacies.com/en/collections/skin-care?page=1",
+      "duplicate_of_intake_id": "PMHUB-INTAKE-001-004",
+      "status": "DUPLICATE_REVIEW"
+    }
+  ]
+}
