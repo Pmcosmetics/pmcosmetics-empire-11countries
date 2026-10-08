@@ -24,6 +24,8 @@ section{max-width:1180px;margin:0 auto;padding:58px 20px}.section-head{display:f
 .catalog{background:#fbf9fb;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--ink)}.empty{padding:44px 20px;background:#fff;border:1px dashed #d9ccd5;border-radius:22px;text-align:center}
 .empty h3{margin-top:0}.empty p{color:var(--muted);max-width:650px;margin:10px auto;line-height:1.8}
 footer{background:#0A0A0A;color:#fff;padding:40px 20px}.foot{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:start}.foot p{color:#c9c2c8;font-size:13px}
+.market-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}.market-card{display:flex;flex-direction:column;min-height:184px;padding:18px;border:1px solid rgba(212,175,55,.25);border-radius:18px;background:linear-gradient(145deg,#151515,#0b0b0b);transition:transform .2s,border-color .2s}.market-card:hover{transform:translateY(-3px);border-color:#D4AF37}.market-top{display:flex;align-items:center;gap:10px}.market-flag{font-size:28px}.market-name{font-weight:800;color:#f7f0dc}.market-region{font-size:10px;color:#a9a293;margin-top:2px}.market-currency{font-size:12px;color:#f0d984;margin:14px 0 8px}.market-note{font-size:10px;color:#aaa69b;line-height:1.7;flex:1}.market-action{display:flex;justify-content:center;align-items:center;padding:10px 12px;margin-top:12px;border-radius:999px;background:linear-gradient(135deg,#F7E7A8,#D4AF37);color:#111;font-size:11px;font-weight:800}.market-callout{margin-top:17px;padding:13px 16px;border:1px solid rgba(212,175,55,.2);border-right:3px solid #D4AF37;background:rgba(212,175,55,.04);border-radius:12px;color:#c8c1ad;font-size:12px;line-height:1.8}.market-grid .market-empty{grid-column:1/-1;text-align:center;padding:28px;color:#aaa69b;border:1px dashed #3b3215;border-radius:16px}
+a.card{display:block;color:inherit;text-decoration:none;transition:transform .2s,border-color .2s}a.card:hover{transform:translateY(-3px);border-color:#D4AF37}
 @media(max-width:820px){.hero-inner{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.search{display:none}.actions{display:none}}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.hero{padding:44px 18px}section{padding:44px 18px}}
 </style>
@@ -33,7 +35,7 @@ footer{background:#0A0A0A;color:#fff;padding:40px 20px}.foot{max-width:1180px;ma
 <header><div class="nav">
   <a class="logo" href="/" aria-label="PM COSMETICS HUB"><img src="/pmcosmetics-logo.svg" alt="PM COSMETICS HUB" style="width:52px;height:52px;vertical-align:middle;margin-left:10px"><span style="color:var(--gold)">PM COSMETICS HUB</span><small>Empowering Beauty Across 11 Countries</small></a>
   <div class="search"><input id="search" placeholder="ابحثي عن منتج، ماركة أو فئة"/></div>
-  <div class="actions"><span class="pill">العربة 0</span><a class="pill" id="waPrimary" href="https://wa.me/201055655649">واتساب 01055655649</a><a class="pill" id="waSecondary" href="https://wa.me/201203151461">01203151461</a><a class="pill" id="waThird" href="https://wa.me/201270677739">01270677739</a></div>
+  <div class="actions"><a class="pill" href="/catalog.html">الكتالوج</a><a class="pill" href="/business-profile.html">الملف التجاري</a><a class="pill" href="#markets">11 دولة</a><span class="pill">العربة 0</span><a class="pill" id="waPrimary" href="https://wa.me/201055655649">واتساب 01055655649</a><a class="pill" id="waSecondary" href="https://wa.me/201203151461">01203151461</a><a class="pill" id="waThird" href="https://wa.me/201270677739">01270677739</a></div>
 </div></header>
 <main>
 <section class="hero"><div class="hero-inner">
@@ -44,8 +46,9 @@ footer{background:#0A0A0A;color:#fff;padding:40px 20px}.foot{max-width:1180px;ma
   <div class="hero-card"><h3>بوابة المنتج</h3><p class="muted">المنتج يدخل النشر التجاري فقط بعد اجتياز Product Evidence Gate. المنتجات المرجعية لا تتحول تلقائيًا إلى مخزون PM.</p><div class="chips"><span class="chip">SKU / GTIN</span><span class="chip">صورة مطابقة</span><span class="chip">مخزون</span><span class="chip">مصدر</span></div></div>
 </div></section>
 <section id="categories"><div class="section-head"><div><h2>تسوقي حسب الفئة</h2><p>تصنيف مستحضرات تجميل فقط.</p></div></div><div class="grid">
-<article class="card"><div class="icon">✦</div><h3>العناية بالبشرة</h3><div class="muted">Skin Care</div></article><article class="card"><div class="icon">✧</div><h3>العناية بالشعر</h3><div class="muted">Hair Care</div></article><article class="card"><div class="icon">◌</div><h3>العناية بالجسم</h3><div class="muted">Body Care</div></article><article class="card"><div class="icon">◈</div><h3>العطور</h3><div class="muted">Perfumes</div></article><article class="card"><div class="icon">◇</div><h3>الجمال الكوري</h3><div class="muted">Korean Beauty</div></article><article class="card"><div class="icon">♡</div><h3>عناية الأطفال</h3><div class="muted">Kids Care</div></article>
+<a class="card" href="/catalog.html?q=العناية بالبشرة"><div class="icon">✦</div><h3>العناية بالبشرة</h3><div class="muted">Skin Care</div></a><a class="card" href="/catalog.html?q=العناية بالشعر"><div class="icon">✧</div><h3>العناية بالشعر</h3><div class="muted">Hair Care</div></a><a class="card" href="/catalog.html?q=العناية بالجسم"><div class="icon">◌</div><h3>العناية بالجسم</h3><div class="muted">Body Care</div></a><a class="card" href="/catalog.html?q=العطور"><div class="icon">◈</div><h3>العطور</h3><div class="muted">Perfumes</div></a><a class="card" href="/catalog.html?q=Korean Beauty"><div class="icon">◇</div><h3>الجمال الكوري</h3><div class="muted">Korean Beauty</div></a><a class="card" href="/catalog.html?q=عناية الأطفال التجميلية"><div class="icon">♡</div><h3>عناية الأطفال</h3><div class="muted">Kids Care</div></a>
 </div></section>
+<section id="markets"><div class="section-head"><div><h2>PM Hub حول 11 سوقًا</h2><p>اختاري الدولة لطلب تأكيد السعر والتوفر والشحن بعملة السوق.</p></div><a class="pill" href="/business-profile.html#markets">عرض ملف الأسواق ↗</a></div><div class="market-grid" id="homeMarketGrid"><div class="market-empty">تحميل أسواق PM الـ11…</div></div><div class="market-callout">الأسواق الـ11 جزء من نطاق الإمبراطورية المستهدف؛ ظهور الدولة هنا لا يعني وجود متجر محلي مستقل أو تفعيل الشحن تلقائيًا. يتم تأكيد السعر والعملة والتوصيل مع فريق PM قبل الطلب.</div></section>
 <section><div class="section-head"><div><h2>تسوقي حسب الاهتمام</h2><p>نفس فكرة التصفح حسب المشكلة أو الروتين.</p></div></div><div class="chips">
 <span class="chip">الحماية من الشمس</span><span class="chip">البشرة الدهنية والمختلطة</span><span class="chip">البشرة الجافة</span><span class="chip">البشرة الحساسة</span><span class="chip">إصلاح البشرة</span><span class="chip">العناية بالشعر</span><span class="chip">العناية الشخصية</span><span class="chip">مزيلات المكياج</span>
 </div></section>
@@ -71,11 +74,22 @@ const q=document.getElementById('search');q?.addEventListener('keydown',e=>{if(e
 <script>
 fetch('/api/brand').then(r=>r.json()).then(b=>{
   document.title=b.brandName+' — مستحضرات التجميل';
-  const p=b.phones.primary, s=b.phones.secondary;
+  const p=b.phones.primary, s=b.phones.secondary, t=b.phones.tertiary;
   const set=(id,text,href)=>{const e=document.getElementById(id);if(e){e.textContent=text;e.href=href;}};
   set('waPrimary','واتساب '+p.local,p.wa);
   set('waSecondary',s.local,s.wa);
   set('footerPrimary',p.local,p.wa);
-  set('footerSecondary',s.local,s.wa);
+  set('footerSecondary',s.local,s.wa);\n  if(t){set('waThird',t.local,t.wa);set('footerThird',t.local,t.wa);}
 }).catch(()=>{});
-</script></body></html>
+</script><script>
+(function(){
+const names={EG:{ar:"مصر",flag:"🇪🇬",region:"شمال أفريقيا"},SA:{ar:"السعودية",flag:"🇸🇦",region:"الخليج العربي"},AE:{ar:"الإمارات",flag:"🇦🇪",region:"الخليج العربي"},KW:{ar:"الكويت",flag:"🇰🇼",region:"الخليج العربي"},QA:{ar:"قطر",flag:"🇶🇦",region:"الخليج العربي"},BH:{ar:"البحرين",flag:"🇧🇭",region:"الخليج العربي"},OM:{ar:"عُمان",flag:"🇴🇲",region:"الخليج العربي"},JO:{ar:"الأردن",flag:"🇯🇴",region:"بلاد الشام"},PS:{ar:"فلسطين",flag:"🇵🇸",region:"بلاد الشام"},LB:{ar:"لبنان",flag:"🇱🇧",region:"بلاد الشام"},IR:{ar:"إيران",flag:"🇮🇷",region:"غرب آسيا"}};
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+fetch("/api/markets").then(r=>{if(!r.ok)throw Error();return r.json()}).then(data=>{
+const markets=Array.isArray(data.markets)?data.markets:[];
+const grid=document.getElementById("homeMarketGrid");if(!grid)return;
+grid.innerHTML=markets.map(m=>{const x=names[m.id]||{ar:m.name,flag:"🌍",region:m.region||"سوق مستهدف"};const currency=(m.currency||"").toUpperCase();const symbol=m.currencySymbol||"";const message="مرحبًا PM Cosmetics Hub، أريد الاستفسار عن الطلب في سوق "+x.ar+" ("+currency+"). برجاء تأكيد السعر المحلي، التوفر، الشحن ووسيلة الدفع لهذا السوق قبل الطلب.";const href="https://wa.me/201055655649?text="+encodeURIComponent(message);return '<article class="market-card"><div class="market-top"><span class="market-flag">'+x.flag+'</span><div><div class="market-name">'+esc(x.ar)+'</div><div class="market-region">'+esc(x.region)+'</div></div></div><div class="market-currency">'+esc(currency)+' · '+esc(symbol)+'</div><div class="market-note">سوق مستهدف • السعر المحلي والتوصيل قيد التأكيد</div><a class="market-action" href="'+href+'" target="_blank" rel="noopener">استفسار لهذا السوق ↗</a></article>'}).join("")||'<div class="market-empty">بيانات الأسواق غير متاحة مؤقتًا.</div>';
+}).catch(()=>{const grid=document.getElementById("homeMarketGrid");if(grid)grid.innerHTML='<div class="market-empty">تعذر تحميل بيانات الأسواق. افتح صفحة الملف التجاري لمعلومات التواصل.</div>';});
+})();
+</script>
+</body></html>
