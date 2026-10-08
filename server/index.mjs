@@ -52,6 +52,13 @@ app.use((req, res, next) => {
 
 app.use(express.static("public", { index: false }));
 
+// Public read-only delivery for the master reference CSV used by the product catalog UI.
+app.get("/api/catalog/master.csv", (_req, res) => {
+  res.set("Cache-Control", "public, max-age=300");
+  res.type("text/csv");
+  return res.sendFile("data/catalog/pm-cosmetics-hub-alfouad-master.csv", { root: process.cwd() });
+});
+
 const gateState = () => String(process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED").toUpperCase() === "OPEN" ? "OPEN" : "CLOSED";
 const authoritativePublishReadyBySku = new Map(
   (Array.isArray(evidenceSnapshot.products) ? evidenceSnapshot.products : [])
