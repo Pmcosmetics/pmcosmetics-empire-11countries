@@ -15,6 +15,11 @@
       "local": "01203151461",
       "international": "201203151461",
       "wa": "https://wa.me/201203151461"
+    },
+    "tertiary": {
+      "local": "01270677739",
+      "international": "201270677739",
+      "wa": "https://wa.me/201270677739"
     }
   },
   "whatsappCatalog": "https://wa.me/c/201055655649",
@@ -22,6 +27,8 @@
     "sameLogoEverywhere": true,
     "sameTwoPrimaryPhonesEverywhere": true,
     "primaryRole": "catalog / primary contact",
-    "secondaryRole": "backup / direct contact"
+    "secondaryRole": "backup / direct contact",
+    "sameThreeContactPhonesEverywhere": true,
+    "tertiaryRole": "additional business contact"
   }
 }
