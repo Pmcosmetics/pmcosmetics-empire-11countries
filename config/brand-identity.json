@@ -25,10 +25,12 @@
   "whatsappCatalog": "https://wa.me/c/201055655649",
   "policy": {
     "sameLogoEverywhere": true,
-    "sameTwoPrimaryPhonesEverywhere": true,
-    "primaryRole": "catalog / primary contact",
-    "secondaryRole": "backup / direct contact",
-    "sameThreeContactPhonesEverywhere": true,
-    "tertiaryRole": "additional business contact"
+    "sameBrandNameEverywhere": true,
+    "sameColorsEverywhere": true,
+    "publicWhatsAppCtaNumber": "01055655649",
+    "primaryRole": "canonical WhatsApp for orders, enquiries, and market CTAs",
+    "secondaryRole": "backup direct-call contact; not a default WhatsApp CTA",
+    "tertiaryRole": "additional direct-call contact; not a default WhatsApp CTA",
+    "samePrimaryWhatsAppEverywhere": true
   }
 }
