@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "batch_id": "PMHUB-INTAKE-2026-10-09-01",
+  "source": "user-supplied product intake; AlFouad reference used only for taxonomy/UX",
+  "commercial_publish_gate": "CLOSED",
+  "rule": "Do not publish or activate until PM ownership/stock, image rights, identity, cost/provenance and QA evidence are complete.",
+  "currency": "EGP",
+  "records": [
+    {
+      "intake_id": "PMHUB-INTAKE-001",
+      "category": "تونر / تقشير",
+      "brand": "Dermaelle",
+      "name": "Dermaelle Glycolic Acid Toner 350ml",
+      "size_ml": 350,
+      "price_egp": 250,
+      "compare_at_price_egp": 440,
+      "description": "تونر مقشّر يعتمد على حمض الجليكوليك للمساعدة على إزالة الخلايا الميتة وتحسين ملمس البشرة والإشراقة، وموجه خصوصًا للبشرة الدهنية والمختلطة.",
+      "sku": null,
+      "gtin": null,
+      "image_evidence": null,
+      "stock_evidence": null,
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-002",
+      "category": "تفتيح / عناية بالمناطق الحساسة",
+      "brand": "Bioderma",
+      "name": "Bioderma Pigmentbio Sensitive Areas",
+      "size_ml": 75,
+      "price_egp": 849,
+      "description": "كريم مخصص للمناطق الحساسة يساعد على تقليل مظهر التصبغات وتوحيد لون البشرة مع مكونات مرطبة ومهدئة.",
+      "sku": null,
+      "gtin": null,
+      "image_evidence": null,
+      "stock_evidence": null,
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-003",
+      "category": "واقي شمس",
+      "brand": "La Roche-Posay",
+      "name": "La Roche-Posay Anthelios Gel-Cream SPF50+",
+      "size_ml": 50,
+      "price_egp": 1070,
+      "description": "واقي شمس عالي الحماية بتركيبة جل-كريم ذات لمسة جافة ومناسبة خصوصًا للبشرة الدهنية والمختلطة.",
+      "sku": null,
+      "gtin": null,
+      "image_evidence": null,
+      "stock_evidence": null,
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-004",
+      "category": "مرطب للبشرة الدهنية",
+      "brand": "CeraVe",
+      "name": "CeraVe Oil Control Moisturising Gel-Cream",
+      "size_ml": 52,
+      "price_egp": 660,
+      "description": "مرطب جل خفيف يساعد على التحكم في اللمعان والدهون، مع دعم حاجز البشرة بالسيراميدات وترطيب دون إحساس دهني.",
+      "sku": null,
+      "gtin": null,
+      "image_evidence": null,
+      "stock_evidence": null,
+      "status": "NEEDS_EVIDENCE"
+    },
+    {
+      "intake_id": "PMHUB-INTAKE-005",
+      "category": "مزيل مكياج / تنظيف",
+      "brand": "Bioderma",
+      "name": "Bioderma Sensibio H2O",
+      "size_ml": null,
+      "price_egp": 1099,
+      "description": "ماء ميسيلار للبشرة الحساسة لإزالة المكياج والشوائب وتهدئة البشرة.",
+      "size_verification": "BLOCKED — supplied reference conflicts between 250ml image and 500ml page title; verify before master publication.",
+      "sku": null,
+      "gtin": null,
+      "image_evidence": null,
+      "stock_evidence": null,
+      "status": "IDENTITY_BLOCKED"
+    }
+  ]
+}
