@@ -37,6 +37,12 @@ if (!server.includes("/api/products/batch/readiness")) throw new Error("Batch re
 if (!server.includes("/api/products/batch/publish")) throw new Error("Batch publish route is missing");
 if (!server.includes("BATCH_COMMERCIAL_PUBLISH_GATE")) throw new Error("Batch commercial gate contract is missing");
 if (!server.includes('app.get("/api/whatsapp/status"')) throw new Error("WhatsApp status route is missing");
+if (!server.includes('app.get("/api/salla/status"')) throw new Error("Salla status route is missing");
+if (!server.includes('app.get("/api/salla/check"')) throw new Error("Salla live-check route is missing");
+if (!server.includes('app.post("/api/salla/import"')) throw new Error("Salla import route is missing");
+const sallaAdapter = await read("server/integrations/salla.mjs");
+if (!sallaAdapter.includes("SALLA_ACCESS_TOKEN")) throw new Error("Salla token environment contract is missing");
+if (!sallaAdapter.includes("status: \"hidden\"")) throw new Error("Salla import must default to hidden drafts");
 if (!server.includes('app.get("/api/whatsapp/webhook"')) throw new Error("WhatsApp webhook verification route is missing");
 if (!server.includes('x-hub-signature-256')) throw new Error("WhatsApp webhook signature guard is missing");
 if (!server.includes('app.post("/api/shopify/webhook"')) throw new Error("Shopify webhook route is missing");
