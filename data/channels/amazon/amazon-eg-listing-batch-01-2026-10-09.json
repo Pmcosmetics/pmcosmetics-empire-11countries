@@ -39,8 +39,8 @@
       "category": null,
       "description": null,
       "bulletPoints": [],
-      "listingImageAssetUrl": null,
-      "imageEvidenceStatus": "Verified QA record noted by canonical gate; direct asset URL/readback not available in this session",
+      "listingImageAssetUrl": "https://onedrive.live.com?cid=f6bbc81bc64793ee&id=F6BBC81BC64793EE!s6dedac3ab6134186be7721bdd4232792",
+      "imageEvidenceStatus": "Canonical Product Evidence Gate references a Connected OneDrive QA record; direct public accessibility/download and exact image-to-variant match were not independently verified in this session.",
       "pmStockEvidenceQuantity": 48,
       "offerQuantity": null,
       "acquisitionCostEGP": 260,
@@ -56,7 +56,7 @@
         "Seller Central SKU collision and existing ASIN/catalog match not checked",
         "Amazon category/product-type and brand restrictions not checked",
         "Price and offer terms not provided; acquisition cost is not a selling price",
-        "Exact QA-approved image asset URL not available for Seller Central upload",
+        "OneDrive QA image evidence link exists, but direct public access/download and exact image-to-variant match are not verified",
         "Offer quantity must be allocated from verified stock before setting Amazon inventory"
       ],
       "nextAction": "Connect Amazon.eg Selling Partner account, then resolve Seller Central match/restrictions and complete the offer fields before submitting"
