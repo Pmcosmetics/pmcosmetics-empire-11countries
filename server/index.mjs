@@ -11,6 +11,7 @@ import { evaluateBatch } from "../scripts/batch-gate.mjs";
 import { evaluateTemplateSyncBatch } from "../scripts/template-sync-gate.mjs";
 import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitude.mjs";
 import { authConfigSnapshot, bearerTokenFromRequest, verifyAccessToken } from "./integrations/auth.mjs";
+import { checkSallaConnection, createSallaHiddenProduct, findSallaProductBySku, getSallaStatus } from "./integrations/salla.mjs";
 
 const require = createRequire(import.meta.url);
 const marketConfig = require("../config/markets.json");
@@ -115,6 +116,7 @@ const reconcileBatchProducts = async (products) => {
       ...input,
       sku,
       name: String(catalog?.name || evidence?.name || input?.name || "").trim(),
+      description: String(catalog?.description || evidence?.description || input?.description || "").trim(),
       gtin: String(evidence?.gtin?.text || evidence?.gtin || input?.gtin || "").trim(),
       stock: authoritativeReady ? Number(evidence.pm_stock) : 0,
       pm_stock: authoritativeReady ? Number(evidence.pm_stock) : 0,
@@ -1015,6 +1017,199 @@ app.post("/api/products/batch/publish", rateLimit, requireEmpireAuth, async (req
       reason: "BATCH_PUBLISH_FAILED",
       message: error instanceof Error ? error.message : "Unknown error",
       ...result
+    });
+  }
+});
+
+
+app.get("/api/salla/status", rateLimit, requireEmpireAuth, (_req, res) => {
+  return res.json({ ok: true, gate: gateState(), ...getSallaStatus() });
+});
+
+app.get("/api/salla/check", rateLimit, requireEmpireAuth, async (_req, res) => {
+  const result = await checkSallaConnection();
+  const status = result.reachable ? 200 : result.reason === "SALLA_TOKEN_MISSING" ? 200 : 502;
+  return res.status(status).json({
+    ok: result.reachable,
+    gate: gateState(),
+    service: "salla-merchant-api",
+    readOnly: true,
+    ...result
+  });
+});
+
+app.post("/api/salla/import", rateLimit, requireEmpireAuth, async (req, res) => {
+  const dryRun = req.body?.dryRun !== false;
+  const targetCurrency = String(req.body?.targetCurrency || "").trim().toUpperCase();
+  if (!targetCurrency) {
+    return res.status(400).json({ ok: false, gate: gateState(), reason: "TARGET_CURRENCY_REQUIRED" });
+  }
+
+  const requested = Array.isArray(req.body?.products) && req.body.products.length
+    ? req.body.products
+    : Array.from(authoritativePublishReadyBySku.values());
+  const skus = Array.from(new Set(requested
+    .map((item) => String(typeof item === "string" ? item : item?.sku ?? item?.SKU ?? "").trim())
+    .filter(Boolean)));
+  if (!skus.length) {
+    return res.status(400).json({ ok: false, gate: gateState(), reason: "NO_PRODUCT_SKUS" });
+  }
+  if (skus.length > 25) {
+    return res.status(413).json({
+      ok: false,
+      gate: gateState(),
+      reason: "SALLA_BATCH_LIMIT_EXCEEDED",
+      maxBatchSize: 25,
+      requestedCount: skus.length
+    });
+  }
+
+  try {
+    // Only SKUs are accepted from the caller. Prices, stock, GTIN, images and descriptions
+    // are reconciled against the authoritative Product Master; caller-supplied values are ignored.
+    const reconciled = await reconcileBatchProducts(skus.map((sku) => ({ sku })));
+    const templateGate = evaluateTemplateSyncBatch(reconciled, { targetCurrency });
+    const missingDescriptions = reconciled
+      .filter((product) => !String(product.description || "").trim())
+      .map((product) => product.sku);
+    const blockedSkus = new Set([
+      ...templateGate.blocked.map((item) => item.sku),
+      ...missingDescriptions
+    ]);
+    const eligible = templateGate.eligible.filter((product) => !missingDescriptions.includes(product.sku));
+
+    const preview = {
+      inputCount: skus.length,
+      readyCount: eligible.length,
+      blockedCount: blockedSkus.size,
+      blocked: reconciled
+        .filter((product) => blockedSkus.has(product.sku))
+        .map((product) => ({
+          sku: product.sku,
+          reasons: [
+            ...(templateGate.blocked.find((item) => item.sku === product.sku)?.reasons || []),
+            ...(!String(product.description || "").trim() ? ["MISSING_DESCRIPTION"] : [])
+          ]
+        }))
+    };
+
+    if (dryRun) {
+      const connection = await checkSallaConnection();
+      return res.json({
+        ok: true,
+        dryRun: true,
+        gate: gateState(),
+        productEvidenceGate: productEvidenceGateState(),
+        batchGate: batchGateState(),
+        commercialCatalogLive: commercialCatalogLiveState(),
+        service: "salla-merchant-api",
+        writePerformed: false,
+        connection: {
+          configured: connection.configured,
+          reachable: connection.reachable,
+          authenticated: connection.authenticated,
+          reason: connection.reason,
+          storeCurrency: connection.storeCurrency,
+          productCount: connection.productCount
+        },
+        targetCurrency,
+        ...preview,
+        nextAction: connection.authenticated
+          ? "Verify store currency and resolve every listed evidence blocker before a controlled draft import."
+          : "Authorize Salla and configure SALLA_ACCESS_TOKEN in Railway before the live connection check."
+      });
+    }
+
+    if (gateState() !== "OPEN" || productEvidenceGateState() !== "OPEN" ||
+        batchGateState() !== "OPEN" || !commercialCatalogLiveState()) {
+      return res.status(503).json({
+        ok: false,
+        dryRun: false,
+        gate: gateState(),
+        productEvidenceGate: productEvidenceGateState(),
+        batchGate: batchGateState(),
+        commercialCatalogLive: commercialCatalogLiveState(),
+        reason: "SALLA_IMPORT_GATES_CLOSED",
+        ...preview
+      });
+    }
+
+    if (templateGate.blockedCount > 0 || missingDescriptions.length > 0) {
+      return res.status(422).json({
+        ok: false,
+        dryRun: false,
+        reason: "SALLA_PRODUCT_EVIDENCE_BLOCKED",
+        targetCurrency,
+        ...preview
+      });
+    }
+
+    const connection = await checkSallaConnection();
+    if (!connection.reachable || !connection.authenticated) {
+      return res.status(503).json({
+        ok: false,
+        dryRun: false,
+        reason: connection.reason || "SALLA_CONNECTION_NOT_VERIFIED",
+        connection: {
+          configured: connection.configured,
+          reachable: connection.reachable,
+          authenticated: connection.authenticated
+        }
+      });
+    }
+    if (!connection.storeCurrency) {
+      return res.status(422).json({ ok: false, dryRun: false, reason: "SALLA_STORE_CURRENCY_UNVERIFIED" });
+    }
+    if (connection.storeCurrency !== targetCurrency) {
+      return res.status(422).json({
+        ok: false,
+        dryRun: false,
+        reason: "SALLA_CURRENCY_MISMATCH",
+        targetCurrency,
+        storeCurrency: connection.storeCurrency,
+        message: "No automatic currency conversion is permitted."
+      });
+    }
+
+    const outcomes = [];
+    for (const product of eligible) {
+      try {
+        const existing = await findSallaProductBySku(product.sku);
+        if (existing) {
+          outcomes.push({ sku: product.sku, status: "skipped_existing_sku", sallaProductId: existing.id || null });
+          continue;
+        }
+        const created = await createSallaHiddenProduct(product);
+        outcomes.push({
+          sku: product.sku,
+          status: "created_hidden",
+          sallaProductId: created?.data?.id || created?.data?.product?.id || null
+        });
+      } catch (error) {
+        outcomes.push({ sku: product.sku, status: "failed", reason: error?.code || "SALLA_PRODUCT_CREATE_FAILED" });
+        break;
+      }
+    }
+
+    const createdCount = outcomes.filter((item) => item.status === "created_hidden").length;
+    const failedCount = outcomes.filter((item) => item.status === "failed").length;
+    return res.status(failedCount ? 502 : 200).json({
+      ok: failedCount === 0,
+      dryRun: false,
+      gate: gateState(),
+      service: "salla-merchant-api",
+      writePerformed: createdCount > 0,
+      createdHidden: createdCount,
+      skippedExisting: outcomes.filter((item) => item.status === "skipped_existing_sku").length,
+      failedCount,
+      outcomes,
+      note: "Imported products remain hidden; public activation is a separate release decision."
+    });
+  } catch (error) {
+    return res.status(502).json({
+      ok: false,
+      gate: gateState(),
+      reason: error?.code || "SALLA_IMPORT_FAILED"
     });
   }
 });
