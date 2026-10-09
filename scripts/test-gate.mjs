@@ -93,6 +93,13 @@ try {
   assert.equal(manusBody2.publishable, false);
 
   await assertAuthRequired(`http://127.0.0.1:${port}/api/woocommerce/status`);
+  await assertAuthRequired(`http://127.0.0.1:${port}/api/salla/status`);
+  await assertAuthRequired(`http://127.0.0.1:${port}/api/salla/check`);
+  await assertAuthRequired(`http://127.0.0.1:${port}/api/salla/import`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ dryRun: true, targetCurrency: "EGP", products: [{ sku: "DERMAELLE007" }] })
+  });
 
   await assertAuthRequired(`http://127.0.0.1:${port}/api/woocommerce/sync`, {
     method: "POST",
