@@ -7,6 +7,8 @@ const required = [
   "config/markets.json",
   "config/catalog.schema.json",
   "server/index.mjs",
+  "server/integrations/salla.mjs",
+  "docs/SALLA-INTEGRATION.md",
   "scripts/batch-gate.mjs",
   "app/intake/README.md",
   "data/products/README.md",
