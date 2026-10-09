@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-09T08:37:00+03:00",
+  "purpose": "Amazon.eg listing preparation batch; evidence-gated draft only, not a live listing submission",
+  "marketplace": "Amazon.eg",
+  "source": {
+    "productMasterPath": "data/products/staging-evidence.json",
+    "productMasterBlobSha": "cbb7a93c6ff13773a1b4fa9bd56aec9bf39ef055",
+    "evidenceGatePath": "config/product-evidence-gate-2026-10-05.json",
+    "evidenceGateBlobSha": "50c64f4527876c91a617cc1812d9a8123913ec78"
+  },
+  "scope": {
+    "productMasterRecords": 73,
+    "publishReadyInEvidenceGate": 1,
+    "blockedIdentity": 52,
+    "blockedImageStock": 20,
+    "globalCommercialPublishGate": "CLOSED",
+    "amazonSpApiAccountConnected": false,
+    "liveSubmissionAllowed": false
+  },
+  "policy": {
+    "noSyntheticSkuOrGtin": true,
+    "noGuessedOfferPrice": true,
+    "noAssumedAmazonQuantity": true,
+    "requireSellerCentralBrandAndCategoryCheck": true,
+    "onlyEvidenceReadyProductIncludedAsCandidate": true
+  },
+  "candidates": [
+    {
+      "sourceSku": "DERMAELLE007",
+      "proposedAmazonSellerSku": "DERMAELLE007",
+      "sellerSkuValidation": "PROPOSED_NOT_CHECKED_IN_SELLER_CENTRAL",
+      "title": "Dermaelle Hyalubalance Sebum Control Cleansing Gel 200ml",
+      "brand": "Dermaelle",
+      "marketplace": "Amazon.eg",
+      "productIdType": "GTIN",
+      "productId": "6223007905060",
+      "asin": null,
+      "category": null,
+      "description": null,
+      "bulletPoints": [],
+      "listingImageAssetUrl": null,
+      "imageEvidenceStatus": "Verified QA record noted by canonical gate; direct asset URL/readback not available in this session",
+      "pmStockEvidenceQuantity": 48,
+      "offerQuantity": null,
+      "acquisitionCostEGP": 260,
+      "offerPrice": null,
+      "offerCurrency": "EGP",
+      "condition": null,
+      "fulfillmentChannel": null,
+      "authorizationStatus": "Verified",
+      "qaPassedAt": "2026-10-04",
+      "readiness": "DRAFT_ONLY",
+      "blockers": [
+        "Amazon Selling Partner account not connected in current workspace",
+        "Seller Central SKU collision and existing ASIN/catalog match not checked",
+        "Amazon category/product-type and brand restrictions not checked",
+        "Price and offer terms not provided; acquisition cost is not a selling price",
+        "Exact QA-approved image asset URL not available for Seller Central upload",
+        "Offer quantity must be allocated from verified stock before setting Amazon inventory"
+      ],
+      "nextAction": "Connect Amazon.eg Selling Partner account, then resolve Seller Central match/restrictions and complete the offer fields before submitting"
+    }
+  ],
+  "excludedRecords": {
+    "count": 72,
+    "listingState": "BLOCKED_PENDING_EVIDENCE",
+    "note": "Not included as publishable candidates. Use the Product Evidence Gate remediation queue to resolve identity, image, stock, cost, barcode and authorization gaps."
+  },
+  "sourceLinks": {
+    "productMaster": "https://github.com/Pmcosmetics/pmcosmetics-empire-11countries/blob/main/data/products/staging-evidence.json",
+    "evidenceGate": "https://github.com/Pmcosmetics/pmcosmetics-empire-11countries/blob/main/config/product-evidence-gate-2026-10-05.json",
+    "amazonEgyptListingGuide": "https://sell.amazon.eg/content/listing-guide"
+  }
+}
