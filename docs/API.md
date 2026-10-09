@@ -39,6 +39,9 @@ Product publication is evidence-gated.
 Missing or invalid tokens are rejected. The exact PM email allowlist is enforced server-side.
 
 ### Channel status
+- GET /api/salla/status — protected Salla connector configuration summary
+- GET /api/salla/check — protected read-only Salla API verification
+- POST /api/salla/import — protected, dry-run-by-default, evidence-gated hidden-draft import
 - GET /api/whatsapp/status
 - GET /api/whatsapp/webhook
 - POST /api/whatsapp/webhook
