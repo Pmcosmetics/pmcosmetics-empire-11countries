@@ -93,6 +93,32 @@ function isBeauty(p){
  const nonBeauty=/(blood glucose|accu-chek|test strip|lancet|nebulizer|blood pressure|pressure monitor|glucometer|amipride|amiprostone|medicine|medical device|diet supplement|dietary supplement|vitamin|supplement|acai berry diet|collagen tablets|hair skin.{0,10}nails|syrup|inhaler|mg [0-9]{1,3} tab)/i.test(name);
  return beautyCategory&&!nonBeauty;
 }
+function normalizeProductIdentity(value){
+ return String(value||"").normalize("NFKC").toLocaleLowerCase("en")
+  .replace(/[\u064B-\u065F\u0670\u0640]/g,"")
+  .replace(/[^\p{L}\p{N}]+/gu," ").replace(/\s+/g," ").trim();
+}
+function deduplicateProducts(rows){
+ const groups=new Map();
+ rows.forEach((product,index)=>{
+  const name=normalizeProductIdentity(product.product);
+  const brand=normalizeProductIdentity(product.brand);
+  const sku=normalizeProductIdentity(product.sku);
+  const key=name?("product:"+brand+"|"+name):sku?("sku:"+sku):("row:"+index);
+  if(!groups.has(key))groups.set(key,[]);
+  groups.get(key).push(product);
+ });
+ const quality=p=>(String(p.image||"").trim()?4:0)+(priceValue(p)!==null?4:0)+
+  (String(p.description||"").trim()?1:0)+(String(p.sku||"").trim()?1:0);
+ return Array.from(groups.values()).map(items=>{
+  const best=items.reduce((current,candidate)=>quality(candidate)>quality(current)?candidate:current);
+  const result={...best};
+  const validPrices=Array.from(new Set(items.map(priceValue).filter(price=>price!==null)));
+  // Conflicting duplicate prices are not guessed: suppress the displayed price until reviewed.
+  if(validPrices.length>1)result.price_egp="";
+  return result;
+ });
+}
 function priceValue(p){const raw=String(p.price_egp||"").trim();const n=Number(raw);return raw!==""&&Number.isFinite(n)&&n>0?n:null;}
 function money(n){return new Intl.NumberFormat("ar-EG",{maximumFractionDigits:2}).format(n)+" ج.م";}
 function shortDesc(s){const value=String(s||"").replace(/\s+/g," ").trim();if(!value)return "الوصف التفصيلي يحتاج إلى مراجعة قبل النشر التجاري.";return value.length>145?value.slice(0,142).trim()+"…":value;}
@@ -148,7 +174,7 @@ $("prev").addEventListener("click",function(){if(page>1){page--;render();$("prod
 $("next").addEventListener("click",function(){if(page<Math.ceil(filtered.length/PAGE_SIZE)){page++;render();$("products").scrollIntoView({behavior:"smooth"});}});
 fetch(CSV_URL,{headers:{"Accept":"text/csv"}}).then(function(response){if(!response.ok)throw new Error("تعذر تحميل الملف");return response.text();}).then(function(text){
  const rows=parseCSV(text);$("totalCount").textContent=new Intl.NumberFormat("en-US").format(rows.length);
- all=rows.filter(isBeauty);
+ all=deduplicateProducts(rows.filter(isBeauty));
  fillCategories(all);
  const params=new URLSearchParams(window.location.search);
  if(params.get("q"))$("search").value=params.get("q");

@@ -32,5 +32,20 @@
     "secondaryRole": "backup direct-call contact; not a default WhatsApp CTA",
     "tertiaryRole": "additional direct-call contact; not a default WhatsApp CTA",
     "samePrimaryWhatsAppEverywhere": true
+  },
+  "commercialName": "PM Cosmetics Hub",
+  "tagline": "Empowering Beauty Across 11 Countries",
+  "colors": {
+    "gold": "#D4AF37",
+    "black": "#0A0A0A"
+  },
+  "commerce": {
+    "primaryStore": {
+      "platform": "Shopify",
+      "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
+      "url": "https://pmcosmetics-lgdc2mrf.myshopify.com",
+      "role": "canonical_primary_store"
+    },
+    "policy": "One canonical PM storefront; connected sales channels reuse the approved PM Cosmetics Hub identity and evidence-gated catalog."
   }
 }

@@ -140,13 +140,13 @@ Canonical runtime checks are enforced by `.github/workflows/ci.yml`. Unrelated t
 
 **2026-10-04 currency safety sync:** Live Shopify Admin metadata reports the connected shop currency as **EGP** in Egypt. The Empire therefore keeps the primary catalog currency as EGP and must not auto-convert Egyptian retail prices into USD. The sync engine continues to block zero/placeholder prices and requires an explicit target currency for any non-EGP channel.
 
-**2026-10-05 live reconciliation sync:** Live Shopify currently reports **215** total catalog products with **1 ACTIVE** product and **214 non-ACTIVE** products. The active product is `DERMAELLE007`, priced at **239 EGP**, with **48** units confirmed at the Shopify `Shop location`. The store currently exposes Online Store, Shop, Point of Sale, and Inbox publications. The Commercial Publish Gate remains **CLOSED**.
+**2026-10-09 live reconciliation sync:** The connected Shopify Admin query reports **153** total catalog records. A live `status:active` search returned **0 ACTIVE** products. `DERMAELLE007` is currently **DRAFT** (not live for public sale), with a recorded price of **239 EGP**, **48** units, and a Shopify CDN image. The Commercial Publish Gate remains **CLOSED**; a publish-ready Product Master record is not evidence that Shopify has activated it.
 
 **2026-10-05 authentication sync:** The Empire now performs server-side Supabase Auth token verification through `/auth/v1/user` and enforces the exact allowlist `shukrypeter79@gmail.com` / `shukrypeter102@gmail.com`. The public auth page still supports Google OAuth and passwordless email links. Google Provider client credentials remain the only external Auth setup dependency.
 
 **2026-10-05 security sync:** Production security review is recorded in `docs/SECURITY.md`. Git secrets review passed with no live credential pattern found; production credentials remain environment/secret-store based. HTTPS is enforced at the deployment edge and in application configuration, auth endpoints are rate-limited, core commerce RLS is verified, and GDPR/PCI/Egypt/Saudi/UAE compliance remains explicitly **not signed off** pending legal/contractual/data-flow evidence.
 
-**2026-10-05 product reconciliation:** `DERMAELLE007` is cross-linked across Airtable, Supabase, and Shopify. Airtable marks it **Publish-Ready** and the controlled pilot is live in Shopify. An archived Shopify duplicate with the same SKU is retained for audit history; no deletion or bulk activation was performed. The Product Master currently contains **73** records: **1 Publish-Ready**, **52 Blocked — Identity**, and **20 Blocked — Image/Stock**.
+**2026-10-09 product reconciliation:** The Product Master evidence snapshot contains **73** records: **1 Publish-Ready**, **52 Blocked — Identity**, and **20 Blocked — Image/Stock**. Shopify has **153** total records and no products returned by the current active-product query; `DERMAELLE007` is Draft. Duplicate or incomplete Shopify records remain non-published for audit and evidence review; do not delete archive history or enable bulk activation without a complete SKU-level reconciliation.
 
 ---
 

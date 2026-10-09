@@ -271,9 +271,13 @@ app.get("/api/markets", (_req, res) => res.json({
 app.get("/api/brand", (_req, res) => res.json({
   ok: true,
   brandName: brandConfig.brandName,
+  commercialName: brandConfig.commercialName,
+  tagline: brandConfig.tagline,
+  colors: brandConfig.colors,
   logo: brandConfig.logo,
   phones: brandConfig.phones,
   whatsappCatalog: brandConfig.whatsappCatalog,
+  commerce: brandConfig.commerce,
   policy: brandConfig.policy
 }));
 
