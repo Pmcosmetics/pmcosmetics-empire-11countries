@@ -603,12 +603,15 @@ app.post("/api/whatsapp/webhook", (req, res) => {
   if (!whatsappSignatureValid(req)) {
     return res.status(401).json({ ok: false, gate: gateState(), reason: "WHATSAPP_WEBHOOK_SIGNATURE_INVALID" });
   }
-  return res.status(200).json({
-    ok: true,
+  // Do not acknowledge an event as successfully handled until a durable, idempotent
+  // processor exists. A 503 asks Meta to retry instead of silently dropping the event.
+  return res.status(503).json({
+    ok: false,
     gate: gateState(),
     received: true,
     processed: false,
-    reason: "WEBHOOK_RECEIVED_GATED"
+    retryable: true,
+    reason: "WHATSAPP_WEBHOOK_PROCESSOR_UNAVAILABLE"
   });
 });
 
