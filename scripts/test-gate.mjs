@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHmac } from "node:crypto";
 import app from "../server/index.mjs";
 
 assert.equal(typeof app, "function");
@@ -40,6 +41,51 @@ try {
   if (!whatsappStatusBody.webhook.configured) {
     const whatsappWebhook = await fetch(`http://127.0.0.1:${port}/api/whatsapp/webhook`);
     assert.equal(whatsappWebhook.status, 503);
+  }
+
+  // Verify Meta's GET challenge and fail-closed POST behavior without using real credentials.
+  const oldVerifyToken = process.env.WHATSAPP_BUSINESS_VERIFY_TOKEN;
+  const oldWebhookSecret = process.env.WHATSAPP_WEBHOOK_SECRET;
+  try {
+    process.env.WHATSAPP_BUSINESS_VERIFY_TOKEN = "test-verify-token";
+    process.env.WHATSAPP_WEBHOOK_SECRET = "test-app-secret";
+
+    const challenge = await fetch(
+      `http://127.0.0.1:${port}/api/whatsapp/webhook?hub.mode=subscribe&hub.verify_token=test-verify-token&hub.challenge=challenge-123`
+    );
+    assert.equal(challenge.status, 200);
+    assert.equal(await challenge.text(), "challenge-123");
+
+    const rejectedChallenge = await fetch(
+      `http://127.0.0.1:${port}/api/whatsapp/webhook?hub.mode=subscribe&hub.verify_token=wrong-token&hub.challenge=challenge-123`
+    );
+    assert.equal(rejectedChallenge.status, 403);
+
+    const rawBody = JSON.stringify({ object: "whatsapp_business_account", entry: [] });
+    const signature = "sha256=" + createHmac("sha256", "test-app-secret").update(rawBody).digest("hex");
+    const signedWebhook = await fetch(`http://127.0.0.1:${port}/api/whatsapp/webhook`, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-hub-signature-256": signature },
+      body: rawBody
+    });
+    assert.equal(signedWebhook.status, 503);
+    const signedWebhookBody = await signedWebhook.json();
+    assert.equal(signedWebhookBody.received, true);
+    assert.equal(signedWebhookBody.processed, false);
+    assert.equal(signedWebhookBody.retryable, true);
+    assert.equal(signedWebhookBody.reason, "WHATSAPP_WEBHOOK_PROCESSOR_UNAVAILABLE");
+
+    const invalidSignature = await fetch(`http://127.0.0.1:${port}/api/whatsapp/webhook`, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-hub-signature-256": "sha256=invalid" },
+      body: rawBody
+    });
+    assert.equal(invalidSignature.status, 401);
+  } finally {
+    if (oldVerifyToken === undefined) delete process.env.WHATSAPP_BUSINESS_VERIFY_TOKEN;
+    else process.env.WHATSAPP_BUSINESS_VERIFY_TOKEN = oldVerifyToken;
+    if (oldWebhookSecret === undefined) delete process.env.WHATSAPP_WEBHOOK_SECRET;
+    else process.env.WHATSAPP_WEBHOOK_SECRET = oldWebhookSecret;
   }
 
   const amplitudeStatus = await fetch(`http://127.0.0.1:${port}/api/amplitude/status`);
