@@ -94,13 +94,27 @@ try {
   assert.equal(amplitudeBody.ok, true);
   assert.equal(amplitudeBody.configured, false);
 
+  const oldCatalogLive = process.env.COMMERCIAL_CATALOG_LIVE;
+  const oldCommercialGate = process.env.COMMERCIAL_PUBLISH_GATE;
+  process.env.COMMERCIAL_PUBLISH_GATE = "CLOSED";
+  process.env.COMMERCIAL_CATALOG_LIVE = "true";
   process.env.RAILWAY_GIT_COMMIT_SHA = "test-railway-commit";
   const health = await fetch(`http://127.0.0.1:${port}/api/health`);
   assert.equal(health.status, 200);
   const healthBody = await health.json();
   assert.equal(healthBody.ok, true);
   assert.equal(healthBody.gate, "CLOSED");
+  assert.equal(healthBody.commercialCatalogLive, false);
+  assert.equal(healthBody.catalogConfiguredLive, true);
+  assert.equal(healthBody.commercialWrites, "LOCKED");
   assert.equal(healthBody.commitSha, "test-railway-commit");
+
+  const marketsResponse = await fetch(`http://127.0.0.1:${port}/api/markets`);
+  assert.equal(marketsResponse.status, 200);
+  const marketsBody = await marketsResponse.json();
+  assert.equal(marketsBody.ok, true);
+  assert.equal(marketsBody.markets.length, 11);
+  assert.ok(marketsBody.markets.every((market) => market.currency && market.id && market.name));
   assert.equal(healthBody.service, "pmcosmetics-empire-11countries");
   assert.equal(healthBody.supabaseConfigured, healthBody.dataSource === "Supabase");
   assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]);
