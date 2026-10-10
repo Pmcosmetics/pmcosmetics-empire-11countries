@@ -115,6 +115,10 @@ try {
   assert.equal(marketsBody.ok, true);
   assert.equal(marketsBody.markets.length, 11);
   assert.ok(marketsBody.markets.every((market) => market.currency && market.id && market.name));
+  if (oldCatalogLive === undefined) delete process.env.COMMERCIAL_CATALOG_LIVE;
+  else process.env.COMMERCIAL_CATALOG_LIVE = oldCatalogLive;
+  if (oldCommercialGate === undefined) delete process.env.COMMERCIAL_PUBLISH_GATE;
+  else process.env.COMMERCIAL_PUBLISH_GATE = oldCommercialGate;
   assert.equal(healthBody.service, "pmcosmetics-empire-11countries");
   assert.equal(healthBody.supabaseConfigured, healthBody.dataSource === "Supabase");
   assert.deepEqual(healthBody.architecture, ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]);
