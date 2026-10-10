@@ -1,105 +1,52 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>PM COSMETICS HUB | Empowering Beauty Across 11 Countries</title>
-<meta name="description" content="PM COSMETICS HUB — متجر مستحضرات التجميل والعناية بالبشرة والشعر والجسم والعطور والجمال الكوري."/>
-<style>
-:root{--ink:#0A0A0A;--gold:#D4AF37;--muted:#737373;--line:#2b2b2b;--soft:#111;--brand:#D4AF37;--accent:#D4AF37;--white:#fff;--shadow:0 18px 55px rgba(0,0,0,.35)}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,system-ui,sans-serif;color:var(--ink);background:#0A0A0A;color:#fff}a{text-decoration:none;color:inherit}
-.top{background:var(--ink);color:#fff;text-align:center;padding:10px 16px;font-size:13px}
-header{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav{max-width:1180px;margin:auto;padding:18px 20px;display:flex;gap:20px;align-items:center;justify-content:space-between}
-.logo{font-weight:800;letter-spacing:.2px}.logo small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
-.search{flex:1;max-width:520px;position:relative}.search input{width:100%;padding:14px 18px;border:1px solid var(--line);border-radius:999px;font-size:15px;outline:none}.search input:focus{border-color:var(--accent)}
-.actions{display:flex;gap:10px}.pill{border:1px solid var(--line);padding:11px 14px;border-radius:999px;font-size:13px}
-.hero{background:linear-gradient(135deg,#0A0A0A,#151515,#0f0f0f);padding:64px 20px}.hero-inner{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
-h1{font-size:clamp(38px,5vw,64px);line-height:1.02;margin:0 0 18px}.hero p{font-size:18px;color:#b8b8b8;line-height:1.8;max-width:680px}.cta{display:inline-block;background:var(--brand);color:#0A0A0A;padding:14px 20px;border-radius:999px;margin-top:12px}
-.hero-card{background:#111;border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:var(--shadow)}.status{display:inline-flex;gap:8px;align-items:center;font-size:12px;background:#f3ecf2;padding:8px 12px;border-radius:999px;color:#795d0f}
-section{max-width:1180px;margin:0 auto;padding:58px 20px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:24px}.section-head h2{margin:0;font-size:30px}.section-head p{margin:0;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--soft);border:1px solid var(--line);border-radius:22px;padding:22px;min-height:150px}.card .icon{font-size:30px;color:var(--brand)}.card h3{margin:14px 0 7px}.muted{color:var(--muted);font-size:13px;line-height:1.6}
-.chips{display:flex;flex-wrap:wrap;gap:10px}.chip{padding:12px 15px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:13px}
-.brands{display:flex;flex-wrap:wrap;gap:10px}.brand{padding:13px 16px;border-radius:15px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:13px}
-.catalog{background:#fbf9fb;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--ink)}.empty{padding:44px 20px;background:#fff;border:1px dashed #d9ccd5;border-radius:22px;text-align:center}
-.empty h3{margin-top:0}.empty p{color:var(--muted);max-width:650px;margin:10px auto;line-height:1.8}
-footer{background:#0A0A0A;color:#fff;padding:40px 20px}.foot{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:start}.foot p{color:#c9c2c8;font-size:13px}
-.market-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}.market-card{display:flex;flex-direction:column;min-height:184px;padding:18px;border:1px solid rgba(212,175,55,.25);border-radius:18px;background:linear-gradient(145deg,#151515,#0b0b0b);transition:transform .2s,border-color .2s}.market-card:hover{transform:translateY(-3px);border-color:#D4AF37}.market-top{display:flex;align-items:center;gap:10px}.market-flag{font-size:28px}.market-name{font-weight:800;color:#f7f0dc}.market-region{font-size:10px;color:#a9a293;margin-top:2px}.market-currency{font-size:12px;color:#f0d984;margin:14px 0 8px}.market-note{font-size:10px;color:#aaa69b;line-height:1.7;flex:1}.market-action{display:flex;justify-content:center;align-items:center;padding:10px 12px;margin-top:12px;border-radius:999px;background:linear-gradient(135deg,#F7E7A8,#D4AF37);color:#111;font-size:11px;font-weight:800}.market-callout{margin-top:17px;padding:13px 16px;border:1px solid rgba(212,175,55,.2);border-right:3px solid #D4AF37;background:rgba(212,175,55,.04);border-radius:12px;color:#c8c1ad;font-size:12px;line-height:1.8}.market-grid .market-empty{grid-column:1/-1;text-align:center;padding:28px;color:#aaa69b;border:1px dashed #3b3215;border-radius:16px}
-a.card{display:block;color:inherit;text-decoration:none;transition:transform .2s,border-color .2s}a.card:hover{transform:translateY(-3px);border-color:#D4AF37}
-@media(max-width:820px){.hero-inner{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.search{display:none}.actions{display:none}}
-@media(max-width:520px){.grid{grid-template-columns:1fr}.hero{padding:44px 18px}section{padding:44px 18px}}
-
-.wa-catalog-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:1000;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:13px 19px;border:1px solid rgba(10,10,10,.28);border-radius:999px;background:linear-gradient(135deg,#F7E7A8,#D4AF37);color:#0A0A0A;font-size:14px;font-weight:800;box-shadow:0 12px 34px rgba(0,0,0,.42);text-decoration:none;transition:transform .18s,box-shadow .18s}
-.wa-catalog-float:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(0,0,0,.5)}
-.wa-catalog-float .wa-mark{display:inline-grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#0A0A0A;color:#D4AF37;font-size:15px;line-height:1}
-@media(max-width:520px){.wa-catalog-float{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));min-height:48px;padding:11px 15px;font-size:13px}}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10100f">
+  <meta name="description" content="PM Cosmetics Hub — كتالوج مستحضرات تجميل منظم للعناية بالبشرة والشعر والجسم والعطور عبر 11 سوقًا.">
+  <link rel="canonical" href="/">
+  <title>PM Cosmetics Hub | جمال موثوق عبر 11 سوقًا</title>
+  <style>
+    :root{--ink:#171612;--gold:#d6b45a;--cream:#f7f3eb;--paper:#fffdf9;--muted:#706c63;--line:#e8e1d4;--accent:#29483e;--shadow:0 18px 50px rgba(31,26,17,.1)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,"Segoe UI",sans-serif;line-height:1.6}a{color:inherit;text-decoration:none}button,input{font:inherit}
+    .notice{background:var(--ink);color:#f8edca;text-align:center;padding:9px 16px;font-size:12px}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(247,243,235,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;gap:18px;min-height:78px}.brand{display:flex;align-items:center;gap:10px;min-width:210px}.brand img{width:48px;height:48px}.brand strong{display:block;letter-spacing:1px;font-family:Georgia,serif}.brand small{display:block;color:var(--muted);font-size:10px}.search{flex:1;position:relative}.search input{width:100%;border:1px solid #d8d0c2;background:var(--paper);border-radius:999px;padding:12px 18px;outline:none}.search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px #d6b45a22}.nav-actions{display:flex;gap:8px;align-items:center}.button{border:1px solid var(--line);border-radius:999px;padding:10px 14px;background:var(--paper);font-size:12px;cursor:pointer}.button.primary{background:var(--accent);border-color:var(--accent);color:#fff}.button.gold{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700}
+    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center;padding:76px 0 60px}.eyebrow{display:inline-block;border:1px solid #d9c899;border-radius:999px;padding:7px 12px;color:#725b1c;background:#fff8df;font-size:12px}h1{font-family:Georgia,serif;font-size:clamp(40px,6vw,72px);line-height:1.08;margin:18px 0 14px;letter-spacing:-1px}.hero p{max-width:650px;color:var(--muted);font-size:17px;line-height:1.9}.hero-card{background:var(--ink);color:#fff;border-radius:28px;padding:28px;box-shadow:var(--shadow)}.hero-card img{width:68px;height:68px;margin-bottom:15px}.hero-card h2{font-family:Georgia,serif;color:#f4df9c;margin:0 0 10px}.hero-card p{font-size:13px;color:#d2cec2;margin:0}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    section{padding:26px 0 58px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:20px}.section-head h2{font-family:Georgia,serif;font-size:30px;margin:0}.section-head p{color:var(--muted);font-size:13px;margin:5px 0 0}.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.category{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;transition:.2s}.category:hover{transform:translateY(-3px);border-color:var(--gold)}.category span{font-size:26px;color:var(--gold)}.category h3{margin:10px 0 2px;font-size:17px}.category small{color:var(--muted)}
+    .search-panel{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.search-row{display:flex;gap:10px}.search-row input{flex:1;min-width:0;border:1px solid #d8d0c2;border-radius:12px;padding:13px 15px;background:#fff;outline:none}.search-row input:focus{border-color:var(--gold)}.search-result{min-height:26px;color:var(--muted);font-size:13px;margin:12px 2px 0}.markets{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.market{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:15px}.market strong{display:block}.market small{color:var(--muted)}.disclaimer{border-right:3px solid var(--gold);background:#fff8df;padding:14px 17px;color:#665a3d;font-size:13px;border-radius:10px}.footer{background:var(--ink);color:#fff;padding:34px 0}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer p{color:#c9c4b7;font-size:12px;margin:6px 0}.footer a{color:#f4df9c}
+    @media(max-width:820px){.nav{flex-wrap:wrap;padding:12px 0}.brand{min-width:0;flex:1}.search{order:3;flex-basis:100%}.nav-actions{gap:6px}.nav-actions .optional{display:none}.hero{grid-template-columns:1fr;padding-top:48px}.hero-card{display:none}.category-grid{grid-template-columns:repeat(2,1fr)}.markets{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:480px){.wrap{width:min(100% - 24px,1120px)}.brand strong{font-size:13px}.brand small{font-size:9px}.button{padding:9px 11px;font-size:11px}.hero{padding-bottom:38px}h1{font-size:43px}.hero p{font-size:15px}.category-grid{grid-template-columns:1fr}.search-row{flex-direction:column}.search-row .button{width:100%}.markets{grid-template-columns:1fr 1fr}.section-head{display:block}.section-head .button{display:inline-block;margin-top:12px}}
+  </style>
 </head>
 <body>
-<div class="top">PM COSMETICS HUB • Empowering Beauty Across 11 Countries • مستحضرات التجميل فقط</div>
-<header><div class="nav">
-  <a class="logo" href="/" aria-label="PM COSMETICS HUB"><img src="/pmcosmetics-logo.svg" alt="PM COSMETICS HUB" style="width:52px;height:52px;vertical-align:middle;margin-left:10px"><span style="color:var(--gold)">PM COSMETICS HUB</span><small>Empowering Beauty Across 11 Countries</small></a>
-  <div class="search"><input id="search" placeholder="ابحثي عن منتج، ماركة أو فئة"/></div>
-  <div class="actions"><a class="pill" href="/catalog.html">الكتالوج</a><a class="pill" href="/business-profile.html">الملف التجاري</a><a class="pill" href="#markets">11 دولة</a><span class="pill">العربة 0</span><a class="pill" id="waPrimary" href="https://wa.me/201055655649">واتساب 01055655649</a><a class="pill" id="waSecondary" href="tel:+201203151461">اتصال 01203151461</a><a class="pill" id="waThird" href="tel:+201270677739">اتصال 01270677739</a></div>
-</div></header>
-<main>
-<section class="hero"><div class="hero-inner">
-  <div><span class="status">● معاينة المتجر • بوابة البيع مغلقة</span><h1>Empowering Beauty Across 11 Countries</h1>
-    <p>واجهة PM COSMETICS HUB مبنية على أسلوب متجر تجميلي متعدد الفئات: بشرة، شعر، جسم، عطور، جمال كوري وعناية الأطفال التجميلية — مع فصل صارم بين بيانات المرجع والمنتجات المملوكة لـPM.</p>
-    <a class="cta" href="/catalog.html">الكتالوج المرجعي</a><a class="cta" style="margin-right:8px;background:#111;color:#D4AF37;border:1px solid #3b3215" href="/business-profile.html">الملف التجاري</a><a class="cta" style="margin-right:8px;background:#111;color:#D4AF37;border:1px solid #3b3215" href="#categories">الفئات</a><a class="cta" style="margin-right:8px" href="https://pmcosmetics-lgdc2mrf.myshopify.com" target="_blank" rel="noopener">متجر Shopify</a><a class="cta" style="margin-right:8px;background:#111;color:#D4AF37;border:1px solid #3b3215" href="https://wa.me/c/201055655649" target="_blank" rel="noopener">كتالوج واتساب</a><a class="cta" style="margin-right:8px;background:#111;color:#D4AF37;border:1px solid #3b3215" href="/auth">الدخول والربط عبر Gmail</a>
-  </div>
-  <div class="hero-card"><h3>بوابة المنتج</h3><p class="muted">المنتج يدخل النشر التجاري فقط بعد اجتياز Product Evidence Gate. المنتجات المرجعية لا تتحول تلقائيًا إلى مخزون PM.</p><div class="chips"><span class="chip">SKU / GTIN</span><span class="chip">صورة مطابقة</span><span class="chip">مخزون</span><span class="chip">مصدر</span></div></div>
-</div></section>
-<section id="categories"><div class="section-head"><div><h2>تسوقي حسب الفئة</h2><p>تصنيف مستحضرات تجميل فقط.</p></div></div><div class="grid">
-<a class="card" href="/catalog.html?q=العناية بالبشرة"><div class="icon">✦</div><h3>العناية بالبشرة</h3><div class="muted">Skin Care</div></a><a class="card" href="/catalog.html?q=العناية بالشعر"><div class="icon">✧</div><h3>العناية بالشعر</h3><div class="muted">Hair Care</div></a><a class="card" href="/catalog.html?q=العناية بالجسم"><div class="icon">◌</div><h3>العناية بالجسم</h3><div class="muted">Body Care</div></a><a class="card" href="/catalog.html?q=العطور"><div class="icon">◈</div><h3>العطور</h3><div class="muted">Perfumes</div></a><a class="card" href="/catalog.html?q=Korean Beauty"><div class="icon">◇</div><h3>الجمال الكوري</h3><div class="muted">Korean Beauty</div></a><a class="card" href="/catalog.html?q=عناية الأطفال التجميلية"><div class="icon">♡</div><h3>عناية الأطفال</h3><div class="muted">Kids Care</div></a>
-</div></section>
-<section id="markets"><div class="section-head"><div><h2>PM Hub حول 11 سوقًا</h2><p>اختاري الدولة لطلب تأكيد السعر والتوفر والشحن بعملة السوق.</p></div><a class="pill" href="/business-profile.html#markets">عرض ملف الأسواق ↗</a></div><div class="market-grid" id="homeMarketGrid"><div class="market-empty">تحميل أسواق PM الـ11…</div></div><div class="market-callout">الأسواق الـ11 جزء من نطاق الإمبراطورية المستهدف؛ ظهور الدولة هنا لا يعني وجود متجر محلي مستقل أو تفعيل الشحن تلقائيًا. يتم تأكيد السعر والعملة والتوصيل مع فريق PM قبل الطلب.</div></section>
-<section><div class="section-head"><div><h2>تسوقي حسب الاهتمام</h2><p>نفس فكرة التصفح حسب المشكلة أو الروتين.</p></div></div><div class="chips">
-<span class="chip">الحماية من الشمس</span><span class="chip">البشرة الدهنية والمختلطة</span><span class="chip">البشرة الجافة</span><span class="chip">البشرة الحساسة</span><span class="chip">إصلاح البشرة</span><span class="chip">العناية بالشعر</span><span class="chip">العناية الشخصية</span><span class="chip">مزيلات المكياج</span>
-</div></section>
-<section><div class="section-head"><div><h2>ماركات الجمال</h2><p>ماركات مرجعية لتصميم taxonomy؛ النشر التجاري يتطلب إثبات PM.</p></div></div><div class="brands">
-<span class="brand">The Ordinary</span><span class="brand">CeraVe</span><span class="brand">La Roche-Posay</span><span class="brand">Vichy</span><span class="brand">Bioderma</span><span class="brand">Uriage</span><span class="brand">L’Oréal Professionnel</span><span class="brand">Olaplex</span><span class="brand">Nivea</span><span class="brand">Beesline</span><span class="brand">Korean Beauty</span>
-</div></section>
-<section class="catalog"><div class="section-head"><div><h2>الكتالوج التجاري</h2><p>يتم عرض المنتجات للبيع بعد اكتمال التحقق التجاري وفتح بوابة النشر فقط.</p></div></div>
-<div class="grid" style="grid-template-columns:1fr">
-  <article class="card" style="background:#fff;color:#0A0A0A;border-color:#D4AF37">
-    <div class="status">بوابة النشر التجاري مغلقة حاليًا</div>
-    <h3>كتالوج PM COSMETICS HUB قيد الاعتماد</h3>
-    <p class="muted" style="color:#555;margin-top:8px">نراجع بيانات المنتجات والصور وSKU والمخزون قبل إتاحتها للشراء. الكتالوج المرجعي للاطلاع والاستفسار فقط، ولا يؤكد توفر المنتج أو سعر البيع النهائي.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
-      <a class="cta" href="/catalog.html">استعراض الكتالوج المرجعي</a>
-      <a class="cta" style="background:#111;color:#D4AF37;border:1px solid #3b3215" href="https://wa.me/201055655649">استفسار عبر واتساب</a>
+  <div class="notice">كتالوج تجميلي منظم • تأكيد السعر والتوفر قبل الطلب</div>
+  <header><div class="wrap nav">
+    <a class="brand" href="/" aria-label="العودة إلى PM Cosmetics Hub"><img src="/pmcosmetics-logo.svg" alt="شعار PM Cosmetics Hub"><span><strong>PM COSMETICS HUB</strong><small>جمال موثوق عبر 11 سوقًا</small></span></a>
+    <form class="search" id="navSearch" role="search"><input id="navQuery" type="search" placeholder="ابحثي عن منتج أو ماركة" aria-label="البحث عن منتج أو ماركة"></form>
+    <nav class="nav-actions" aria-label="التنقل"><a class="button optional" href="/catalog.html">الكتالوج</a><a class="button" href="/business-profile.html">الملف التجاري</a><a class="button gold" href="https://wa.me/201055655649" target="_blank" rel="noopener">واتساب</a></nav>
+  </div></header>
+  <main>
+    <div class="wrap">
+      <section class="hero"><div>
+        <span class="eyebrow">PM Cosmetics Hub • نسخة مبسطة</span>
+        <h1>الجمال يبدأ<br>باختيار واضح.</h1>
+        <p>اكتشفي فئات العناية بالبشرة والشعر والجسم والعطور في تجربة عربية سريعة. الكتالوج مرجعي، ويتم تأكيد السعر والتوفر والشحن مع فريق PM قبل الطلب.</p>
+        <div class="hero-actions"><a class="button primary" href="/catalog.html">تصفّحي الكتالوج</a><a class="button" href="#categories">اختاري فئة</a></div>
+      </div><aside class="hero-card"><img src="/pmcosmetics-logo.svg" alt=""><h2>اختيار أجمل، بثقة أكبر</h2><p>نرتب المنتجات والمعلومات في مكان واحد، ونفصل بوضوح بين البيانات المرجعية والمنتجات الجاهزة للنشر التجاري.</p></aside></section>
+      <div class="disclaimer"><strong>ملاحظة:</strong> ظهور منتج أو سوق في الكتالوج لا يعني توافر المخزون أو اعتماد البيع. تواصلي معنا لتأكيد التفاصيل قبل الطلب.</div>
+      <section id="categories"><div class="section-head"><div><h2>تسوّقي حسب الفئة</h2><p>وصول مباشر إلى الفئات الأساسية.</p></div></div><div class="category-grid">
+        <a class="category" href="/catalog.html?q=العناية بالبشرة"><span>✦</span><h3>العناية بالبشرة</h3><small>Skin Care</small></a><a class="category" href="/catalog.html?q=العناية بالشعر"><span>✧</span><h3>العناية بالشعر</h3><small>Hair Care</small></a><a class="category" href="/catalog.html?q=العناية بالجسم"><span>◌</span><h3>العناية بالجسم</h3><small>Body Care</small></a><a class="category" href="/catalog.html?q=العطور"><span>◈</span><h3>العطور</h3><small>Perfumes</small></a><a class="category" href="/catalog.html?q=الجمال الكوري"><span>◇</span><h3>الجمال الكوري</h3><small>Korean Beauty</small></a><a class="category" href="/catalog.html?q=عناية الأطفال"><span>♡</span><h3>عناية الأطفال</h3><small>Kids Care</small></a>
+      </div></section>
+      <section><div class="section-head"><div><h2>بحث سريع</h2><p>البحث ينقلك إلى نتائج الكتالوج بدل أن يبقى بلا استجابة.</p></div></div><div class="search-panel"><form class="search-row" id="catalogSearch"><input id="catalogQuery" type="search" placeholder="مثال: Dermaelle أو واقي شمس" aria-label="البحث في الكتالوج"><button class="button primary" type="submit">عرض النتائج</button></form><div class="search-result" id="searchResult" aria-live="polite">اكتبي كلمة بحث ثم اختاري «عرض النتائج».</div></div></section>
+      <section><div class="section-head"><div><h2>الأسواق المستهدفة</h2><p>11 سوقًا مع تأكيد العملة والشحن قبل الطلب.</p></div></div><div class="markets"><div class="market"><strong>🇪🇬 مصر</strong><small>الجنيه المصري</small></div><div class="market"><strong>🇸🇦 السعودية</strong><small>الريال السعودي</small></div><div class="market"><strong>🇦🇪 الإمارات</strong><small>الدرهم الإماراتي</small></div><div class="market"><strong>🇰🇼 الكويت</strong><small>الدينار الكويتي</small></div><div class="market"><strong>🇶🇦 قطر</strong><small>الريال القطري</small></div><div class="market"><strong>🇧🇭 البحرين</strong><small>الدينار البحريني</small></div><div class="market"><strong>🇴🇲 عُمان</strong><small>الريال العُماني</small></div><div class="market"><strong>🇯🇴 الأردن</strong><small>الدينار الأردني</small></div><div class="market"><strong>🇵🇸 فلسطين</strong><small>الشيكل</small></div><div class="market"><strong>🇱🇧 لبنان</strong><small>الليرة اللبنانية</small></div><div class="market"><strong>🌍 أسواق إضافية</strong><small>يتم التأكيد مع الفريق</small></div></div></section>
     </div>
-  </article>
-</div>
-</section>
-</main>
-<footer><div class="foot"><div><strong>PM COSMETICS HUB</strong><p>واجهة مستقلة مستلهمة من منطق تصنيف المتاجر المرجعية، مع هوية PM COSMETICS HUB ونظام Evidence Gate خاص بالإمبراطورية.</p></div><div><p><a id="footerPrimary" href="https://wa.me/201055655649">01055655649</a></p><p><a id="footerSecondary" href="https://wa.me/201203151461">01203151461</a></p><p><a id="footerThird" href="https://wa.me/201270677739">01270677739</a></p><p><a href="/business-profile.html">الملف التجاري</a> • <a href="/catalog.html">الكتالوج الكامل</a></p></div></div></footer>
-<script>
-const q=document.getElementById('search');q?.addEventListener('keydown',e=>{if(e.key==='Enter'){const term=q.value.trim();if(term) location.href='/api/storefront/search?q='+encodeURIComponent(term)}})
-</script>
-<script>
-fetch('/api/brand').then(r=>r.json()).then(b=>{
-  document.title=b.brandName+' — مستحضرات التجميل';
-  const p=b.phones.primary, s=b.phones.secondary, t=b.phones.tertiary;
-  const set=(id,text,href)=>{const e=document.getElementById(id);if(e){e.textContent=text;e.href=href;}};
-  set('waPrimary','واتساب '+p.local,p.wa);
-  set('waSecondary','اتصال '+s.local,'tel:+'+s.international);
-  set('footerPrimary',p.local,p.wa);
-  set('footerSecondary',s.local,'tel:+'+s.international);
-  if(t){set('waThird','اتصال '+t.local,'tel:+'+t.international);set('footerThird',t.local,'tel:+'+t.international);}
-}).catch(()=>{});
-</script><script>
-(function(){
-const names={EG:{ar:"مصر",flag:"🇪🇬",region:"شمال أفريقيا"},SA:{ar:"السعودية",flag:"🇸🇦",region:"الخليج العربي"},AE:{ar:"الإمارات",flag:"🇦🇪",region:"الخليج العربي"},KW:{ar:"الكويت",flag:"🇰🇼",region:"الخليج العربي"},QA:{ar:"قطر",flag:"🇶🇦",region:"الخليج العربي"},BH:{ar:"البحرين",flag:"🇧🇭",region:"الخليج العربي"},OM:{ar:"عُمان",flag:"🇴🇲",region:"الخليج العربي"},JO:{ar:"الأردن",flag:"🇯🇴",region:"بلاد الشام"},PS:{ar:"فلسطين",flag:"🇵🇸",region:"بلاد الشام"},LB:{ar:"لبنان",flag:"🇱🇧",region:"بلاد الشام"},IR:{ar:"إيران",flag:"🇮🇷",region:"غرب آسيا"}};
-const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-fetch("/api/markets").then(r=>{if(!r.ok)throw Error();return r.json()}).then(data=>{
-const markets=Array.isArray(data.markets)?data.markets:[];
-const grid=document.getElementById("homeMarketGrid");if(!grid)return;
-grid.innerHTML=markets.map(m=>{const x=names[m.id]||{ar:m.name,flag:"🌍",region:m.region||"سوق مستهدف"};const currency=(m.currency||"").toUpperCase();const symbol=m.currencySymbol||"";const message="مرحبًا PM Cosmetics Hub، أريد الاستفسار عن الطلب في سوق "+x.ar+" ("+currency+"). برجاء تأكيد السعر المحلي، التوفر، الشحن ووسيلة الدفع لهذا السوق قبل الطلب.";const href="https://wa.me/201055655649?text="+encodeURIComponent(message);return '<article class="market-card"><div class="market-top"><span class="market-flag">'+x.flag+'</span><div><div class="market-name">'+esc(x.ar)+'</div><div class="market-region">'+esc(x.region)+'</div></div></div><div class="market-currency">'+esc(currency)+' · '+esc(symbol)+'</div><div class="market-note">سوق مستهدف • السعر المحلي والتوصيل قيد التأكيد</div><a class="market-action" href="'+href+'" target="_blank" rel="noopener">استفسار لهذا السوق ↗</a></article>'}).join("")||'<div class="market-empty">بيانات الأسواق غير متاحة مؤقتًا.</div>';
-}).catch(()=>{const grid=document.getElementById("homeMarketGrid");if(grid)grid.innerHTML='<div class="market-empty">تعذر تحميل بيانات الأسواق. افتح صفحة الملف التجاري لمعلومات التواصل.</div>';});
-})();
-</script>
-<a class="wa-catalog-float" href="https://wa.me/c/201055655649" target="_blank" rel="noopener noreferrer" aria-label="فتح كتالوج واتساب PM Cosmetics Hub للرقم 01055655649"><span class="wa-mark" aria-hidden="true">✆</span><span>كتالوج واتساب</span></a>
-</body></html>
+  </main>
+  <footer class="footer"><div class="wrap footer-inner"><div><strong>PM COSMETICS HUB</strong><p>واجهة عربية مبسطة للكتالوج والتواصل.</p></div><div><p><a href="https://wa.me/201055655649" target="_blank" rel="noopener">واتساب: 01055655649</a></p><p><a href="/catalog.html">الكتالوج</a> · <a href="/business-profile.html">الملف التجاري</a> · <a href="/auth">الدخول الآمن</a></p></div></div></footer>
+  <script>
+    const goSearch=(value)=>{const q=String(value||'').trim();if(q) location.href='/catalog.html?q='+encodeURIComponent(q)};
+    document.getElementById('navSearch').addEventListener('submit',e=>{e.preventDefault();goSearch(document.getElementById('navQuery').value)});
+    document.getElementById('catalogSearch').addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('catalogQuery').value.trim();if(q) goSearch(q);else document.getElementById('searchResult').textContent='اكتبي كلمة بحث أولًا.'});
+  </script>
+</body>
+</html>

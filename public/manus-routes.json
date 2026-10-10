@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {"path": "/", "title": "PM Cosmetics Hub"},
+    {"path": "/catalog.html", "title": "كتالوج المنتجات"},
+    {"path": "/business-profile.html", "title": "الملف التجاري"},
+    {"path": "/auth", "title": "الدخول الآمن"}
+  ]
+}

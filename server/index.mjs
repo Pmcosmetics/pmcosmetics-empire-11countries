@@ -185,8 +185,6 @@ app.get("/api/auth/config", (_req, res) => {
   return res.json({
     ok: true,
     ...authConfigSnapshot(),
-    primaryEmail: authIdentityConfig.primaryEmail,
-    secondaryEmail: authIdentityConfig.secondaryEmail,
     supabaseUrl: process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl,
     publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || "",
   });
