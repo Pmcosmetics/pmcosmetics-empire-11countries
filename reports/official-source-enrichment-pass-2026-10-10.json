@@ -1,0 +1,91 @@
+{
+  "report": "PM Cosmetics Hub official-source enrichment pass",
+  "generated_at": "2026-10-10",
+  "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
+  "purpose": "Candidate identity/reference evidence only; not a commercial publish authorization",
+  "live_airtable_check": {
+    "base": "PM Cosmetics Hub",
+    "table": "Products",
+    "records_checked": 73,
+    "publish_gate_counts": {
+      "Blocked — Image/Stock": 21,
+      "Blocked — Identity": 51,
+      "Publish-Ready": 1
+    },
+    "missing_fields_counts": {
+      "sku": 54,
+      "gtin": 53,
+      "pm_stock": 70,
+      "pm_cost": 70,
+      "image_evidence": 71,
+      "original_brand": 64,
+      "authorization_document_status": 64
+    },
+    "note": "The 2026-10-05 staging-evidence.json snapshot is stale relative to live Airtable; refresh the snapshot before relying on its counts. The single Publish-Ready row is still subject to an explicit economic/SKU-mapping hold in Gate Notes, and the global commercial gate remains CLOSED."
+  },
+  "verified_public_reference_candidates": [
+    {
+      "product": "Dermaelle Hyalubalance Sebum Control Cleansing Gel 200ml",
+      "pm_sku_candidate": "DERMAELLE007",
+      "pm_gtin_recorded": "6223007905060",
+      "official_source": "https://e-dermaelle.com/products/dermaelle-hyalubalance-sebum-control-cleansing-gel-200-ml",
+      "source_type": "Official brand product page",
+      "supported": [
+        "Product name and 200ml size",
+        "Product type: cleanser for oily/acne-prone skin",
+        "Public price observed: EGP 145 promotional / EGP 239 listed reference on page checked 2026-10-10"
+      ],
+      "not_supported": [
+        "PM-approved retail or wholesale price",
+        "PM acquisition cost",
+        "PM physical stock",
+        "SKU mapping or authorization to publish brand imagery"
+      ],
+      "required_action": "Reconcile DERMAELLE007 vs DERMAELLE041 SKU mapping against PM source records and direct cost proof. Do not overwrite PM price/cost or reuse official images without rights confirmation.",
+      "status": "REFERENCE ONLY — HUMAN REVIEW REQUIRED"
+    },
+    {
+      "product": "CeraVe Hydrating Cleanser 236ml",
+      "pm_sku_candidate": "86067",
+      "pm_gtin_recorded": "3337875597180",
+      "official_source": "https://www.cerave.eg/en/skincare/cleansers/hydrating-facial-cleanser",
+      "secondary_identity_source": "https://africa.cerave.com/en/our-products/cleansers/hydrating-cleanser",
+      "source_type": "Official brand product pages",
+      "supported": [
+        "Hydrating cleanser product identity",
+        "Normal-to-dry skin positioning",
+        "Official Africa page lists 236ml as an available size"
+      ],
+      "not_supported": [
+        "PM-approved selling price",
+        "PM acquisition cost",
+        "PM physical stock",
+        "Exact GTIN match from the official page",
+        "Permission to copy brand imagery"
+      ],
+      "required_action": "Keep the existing GTIN as previously recorded but confirm it against PM packaging/stock evidence; collect PM stock count, acquisition invoice/cost, and an image with documented usage rights.",
+      "status": "REFERENCE ONLY — HUMAN REVIEW REQUIRED"
+    }
+  ],
+  "controls": [
+    "Do not infer PM stock from retailer stock or manufacturer pages.",
+    "Do not treat public retail prices as PM-approved prices.",
+    "Do not generate missing SKUs or GTINs.",
+    "Do not publish any row while the global commercial gate is CLOSED.",
+    "Keep manufacturer imagery out of the publish feed until commercial usage rights are confirmed."
+  ],
+  "sources_checked": [
+    {
+      "url": "https://e-dermaelle.com/products/dermaelle-hyalubalance-sebum-control-cleansing-gel-200-ml",
+      "purpose": "Official product identity, size and public price reference"
+    },
+    {
+      "url": "https://www.cerave.eg/en/skincare/cleansers/hydrating-facial-cleanser",
+      "purpose": "Official CeraVe Egypt product identity and product description"
+    },
+    {
+      "url": "https://africa.cerave.com/en/our-products/cleansers/hydrating-cleanser",
+      "purpose": "Official regional product page confirming 236ml size option"
+    }
+  ]
+}
