@@ -1,0 +1,41 @@
+name: Export Reference Catalog Review Batches
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/export-reference-review-batches.mjs"
+      - ".github/workflows/export-reference-review-batches.yml"
+      - "data/references/alfouad-cosmetics-catalog/**"
+
+permissions:
+  contents: read
+
+jobs:
+  export-reference-batches:
+    name: Build review-only CSV batches
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source catalog
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+
+      - name: Export reference catalog to review batches
+        run: node scripts/export-reference-review-batches.mjs dist/reference-review-batches
+
+      - name: Upload review-only catalog artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pm-cosmetics-reference-review-batches
+          path: dist/reference-review-batches/
+          if-no-files-found: error
+          retention-days: 14
