@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - api-gated-foundation
+      - fix/whatsapp-webhook-gated-handler
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: [main]
