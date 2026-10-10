@@ -48,9 +48,16 @@
     {
       "id": "etsy",
       "target": "listing-feed staging",
-      "connection": "seller_authorization_required",
+      "connection": "seller_authorization_required_and_policy_eligibility_review_required",
       "stagedProducts": 3218,
-      "publishableNow": 0
+      "publishableNow": 0,
+      "policyGate": {
+        "status": "HOLD",
+        "rule": "Do not bulk-list mass-produced ready-to-use branded cosmetics for resale. Only list individually reviewed products that qualify under Etsy Seller Policy.",
+        "imageRequirement": "Use PM-owned original photography or imagery explicitly authorized for the listing; reference-store images are not sufficient proof of rights.",
+        "dataRequirement": "Reference catalog data is for taxonomy/merchandising only, not evidence of PM identity, inventory, cost, or listing permission.",
+        "authorizationRequirement": "Seller App credentials and OAuth listings_w authorization are required for listing writes."
+      }
     },
     {
       "id": "temu",
