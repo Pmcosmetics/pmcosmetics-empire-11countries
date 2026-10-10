@@ -1,0 +1,73 @@
+{
+  "report": "PM COSMETICS HUB catalog enrichment audit",
+  "audited_at": "2026-10-10",
+  "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
+  "scope": "Read-only audit of current evidence snapshot and six published reference-review CSV batches; no commercial product data or publication state changed.",
+  "sources": {
+    "evidence_snapshot": "data/products/staging-evidence.json",
+    "reference_batches": "data/reference-review-batches-2026-10-10/pm-reference-batch-001.csv through pm-reference-batch-006.csv",
+    "official_product_example": "https://www.cerave.eg/ar-eg/skincare/cleansers/hydrating-facial-cleanser",
+    "reference_policy": "data/references/alfouad-store-reference.json"
+  },
+  "findings": {
+    "evidence_snapshot": {
+      "source_verified_at": "2026-10-05",
+      "product_records": 73,
+      "publish_ready": 1,
+      "blocked_image_stock": 20,
+      "blocked_identity": 52,
+      "archived": 6,
+      "gate": "CLOSED",
+      "publishable": false,
+      "warning": "Snapshot is older than this audit date and should be refreshed from the live Product Master before any publication decision."
+    },
+    "reference_batches_audited": {
+      "files": 6,
+      "rows": 1306,
+      "expected_target_category_rows": 3479,
+      "expected_unique_products": 3218,
+      "audited_batch_rows_are_not_full_catalog": true,
+      "rows_marked_hold_reference_only": 1297,
+      "missing_field_counts": {
+        "name": 6,
+        "brand": 9,
+        "category": 9,
+        "source_sku": 26,
+        "reference_price_egp": 9,
+        "reference_image_url": 9,
+        "reference_description": 9,
+        "source_url": 9
+      },
+      "note": "These are reference-source fields, not verified PM commercial fields. Source SKU, source price, source image, and source description must not be promoted to PM truth without matching and authorization."
+    },
+    "safe_enrichment_rules": [
+      "Use official brand/manufacturer pages to confirm product identity, size, usage, and product facts where available.",
+      "Write original PM Arabic descriptions; do not copy retailer descriptions verbatim.",
+      "Keep source retail price separate from PM-approved selling price; no currency conversion.",
+      "Do not use product images commercially until PM-owned or licensed usage is verified.",
+      "Do not create fake GTINs or treat retailer source SKU as PM SKU. Assign internal SKU only under the repository's approved SKU policy.",
+      "Require PM identity, stock, cost, image-rights and QA evidence before commercial publication.",
+      "Keep the commercial gate CLOSED until the live evidence snapshot and validation checks prove readiness."
+    ],
+    "example_verified_identity": {
+      "product": "CeraVe Hydrating Cleanser 236 ml",
+      "category": "العناية بالبشرة",
+      "brand": "CeraVe",
+      "gtin_candidate": "3337875597180",
+      "official_product_page": "https://www.cerave.eg/ar-eg/skincare/cleansers/hydrating-facial-cleanser",
+      "official_facts_summary": "Gentle hydrating facial cleanser for normal-to-dry skin; cleans without stripping natural moisture; contains ceramides and hyaluronic acid.",
+      "pm_stock_verified": false,
+      "pm_cost_verified": false,
+      "image_rights_verified": false,
+      "pm_price_approved": false,
+      "status": "REVIEW ONLY — NOT PUBLISH READY"
+    }
+  },
+  "next_actions": [
+    "Refresh staging-evidence.json from the live Product Master; do not rely on the 2026-10-05 snapshot for current stock.",
+    "Recover or generate the missing reference batches beyond batch-006; the six files inspected contain 1306 rows, not the 3479 target category rows.",
+    "Match each reference record to a PM-owned product record using exact brand, product name, size, and GTIN where available.",
+    "Fill categories and original descriptions only when identity is sufficiently confirmed; keep pricing and image fields in review state until PM approval and rights are documented.",
+    "Re-run catalog validation and preserve the global commercial gate until all required evidence passes."
+  ]
+}
