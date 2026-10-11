@@ -40,3 +40,23 @@ export function evaluateBatch(products) {
     blocked: checked.filter((item) => !item.eligible).map(({ product, sku, reasons }) => ({ sku, reasons, product }))
   };
 }
+
+
+/**
+ * Fail closed for any real commercial publish unless every independent gate is open.
+ * Dry runs validate data only and never authorize external writes.
+ */
+export function commercialPublishGateBlockReason({
+  dryRun = true,
+  gate = "CLOSED",
+  productEvidenceGate = "CLOSED",
+  batchGate = "CLOSED",
+  commercialCatalogLive = false
+} = {}) {
+  if (dryRun) return null;
+  if (String(gate).toUpperCase() !== "OPEN") return "COMMERCIAL_PUBLISH_GATE_CLOSED";
+  if (String(productEvidenceGate).toUpperCase() !== "OPEN") return "PRODUCT_EVIDENCE_GATE_CLOSED";
+  if (String(batchGate).toUpperCase() !== "OPEN") return "BATCH_COMMERCIAL_PUBLISH_GATE_CLOSED";
+  if (commercialCatalogLive !== true) return "COMMERCIAL_CATALOG_NOT_LIVE";
+  return null;
+}
