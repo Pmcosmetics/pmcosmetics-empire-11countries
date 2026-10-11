@@ -192,9 +192,11 @@ Private - PM COSMETICS HUB™
 Central live connection page for Windsor.ai and external seller authorization:
 
 - Connection Center: /ops/connections.html
-- Windsor only reports an account as connected after the provider account appears in the live connector list.
-- Etsy Seller and WhatsApp Cloud API are not exposed as Windsor connectors and require their provider-native authorization paths.
-- Commercial Publish Gate remains CLOSED during authorization and reconciliation.
+- Manus ↔ Windsor MCP: add the official Windsor MCP server (`https://mcp.windsor.ai/`) from Manus' custom MCP connector settings, then complete Windsor's OAuth authorization.
+- Windsor currently exposes a catalog of 366 connector types; that number is **not** the number of authenticated accounts. Treat a source as connected only after it appears in Windsor's live connector list.
+- Authorize only required provider accounts and least-privilege scopes first. Validate read access and account identity before considering any supported write action.
+- Etsy Seller and WhatsApp Cloud API are not exposed as Windsor data connectors and require their provider-native authorization paths.
+- Commercial Publish Gate remains CLOSED during authorization and reconciliation. This MCP bridge does not authorize product publishing or open commercial writes.
 
 
 ## 🧩 Empire Template System
