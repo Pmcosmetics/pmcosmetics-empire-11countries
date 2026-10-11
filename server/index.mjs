@@ -7,7 +7,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { checkWooConnection, getWooStatus, syncWooProducts } from "./integrations/woocommerce.mjs";
 import { getManusStatus, pullManusProducts, validateManusProducts } from "./integrations/manus.mjs";
 import { getActiveProductsBySkus, isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
-import { evaluateBatch } from "../scripts/batch-gate.mjs";
+import { commercialPublishGateBlockReason, evaluateBatch } from "../scripts/batch-gate.mjs";
 import { evaluateTemplateSyncBatch } from "../scripts/template-sync-gate.mjs";
 import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitude.mjs";
 import { authConfigSnapshot, bearerTokenFromRequest, verifyAccessToken } from "./integrations/auth.mjs";
@@ -965,12 +965,21 @@ app.post("/api/products/batch/publish", rateLimit, requireEmpireAuth, async (req
     });
   }
 
-  if (!dryRun && batchGateState() !== "OPEN") {
+  const publishGateBlockReason = commercialPublishGateBlockReason({
+    dryRun,
+    gate: gateState(),
+    productEvidenceGate: productEvidenceGateState(),
+    batchGate: batchGateState(),
+    commercialCatalogLive: commercialCatalogLiveState()
+  });
+  if (publishGateBlockReason) {
     return res.status(503).json({
       ok: false,
       gate: gateState(),
+      productEvidenceGate: productEvidenceGateState(),
       batchGate: batchGateState(),
-      reason: "BATCH_COMMERCIAL_PUBLISH_GATE_CLOSED",
+      commercialCatalogLive: commercialCatalogLiveState(),
+      reason: publishGateBlockReason,
       ...result
     });
   }
