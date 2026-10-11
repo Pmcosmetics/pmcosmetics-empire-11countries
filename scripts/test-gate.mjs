@@ -1,9 +1,18 @@
 import assert from "node:assert/strict";
 import { createHmac } from "node:crypto";
 import app from "../server/index.mjs";
+import { commercialPublishGateBlockReason } from "./batch-gate.mjs";
 
 assert.equal(typeof app, "function");
 assert.equal(typeof app.get, "function");
+
+// Pure fail-closed policy tests: no production endpoint or external channel is called.
+assert.equal(commercialPublishGateBlockReason({ dryRun: false, gate: "CLOSED", productEvidenceGate: "OPEN", batchGate: "OPEN", commercialCatalogLive: true }), "COMMERCIAL_PUBLISH_GATE_CLOSED");
+assert.equal(commercialPublishGateBlockReason({ dryRun: false, gate: "OPEN", productEvidenceGate: "CLOSED", batchGate: "OPEN", commercialCatalogLive: true }), "PRODUCT_EVIDENCE_GATE_CLOSED");
+assert.equal(commercialPublishGateBlockReason({ dryRun: false, gate: "OPEN", productEvidenceGate: "OPEN", batchGate: "CLOSED", commercialCatalogLive: true }), "BATCH_COMMERCIAL_PUBLISH_GATE_CLOSED");
+assert.equal(commercialPublishGateBlockReason({ dryRun: false, gate: "OPEN", productEvidenceGate: "OPEN", batchGate: "OPEN", commercialCatalogLive: false }), "COMMERCIAL_CATALOG_NOT_LIVE");
+assert.equal(commercialPublishGateBlockReason({ dryRun: false, gate: "OPEN", productEvidenceGate: "OPEN", batchGate: "OPEN", commercialCatalogLive: true }), null);
+assert.equal(commercialPublishGateBlockReason({ dryRun: true, gate: "CLOSED", productEvidenceGate: "CLOSED", batchGate: "CLOSED", commercialCatalogLive: false }), null);
 
 const server = app.listen(0);
 const { port } = server.address();
