@@ -3,7 +3,7 @@ name: "CodeQL Advanced"
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "security/workspace-hub-auth-config-hardening" ]
   pull_request:
     branches: [ "main" ]
   schedule:
