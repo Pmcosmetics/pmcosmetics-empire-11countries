@@ -91,7 +91,7 @@
   "shopify": {
     "store": "Pmcosmetics",
     "domain": "pmcosmetics-lgdc2mrf.myshopify.com",
-    "email": "shukrypeter79@gmail.com",
+    "email": "[redacted-email]",
     "totalProductsObserved": 1877,
     "commercialPublication": "blocked_by_Evidence_Gate",
     "draftProductsObserved": 1847,
@@ -105,15 +105,12 @@
   },
   "identity": {
     "provider": "Google/Gmail",
-    "allowedEmails": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com"
-    ],
+    "allowedEmails": [],
     "portal": "/auth",
     "googleProviderStatus": "READY_FOR_GOOGLE_CLOUD_CLIENT_CREDENTIALS",
     "canonicalBrand": "PM COSMETICS HUB",
-    "primaryCommerceDesignEmail": "shukrypeter79@gmail.com",
-    "secondaryEngineeringOperationsEmail": "shukrypeter102@gmail.com",
+    "primaryCommerceDesignEmail": "[redacted-email]",
+    "secondaryEngineeringOperationsEmail": "[redacted-email]",
     "policy": "Keep primary/secondary roles; do not expand auth allowlist automatically."
   },
   "referenceCatalog": {
@@ -183,7 +180,7 @@
   },
   "windsorHub": {
     "provider": "Windsor.ai",
-    "workspaceEmail": "shukrypeter102@gmail.com",
+    "workspaceEmail": "[redacted-email]",
     "connectedVerified": [
       "facebook",
       "google_ads",
