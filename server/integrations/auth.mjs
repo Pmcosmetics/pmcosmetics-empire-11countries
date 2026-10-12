@@ -43,7 +43,7 @@ export async function requestMagicLink(emailValue) {
   }
 
   const email = normalizeEmail(emailValue);
-  if (!EMAIL_PATTERN.test(email) || email.length > 254) {
+  if (email.length > 254 || !EMAIL_PATTERN.test(email)) {
     return { ok: false, reason: "AUTH_EMAIL_INVALID", status: 400 };
   }
 
