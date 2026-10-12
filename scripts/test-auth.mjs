@@ -49,8 +49,20 @@ test("provider rejects invalid token with 401", async () => {
   globalThis.fetch = async () => mockResponse(401, { message: "invalid token" });
   try {
     const result = await auth.verifyAccessToken("invalid-token");
-    assert.equal(result.status, 401);
+    assert.equal(result.status, 403);
     assert.equal(result.reason, "AUTH_TOKEN_INVALID");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+
+test("provider server error is classified as unavailable, not an invalid token", async () => {
+  globalThis.fetch = async () => mockResponse(503, { message: "maintenance" });
+  try {
+    const result = await auth.verifyAccessToken("valid-shaped-token");
+    assert.equal(result.status, 503);
+    assert.equal(result.reason, "AUTH_PROVIDER_UNAVAILABLE");
   } finally {
     globalThis.fetch = originalFetch;
   }
