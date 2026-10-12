@@ -13,7 +13,7 @@ The authoritative commercial rule is **Publish-Ready + evidenceVerified**. Refer
 ### Identity
 - Supabase Auth
 - Server-side bearer-token verification through /auth/v1/user
-- Exact allowlist: shukrypeter79@gmail.com and shukrypeter102@gmail.com
+- Exact allowlist: [redacted-email] and [redacted-email]
 - Google OAuth and passwordless email-link UI
 - Google Provider Client ID/Secret remain an external Supabase setup dependency
 
