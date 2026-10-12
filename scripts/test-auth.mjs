@@ -146,6 +146,9 @@ test("public auth config and login UI do not disclose account email addresses", 
   }
   assert.equal(authConfigSource.includes("@gmail.com"), false);
   assert.equal(loginPageSource.includes("@gmail.com"), false);
+  assert.equal(loginPageSource.includes("signInWithOtp"), false);
+  assert.ok(loginPageSource.includes("client.auth.getSession()"), "magic-link callback still establishes a session");
+  assert.ok(loginPageSource.includes("/api/auth/request-link"), "magic-link requests use the server-side allowlist");
 });
 
 test("public magic-link route uses its dedicated rate limiter", () => {
