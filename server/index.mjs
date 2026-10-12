@@ -24,7 +24,15 @@ const empireRegistry = require("../config/empire-unified-registry.json");
 
 const app = express();
 app.set("trust proxy", 1);
-app.use(helmet());
+const supabaseAuthOrigin = new URL(process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl).origin;
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      scriptSrc: ["'self'", "https://esm.sh"],
+      connectSrc: ["'self'", supabaseAuthOrigin],
+    },
+  },
+}));
 app.use(cors());
 app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody = Buffer.from(buf); } }));
 
