@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
 process.env.PM_AUTH_ALLOWED_EMAILS = "authorized-one@example.com,authorized-two@example.com";
+process.env.SUPABASE_URL = "https://rhozehqlpnmzmknlpmvf.supabase.co";
 process.env.SUPABASE_PUBLISHABLE_KEY = "test-publishable-key";
 
 const auth = await import("../server/integrations/auth.mjs");
@@ -143,6 +144,7 @@ test.after(() => new Promise((resolve, reject) => {
 const serverSource = await readFile(new URL("../server/index.mjs", import.meta.url), "utf8");
 const authConfigSource = await readFile(new URL("../config/auth-identity.json", import.meta.url), "utf8");
 const loginPageSource = await readFile(new URL("../public/auth.html", import.meta.url), "utf8");
+const loginScriptSource = await readFile(new URL("../public/auth.js", import.meta.url), "utf8");
 
 test("Workspace Hub operational details require server authentication", () => {
   assert.ok(serverSource.includes('app.get("/api/workspace/hub", rateLimit, requireEmpireAuth,'));
@@ -158,9 +160,10 @@ test("public auth config and login UI do not disclose account email addresses", 
   }
   assert.equal(authConfigSource.includes("@gmail.com"), false);
   assert.equal(loginPageSource.includes("@gmail.com"), false);
-  assert.equal(loginPageSource.includes("signInWithOtp"), false);
-  assert.ok(loginPageSource.includes("client.auth.getSession()"), "magic-link callback still establishes a session");
-  assert.ok(loginPageSource.includes("/api/auth/request-link"), "magic-link requests use the server-side allowlist");
+  assert.equal(loginScriptSource.includes("@gmail.com"), false);
+  assert.equal(loginScriptSource.includes("signInWithOtp"), false);
+  assert.ok(loginScriptSource.includes("client.auth.getSession()"), "magic-link callback still establishes a session");
+  assert.ok(loginScriptSource.includes("/api/auth/request-link"), "magic-link requests use the server-side allowlist");
 });
 
 test("Workspace Hub status rejects a real unauthenticated HTTP request", async () => {
