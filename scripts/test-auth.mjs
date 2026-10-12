@@ -98,7 +98,7 @@ test("confirmed but non-allowlisted email is rejected", async () => {
 test("confirmed allowlisted email succeeds and returns normalized email", async () => {
   globalThis.fetch = async () => mockResponse(200, {
     ...verifiedUser,
-    email: "  SHUKRYPETER79@GMAIL.COM ",
+    email: "  AUTHORIZED-ONE@EXAMPLE.COM ",
   });
   try {
     const result = await auth.verifyAccessToken("valid-shaped-token");
@@ -127,6 +127,18 @@ test("bearer token parser requires the Bearer scheme", () => {
 
 globalThis.fetch = originalFetch;
 
+// Exercise the real Express route, not only a source-text assertion.
+process.env.HTTPS_ONLY = "false";
+const app = (await import("../server/index.mjs")).default;
+const testServer = app.listen(0, "127.0.0.1");
+await new Promise((resolve, reject) => {
+  testServer.once("listening", resolve);
+  testServer.once("error", reject);
+});
+const workspaceHubUrl = "http://127.0.0.1:" + testServer.address().port + "/api/workspace/hub";
+test.after(() => new Promise((resolve, reject) => {
+  testServer.close((error) => error ? reject(error) : resolve());
+}));
 
 const serverSource = await readFile(new URL("../server/index.mjs", import.meta.url), "utf8");
 const authConfigSource = await readFile(new URL("../config/auth-identity.json", import.meta.url), "utf8");
@@ -149,6 +161,22 @@ test("public auth config and login UI do not disclose account email addresses", 
   assert.equal(loginPageSource.includes("signInWithOtp"), false);
   assert.ok(loginPageSource.includes("client.auth.getSession()"), "magic-link callback still establishes a session");
   assert.ok(loginPageSource.includes("/api/auth/request-link"), "magic-link requests use the server-side allowlist");
+});
+
+test("Workspace Hub status rejects a real unauthenticated HTTP request", async () => {
+  const response = await fetch(workspaceHubUrl + "?action=status", { headers: { Accept: "application/json" } });
+  assert.equal(response.status, 401);
+  const payload = await response.json();
+  assert.equal(payload.authenticated, false);
+  assert.equal(payload.reason, "AUTH_TOKEN_MISSING");
+});
+
+test("Workspace Hub read-only sync rejects a real unauthenticated HTTP request", async () => {
+  const response = await fetch(workspaceHubUrl + "?action=sync", { headers: { Accept: "application/json" } });
+  assert.equal(response.status, 401);
+  const payload = await response.json();
+  assert.equal(payload.authenticated, false);
+  assert.equal(payload.reason, "AUTH_TOKEN_MISSING");
 });
 
 test("public magic-link route uses its dedicated rate limiter", () => {
