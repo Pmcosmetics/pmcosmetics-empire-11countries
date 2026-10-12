@@ -162,18 +162,25 @@ const requireEmpireAuth = async (req, res, next) => {
   return next();
 };
 
-const healthResponse = (_req, res) => res.json({
-  ok: true,
-  service: "pmcosmetics-empire-11countries",
-  commitSha: process.env.RAILWAY_GIT_COMMIT_SHA || process.env.VERCEL_GIT_COMMIT_SHA || process.env.GITHUB_SHA || "unknown",
-  gate: gateState(),
-  productEvidenceGate: productEvidenceGateState(),
-  commercialCatalogLive: commercialCatalogLiveState(),
-  runtime: "Vercel/Railway",
-  dataSource: isSupabaseConfigured() ? "Supabase" : "Airtable",
-  supabaseConfigured: isSupabaseConfigured(),
-  architecture: ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]
-});
+const healthResponse = (_req, res) => {
+  const gate = gateState();
+  const catalogConfiguredLive = commercialCatalogLiveState();
+  return res.json({
+    ok: true,
+    service: "pmcosmetics-empire-11countries",
+    commitSha: process.env.RAILWAY_GIT_COMMIT_SHA || process.env.VERCEL_GIT_COMMIT_SHA || process.env.GITHUB_SHA || "unknown",
+    gate,
+    productEvidenceGate: productEvidenceGateState(),
+    // Commercial live state must never imply publication while the gate is closed.
+    commercialCatalogLive: gate === "OPEN" && catalogConfiguredLive,
+    catalogConfiguredLive,
+    commercialWrites: gate === "OPEN" ? "GATE_OPEN" : "LOCKED",
+    runtime: "Vercel/Railway",
+    dataSource: isSupabaseConfigured() ? "Supabase" : "Airtable",
+    supabaseConfigured: isSupabaseConfigured(),
+    architecture: ["ChatGPT","Products OS","Airtable","Supabase","Vercel","Railway","Manus","WooCommerce","Shopify","Noon","Amazon","Jumia"]
+  });
+};
 
 app.get("/", (_req, res) => res.sendFile("public/index.html", { root: process.cwd() }));
 
@@ -327,7 +334,7 @@ app.get("/api/start", (_req, res) => {
     port: Number(process.env.PORT || 3000),
     gate,
     productEvidenceGate: productEvidenceGateState(),
-    commercialCatalogLive: commercialCatalogLiveState(),
+    commercialCatalogLive: gateState() === "OPEN" && commercialCatalogLiveState(),
     commercialWrites: gate === "OPEN" ? "GATE_OPEN" : "LOCKED",
     readOnly: true,
     healthcheck: "/api/health",
@@ -636,7 +643,7 @@ app.get("/api/meta/status", rateLimit, (_req, res) => {
     readOnly: true,
     gate,
     productEvidenceGate: productEvidenceGateState(),
-    commercialCatalogLive: commercialCatalogLiveState(),
+    commercialCatalogLive: gateState() === "OPEN" && commercialCatalogLiveState(),
     mode: blockedWrites ? "CONTROLLED_PILOT" : "COMMERCIAL",
     commercialWrites: blockedWrites ? "LOCKED" : "GATE_OPEN",
     batchPublishGate: batchGateState(),
@@ -1111,7 +1118,7 @@ app.post("/api/salla/import", rateLimit, requireEmpireAuth, async (req, res) => 
         gate: gateState(),
         productEvidenceGate: productEvidenceGateState(),
         batchGate: batchGateState(),
-        commercialCatalogLive: commercialCatalogLiveState(),
+        commercialCatalogLive: gateState() === "OPEN" && commercialCatalogLiveState(),
         service: "salla-merchant-api",
         writePerformed: false,
         connection: {
@@ -1138,7 +1145,7 @@ app.post("/api/salla/import", rateLimit, requireEmpireAuth, async (req, res) => 
         gate: gateState(),
         productEvidenceGate: productEvidenceGateState(),
         batchGate: batchGateState(),
-        commercialCatalogLive: commercialCatalogLiveState(),
+        commercialCatalogLive: gateState() === "OPEN" && commercialCatalogLiveState(),
         reason: "SALLA_IMPORT_GATES_CLOSED",
         ...preview
       });

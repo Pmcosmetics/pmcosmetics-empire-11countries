@@ -32,7 +32,7 @@
 <div class="channel pending"><strong>Etsy / Jumia / Amazon</strong><small>يلزم إضافة رابط صفحة البائع أو المتجر العامة بعد التحقق.</small><span class="open">الرابط العام غير مثبت</span></div>
 <div class="channel pending"><strong>Noon / Temu / Talabat</strong><small>يلزم تأكيد الروابط العامة وحالة التفعيل قبل عرضها كمتاجر نشطة.</small><span class="open">الرابط العام غير مثبت</span></div>
 </div></section>
-<section id="markets"><div class="heading"><h2>الأسواق المستهدفة الـ11</h2><p>بطاقات موحّدة لكل دولة، بعملتها المحلية وزر للاستفسار عن التوفر والشحن والأسعار.</p></div><div class="marketGrid" id="profileMarketGrid"><div class="card">جارٍ تحميل بيانات الأسواق…</div></div><div class="marketNotice">الأسواق المدرجة تمثل نطاق التوسع المستهدف للمشروع. لا يعني ذلك أن متجرًا محليًا منفصلًا أو بوابة دفع أو شحنًا محليًا مفعّلة في كل دولة. يُؤكَّد السعر والعملة والتوفر والتسليم قبل تأكيد أي طلب.</div></section>
+<section id="markets"><div class="heading"><h2>الأسواق المستهدفة الـ11</h2><p>بطاقات موحّدة لكل دولة، بعملتها المحلية وزر للاستفسار عن التوفر والشحن والأسعار.</p></div><div class="marketGrid" id="profileMarketGrid"><div class="card">جارٍ تحميل بيانات الأسواق…</div></div><p id="profileMarketStatus" class="small" role="status" aria-live="polite">جارٍ تحميل الأسواق…</p><div class="marketNotice">الأسواق المدرجة تمثل نطاق التوسع المستهدف للمشروع. لا يعني ذلك أن متجرًا محليًا منفصلًا أو بوابة دفع أو شحنًا محليًا مفعّلة في كل دولة. يُؤكَّد السعر والعملة والتوفر والتسليم قبل تأكيد أي طلب.</div></section>
 <section><div class="heading"><h2>أرقام التواصل المباشر</h2><p>واتساب الطلبات والاستفسارات الموحد هو 01055655649؛ الرقمان الآخران مخصصان للاتصال المباشر.</p></div><div class="phones">
 <a class="phone" href="https://wa.me/201055655649" target="_blank" rel="noopener"><strong>01055655649</strong><span>واتساب PM Cosmetics Hub الرسمي الموحد</span><b class="btn gold">مراسلة واتساب</b></a>
 <a class="phone" href="tel:+201203151461"><strong>01203151461</strong><span>رقم الاتصال المباشر الاحتياطي</span><b class="btn">اتصال مباشر</b></a>
@@ -56,12 +56,31 @@
 <footer class="footer"><div class="wrap footerinner"><div><strong>PM COSMETICS HUB</strong> · Empowering Beauty Across 11 Countries</div><div><a href="/catalog.html">الكتالوج</a> · <a href="/">الرئيسية</a> · <a href="mailto:tech@pmcosmetics.hub">بريد الأعمال</a></div><div>الهوية: أسود وذهبي · <span dir="ltr">#0A0A0A / #D4AF37</span></div></div></footer>
 <script>
 (function(){
-const meta={EG:{ar:"مصر",flag:"🇪🇬",region:"شمال أفريقيا"},SA:{ar:"السعودية",flag:"🇸🇦",region:"الخليج العربي"},AE:{ar:"الإمارات",flag:"🇦🇪",region:"الخليج العربي"},KW:{ar:"الكويت",flag:"🇰🇼",region:"الخليج العربي"},QA:{ar:"قطر",flag:"🇶🇦",region:"الخليج العربي"},BH:{ar:"البحرين",flag:"🇧🇭",region:"الخليج العربي"},OM:{ar:"عُمان",flag:"🇴🇲",region:"الخليج العربي"},JO:{ar:"الأردن",flag:"🇯🇴",region:"بلاد الشام"},PS:{ar:"فلسطين",flag:"🇵🇸",region:"بلاد الشام"},LB:{ar:"لبنان",flag:"🇱🇧",region:"بلاد الشام"},IR:{ar:"إيران",flag:"🇮🇷",region:"غرب آسيا"}};
+const meta={EG:{ar:"مصر",flag:"🇪🇬",region:"شمال أفريقيا"},SA:{ar:"السعودية",flag:"🇸🇦",region:"الخليج"},AE:{ar:"الإمارات",flag:"🇦🇪",region:"الخليج"},KW:{ar:"الكويت",flag:"🇰🇼",region:"الخليج"},QA:{ar:"قطر",flag:"🇶🇦",region:"الخليج"},BH:{ar:"البحرين",flag:"🇧🇭",region:"الخليج"},OM:{ar:"عُمان",flag:"🇴🇲",region:"الخليج"},JO:{ar:"الأردن",flag:"🇯🇴",region:"بلاد الشام"},PS:{ar:"فلسطين",flag:"🇵🇸",region:"بلاد الشام"},LB:{ar:"لبنان",flag:"🇱🇧",region:"بلاد الشام"},IR:{ar:"إيران",flag:"🇮🇷",region:"غرب آسيا"}};
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-fetch("/api/markets").then(r=>{if(!r.ok)throw new Error("markets");return r.json()}).then(data=>{
-const grid=document.getElementById("profileMarketGrid");if(!grid)return;const items=Array.isArray(data.markets)?data.markets:[];
-grid.innerHTML=items.map(m=>{const c=meta[m.id]||{ar:m.name,flag:"🌍",region:m.region||"سوق مستهدف"};const cur=String(m.currency||"").toUpperCase();const msg="مرحبًا PM Cosmetics Hub، أرغب في معرفة المنتجات المتاحة وسعرها المحلي والشحن إلى سوق "+c.ar+" ("+cur+"). برجاء تأكيد التوفر والدفع قبل الطلب.";const url="https://wa.me/201055655649?text="+encodeURIComponent(msg);return '<article class="marketCard"><div class="marketTop"><span class="marketFlag">'+c.flag+'</span><div><div class="marketName">'+esc(c.ar)+'</div><div class="marketRegion">'+esc(c.region)+'</div></div></div><div class="marketCurrency">'+esc(cur)+' · '+esc(m.currencySymbol||"")+'</div><div class="marketMeta">سوق مستهدف<br>السعر المحلي والشحن قيد التأكيد</div><a class="marketButton" href="'+url+'" target="_blank" rel="noopener">استفسار عن السوق ↗</a></article>'}).join("")||'<div class="card">لا توجد بيانات أسواق متاحة.</div>';
-}).catch(()=>{const grid=document.getElementById("profileMarketGrid");if(grid)grid.innerHTML='<div class="card">تعذر تحميل الأسواق حاليًا. يرجى التواصل عبر واتساب.</div>';});
+const grid=document.getElementById("profileMarketGrid");
+const status=document.getElementById("profileMarketStatus");
+const setStatus=message=>{if(status)status.textContent=message;};
+const showFailure=()=>{if(grid)grid.innerHTML='<div class="card">تعذر تحميل الأسواق حاليًا. يرجى التواصل عبر واتساب.</div>';setStatus("تعذر تحميل بيانات الأسواق. أعد المحاولة أو تواصل عبر واتساب.");};
+if(!grid){setStatus("تعذر العثور على مساحة عرض الأسواق.");}
+else{
+fetch("/api/markets",{headers:{Accept:"application/json"},cache:"no-store"})
+.then(r=>{if(!r.ok)throw new Error("MARKETS_HTTP_"+r.status);return r.json();})
+.then(data=>{
+if(!data||data.ok!==true||!Array.isArray(data.markets))throw new Error("MARKETS_INVALID_PAYLOAD");
+const items=data.markets.filter(m=>m&&typeof m.id==="string"&&typeof m.name==="string"&&typeof m.currency==="string");
+if(items.length===0){grid.innerHTML='<div class="card">لا توجد بيانات أسواق متاحة.</div>';setStatus("لم يتم تحميل أي سوق.");return;}
+grid.innerHTML=items.map(m=>{
+const c=meta[m.id]||{ar:m.name,flag:"🌍",region:m.region||"سوق مستهدف"};
+const cur=String(m.currency||"").toUpperCase();
+const msg="مرحبًا PM Cosmetics Hub، أرغب في معرفة المنتجات المتاحة وسعرها المحلي والشحن إلى سوق "+c.ar+" ("+cur+"). برجاء تأكيد التوفر والدفع قبل الطلب.";
+const url="https://wa.me/201055655649?text="+encodeURIComponent(msg);
+return '<article class="marketCard"><div class="marketTop"><span class="marketFlag">'+c.flag+'</span><div><div class="marketName">'+esc(c.ar)+'</div><div class="marketRegion">'+esc(c.region)+'</div></div></div><div class="marketCurrency">'+esc(cur)+' · '+esc(m.currencySymbol||"")+'</div><div class="marketMeta">سوق مستهدف<br>السعر المحلي والشحن قيد التأكيد</div><a class="marketButton" href="'+url+'" target="_blank" rel="noopener">استفسار عن السوق ↗</a></article>';
+}).join("");
+setStatus("تم تحميل "+items.length+" سوقًا. السعر المحلي والتوفر والشحن تتطلب التأكيد قبل الطلب.");
+})
+.catch(showFailure);
+}
 })();
 </script>
 </body></html>
