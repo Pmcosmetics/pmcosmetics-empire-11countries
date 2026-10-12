@@ -4,107 +4,107 @@
   "brand": "PM COSMETICS HUB",
   "registrationHub": {
     "provider": "Google/Gmail",
-    "primary": "shukrypeter79@gmail.com",
-    "secondary": "shukrypeter102@gmail.com",
+    "primary": "[redacted-email]",
+    "secondary": "[redacted-email]",
     "policy": "Use these two Gmail identities for registration/ownership where provider permits; never store passwords or OTPs in the repository."
   },
   "roleAssignment": {
-    "shukrypeter79@gmail.com": "primary commerce/owner identity",
-    "shukrypeter102@gmail.com": "secondary engineering/integration identity"
+    "[redacted-email-key]": "primary commerce/owner identity",
+    "[redacted-email-key]-2": "secondary engineering/integration identity"
   },
   "channels": {
     "github": {
-      "ownerIdentity": "shukrypeter102@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "registry-linked"
     },
     "railway": {
-      "ownerIdentity": "shukrypeter102@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "registry-linked"
     },
     "supabase": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "project-linked"
     },
     "shopify": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "connected_verified"
     },
     "facebook": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "connected_verified_via_windsor"
     },
     "instagram": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "authorization_required"
     },
     "tiktok": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "authorization_required"
     },
     "tiktok_shop": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "authorization_required"
     },
     "amazon_sp": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "authorization_required"
     },
     "google_merchant": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "authorization_required"
     },
     "woocommerce": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "credentials_required"
     },
     "etsy": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "seller_authorization_required"
     },
     "temu": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "seller_authorization_required"
     },
     "noon": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "seller_authorization_required"
     },
     "jumia": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "seller_authorization_required"
     },
     "salla": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "store_authorization_required"
     },
     "talabat": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "partner_authorization_required"
     },
     "olx_dubizzle_egypt": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "seller_connection_pending"
     },
     "take_app": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "storefront_link_registered"
     },
     "whatsapp_primary": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "phone": "01055655649",
       "status": "public_identity_ready_credentials_pending"
     },
     "whatsapp_secondary": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "phone": "01203151461",
       "status": "public_identity_ready_credentials_pending"
     },
     "snapchat": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "authorization_required"
     },
     "telegram": {
-      "ownerIdentity": "shukrypeter79@gmail.com",
+      "ownerIdentity": "[redacted-email]",
       "status": "bot_credentials_required"
     }
   },

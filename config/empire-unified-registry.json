@@ -27,18 +27,15 @@
     "whatsappCatalog": "https://wa.me/c/201055655649",
     "canonicalLogo": "/pmcosmetics-logo.svg",
     "contactEmails": {
-      "primary": "shukrypeter79@gmail.com",
-      "secondary": "shukrypeter102@gmail.com"
+      "primary": "[redacted-email]",
+      "secondary": "[redacted-email]"
     }
   },
   "identities": {
     "canonicalProvider": "Google/Gmail",
-    "allowedEmails": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com"
-    ],
-    "primaryEmail": "shukrypeter79@gmail.com",
-    "secondaryEmail": "shukrypeter102@gmail.com",
+    "allowedEmails": [],
+    "primaryEmail": "[redacted-email]",
+    "secondaryEmail": "[redacted-email]",
     "policy": "Exact email allowlist; external platforms still require provider-specific OAuth/credentials"
   },
   "catalog": {
@@ -326,11 +323,11 @@
   "identityIntegrationMatrix": {
     "path": "config/account-integration-matrix.json",
     "status": "verified_and_versioned",
-    "primaryCommerceDesign": "shukrypeter79@gmail.com",
-    "engineeringIntegration": "shukrypeter102@gmail.com",
+    "primaryCommerceDesign": "[redacted-email]",
+    "engineeringIntegration": "[redacted-email]",
     "backupIdentities": [
-      "shukrypeter72@gmail.com",
-      "petershukry67@gmail.com"
+      "[redacted-email]",
+      "[redacted-email]"
     ],
     "apple": "not_verified_as_direct_Empire_connector",
     "authAllowlistUnchanged": true,
@@ -361,7 +358,7 @@
   },
   "windsorHub": {
     "provider": "Windsor.ai",
-    "workspaceEmail": "shukrypeter102@gmail.com",
+    "workspaceEmail": "[redacted-email]",
     "plan": "Trial",
     "dashboard": "https://onboard.windsor.ai/app",
     "role": "Central integration hub for connected marketing/commerce connectors",

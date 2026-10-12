@@ -99,8 +99,8 @@ Meta verification must complete before the integration is considered live. The c
 Authentication uses Supabase Auth with server-side exact-email allowlist verification.
 
 Allowed administration identities:
-- shukrypeter79@gmail.com
-- shukrypeter102@gmail.com
+- [redacted-email]
+- [redacted-email]
 
 Authentication endpoints:
 - GET /api/auth/config

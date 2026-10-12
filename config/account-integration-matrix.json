@@ -5,7 +5,7 @@
   "purpose": "Map verified account identities to useful Empire integrations without changing access policy.",
   "accounts": [
     {
-      "email": "shukrypeter79@gmail.com",
+      "email": "[redacted-email]",
       "role": "commerce-and-design-primary",
       "verifiedIntegrations": [
         {
@@ -23,7 +23,7 @@
       "authPolicyChange": false
     },
     {
-      "email": "shukrypeter102@gmail.com",
+      "email": "[redacted-email]",
       "role": "engineering-and-operations-secondary",
       "verifiedIntegrations": [
         {
@@ -46,7 +46,7 @@
       "authPolicyChange": false
     },
     {
-      "email": "shukrypeter72@gmail.com",
+      "email": "[redacted-email]",
       "role": "backup-identity",
       "verifiedIntegrations": [
         {
@@ -59,7 +59,7 @@
       "authPolicyChange": false
     },
     {
-      "email": "petershukry67@gmail.com",
+      "email": "[redacted-email]",
       "role": "backup-identity",
       "verifiedIntegrations": [
         {
@@ -77,10 +77,7 @@
     "recommendedRole": "device/account ecosystem only until an explicit Apple/iCloud connector is available",
     "authPolicyChange": false
   },
-  "currentEmpireAuthAllowlist": [
-    "shukrypeter79@gmail.com",
-    "shukrypeter102@gmail.com"
-  ],
+  "currentEmpireAuthAllowlist": [],
   "principles": {
     "doNotExpandAuthAllowlistAutomatically": true,
     "doNotInferThirdPartyAppsFromEmailAddressAlone": true,

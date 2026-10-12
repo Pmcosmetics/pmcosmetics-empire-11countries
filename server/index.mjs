@@ -10,7 +10,7 @@ import { getActiveProductsBySkus, isSupabaseConfigured, listActiveProducts } fro
 import { commercialPublishGateBlockReason, evaluateBatch } from "../scripts/batch-gate.mjs";
 import { evaluateTemplateSyncBatch } from "../scripts/template-sync-gate.mjs";
 import { getAmplitudeStatus, trackAmplitudeEvent } from "./integrations/amplitude.mjs";
-import { authConfigSnapshot, bearerTokenFromRequest, verifyAccessToken } from "./integrations/auth.mjs";
+import { authConfigSnapshot, bearerTokenFromRequest, requestMagicLink, verifyAccessToken } from "./integrations/auth.mjs";
 import { checkSallaConnection, createSallaHiddenProduct, findSallaProductBySku, getSallaStatus } from "./integrations/salla.mjs";
 
 const require = createRequire(import.meta.url);
@@ -24,7 +24,15 @@ const empireRegistry = require("../config/empire-unified-registry.json");
 
 const app = express();
 app.set("trust proxy", 1);
-app.use(helmet());
+const supabaseAuthOrigin = new URL(process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl).origin;
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      scriptSrc: ["'self'", "https://esm.sh"],
+      connectSrc: ["'self'", supabaseAuthOrigin],
+    },
+  },
+}));
 app.use(cors());
 app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody = Buffer.from(buf); } }));
 
@@ -40,6 +48,17 @@ const rateLimit = createRateLimit({
   handler: (_req, res) => res.status(429).json({
     ok: false,
     reason: "RATE_LIMITED"
+  })
+});
+
+const authLinkRateLimit = createRateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 5,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  handler: (_req, res) => res.status(429).json({
+    ok: false,
+    reason: "AUTH_LINK_RATE_LIMITED"
   })
 });
 
@@ -187,6 +206,30 @@ app.get("/api/auth/config", (_req, res) => {
     ...authConfigSnapshot(),
     supabaseUrl: process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl,
     publishableKey: process.env.SUPABASE_PUBLISHABLE_KEY || "",
+  });
+});
+
+app.post("/api/auth/request-link", authLinkRateLimit, async (req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  const email = String(req.body?.email || "").trim();
+  const result = await requestMagicLink(email);
+
+  if (!result.ok && result.reason === "AUTH_EMAIL_INVALID") {
+    return res.status(400).json({ ok: false, reason: "AUTH_EMAIL_INVALID" });
+  }
+  if (!result.ok && result.reason === "SUPABASE_AUTH_NOT_CONFIGURED") {
+    return res.status(503).json({ ok: false, reason: "AUTH_LINK_UNAVAILABLE" });
+  }
+  if (!result.ok) {
+    // Do not log the requested address or return allowlist/provider details to the browser.
+    console.error("AUTH_MAGIC_LINK_REQUEST_FAILED", {
+      reason: result.reason || "AUTH_PROVIDER_UNAVAILABLE",
+      providerStatus: result.providerStatus || null,
+    });
+  }
+  return res.status(202).json({
+    ok: true,
+    message: "إذا كان البريد مصرحًا به، فسيتم إرسال رابط الدخول.",
   });
 });
 
@@ -450,7 +493,7 @@ const getWorkspaceHubSnapshot = async () => {
   };
 };
 
-app.get("/api/workspace/hub", rateLimit, async (req, res) => {
+app.get("/api/workspace/hub", rateLimit, requireEmpireAuth, async (req, res) => {
   const action = String(req.query.action || "status").trim().toLowerCase();
   if (action !== "status" && action !== "sync") {
     return res.status(400).json({
@@ -540,8 +583,8 @@ app.get("/api/channel/status", rateLimit, requireEmpireAuth, (_req, res) => {
       )
     },
     gmail: {
-      primary: process.env.PM_AUTH_EMAIL_PRIMARY || "shukrypeter79@gmail.com",
-      secondary: process.env.PM_AUTH_EMAIL_SECONDARY || "shukrypeter102@gmail.com",
+      primary: process.env.PM_AUTH_EMAIL_PRIMARY || null,
+      secondary: process.env.PM_AUTH_EMAIL_SECONDARY || null,
       oauthConnectorAvailable: false,
       note: "Gmail connector unavailable in the current ChatGPT workspace"
     },

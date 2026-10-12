@@ -2,14 +2,6 @@
   "provider": "google",
   "mode": "gmail_magic_link_primary_google_optional",
   "status": "READY_GMAIL_MAGIC_LINK_GOOGLE_OPTIONAL",
-  "allowedEmails": [
-    "shukrypeter79@gmail.com",
-    "shukrypeter102@gmail.com",
-    "shukrypeter72@gmail.com",
-    "petershukry67@gmail.com"
-  ],
-  "primaryEmail": "shukrypeter79@gmail.com",
-  "secondaryEmail": "shukrypeter102@gmail.com",
   "supabaseProjectRef": "rhozehqlpnmzmknlpmvf",
   "supabaseUrl": "https://rhozehqlpnmzmknlpmvf.supabase.co",
   "redirectPath": "/auth",
@@ -21,5 +13,5 @@
   },
   "oauthCallbackUrl": "https://rhozehqlpnmzmknlpmvf.supabase.co/auth/v1/callback",
   "empireUrl": "https://pmcosmetics-empire-11countries-production.up.railway.app",
-  "notes": "Gmail Magic Link is the primary operational identity path. Google OAuth is optional and becomes available after external Google Provider configuration. Added authorized operational emails on 2026-10-06."
+  "notes": "Gmail Magic Link is the primary operational identity path. The allowlist is supplied at runtime through PM_AUTH_ALLOWED_EMAILS and must not be stored in public configuration. Google OAuth remains optional."
 }

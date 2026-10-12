@@ -150,12 +150,9 @@
   },
   "identityHub": {
     "provider": "Google/Gmail",
-    "allowedEmails": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com"
-    ],
-    "primaryEmail": "shukrypeter79@gmail.com",
-    "secondaryEmail": "shukrypeter102@gmail.com",
+    "allowedEmails": [],
+    "primaryEmail": "[redacted-email]",
+    "secondaryEmail": "[redacted-email]",
     "portal": "/auth",
     "policy": "Exact email allowlist"
   },

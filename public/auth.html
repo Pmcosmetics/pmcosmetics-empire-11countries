@@ -13,8 +13,4 @@
   <section class="card"><span class="status">رابط دخول آمن</span><h1>مرحبًا بعودتك</h1><p>أدخلي بريدًا مصرحًا به لإرسال رابط دخول لمرة واحدة. لا نعرض عناوين الحسابات التشغيلية على الصفحة العامة.</p><form id="loginForm"><label for="email">البريد الإلكتروني</label><input class="field" id="email" type="email" autocomplete="email" required placeholder="name@example.com"><button class="button" type="submit">إرسال رابط الدخول</button></form><div id="message" class="message" aria-live="polite"></div></section>
   <section class="card"><h2>حماية الوصول</h2><p>الوصول محصور بالحسابات المصرح بها على مستوى الخادم. روابط Shopify وInstagram وTikTok والمنصات الأخرى تبقى داخل مركز الربط بعد تسجيل الدخول.</p><p class="muted">إذا لم يكن حسابك مصرحًا به، لن يتم إنشاء جلسة دخول.</p><a href="/">العودة إلى الواجهة الرئيسية</a></section>
 </main>
-<script type="module">
-  const form=document.getElementById('loginForm'), message=document.getElementById('message'); let client=null;
-  try{const m=await import('https://esm.sh/@supabase/supabase-js@2.117.2');const r=await fetch('/api/auth/config');const cfg=await r.json();if(cfg.supabaseUrl&&cfg.publishableKey) client=m.createClient(cfg.supabaseUrl,cfg.publishableKey)}catch{}
-  form.addEventListener('submit',async e=>{e.preventDefault();const email=document.getElementById('email').value.trim();if(!client){message.innerHTML='<span class="err">خدمة الدخول غير مهيأة حاليًا. حاولي لاحقًا.</span>';return}const button=form.querySelector('button');button.disabled=true;const {error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+'/auth'}});button.disabled=false;message.innerHTML=error?'<span class="err">تعذر إرسال الرابط. تحققي من البريد المصرح به وحاولي مرة أخرى.</span>':'<span class="ok">إذا كان البريد مصرحًا به، سيصل رابط الدخول قريبًا.</span>'});
-</script></body></html>
+<script type="module" src="/auth.js"></script></body></html>

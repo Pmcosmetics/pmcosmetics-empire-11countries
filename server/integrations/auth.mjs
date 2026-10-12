@@ -27,9 +27,60 @@ export function buildAllowedEmailSet(values) {
 }
 
 // Fail startup rather than silently running with a missing or malformed allowlist.
-const allowedEmails = buildAllowedEmailSet(authIdentityConfig.allowedEmails);
+// The allowlist is a runtime-only setting and must not be stored in public config.
+const allowedEmails = buildAllowedEmailSet(
+  String(process.env.PM_AUTH_ALLOWED_EMAILS || "")
+    .split(/[,\r\n]+/)
+    .map(normalizeEmail)
+    .filter(Boolean),
+);
 
 export const isAllowedEmail = (email) => allowedEmails.has(normalizeEmail(email));
+
+export async function requestMagicLink(emailValue) {
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    return { ok: false, reason: "SUPABASE_AUTH_NOT_CONFIGURED", status: 503 };
+  }
+
+  const email = normalizeEmail(emailValue);
+  if (email.length > 254 || !EMAIL_PATTERN.test(email)) {
+    return { ok: false, reason: "AUTH_EMAIL_INVALID", status: 400 };
+  }
+
+  // Do not tell the public form whether an address is on the server-side allowlist.
+  if (!isAllowedEmail(email)) {
+    return { ok: true, accepted: true, sent: false };
+  }
+
+  try {
+    const redirectTo = process.env.PM_AUTH_REDIRECT_URL ||
+      new URL(authIdentityConfig.redirectPath || "/auth", authIdentityConfig.empireUrl).toString();
+    const endpoint = new URL("/auth/v1/otp", SUPABASE_URL);
+    endpoint.searchParams.set("redirect_to", redirectTo);
+    const response = await fetch(endpoint.toString(), {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_PUBLISHABLE_KEY,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ email, create_user: true }),
+      signal: AbortSignal.timeout(10000),
+    });
+
+    if (!response.ok) {
+      return {
+        ok: false,
+        reason: "AUTH_MAGIC_LINK_PROVIDER_UNAVAILABLE",
+        status: 503,
+        providerStatus: response.status,
+      };
+    }
+    return { ok: true, accepted: true, sent: true };
+  } catch {
+    return { ok: false, reason: "AUTH_PROVIDER_UNAVAILABLE", status: 503 };
+  }
+}
 
 export const authConfigSnapshot = () => ({
   provider: authIdentityConfig.provider,
@@ -37,7 +88,6 @@ export const authConfigSnapshot = () => ({
   status: authIdentityConfig.status,
   serverVerification: true,
   exactEmailAllowlist: true,
-  allowedEmailCount: allowedEmails.size,
   redirectPath: authIdentityConfig.redirectPath,
   supabaseConfigured: Boolean(SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY),
 });
@@ -75,7 +125,7 @@ export async function verifyAccessToken(accessToken) {
       return {
         ok: false,
         reason: "AUTH_TOKEN_INVALID",
-        status: response.status === 401 ? 403 : response.status,
+        status: 401,
         providerStatus: response.status,
       };
     }

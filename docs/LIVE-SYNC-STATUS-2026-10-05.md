@@ -19,7 +19,7 @@ The canonical README on main records the latest 2026-10-05 reconciliation:
 
 ## Security / identity
 - Server-side Supabase Auth token verification is implemented.
-- Current exact application allowlist remains shukrypeter79@gmail.com and shukrypeter102@gmail.com.
+- Current exact application allowlist remains [redacted-email] and [redacted-email].
 - Google OAuth remains available in the public auth UI; Google Cloud client credentials remain the external setup dependency.
 - Production security review is documented; GDPR/PCI/Egypt/Saudi/UAE compliance is not signed off pending legal/contractual/data-flow evidence.
 

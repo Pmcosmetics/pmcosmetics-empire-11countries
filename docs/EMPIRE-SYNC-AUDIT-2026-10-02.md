@@ -7,7 +7,7 @@
 
 ## File sources
 - Google Drive: unavailable in this workspace because the Google Drive connector is disabled by administrator policy.
-- Dropbox account: shukrypeter79@gmail.com.
+- Dropbox account: [redacted-email].
 - Dropbox folder /PM Cosmetics Hub: currently empty.
 - Dropbox filename-only search for products.csv: 0 results.
 - Canonical products.csv: NOT FOUND.

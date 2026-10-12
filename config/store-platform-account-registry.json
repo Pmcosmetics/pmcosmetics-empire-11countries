@@ -3,21 +3,10 @@
   "verifiedAt": "2026-10-04",
   "canonicalBrand": "PM COSMETICS HUB",
   "identity": {
-    "primaryEmails": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com"
-    ],
-    "backupEmails": [
-      "shukrypeter72@gmail.com",
-      "petershukry67@gmail.com"
-    ],
+    "primaryEmails": [],
+    "backupEmails": [],
     "notionWorkspaceMembersVerified": true,
-    "notionVerifiedEmails": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com",
-      "shukrypeter72@gmail.com",
-      "petershukry67@gmail.com"
-    ],
+    "notionVerifiedEmails": [],
     "apple": {
       "status": "not_verified_as_direct_Empire_connector",
       "action": "manual/provider-specific connection only"
@@ -27,7 +16,7 @@
     "github": {
       "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
       "status": "active_verified",
-      "accountEmail": "shukrypeter102@gmail.com"
+      "accountEmail": "[redacted-email]"
     },
     "railway": {
       "project": "PM COSMETICS HUB Production",
@@ -39,13 +28,20 @@
         "branch": "main"
       }
     },
-    "supabase": {"projectRef": "rhozehqlpnmzmknlpmvf", "status": "ACTIVE_HEALTHY"},
-    "airtable": {"baseId": "appJWz1djDBgFGKo9", "name": "PM Cosmetics Hub", "status": "connected"}
+    "supabase": {
+      "projectRef": "rhozehqlpnmzmknlpmvf",
+      "status": "ACTIVE_HEALTHY"
+    },
+    "airtable": {
+      "baseId": "appJWz1djDBgFGKo9",
+      "name": "PM Cosmetics Hub",
+      "status": "connected"
+    }
   },
   "messaging": {
     "whatsapp_primary": {
       "number": "01055655649",
-      "ownerEmail": "shukrypeter79@gmail.com",
+      "ownerEmail": "[redacted-email]",
       "catalogUrl": "https://wa.me/c/201055655649",
       "identityLinkStatus": "owner_declared_linked",
       "apiVerificationStatus": "not_independently_verified"
@@ -56,29 +52,69 @@
     }
   },
   "commerce": {
-    "shopify": {"status": "connected_verified", "store": "Pmcosmetics", "accountEmail": "shukrypeter79@gmail.com", "publicationGate": "CLOSED"},
-    "woocommerce": {"status": "pending_authorization"},
-    "tiktok_shop": {"status": "pending_authorization"},
-    "amazon_sp": {"status": "pending_authorization"},
-    "google_merchant": {"status": "pending_authorization"},
-    "salla": {"status": "pending_direct_api"},
-    "instashop": {"status": "pending_direct_api"},
-    "etsy": {"status": "pending_direct_api"},
-    "temu": {"status": "pending_direct_api"},
-    "jumia": {"status": "pending_direct_api"},
-    "talabat": {"status": "pending_direct_api"}
+    "shopify": {
+      "status": "connected_verified",
+      "store": "Pmcosmetics",
+      "accountEmail": "[redacted-email]",
+      "publicationGate": "CLOSED"
+    },
+    "woocommerce": {
+      "status": "pending_authorization"
+    },
+    "tiktok_shop": {
+      "status": "pending_authorization"
+    },
+    "amazon_sp": {
+      "status": "pending_authorization"
+    },
+    "google_merchant": {
+      "status": "pending_authorization"
+    },
+    "salla": {
+      "status": "pending_direct_api"
+    },
+    "instashop": {
+      "status": "pending_direct_api"
+    },
+    "etsy": {
+      "status": "pending_direct_api"
+    },
+    "temu": {
+      "status": "pending_direct_api"
+    },
+    "jumia": {
+      "status": "pending_direct_api"
+    },
+    "talabat": {
+      "status": "pending_direct_api"
+    }
   },
   "social": {
-    "facebook": {"status": "connected_verified"},
-    "instagram": {"status": "pending_authorization"},
-    "tiktok": {"status": "pending_authorization"},
-    "google_ads": {"status": "connected_verified", "accountId": "663-195-7015"},
-    "google_business_profile": {"status": "connected_live_unverified", "name": "P.M Cosmetics HUB", "primaryPhone": "01203151461"}
+    "facebook": {
+      "status": "connected_verified"
+    },
+    "instagram": {
+      "status": "pending_authorization"
+    },
+    "tiktok": {
+      "status": "pending_authorization"
+    },
+    "google_ads": {
+      "status": "connected_verified",
+      "accountId": "663-195-7015"
+    },
+    "google_business_profile": {
+      "status": "connected_live_unverified",
+      "name": "P.M Cosmetics HUB",
+      "primaryPhone": "01203151461"
+    }
   },
   "catalogSync": {
     "lastChecked": "2026-10-04",
     "publishReadyProducts": 1,
-    "publishReadySkus": ["DERMAELLE007"],
+    "publishReadySkus": [
+      "DERMAELLE007"
+    ],
     "blockedProducts": 73,
     "commercialPublishGate": "CLOSED",
     "source": "Supabase Product Master + Product Evidence Gate"

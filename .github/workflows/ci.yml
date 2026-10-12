@@ -6,6 +6,7 @@ on:
       - main
       - api-gated-foundation
       - fix/whatsapp-webhook-gated-handler
+      - security/workspace-hub-auth-config-hardening
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: [main]
@@ -35,6 +36,49 @@ jobs:
           npm --version
       - name: Install dependencies
         run: npm ci
+      - name: Verify Handlebars is absent or patched
+        shell: bash
+        run: |
+          node --input-type=commonjs <<'NODE'
+          let packagePath;
+          try {
+            packagePath = require.resolve("handlebars/package.json");
+          } catch (error) {
+            if (error && error.code === "MODULE_NOT_FOUND") {
+              console.log("Handlebars is absent from the dependency tree; the vulnerable test-tooling branch was removed.");
+              process.exit(0);
+            }
+            throw error;
+          }
+          const version = require(packagePath).version;
+          const [major, minor, patch] = version.split(".").map(Number);
+          const patched = major > 4 || (major === 4 && (minor > 7 || (minor === 7 && patch >= 10)));
+          if (!patched) throw new Error(`Critical Handlebars advisory remains: installed ${version}, required >=4.7.10`);
+          console.log(`Handlebars ${version} meets the patched minimum 4.7.10`);
+          NODE
+      - name: Summarize dependency audit without changing packages
+        shell: bash
+        run: |
+          npm audit --json > /tmp/pm-npm-audit.json || true
+          node --input-type=commonjs <<'NODE'
+          const fs = require("node:fs");
+          let report;
+          try {
+            report = JSON.parse(fs.readFileSync("/tmp/pm-npm-audit.json", "utf8"));
+          } catch {
+            console.log("Dependency audit report unavailable or invalid JSON; no dependency changes were made.");
+            process.exit(0);
+          }
+          console.log("Dependency audit counts:", JSON.stringify(report.metadata?.vulnerabilities || {}));
+          for (const [name, item] of Object.entries(report.vulnerabilities || {})) {
+            const advisories = (item.via || [])
+              .filter((entry) => typeof entry === "object")
+              .map((entry) => `${entry.title || "advisory"} (${entry.url || entry.source || "URL unavailable"})`);
+            console.log(
+              `[${item.severity}] ${name}@${item.range}; direct=${item.isDirect}; fixAvailable=${JSON.stringify(item.fixAvailable)}; advisories=${advisories.join(" | ") || "see npm audit metadata"}`
+            );
+          }
+          NODE
       - name: Build
         run: npm run build
       - name: Validate
