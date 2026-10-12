@@ -179,8 +179,39 @@ test("Workspace Hub read-only sync rejects a real unauthenticated HTTP request",
   assert.equal(payload.reason, "AUTH_TOKEN_MISSING");
 });
 
-test("public magic-link route uses its dedicated rate limiter", () => {
-  assert.ok(serverSource.includes('app.post("/api/auth/request-link", authLinkRateLimit,'));
+test("public auth config HTTP response never discloses the account allowlist", async () => {
+  const response = await fetch("http://127.0.0.1:" + testServer.address().port + "/api/auth/config", {
+    headers: { Accept: "application/json" },
+  });
+  assert.equal(response.status, 200);
+  const payload = await response.json();
+  assert.equal("allowedEmails" in payload, false);
+  assert.equal("allowedEmailCount" in payload, false);
+  assert.equal("primaryEmail" in payload, false);
+  assert.equal("secondaryEmail" in payload, false);
+  assert.equal(JSON.stringify(payload).includes("@gmail.com"), false);
+  assert.equal(JSON.stringify(payload).includes("authorized-one@example.com"), false);
+});
+
+test("magic-link HTTP endpoint returns a generic response and rate-limits after five requests", async () => {
+  const url = "http://127.0.0.1:" + testServer.address().port + "/api/auth/request-link";
+  const statuses = [];
+  const messages = [];
+  for (let i = 0; i < 6; i += 1) {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ email: "outside@example.com" }),
+    });
+    statuses.push(response.status);
+    messages.push(await response.json());
+  }
+  assert.deepEqual(statuses, [202, 202, 202, 202, 202, 429]);
+  assert.ok(messages.slice(0, 5).every((payload) =>
+    payload.ok === true &&
+    payload.message === "إذا كان البريد مصرحًا به، فسيتم إرسال رابط الدخول."
+  ));
+  assert.equal(messages[5].reason, "AUTH_LINK_RATE_LIMITED");
 });
 
 test("magic-link request does not contact Supabase for a non-allowlisted email", async () => {
