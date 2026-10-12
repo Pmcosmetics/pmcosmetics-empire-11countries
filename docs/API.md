@@ -17,14 +17,8 @@ Product publication is evidence-gated.
 ### Health & readiness
 - GET /api/start
 
-- GET /api/workspace/hub?action=status
-- GET /api/workspace/hub?action=sync (read-only reconciliation; no external writes)
-
 - GET /api/health
 - GET /health
-- GET /api/readiness
-- GET /api/supabase/status
-- GET /api/channel/status
 - GET /api/brand
 - GET /api/storefront
 - GET /api/storefront/search?q=...
@@ -32,11 +26,11 @@ Product publication is evidence-gated.
 `/api/health` includes `commitSha` from `RAILWAY_GIT_COMMIT_SHA` for GitHub-triggered Railway deployments. A value of `unknown` means the running build cannot yet be tied to a source commit.
 
 ### Authentication
-- GET /api/auth/config
-- GET /api/auth/session
+- GET /api/auth/config — public configuration only; never returns the allowlist
+- POST /api/auth/request-link — rate-limited; the server checks the runtime allowlist before requesting a magic link
+- GET /api/auth/session — requires Authorization: Bearer <Supabase access token>
 
-/api/auth/session requires Authorization: Bearer <Supabase access token> and performs server-side verification against Supabase Auth.
-Missing or invalid tokens are rejected. The exact PM email allowlist is enforced server-side.
+/api/auth/session performs server-side verification against Supabase Auth. The allowlist is configured only through the server-side PM_AUTH_ALLOWED_EMAILS environment variable. The request-link endpoint returns a generic accepted message for unauthorized addresses to reduce account enumeration.
 
 ### Channel status
 - GET /api/salla/status — protected Salla connector configuration summary
@@ -100,6 +94,8 @@ See docs/SECURITY.md for the production security/compliance status.
 
 The following routes require a valid Supabase bearer token and are not public storefront APIs:
 - GET /api/empire/registry
+- GET /api/workspace/hub?action=status
+- GET /api/workspace/hub?action=sync (read-only reconciliation; no external writes)
 - GET /api/readiness
 - GET /api/channel/status
 - GET /api/supabase/status
