@@ -11,6 +11,7 @@ const required = [
   "config/auth-identity.json",
   "config/empire-unified-registry.json",
   "public/auth.html",
+  "public/auth.js",
   "public/reference-catalog.html",
   "public/pmcosmetics-logo.svg",
   "public/index.html",
