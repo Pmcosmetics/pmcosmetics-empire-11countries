@@ -6,6 +6,7 @@ on:
       - main
       - api-gated-foundation
       - fix/whatsapp-webhook-gated-handler
+      - security/workspace-hub-auth-config-hardening
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: [main]
