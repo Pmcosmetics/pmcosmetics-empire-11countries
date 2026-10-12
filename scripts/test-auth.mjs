@@ -179,6 +179,20 @@ test("Workspace Hub read-only sync rejects a real unauthenticated HTTP request",
   assert.equal(payload.reason, "AUTH_TOKEN_MISSING");
 });
 
+test("login page CSP permits only the auth module origin and the configured Supabase origin", async () => {
+  const response = await fetch("http://127.0.0.1:" + testServer.address().port + "/auth", {
+    headers: { Accept: "text/html" },
+  });
+  assert.equal(response.status, 200);
+  const csp = response.headers.get("content-security-policy") || "";
+  const page = await response.text();
+  assert.ok(csp.includes("script-src 'self' https://esm.sh"), "pinned auth module CDN is allowed");
+  assert.ok(csp.includes("connect-src 'self' https://rhozehqlpnmzmknlpmvf.supabase.co"), "configured Supabase origin is allowed");
+  assert.equal(/script-src[^;]*'unsafe-inline'/.test(csp), false, "inline scripts must remain blocked");
+  assert.ok(page.includes('<script type="module" src="/auth.js"></script>'), "login code is loaded from a same-origin module");
+  assert.equal(page.includes("<script type=\"module\">"), false, "login page has no inline module");
+});
+
 test("public auth config HTTP response never discloses the account allowlist", async () => {
   const response = await fetch("http://127.0.0.1:" + testServer.address().port + "/api/auth/config", {
     headers: { Accept: "application/json" },
