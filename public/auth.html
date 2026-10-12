@@ -13,9 +13,39 @@
   <section class="card"><span class="status">رابط دخول آمن</span><h1>مرحبًا بعودتك</h1><p>أدخلي بريدًا مصرحًا به لإرسال رابط دخول لمرة واحدة. لا نعرض عناوين الحسابات التشغيلية على الصفحة العامة.</p><form id="loginForm"><label for="email">البريد الإلكتروني</label><input class="field" id="email" type="email" autocomplete="email" required placeholder="name@example.com"><button class="button" type="submit">إرسال رابط الدخول</button></form><div id="message" class="message" aria-live="polite"></div></section>
   <section class="card"><h2>حماية الوصول</h2><p>الوصول محصور بالحسابات المصرح بها على مستوى الخادم. روابط Shopify وInstagram وTikTok والمنصات الأخرى تبقى داخل مركز الربط بعد تسجيل الدخول.</p><p class="muted">إذا لم يكن حسابك مصرحًا به، لن يتم إنشاء جلسة دخول.</p><a href="/">العودة إلى الواجهة الرئيسية</a></section>
 </main>
-<script>
+<script type="module">
   const form = document.getElementById("loginForm");
   const message = document.getElementById("message");
+  let client = null;
+
+  // Keep Supabase's URL callback/session handling, but never keep an allowlist in the browser.
+  try {
+    const m = await import("https://esm.sh/@supabase/supabase-js@2.117.2");
+    const response = await fetch("/api/auth/config", { cache: "no-store" });
+    const config = await response.json();
+    if (config.supabaseUrl && config.publishableKey) {
+      client = m.createClient(config.supabaseUrl, config.publishableKey);
+      const { data } = await client.auth.getSession();
+      if (data.session) {
+        const verifyResponse = await fetch("/api/auth/session", {
+          headers: { Authorization: "Bearer " + data.session.access_token },
+          cache: "no-store",
+        });
+        const verified = await verifyResponse.json().catch(() => ({}));
+        if (!verifyResponse.ok || !verified.authenticated) {
+          await client.auth.signOut();
+          message.textContent = "هذا الحساب غير مخوّل للوصول إلى مركز التشغيل.";
+          message.className = "message err";
+        } else {
+          message.textContent = "تم التحقق من جلسة الدخول.";
+          message.className = "message ok";
+        }
+      }
+    }
+  } catch {
+    message.textContent = "تعذر التحقق من جلسة الدخول. حاولي تحديث الصفحة.";
+    message.className = "message err";
+  }
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
