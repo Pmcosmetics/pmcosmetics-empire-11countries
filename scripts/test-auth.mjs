@@ -133,19 +133,23 @@ const authConfigSource = await readFile(new URL("../config/auth-identity.json", 
 const loginPageSource = await readFile(new URL("../public/auth.html", import.meta.url), "utf8");
 
 test("Workspace Hub operational details require server authentication", () => {
-  assert.match(serverSource, /app\\.get\\("\\/api\\/workspace\\/hub",\\s*rateLimit,\\s*requireEmpireAuth,/);
+  assert.ok(serverSource.includes('app.get("/api/workspace/hub", rateLimit, requireEmpireAuth,'));
 });
 
 test("public auth config and login UI do not disclose account email addresses", () => {
-  const route = serverSource.match(/app\\.get\\("\\/api\\/auth\\/config"[\\s\\S]*?\\n\\}\\);/);
-  assert.ok(route, "auth config endpoint exists");
-  assert.doesNotMatch(route[0], /primaryEmail|secondaryEmail|allowedEmails|PM_AUTH_EMAIL_PRIMARY|PM_AUTH_EMAIL_SECONDARY/);
-  assert.doesNotMatch(authConfigSource, /[A-Z0-9._%+-]+@gmail\\.com/i);
-  assert.doesNotMatch(loginPageSource, /[A-Z0-9._%+-]+@gmail\\.com/i);
+  const start = serverSource.indexOf('app.get("/api/auth/config"');
+  const end = serverSource.indexOf('app.get("/api/auth/session"', start);
+  assert.ok(start >= 0 && end > start, "auth config endpoint exists");
+  const route = serverSource.slice(start, end);
+  for (const field of ["primaryEmail", "secondaryEmail", "allowedEmails", "PM_AUTH_EMAIL_PRIMARY", "PM_AUTH_EMAIL_SECONDARY"]) {
+    assert.ok(!route.includes(field), "public config must not return " + field);
+  }
+  assert.equal(authConfigSource.includes("@gmail.com"), false);
+  assert.equal(loginPageSource.includes("@gmail.com"), false);
 });
 
 test("public magic-link route uses its dedicated rate limiter", () => {
-  assert.match(serverSource, /app\\.post\\("\\/api\\/auth\\/request-link",\\s*authLinkRateLimit,/);
+  assert.ok(serverSource.includes('app.post("/api/auth/request-link", authLinkRateLimit,'));
 });
 
 test("magic-link request does not contact Supabase for a non-allowlisted email", async () => {
@@ -171,7 +175,7 @@ test("magic-link request sends provider OTP only for an allowlisted email", asyn
     const result = await auth.requestMagicLink(allowedEmail);
     assert.equal(result.ok, true);
     assert.equal(result.sent, true);
-    assert.match(captured.url, /\\/auth\\/v1\\/otp\\?redirect_to=/);
+    assert.ok(captured.url.includes("/auth/v1/otp?redirect_to="));
     assert.equal(captured.options.headers.apikey, "test-publishable-key");
     assert.deepEqual(JSON.parse(captured.options.body), { email: allowedEmail, create_user: true });
   } finally {
