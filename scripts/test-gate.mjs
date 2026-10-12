@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { createHmac } from "node:crypto";
-import app from "../server/index.mjs";
 import { commercialPublishGateBlockReason } from "./batch-gate.mjs";
+
+// Keep this isolated test process deterministic and prevent accidental live Supabase access.
+process.env.PM_AUTH_ALLOWED_EMAILS = "gate-test-one@example.com,gate-test-two@example.com";
+process.env.SUPABASE_PUBLISHABLE_KEY = "";
+delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+const app = (await import("../server/index.mjs")).default;
 
 assert.equal(typeof app, "function");
 assert.equal(typeof app.get, "function");
@@ -32,7 +38,10 @@ try {
   assert.equal(authConfigBody.ok, true);
   assert.equal(authConfigBody.serverVerification, true);
   assert.equal(authConfigBody.exactEmailAllowlist, true);
-  assert.equal(authConfigBody.allowedEmailCount, 4);
+  assert.equal("allowedEmailCount" in authConfigBody, false);
+  assert.equal("allowedEmails" in authConfigBody, false);
+  assert.equal("primaryEmail" in authConfigBody, false);
+  assert.equal("secondaryEmail" in authConfigBody, false);
 
   const authSession = await fetch(`http://127.0.0.1:${port}/api/auth/session`);
   assert.equal(authSession.status, 401);
