@@ -63,10 +63,19 @@ export async function verifyAccessToken(accessToken) {
     });
 
     if (!response.ok) {
+      // Provider-side outages are not evidence that a user's token is invalid.
+      if (response.status >= 500 || response.status === 429) {
+        return {
+          ok: false,
+          reason: "AUTH_PROVIDER_UNAVAILABLE",
+          status: 503,
+          providerStatus: response.status,
+        };
+      }
       return {
         ok: false,
         reason: "AUTH_TOKEN_INVALID",
-        status: 401,
+        status: response.status === 401 ? 403 : response.status,
         providerStatus: response.status,
       };
     }
