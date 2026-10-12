@@ -36,6 +36,16 @@ jobs:
           npm --version
       - name: Install dependencies
         run: npm ci
+      - name: Verify patched Handlebars test dependency
+        shell: bash
+        run: |
+          node --input-type=commonjs <<'NODE'
+          const version = require("handlebars/package.json").version;
+          const [major, minor, patch] = version.split(".").map(Number);
+          const patched = major > 4 || (major === 4 && (minor > 7 || (minor === 7 && patch >= 10)));
+          if (!patched) throw new Error(`Critical Handlebars advisory remains: installed ${version}, required >=4.7.10`);
+          console.log(`Handlebars ${version} meets the patched minimum 4.7.10`);
+          NODE
       - name: Summarize dependency audit without changing packages
         shell: bash
         run: |
