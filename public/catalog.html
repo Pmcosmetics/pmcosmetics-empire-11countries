@@ -92,11 +92,15 @@ function parseCSV(text){
  const headers=rows.shift();
  return rows.map(values=>{const obj={};headers.forEach((key,i)=>obj[key]=values[i]||"");return obj;});
 }
+function decodeEntities(value){
+ const map={amp:"&",lt:"<",gt:">",quot:'"',"#39":"'"};
+ return String(value===undefined||value===null?"":value).replace(/&(amp|lt|gt|quot|#39);/g,function(m,e){return map[e];});
+}
 function isBeauty(p){
  const cat=String(p.category||"").toLowerCase();
  const name=String(p.product||"").toLowerCase();
  const beautyCategory=/(العناية بالبشرة|العناية بالشعر|العناية بالجسم|العطور|المكياج|منتجات تجميل وعناية|skin care|skincare|hair care|haircare|body care|perfume|fragrance|makeup|make-up|cosmetic|beauty care)/i.test(cat);
- const nonBeauty=/(blood glucose|accu-chek|test strip|lancet|nebulizer|blood pressure|pressure monitor|glucometer|amipride|amiprostone|medicine|medical device|diet supplement|dietary supplement|vitamin|supplement|acai berry diet|collagen tablets|hair skin.{0,10}nails|syrup|inhaler|mg [0-9]{1,3} tab)/i.test(name);
+ const nonBeauty=/(blood glucose|accu.?chek|glucosamine|chondroitin|aptamil|infant|test strip|lancet|nebulizer|blood pressure|pressure monitor|glucometer|amipride|amiprostone|medicine|medical device|diet supplement|dietary supplement|vitamin|supplement|acai berry diet|collagen tablets|hair skin.{0,10}nails|syrup|inhaler|mg [0-9]{1,3} tab)/i.test(name);
  return beautyCategory&&!nonBeauty;
 }
 function normalizeProductIdentity(value){
@@ -180,6 +184,7 @@ $("prev").addEventListener("click",function(){if(page>1){page--;render();$("prod
 $("next").addEventListener("click",function(){if(page<Math.ceil(filtered.length/PAGE_SIZE)){page++;render();$("products").scrollIntoView({behavior:"smooth"});}});
 fetch(CSV_URL,{headers:{"Accept":"text/csv"}}).then(function(response){if(!response.ok)throw new Error("تعذر تحميل الملف");return response.text();}).then(function(text){
  const rows=parseCSV(text);$("totalCount").textContent=new Intl.NumberFormat("en-US").format(rows.length);
+ rows.forEach(function(r){Object.keys(r).forEach(function(k){r[k]=decodeEntities(r[k]);});});
  all=deduplicateProducts(rows.filter(isBeauty));
  fillCategories(all);
  const params=new URLSearchParams(window.location.search);
