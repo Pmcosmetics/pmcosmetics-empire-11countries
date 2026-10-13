@@ -54,14 +54,5 @@
 <section><div class="note"><strong>تنويه تشغيلي:</strong> ملف المنتجات المرجعي لا يثبت ملكية PM للمخزون أو التوافر الحالي. يجب تأكيد بيانات كل منتج وسعره وصورته ومخزونه قبل نشره تجاريًا. لا يوجد في هذا الملف رابط عام مؤكد لكل منصة مذكورة؛ لذلك تُعرض المنصات التي تحتاج إلى ربط تحت حالة واضحة بدل تقديمها على أنها متاجر نشطة.</div></section>
 </main>
 <footer class="footer"><div class="wrap footerinner"><div><strong>PM COSMETICS HUB</strong> · Empowering Beauty Across 11 Countries</div><div><a href="/catalog.html">الكتالوج</a> · <a href="/">الرئيسية</a> · <a href="mailto:tech@pmcosmetics.hub">بريد الأعمال</a></div><div>الهوية: أسود وذهبي · <span dir="ltr">#0A0A0A / #D4AF37</span></div></div></footer>
-<script>
-(function(){
-const meta={EG:{ar:"مصر",flag:"🇪🇬",region:"شمال أفريقيا"},SA:{ar:"السعودية",flag:"🇸🇦",region:"الخليج العربي"},AE:{ar:"الإمارات",flag:"🇦🇪",region:"الخليج العربي"},KW:{ar:"الكويت",flag:"🇰🇼",region:"الخليج العربي"},QA:{ar:"قطر",flag:"🇶🇦",region:"الخليج العربي"},BH:{ar:"البحرين",flag:"🇧🇭",region:"الخليج العربي"},OM:{ar:"عُمان",flag:"🇴🇲",region:"الخليج العربي"},JO:{ar:"الأردن",flag:"🇯🇴",region:"بلاد الشام"},PS:{ar:"فلسطين",flag:"🇵🇸",region:"بلاد الشام"},LB:{ar:"لبنان",flag:"🇱🇧",region:"بلاد الشام"},IR:{ar:"إيران",flag:"🇮🇷",region:"غرب آسيا"}};
-const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-fetch("/api/markets").then(r=>{if(!r.ok)throw new Error("markets");return r.json()}).then(data=>{
-const grid=document.getElementById("profileMarketGrid");if(!grid)return;const items=Array.isArray(data.markets)?data.markets:[];
-grid.innerHTML=items.map(m=>{const c=meta[m.id]||{ar:m.name,flag:"🌍",region:m.region||"سوق مستهدف"};const cur=String(m.currency||"").toUpperCase();const msg="مرحبًا PM Cosmetics Hub، أرغب في معرفة المنتجات المتاحة وسعرها المحلي والشحن إلى سوق "+c.ar+" ("+cur+"). برجاء تأكيد التوفر والدفع قبل الطلب.";const url="https://wa.me/201055655649?text="+encodeURIComponent(msg);return '<article class="marketCard"><div class="marketTop"><span class="marketFlag">'+c.flag+'</span><div><div class="marketName">'+esc(c.ar)+'</div><div class="marketRegion">'+esc(c.region)+'</div></div></div><div class="marketCurrency">'+esc(cur)+' · '+esc(m.currencySymbol||"")+'</div><div class="marketMeta">سوق مستهدف<br>السعر المحلي والشحن قيد التأكيد</div><a class="marketButton" href="'+url+'" target="_blank" rel="noopener">استفسار عن السوق ↗</a></article>'}).join("")||'<div class="card">لا توجد بيانات أسواق متاحة.</div>';
-}).catch(()=>{const grid=document.getElementById("profileMarketGrid");if(grid)grid.innerHTML='<div class="card">تعذر تحميل الأسواق حاليًا. يرجى التواصل عبر واتساب.</div>';});
-})();
-</script>
+<script src="/business-profile.js"></script>
 </body></html>
