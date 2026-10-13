@@ -24,7 +24,14 @@ const empireRegistry = require("../config/empire-unified-registry.json");
 
 const app = express();
 app.set("trust proxy", 1);
-app.use(helmet());
+// Preserve Helmet's default CSP directives while allowing product images from Shopify's CDN.
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      imgSrc: ["'self'", "data:", "https://cdn.shopify.com"]
+    }
+  }
+}));
 app.use(cors());
 app.use(express.json({ limit: "25mb", verify: (req, _res, buf) => { req.rawBody = Buffer.from(buf); } }));
 
