@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-04",
+  "generatedAt": "2026-10-14",
   "brand": "PM COSMETICS HUB",
   "sourceOfTruth": "Empire Product Master / Evidence Gate",
   "publicationPolicy": {
@@ -87,7 +87,9 @@
       "group": "messaging",
       "integration": "meta_waba",
       "status": "credentials_pending",
-      "publicNumber": "01203151461"
+      "publicNumber": "01055655649",
+      "routingMode": "same_canonical_number",
+      "note": "Compatibility record only; not evidence of a separately connected WhatsApp Business account."
     },
     {
       "id": "temu",
@@ -138,14 +140,14 @@
     "name": "PM COSMETICS HUB",
     "logo": "/pmcosmetics-logo.svg",
     "primaryPhone": "01055655649",
-    "secondaryPhone": "01203151461",
+    "secondaryPhone": "01055655649",
     "whatsappCatalog": "https://wa.me/c/201055655649"
   },
   "channelPolicy": {
     "brandIdentityRequired": true,
     "phoneIdentity": {
       "primary": "01055655649",
-      "secondary": "01203151461"
+      "secondary": "01055655649"
     }
   },
   "identityHub": {
