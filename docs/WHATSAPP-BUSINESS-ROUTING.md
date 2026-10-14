@@ -1,18 +1,21 @@
 # WhatsApp Business Routing — PM Cosmetics Hub
 
-## Canonical operational number
+## Canonical contact
 
-- Primary/catalog: `01055655649` → https://wa.me/201055655649
+- Primary phone: `01055655649` / `+20 10 5565 5649`
+- Direct WhatsApp: https://wa.me/201055655649
 - Catalog: https://wa.me/c/201055655649
 
-## Current state
+## Current policy
 
-- **01055655649** is the single canonical public WhatsApp Business contact for PM COSMETICS HUB.
-- All default WhatsApp CTAs on the non-catalog storefront and business-profile page use `01055655649`.
-- Secondary (`01203151461`) and tertiary (`01270677739`) numbers are direct-call links only on those pages.
-- The product/catalog page and product data were intentionally left unchanged in this pass.
+- `01055655649` is the single canonical public contact number for PM COSMETICS HUB.
+- All public-facing contact and WhatsApp CTAs in the storefront, catalog, reference catalog, and business profile should use this number and its matching links only.
+- The brand identity and publication manifest keep legacy secondary/tertiary compatibility fields mapped to the same canonical destination; they do not represent separate public contact numbers.
+- Legacy phone references may remain in archived historical documents or audit evidence, but must not be exposed as current public CTAs.
+- Customer phone fields in orders, CRM records, and customer profiles are customer data and must never be changed by a global phone-number replacement.
 - No WhatsApp Cloud API credentials are stored in GitHub.
 - Meta Business Manager/WABA/API authentication is not claimed as completed through this ChatGPT session because no WhatsApp API connector is available here.
+- The Google Business Profile target phone is set in the project registry to `01055655649`, but the external provider-side setting still requires an authorized update and live verification.
 
 ## Cloud API handoff
 
