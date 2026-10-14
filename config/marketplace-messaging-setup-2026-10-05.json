@@ -36,7 +36,7 @@
       "status": "CREDENTIALS_PENDING",
       "integration": "Meta WhatsApp Business Platform / Cloud API",
       "primaryPhone": "01055655649",
-      "secondaryPhone": "01203151461",
+      "secondaryPhone": "01055655649",
       "required": [
         "Meta Business Portfolio",
         "WhatsApp Business Account (WABA)",

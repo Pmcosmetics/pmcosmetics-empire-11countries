@@ -27,8 +27,8 @@ Egypt, Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, Oman, Jordan, Palestine, Leban
 - Treat external integrations as unverified until their connection and returned data are independently confirmed.
 - Do not claim a storefront, database, connector, or integration is live unless the repository/runtime evidence supports that claim.
 - Canonical WhatsApp catalog number: +20 10 5565 5649 (201055655649).
-- Backup/direct WhatsApp number: +20 12 0315 1461 (201203151461).
-- Website routing may expose both numbers, while the catalog remains on the primary number.
+- No other number is published. Earlier secondary numbers (+20 12 0315 1461 and +20 127 067 7739) are retired from routing.
+- All WhatsApp, order and enquiry routing goes to the primary number +20 10 5565 5649 (201055655649) and shukrypeter79@gmail.com.
 - WhatsApp Cloud API remains unverified until Meta-side verification/configuration and runtime endpoint checks succeed.
 - Never put WhatsApp tokens, verify tokens, webhook secrets, or other credentials in the repository.
 
