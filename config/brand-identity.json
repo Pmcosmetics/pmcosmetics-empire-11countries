@@ -12,18 +12,18 @@
       "wa": "https://wa.me/201055655649"
     },
     "secondary": {
-      "local": "01203151461",
-      "international": "201203151461",
+      "local": "01055655649",
+      "international": "201055655649",
       "wa": "https://wa.me/201055655649"
     },
     "tertiary": {
-      "local": "01270677739",
-      "international": "201270677739",
+      "local": "01055655649",
+      "international": "201055655649",
       "wa": "https://wa.me/201055655649"
     }
   },
   "numberAliases": {
-    "_comment": "Every number below routes to the primary WhatsApp (01055655649). The secondary is 01203151461.",
+    "_comment": "Legacy inbound aliases, where still supported, must resolve to the single canonical WhatsApp destination 01055655649.",
     "01211549000": "01055655649",
     "01205363249": "01055655649",
     "01213190660": "01055655649"
@@ -34,9 +34,9 @@
     "sameBrandNameEverywhere": true,
     "sameColorsEverywhere": true,
     "publicWhatsAppCtaNumber": "01055655649",
-    "primaryRole": "canonical WhatsApp for orders, enquiries, and market CTAs",
-    "secondaryRole": "backup direct-call contact; not a default WhatsApp CTA",
-    "tertiaryRole": "additional direct-call contact; not a default WhatsApp CTA",
+    "primaryRole": "single canonical WhatsApp for orders, enquiries, and market CTAs",
+    "secondaryRole": "compatibility field; resolves to the same canonical number",
+    "tertiaryRole": "compatibility field; resolves to the same canonical number",
     "samePrimaryWhatsAppEverywhere": true
   },
   "commercialName": "PM Cosmetics Hub",
