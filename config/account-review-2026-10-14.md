@@ -45,5 +45,5 @@
 - الحساب الثانوي: shukrypeter102@gmail.com.
 - عُدّل `store-platform-account-registry.json` ليطابق القرار: 79 أولًا وحده في `primaryEmails`، و102 في `secondaryEmails`.
 - الملفات الأخرى كانت تحمل 79 أساسيًا أصلًا.
-- ملف `gmail-registration-hub` يُظهر مالك GitHub وRailway على 79 بحسب القرار، لكن الحساب الفعلي المالك لهذه الخدمات لم يُتحقق منه، وقد يكون 102.
+- مالك GitHub وRailway: لم يُتحقق منه. الرقم 79 في `gmail-registration-hub` اختير دون تأكيد من الخدمات، والحساب الفعلي المالك لهذه الخدمات قد يكون 102.
 - التوحيد على الرقم 01055655649 في ملفات `config`.
