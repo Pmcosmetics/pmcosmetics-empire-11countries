@@ -78,8 +78,7 @@
     "authPolicyChange": false
   },
   "currentEmpireAuthAllowlist": [
-    "shukrypeter79@gmail.com",
-    "shukrypeter102@gmail.com"
+    "shukrypeter79@gmail.com"
   ],
   "principles": {
     "doNotExpandAuthAllowlistAutomatically": true,
