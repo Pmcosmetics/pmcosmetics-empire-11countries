@@ -34,7 +34,8 @@
   "identities": {
     "canonicalProvider": "Google/Gmail",
     "allowedEmails": [
-      "shukrypeter79@gmail.com"
+      "shukrypeter79@gmail.com",
+      "shukrypeter102@gmail.com"
     ],
     "primaryEmail": "shukrypeter79@gmail.com",
     "policy": "Exact email allowlist; external platforms still require provider-specific OAuth/credentials"
