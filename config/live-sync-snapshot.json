@@ -112,7 +112,7 @@
     "googleProviderStatus": "READY_FOR_GOOGLE_CLOUD_CLIENT_CREDENTIALS",
     "canonicalBrand": "PM COSMETICS HUB",
     "primaryCommerceDesignEmail": "shukrypeter79@gmail.com",
-    "secondaryEngineeringOperationsEmail": "shukrypeter102@gmail.com",
+    "secondaryEngineeringOperationsEmail": "shukrypeter79@gmail.com",
     "policy": "Keep primary/secondary roles; do not expand auth allowlist automatically."
   },
   "referenceCatalog": {
@@ -182,7 +182,7 @@
   },
   "windsorHub": {
     "provider": "Windsor.ai",
-    "workspaceEmail": "shukrypeter102@gmail.com",
+    "workspaceEmail": "shukrypeter79@gmail.com",
     "connectedVerified": [
       "facebook",
       "google_ads",

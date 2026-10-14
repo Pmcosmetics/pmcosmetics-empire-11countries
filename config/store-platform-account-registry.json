@@ -4,19 +4,17 @@
   "canonicalBrand": "PM COSMETICS HUB",
   "identity": {
     "primaryEmails": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com"
+      "shukrypeter79@gmail.com"
+    ],
+    "secondaryEmails": [
+      "shukrypeter79@gmail.com"
     ],
     "backupEmails": [
-      "shukrypeter72@gmail.com",
-      "petershukry67@gmail.com"
+      "shukrypeter79@gmail.com"
     ],
     "notionWorkspaceMembersVerified": true,
     "notionVerifiedEmails": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com",
-      "shukrypeter72@gmail.com",
-      "petershukry67@gmail.com"
+      "shukrypeter79@gmail.com"
     ],
     "apple": {
       "status": "not_verified_as_direct_Empire_connector",
@@ -27,7 +25,7 @@
     "github": {
       "repository": "Pmcosmetics/pmcosmetics-empire-11countries",
       "status": "active_verified",
-      "accountEmail": "shukrypeter102@gmail.com"
+      "accountEmail": "shukrypeter79@gmail.com"
     },
     "railway": {
       "project": "PM COSMETICS HUB Production",
@@ -51,7 +49,7 @@
       "apiVerificationStatus": "not_independently_verified"
     },
     "whatsapp_secondary": {
-      "number": "01203151461",
+      "number": "01055655649",
       "identityLinkStatus": "owner_declared_linked"
     }
   },
@@ -73,7 +71,7 @@
     "instagram": {"status": "pending_authorization"},
     "tiktok": {"status": "pending_authorization"},
     "google_ads": {"status": "connected_verified", "accountId": "663-195-7015"},
-    "google_business_profile": {"status": "connected_live_unverified", "name": "P.M Cosmetics HUB", "primaryPhone": "01203151461"}
+    "google_business_profile": {"status": "connected_live_unverified", "name": "P.M Cosmetics HUB", "primaryPhone": "01055655649"}
   },
   "catalogSync": {
     "lastChecked": "2026-10-04",

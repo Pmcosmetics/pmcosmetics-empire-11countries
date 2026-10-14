@@ -18,9 +18,9 @@
         "whatsapp": "https://wa.me/201055655649"
       },
       "secondary": {
-        "local": "01203151461",
-        "international": "201203151461",
-        "role": "backup/direct contact",
+        "local": "01055655649",
+        "international": "201055655649",
+        "role": "direct-call only; WhatsApp, orders and enquiries route to primary 01055655649",
         "whatsapp": "https://wa.me/201055655649"
       }
     },
@@ -28,7 +28,7 @@
     "canonicalLogo": "/pmcosmetics-logo.svg",
     "contactEmails": {
       "primary": "shukrypeter79@gmail.com",
-      "secondary": "shukrypeter102@gmail.com"
+      "secondary": "shukrypeter79@gmail.com"
     }
   },
   "identities": {
@@ -170,8 +170,8 @@
       "kind": "messaging",
       "integration": "meta_waba",
       "status": "public_identity_ready_credentials_pending",
-      "phone": "01203151461",
-      "international": "201203151461",
+      "phone": "01055655649",
+      "international": "201055655649",
       "whatsapp": "https://wa.me/201055655649"
     },
     {
@@ -325,10 +325,9 @@
     "path": "config/account-integration-matrix.json",
     "status": "verified_and_versioned",
     "primaryCommerceDesign": "shukrypeter79@gmail.com",
-    "engineeringIntegration": "shukrypeter102@gmail.com",
+    "engineeringIntegration": "shukrypeter79@gmail.com",
     "backupIdentities": [
-      "shukrypeter72@gmail.com",
-      "petershukry67@gmail.com"
+      "shukrypeter79@gmail.com"
     ],
     "apple": "not_verified_as_direct_Empire_connector",
     "authAllowlistUnchanged": true,
@@ -359,7 +358,7 @@
   },
   "windsorHub": {
     "provider": "Windsor.ai",
-    "workspaceEmail": "shukrypeter102@gmail.com",
+    "workspaceEmail": "shukrypeter79@gmail.com",
     "plan": "Trial",
     "dashboard": "https://onboard.windsor.ai/app",
     "role": "Central integration hub for connected marketing/commerce connectors",
