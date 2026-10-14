@@ -18,9 +18,9 @@
         "whatsapp": "https://wa.me/201055655649"
       },
       "secondary": {
-        "local": "01203151461",
-        "international": "201203151461",
-        "role": "backup/direct contact",
+        "local": "01055655649",
+        "international": "201055655649",
+        "role": "compatibility field only; resolves to the canonical primary contact",
         "whatsapp": "https://wa.me/201055655649"
       }
     },
@@ -172,9 +172,10 @@
       "kind": "messaging",
       "integration": "meta_waba",
       "status": "public_identity_ready_credentials_pending",
-      "phone": "01203151461",
-      "international": "201203151461",
-      "whatsapp": "https://wa.me/201055655649"
+      "phone": "01055655649",
+      "international": "201055655649",
+      "whatsapp": "https://wa.me/201055655649",
+      "note": "Compatibility record only; routes to the canonical primary destination and does not confirm a separate WhatsApp Business account."
     },
     {
       "id": "take_app",

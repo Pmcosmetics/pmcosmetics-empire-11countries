@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-10-14",
   "brand": "PM COSMETICS HUB",
   "purpose": "Controlled setup plan for Etsy, WhatsApp Business API, Jumia, and Amazon channels",
   "commercialPublishGate": "CLOSED",
@@ -36,7 +36,7 @@
       "status": "CREDENTIALS_PENDING",
       "integration": "Meta WhatsApp Business Platform / Cloud API",
       "primaryPhone": "01055655649",
-      "secondaryPhone": "01203151461",
+      "secondaryPhone": "01055655649",
       "required": [
         "Meta Business Portfolio",
         "WhatsApp Business Account (WABA)",
@@ -56,7 +56,8 @@
         "order status messages",
         "catalog/order links"
       ],
-      "publication": "No bulk outbound messaging; policy-compliant opt-in and template workflow required"
+      "publication": "No bulk outbound messaging; policy-compliant opt-in and template workflow required",
+      "routingPolicy": "Single canonical public destination: 01055655649. The secondary field is kept for schema compatibility only and does not indicate a separate connected WhatsApp Business number."
     },
     "jumia": {
       "status": "SELLER_CENTER_API_AUTHORIZATION_PENDING",

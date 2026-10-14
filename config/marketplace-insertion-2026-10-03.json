@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-10-14",
   "canonicalBrand": "PM COSMETICS HUB",
   "primaryPhone": "01055655649",
-  "secondaryPhone": "01203151461",
+  "secondaryPhone": "01055655649",
   "primaryEmail": "shukrypeter79@gmail.com",
   "secondaryEmail": "shukrypeter102@gmail.com",
   "referenceCatalog": {
@@ -119,5 +119,6 @@
     "kenz",
     "knooz",
     "instashop"
-  ]
+  ],
+  "phonePolicy": "Single canonical PM COSMETICS HUB public contact: 01055655649. Compatibility phone fields must resolve to this destination."
 }

@@ -26,9 +26,11 @@ Egypt, Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, Oman, Jordan, Palestine, Leban
 - Multi-market behavior must respect the configured market definitions and currencies.
 - Treat external integrations as unverified until their connection and returned data are independently confirmed.
 - Do not claim a storefront, database, connector, or integration is live unless the repository/runtime evidence supports that claim.
-- Canonical WhatsApp catalog number: +20 10 5565 5649 (201055655649).
-- Backup/direct WhatsApp number: +20 12 0315 1461 (201203151461).
-- Website routing may expose both numbers, while the catalog remains on the primary number.
+- Canonical public WhatsApp/contact number: 01055655649 / +20 10 5565 5649 (201055655649).
+- Every active public CTA, catalog, brand registry, and contact-routing field must resolve to `https://wa.me/201055655649`; catalog link: `https://wa.me/c/201055655649`.
+- Do not expose separate backup/direct phone numbers in active public UI. Compatibility fields may remain only when they equal the canonical number.
+- Never globally replace phone numbers in customer orders, CRM records, or customer profiles; those are customer data, not business contact configuration.
+- Preserve dated snapshots and archived records as historical evidence, but never treat their older phone values as current public contact settings.
 - WhatsApp Cloud API remains unverified until Meta-side verification/configuration and runtime endpoint checks succeed.
 - Never put WhatsApp tokens, verify tokens, webhook secrets, or other credentials in the repository.
 
