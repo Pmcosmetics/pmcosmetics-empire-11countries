@@ -22,6 +22,12 @@
       "wa": "https://wa.me/201270677739"
     }
   },
+  "numberAliases": {
+    "_comment": "Every number below routes to the primary WhatsApp (01055655649). The secondary is 01203151461.",
+    "01211549000": "01055655649",
+    "01205363249": "01055655649",
+    "01213190660": "01055655649"
+  },
   "whatsappCatalog": "https://wa.me/c/201055655649",
   "policy": {
     "sameLogoEverywhere": true,
