@@ -106,8 +106,7 @@
   "identity": {
     "provider": "Google/Gmail",
     "allowedEmails": [
-      "shukrypeter79@gmail.com",
-      "shukrypeter102@gmail.com"
+      "shukrypeter79@gmail.com"
     ],
     "portal": "/auth",
     "googleProviderStatus": "READY_FOR_GOOGLE_CLOUD_CLIENT_CREDENTIALS",
