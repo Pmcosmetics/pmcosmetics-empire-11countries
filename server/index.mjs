@@ -6,6 +6,7 @@ import { createRequire } from "node:module";
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { checkWooConnection, getWooStatus, syncWooProducts } from "./integrations/woocommerce.mjs";
 import { getManusStatus, pullManusProducts, validateManusProducts } from "./integrations/manus.mjs";
+import { getManusConnectorInventoryStatus, listManusConnectors } from "./integrations/manus-connectors.mjs";
 import { getActiveProductsBySkus, isSupabaseConfigured, listActiveProducts } from "./integrations/supabase.mjs";
 import { commercialPublishGateBlockReason, evaluateBatch } from "../scripts/batch-gate.mjs";
 import { evaluateTemplateSyncBatch } from "../scripts/template-sync-gate.mjs";
@@ -704,10 +705,40 @@ app.get("/api/supabase/status", rateLimit, requireEmpireAuth, (_req, res) => {
 });
 
 app.get("/api/manus/status", rateLimit, requireEmpireAuth, (_req, res) => {
-  res.json({ ok: true, gate: gateState(), service: "manus-catalog-adapter", ...getManusStatus() });
+  res.json({
+    ok: true,
+    gate: gateState(),
+    service: "manus-catalog-adapter",
+    ...getManusStatus(),
+    connectorInventory: getManusConnectorInventoryStatus()
+  });
 });
 
-app.post("/api/manus/import", async (req, res) => {
+app.get("/api/manus/connectors", rateLimit, requireEmpireAuth, async (_req, res) => {
+  const status = getManusConnectorInventoryStatus();
+  if (!status.ready) {
+    return res.status(503).json({
+      ok: false,
+      gate: gateState(),
+      ...status,
+      reason: status.enabled ? "MANUS_CONNECTOR_INVENTORY_NOT_CONFIGURED" : "MANUS_CONNECTOR_INVENTORY_DISABLED"
+    });
+  }
+
+  try {
+    const inventory = await listManusConnectors();
+    return res.json({ ok: true, gate: gateState(), ...inventory });
+  } catch (error) {
+    return res.status(error?.httpStatus || 502).json({
+      ok: false,
+      gate: gateState(),
+      readOnly: true,
+      reason: error?.code || "MANUS_CONNECTOR_INVENTORY_FAILED"
+    });
+  }
+});
+
+app.post("/api/manus/import", rateLimit, requireEmpireAuth, async (req, res) => {
   try {
     const products = Array.isArray(req.body?.products) ? req.body.products : await pullManusProducts();
     const result = validateManusProducts(products);
