@@ -14,7 +14,7 @@
 - رقم اتصال مباشر: 01055655649 (نفس الرقم الرئيسي)
 
 ## البريد الإلكتروني
-- بريد الأعمال: tech@pmcosmetics.hub
+- بريد الأعمال: shukrypeter79@gmail.com
 - الحساب الأساسي (التجارة والتصميم): shukrypeter79@gmail.com
 - الحساب الثانوي (الهندسة والتشغيل): shukrypeter102@gmail.com
 - حساب احتياطي: shukrypeter72@gmail.com

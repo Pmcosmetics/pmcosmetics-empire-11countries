@@ -35,8 +35,8 @@
     "sameColorsEverywhere": true,
     "publicWhatsAppCtaNumber": "01055655649",
     "primaryRole": "canonical WhatsApp for orders, enquiries, and market CTAs",
-    "secondaryRole": "backup direct-call contact; not a default WhatsApp CTA",
-    "tertiaryRole": "additional direct-call contact; not a default WhatsApp CTA",
+    "secondaryRole": "retired from routing; resolves to the primary 01055655649",
+    "tertiaryRole": "retired from routing; resolves to the primary 01055655649",
     "samePrimaryWhatsAppEverywhere": true,
     "primaryEmail": "shukrypeter79@gmail.com",
     "routingPolicy": "All phone numbers, WhatsApp, orders and enquiries route to the primary 01055655649 and the primary email shukrypeter79@gmail.com."
