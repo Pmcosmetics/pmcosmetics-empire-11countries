@@ -2,6 +2,11 @@
   "schemaVersion": 1,
   "verifiedAt": "2026-10-04",
   "canonicalBrand": "PM COSMETICS HUB",
+  "routingPolicy": {
+    "allPhonesAndWhatsAppTo": "01055655649",
+    "allMessagesAndOrdersTo": "shukrypeter79@gmail.com",
+    "note": "Registered accounts above are identity records and are not routing targets."
+  },
   "identity": {
     "primaryEmails": [
       "shukrypeter79@gmail.com"
