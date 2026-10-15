@@ -23,7 +23,7 @@
       "authPolicyChange": false
     },
     {
-      "email": "shukrypeter79@gmail.com",
+      "email": "shukrypeter102@gmail.com",
       "role": "engineering-and-operations-secondary",
       "verifiedIntegrations": [
         {
@@ -40,13 +40,18 @@
           "service": "Windsor.ai",
           "status": "connected",
           "use": "marketing/data connectors"
+        },
+        {
+          "service": "Railway",
+          "status": "owner_unconfirmed",
+          "use": "deployment; Gmail record attributes it here, unified registry does not confirm"
         }
       ],
       "recommendedEmpireRole": "engineering/integration identity",
       "authPolicyChange": false
     },
     {
-      "email": "shukrypeter79@gmail.com",
+      "email": "shukrypeter72@gmail.com",
       "role": "backup-identity",
       "verifiedIntegrations": [
         {
@@ -59,7 +64,7 @@
       "authPolicyChange": false
     },
     {
-      "email": "shukrypeter79@gmail.com",
+      "email": "petershukry67@gmail.com",
       "role": "backup-identity",
       "verifiedIntegrations": [
         {
