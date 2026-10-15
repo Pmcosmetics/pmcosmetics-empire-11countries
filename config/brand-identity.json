@@ -38,7 +38,8 @@
     "secondaryRole": "backup direct-call contact; not a default WhatsApp CTA",
     "tertiaryRole": "additional direct-call contact; not a default WhatsApp CTA",
     "samePrimaryWhatsAppEverywhere": true,
-    "primaryEmail": "shukrypeter79@gmail.com"
+    "primaryEmail": "shukrypeter79@gmail.com",
+    "routingPolicy": "All phone numbers, WhatsApp, orders and enquiries route to the primary 01055655649 and the primary email shukrypeter79@gmail.com."
   },
   "commercialName": "PM Cosmetics Hub",
   "tagline": "Empowering Beauty Across 11 Countries",

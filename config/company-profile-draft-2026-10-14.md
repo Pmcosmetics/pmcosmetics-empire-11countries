@@ -15,9 +15,9 @@
 
 ## البريد الإلكتروني
 - بريد الأعمال: tech@pmcosmetics.hub
-- الحساب الأساسي: shukrypeter79@gmail.com
-- الحساب الرئيسي (الهندسة والتشغيل): shukrypeter79@gmail.com
-- حساب احتياطي: shukrypeter79@gmail.com
+- الحساب الأساسي (التجارة والتصميم): shukrypeter79@gmail.com
+- الحساب الثانوي (الهندسة والتشغيل): shukrypeter102@gmail.com
+- حساب احتياطي: shukrypeter72@gmail.com
 
 ## الروابط
 - الموقع الرئيسي: https://pmcosmetics-empire-11countries-production.up.railway.app/
