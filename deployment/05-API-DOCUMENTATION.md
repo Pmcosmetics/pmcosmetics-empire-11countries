@@ -201,7 +201,7 @@ Response:
   },
   "routing": {
     "primary": "https://wa.me/201055655649",
-    "backup": "https://wa.me/201203151461",
+    "backup": "https://wa.me/201055655649",
     "catalog": "https://wa.me/c/201055655649"
   }
 }
