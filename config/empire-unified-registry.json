@@ -20,7 +20,7 @@
       "secondary": {
         "local": "01055655649",
         "international": "201055655649",
-        "role": "direct-call only; WhatsApp, orders and enquiries route to primary 01055655649",
+        "role": "routes to primary 01055655649; calls, WhatsApp, orders and enquiries all go to primary",
         "whatsapp": "https://wa.me/201055655649"
       }
     },
