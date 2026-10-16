@@ -40,6 +40,11 @@
           "service": "Windsor.ai",
           "status": "connected",
           "use": "marketing/data connectors"
+        },
+        {
+          "service": "Railway",
+          "status": "owner_unconfirmed",
+          "use": "deployment; Gmail record attributes it here, unified registry does not confirm"
         }
       ],
       "recommendedEmpireRole": "engineering/integration identity",
@@ -78,8 +83,7 @@
     "authPolicyChange": false
   },
   "currentEmpireAuthAllowlist": [
-    "shukrypeter79@gmail.com",
-    "shukrypeter102@gmail.com"
+    "shukrypeter79@gmail.com"
   ],
   "principles": {
     "doNotExpandAuthAllowlistAutomatically": true,

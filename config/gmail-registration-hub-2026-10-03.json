@@ -5,20 +5,19 @@
   "registrationHub": {
     "provider": "Google/Gmail",
     "primary": "shukrypeter79@gmail.com",
-    "secondary": "shukrypeter102@gmail.com",
+    "secondary": "shukrypeter79@gmail.com",
     "policy": "Use these two Gmail identities for registration/ownership where provider permits; never store passwords or OTPs in the repository."
   },
   "roleAssignment": {
-    "shukrypeter79@gmail.com": "primary commerce/owner identity",
-    "shukrypeter102@gmail.com": "secondary engineering/integration identity"
+    "shukrypeter79@gmail.com": "primary commerce/owner identity and engineering/integration identity"
   },
   "channels": {
     "github": {
-      "ownerIdentity": "shukrypeter102@gmail.com",
+      "ownerIdentity": "shukrypeter79@gmail.com",
       "status": "registry-linked"
     },
     "railway": {
-      "ownerIdentity": "shukrypeter102@gmail.com",
+      "ownerIdentity": "shukrypeter79@gmail.com",
       "status": "registry-linked"
     },
     "supabase": {
@@ -96,7 +95,7 @@
     },
     "whatsapp_secondary": {
       "ownerIdentity": "shukrypeter79@gmail.com",
-      "phone": "01203151461",
+      "phone": "01055655649",
       "status": "public_identity_ready_credentials_pending"
     },
     "snapchat": {

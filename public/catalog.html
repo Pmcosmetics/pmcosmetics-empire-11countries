@@ -69,7 +69,7 @@
 <a class="store" href="https://eg.partner.talabat.com/ar?language=ar" target="_blank" rel="noopener"><strong>Talabat Egypt</strong><span>بوابة الشركاء في مصر</span><em>تقديم كشريك ↗</em></a>
 <a class="store" href="https://business.facebook.com/commerce/" target="_blank" rel="noopener"><strong>Meta Commerce</strong><span>إدارة التجارة والكتالوجات على Meta</span><em>فتح أدوات التجارة ↗</em></a>
 </div>
-<div class="contact"><a class="link primary" href="https://wa.me/201055655649">واتساب 01055655649</a><a class="link" href="https://wa.me/201203151461">واتساب 01203151461</a><a class="link" href="https://wa.me/201270677739">واتساب 01270677739</a></div>
+<div class="contact"><a class="link primary" href="https://wa.me/201055655649">واتساب 01055655649</a></div>
 </section>
 </main>
 <footer class="foot"><div class="wrap footinner"><div><strong>PM COSMETICS HUB</strong> · Empowering Beauty Across 11 Countries</div><div>حقوق العلامة والهوية محفوظة لـ PM Cosmetics Hub</div><div><a href="/business-profile.html">الملف التجاري</a> · <a href="mailto:tech@pmcosmetics.hub">تواصل معنا</a></div></div></footer>
@@ -100,7 +100,7 @@ function isBeauty(p){
  const cat=String(p.category||"").toLowerCase();
  const name=String(p.product||"").toLowerCase();
  const beautyCategory=/(العناية بالبشرة|العناية بالشعر|العناية بالجسم|العطور|المكياج|منتجات تجميل وعناية|skin care|skincare|hair care|haircare|body care|perfume|fragrance|makeup|make-up|cosmetic|beauty care)/i.test(cat);
- const nonBeauty=/(blood glucose|accu.?chek|glucosamine|chondroitin|aptamil|infant|test strip|lancet|nebulizer|blood pressure|pressure monitor|glucometer|amipride|amiprostone|medicine|medical device|diet supplement|dietary supplement|vitamin|supplement|acai berry diet|collagen tablets|hair skin.{0,10}nails|syrup|inhaler|mg [0-9]{1,3} tab)/i.test(name);
+ const nonBeauty=/(blood glucose|accu.?chek|glucosamine|chondroitin|aptamil|infant|bebelac|nido|nestogen|similac|pediasure|pediamil|\bnan\b|resource junior|\bformula\b|diaper|wipes|bottle|sponge|\bdha\b|\bs\s*-?\s*26\b|milk powder|glucomannan|\bhero\b|\bbaby (digest|stage|formula|milk)|breast milk|wax strips|paracetamol|panadol|stopadol|strepsils|redoxon|centrum|omega|garcinia|raspberry ketone|green coffee|coenzyme|q10|chromium|multivitamin|perfectil|sofilife|effervescent|\d+\s*(capsules?|tablets?|tabs?|caps?)\b|\d+\s*loz|test strip|lancet|nebulizer|blood pressure|pressure monitor|glucometer|amipride|amiprostone|medicine|medical device|diet supplement|dietary supplement|vitamin|supplement|acai berry diet|collagen tablets|hair skin.{0,10}nails|syrup|inhaler|mg [0-9]{1,3} tab)/i.test(name);
  return beautyCategory&&!nonBeauty;
 }
 function normalizeProductIdentity(value){

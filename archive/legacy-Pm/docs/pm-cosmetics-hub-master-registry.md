@@ -19,7 +19,7 @@
 
 ## 2. Operational WhatsApp
 
-- Primary/operational number: `01203151461`
+- Primary/operational number: `01055655649`
 - Secondary/backup number: `01055655649`
 
 ## 3. Current market map

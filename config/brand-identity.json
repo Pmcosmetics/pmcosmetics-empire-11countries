@@ -12,15 +12,21 @@
       "wa": "https://wa.me/201055655649"
     },
     "secondary": {
-      "local": "01203151461",
-      "international": "201203151461",
-      "wa": "https://wa.me/201203151461"
+      "local": "01055655649",
+      "international": "201055655649",
+      "wa": "https://wa.me/201055655649"
     },
     "tertiary": {
-      "local": "01270677739",
-      "international": "201270677739",
-      "wa": "https://wa.me/201270677739"
+      "local": "01055655649",
+      "international": "201055655649",
+      "wa": "https://wa.me/201055655649"
     }
+  },
+  "numberAliases": {
+    "_comment": "Every number routes to the primary WhatsApp and phone (01055655649). No other number is published.",
+    "01211549000": "01055655649",
+    "01205363249": "01055655649",
+    "01213190660": "01055655649"
   },
   "whatsappCatalog": "https://wa.me/c/201055655649",
   "policy": {
@@ -29,9 +35,11 @@
     "sameColorsEverywhere": true,
     "publicWhatsAppCtaNumber": "01055655649",
     "primaryRole": "canonical WhatsApp for orders, enquiries, and market CTAs",
-    "secondaryRole": "backup direct-call contact; not a default WhatsApp CTA",
-    "tertiaryRole": "additional direct-call contact; not a default WhatsApp CTA",
-    "samePrimaryWhatsAppEverywhere": true
+    "secondaryRole": "retired from routing; resolves to the primary 01055655649",
+    "tertiaryRole": "retired from routing; resolves to the primary 01055655649",
+    "samePrimaryWhatsAppEverywhere": true,
+    "primaryEmail": "shukrypeter79@gmail.com",
+    "routingPolicy": "All phone numbers, WhatsApp, orders and enquiries route to the primary 01055655649 and the primary email shukrypeter79@gmail.com."
   },
   "commercialName": "PM Cosmetics Hub",
   "tagline": "Empowering Beauty Across 11 Countries",

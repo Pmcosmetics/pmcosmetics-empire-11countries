@@ -7,7 +7,7 @@
 
 - **GitHub (`Pmcosmetics/Pm`)** — canonical source for application code, workflows, releases, and technical execution.
 - **Notion** — canonical command center for decisions, evidence, execution status, and business documentation.
-- **WhatsApp Business** — primary customer/order channel; operational numbers: `01203151461`, `01055655649`.
+- **WhatsApp Business** — primary customer/order channel; operational number: `01055655649`.
 - **Airtable** — optional operational data layer; not promoted to product master until its schema and records are validated.
 - **CMS Open Data** — optional external analytics connector; not part of the PM Cosmetics core workflow unless a specific supported use case is approved.
 
