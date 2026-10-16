@@ -52,7 +52,7 @@ BLOCK_TITLE = re.compile(
     r"supplement|multivitamin|dietary|omega-?3|fish oil|gummies|softgels?|capsules?|tablets?|tabs?|"
     r"syrup|ointment|oint|film|b complex|b-complex|coenzyme|mct oil|"
     r"toothpaste\w*|tooth ?brush\w*|mouth ?wash\w*|lubricant|condoms?|pantyliners?|tampons?|napkins?|sanitary|"
-    r"diaper|pads|sanso|vitamin d3|sibionics|glucose monitoring|biski krem|fari krem|cereal|"
+    r"diaper\w*|diaper ?rash|pads|sanso|vitamin d3|sibionics|glucose monitoring|biski krem|fari krem|cereal|"
     r"breast milk|hero|nido|pediasure|resource junior|nan|optipro|s-?26|pediamil|lf milk|infant milk|"
     r"k-y|jelly|minoxidil|nitolic prevent|head lice|lice|scabies|sanitizing|sanitiser|sanitizer|mounjaro|tirzepatide|semaglutide|wegovy|ozempic|rybelsus"
     r")\b"
