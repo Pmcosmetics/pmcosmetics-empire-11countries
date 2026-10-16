@@ -51,10 +51,10 @@ BLOCK_TITLE = re.compile(
     r"nebuli[sz]er|inhaler|physiomer|nasal aspirator|nasal bulb|ice bag|pampers|molfix|"
     r"supplement|multivitamin|dietary|omega-?3|fish oil|gummies|softgels?|capsules?|tablets?|tabs?|"
     r"syrup|ointment|oint|film|b complex|b-complex|coenzyme|mct oil|"
-    r"toothpaste|tooth ?brush|mouthwash|lubricant|condoms?|pantyliners?|tampons?|napkins?|sanitary|"
+    r"toothpaste\w*|tooth ?brush\w*|mouth ?wash\w*|lubricant|condoms?|pantyliners?|tampons?|napkins?|sanitary|"
     r"diaper|pads|sanso|vitamin d3|sibionics|glucose monitoring|biski krem|fari krem|cereal|"
     r"breast milk|hero|nido|pediasure|resource junior|nan|optipro|s-?26|pediamil|lf milk|infant milk|"
-    r"k-y|jelly|minoxidil|nitolic prevent|head lice|lice|scabies|sanitizing|sanitiser|sanitizer"
+    r"k-y|jelly|minoxidil|nitolic prevent|head lice|lice|scabies|sanitizing|sanitiser|sanitizer|mounjaro|tirzepatide|semaglutide|wegovy|ozempic|rybelsus"
     r")\b"
     r"|\bmilk\s*\(\s*\d"
     r"|\b\d+\s*(tabs?|caps?|tablets?|capsules?)\b"
@@ -87,7 +87,7 @@ def classify(r):
     m = BLOCK_TITLE.search(title)
     if m:
         # Title-only hit: rescue when it is clearly a cosmetic and has no medicine/supplement form words.
-        if STRONG_COSMETIC.search(title) and not STRONG_MED.search(title) and not re.search(r"\bpads?\b|diaper|sanitiz|lice|minoxidil|k-y|lubricant", title, re.I):
+        if STRONG_COSMETIC.search(title) and not STRONG_MED.search(title) and not re.search(r"\bpads?\b|diaper|sanitiz|lice|minoxidil|k-y|lubricant|toothpaste|tooth|dental|mounjaro|tirzepatide|semaglutide", title, re.I):
             return "keep", ""
         return "exclude", f"title:{m.group(0).strip().lower()}"
     return "keep", ""
