@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createHmac } from "node:crypto";
 import app from "../server/index.mjs";
 import { commercialPublishGateBlockReason } from "./batch-gate.mjs";
+import { validateManusProducts } from "../server/integrations/manus.mjs";
 
 assert.equal(typeof app, "function");
 assert.equal(typeof app.get, "function");
@@ -130,8 +131,8 @@ try {
   assert.equal(metaStatusBody.publishReadyProducts[0]?.sku, "DERMAELLE007");
 
   await assertAuthRequired(`http://127.0.0.1:${port}/api/manus/status`);
-
-  const manusImport = await fetch(`http://127.0.0.1:${port}/api/manus/import`, {
+  await assertAuthRequired(`http://127.0.0.1:${port}/api/manus/connectors`);
+  await assertAuthRequired(`http://127.0.0.1:${port}/api/manus/import`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ products: [
@@ -140,12 +141,18 @@ try {
       { name: "Missing SKU" }
     ]})
   });
-  assert.equal(manusImport.status, 200);
-  const manusBody2 = await manusImport.json();
-  assert.equal(manusBody2.validCount, 1);
-  assert.equal(manusBody2.duplicateSkuCount, 1);
-  assert.equal(manusBody2.invalidCount, 1);
-  assert.equal(manusBody2.publishable, false);
+
+  // Pure local validation only; no Manus task or external application action is called.
+  const manusValidation = validateManusProducts([
+    { sku: "PM-MANUS-001", name: "Manus Product A" },
+    { sku: "PM-MANUS-001", name: "Duplicate" },
+    { name: "Missing SKU" }
+  ]);
+  assert.equal(manusValidation.validCount, 1);
+  assert.equal(manusValidation.duplicateSkuCount, 1);
+  assert.equal(manusValidation.invalidCount, 1);
+  assert.equal(manusValidation.publishable, false);
+  assert.equal(manusValidation.gate, "CLOSED");
 
   await assertAuthRequired(`http://127.0.0.1:${port}/api/woocommerce/status`);
   await assertAuthRequired(`http://127.0.0.1:${port}/api/salla/status`);

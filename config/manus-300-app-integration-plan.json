@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "owner": "PM COSMETICS HUB",
+  "goal": {
+    "minimumVerifiedApps": 300,
+    "actualVerifiedApps": null,
+    "status": "NOT_MEASURED"
+  },
+  "architecture": [
+    {
+      "id": "manus_native_mcp",
+      "purpose": "Authorized app connectors and custom MCP servers",
+      "mode": "read_only_first"
+    },
+    {
+      "id": "zapier_make_hub",
+      "purpose": "Long-tail application coverage and event-driven workflows",
+      "mode": "per_workflow_approval"
+    },
+    {
+      "id": "direct_vendor_api",
+      "purpose": "High-value systems requiring exact contracts and reconciliation",
+      "mode": "least_privilege"
+    }
+  ],
+  "measurement": {
+    "countOnlyAfter": [
+      "account_authorized",
+      "connector_or_workflow_id_recorded",
+      "read_only_smoke_test_passed",
+      "owner_and_scopes_recorded",
+      "last_verified_at_recorded"
+    ],
+    "exclude": [
+      "catalog_entry_only",
+      "theoretical_zapier_support",
+      "unverified_oauth",
+      "disabled_workflow",
+      "unknown_owner"
+    ]
+  },
+  "pilotOrder": [
+    "GitHub",
+    "Railway",
+    "Shopify",
+    "Airtable",
+    "Supabase",
+    "Notion",
+    "OneDrive or Google Drive",
+    "Gmail or Outlook",
+    "Slack or monday.com",
+    "Amplitude"
+  ],
+  "requiredSecrets": [
+    "MANUS_API_TOKEN"
+  ],
+  "requiredFeatureFlags": [
+    "MANUS_CONNECTOR_INVENTORY_ENABLED=true"
+  ],
+  "endpoints": {
+    "connectorInventory": "GET /api/manus/connectors",
+    "providerApi": "GET https://api.manus.ai/v2/connector.list"
+  },
+  "safety": {
+    "defaultMode": "READ_ONLY",
+    "commercialPublishGate": "CLOSED",
+    "productEvidenceGate": "CLOSED_UNLESS_INDEPENDENTLY_VERIFIED",
+    "allowManusTaskCreation": false,
+    "allowThirdPartyWrites": false,
+    "allowCustomerMessages": false,
+    "allowCommercePublishing": false,
+    "noSecretsInGitHubOrResponses": true
+  },
+  "sources": [
+    "https://open.manus.ai/docs/v2/connectors",
+    "https://open.manus.ai/docs/v2/connector.list",
+    "https://www.manus.im/features"
+  ]
+}
