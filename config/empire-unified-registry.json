@@ -241,10 +241,10 @@
     "snapchatRouting": true,
     "telegramRouting": true,
     "currentAssessment": {
-      "githubMainHead": "3d7a96d905afa9949a903088a3a13a03b167dbce",
-      "railwayRuntimeCommit": null,
-      "railwayRuntimeVerification": "NOT_CERTIFIED_IN_CURRENT_SESSION",
-      "reason": "Railway runtime evidence was not returned in the current session; the current GitHub main head is 3d7a96d905afa9949a903088a3a13a03b167dbce, while Railway running SHA remains unobserved.",
+      "githubMainHead": "630278da896da29b644de30b0f279ac40d443881",
+      "railwayRuntimeCommit": "bc032422f256ec02ecd7a2c02565590fbe16cfd8",
+      "railwayRuntimeVerification": "NOT_CERTIFIED_STALE_RUNTIME",
+      "reason": "Railway /api/health reports commitSha bc032422f256ec02ecd7a2c02565590fbe16cfd8, which is 32 commits behind GitHub main 630278da896da29b644de30b0f279ac40d443881 (2026-10-15). Railway is stale; routing and account changes from 2026-10-14/15 are not live. bc032422 is an unsigned auto-assign workflow commit that main later reverted (79ab084) pending owner review; its origin is unconfirmed. /api/health also reports gate CLOSED together with commercialCatalogLive true, a conflict that needs an owner decision.",
       "globalCommercialPublishGate": "POLICY_CLOSED"
     }
   },
@@ -262,7 +262,7 @@
     {
       "id": "railway",
       "status": "connected_runtime_unverified",
-      "detail": "Current session has no independent runtime proof (running commit SHA + /api/health); current GitHub main is 3d7a96d905afa9949a903088a3a13a03b167dbce. Prior deployment metadata is historical and not accepted as current-runtime evidence."
+      "detail": "Railway /api/health reports commitSha bc032422f256ec02ecd7a2c02565590fbe16cfd8; GitHub main is 630278da896da29b644de30b0f279ac40d443881, 32 commits ahead (2026-10-15). Railway is stale and does not yet serve the 2026-10-14/15 routing and account changes. Prior deployment metadata is historical and not accepted as current-runtime evidence."
     },
     {
       "id": "supabase",
