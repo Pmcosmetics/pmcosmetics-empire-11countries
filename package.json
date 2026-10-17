@@ -12,7 +12,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "validate": "node scripts/validate.mjs && node scripts/validate-catalog.mjs && node scripts/validate-inventory.mjs && node scripts/template-gate.mjs",
-    "test": "node scripts/test-gate.mjs",
+    "test": "node scripts/test-gate.mjs && node scripts/test-auth.mjs",
     "test:watch": "jest --watch",
     "deploy": "npm run build && npm run validate",
     "start": "node scripts/start.mjs",
@@ -29,7 +29,6 @@
     "helmet": "^7.1.0",
     "jsonschema": "^1.4.1",
     "lodash": "^4.17.21",
-    "morgan": "^1.10.0",
     "multer": "2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

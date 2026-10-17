@@ -7,9 +7,27 @@ const SUPABASE_URL = (process.env.SUPABASE_URL || authIdentityConfig.supabaseUrl
 const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || "";
 
 const normalizeEmail = (value) => String(value || "").trim().toLowerCase();
-const allowedEmails = new Set(
-  (authIdentityConfig.allowedEmails || []).map(normalizeEmail).filter(Boolean),
-);
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function buildAllowedEmailSet(values) {
+  if (!Array.isArray(values)) {
+    throw new Error("AUTH_ALLOWLIST_INVALID");
+  }
+
+  const normalized = values.map(normalizeEmail);
+  if (normalized.length === 0 || normalized.some((email) => !EMAIL_PATTERN.test(email))) {
+    throw new Error("AUTH_ALLOWLIST_INVALID");
+  }
+
+  const allowed = new Set(normalized);
+  if (allowed.size === 0) {
+    throw new Error("AUTH_ALLOWLIST_EMPTY");
+  }
+  return allowed;
+}
+
+// Fail startup rather than silently running with a missing or malformed allowlist.
+const allowedEmails = buildAllowedEmailSet(authIdentityConfig.allowedEmails);
 
 export const isAllowedEmail = (email) => allowedEmails.has(normalizeEmail(email));
 
@@ -33,6 +51,7 @@ export async function verifyAccessToken(accessToken) {
   }
 
   try {
+    // Supabase Auth validates the bearer token server-side and returns the authoritative user record.
     const response = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
       method: "GET",
       headers: {
@@ -43,24 +62,41 @@ export async function verifyAccessToken(accessToken) {
       signal: AbortSignal.timeout(10000),
     });
 
-    const body = await response.text();
     if (!response.ok) {
+      // Provider-side outages are not evidence that a user's token is invalid.
+      if (response.status >= 500 || response.status === 429) {
+        return {
+          ok: false,
+          reason: "AUTH_PROVIDER_UNAVAILABLE",
+          status: 503,
+          providerStatus: response.status,
+        };
+      }
       return {
         ok: false,
         reason: "AUTH_TOKEN_INVALID",
-        status: 401,
+        status: response.status === 401 ? 403 : response.status,
         providerStatus: response.status,
       };
     }
 
-    const user = JSON.parse(body);
+    const user = await response.json();
     const email = normalizeEmail(user?.email);
-    if (!email || !isAllowedEmail(email)) {
+
+    // Supabase's user record uses email_confirmed_at; do not trust client-supplied claims.
+    if (!email || !user?.email_confirmed_at) {
+      return {
+        ok: false,
+        reason: "AUTH_EMAIL_NOT_VERIFIED",
+        status: 403,
+      };
+    }
+
+    if (!isAllowedEmail(email)) {
       return {
         ok: false,
         reason: "AUTH_EMAIL_NOT_ALLOWED",
         status: 403,
-        email: email || null,
       };
     }
 
