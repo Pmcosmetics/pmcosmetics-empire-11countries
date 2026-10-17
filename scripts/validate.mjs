@@ -51,7 +51,7 @@ if (!server.includes('app.post("/api/shopify/webhook"')) throw new Error("Shopif
 if (!server.includes('x-shopify-hmac-sha256')) throw new Error("Shopify webhook HMAC guard is missing");
 
 if (!catalogHtml.includes('<script src="/catalog.js" defer></script>')) throw new Error("Catalog client script must be loaded as a same-origin external asset for CSP compatibility");
-if (/<script(?![^>]*\bsrc=)[^>]*>[\s\\S]*?<\/script>/i.test(catalogHtml)) throw new Error("Inline catalog script is blocked by the default Content Security Policy");
+if (/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/i.test(catalogHtml)) throw new Error("Inline catalog script is blocked by the default Content Security Policy");
 if (/\son[a-z]+\s*=/i.test(catalogHtml) || /\sonerror\s*=/i.test(catalogScript)) throw new Error("Inline catalog event handlers are blocked by the default Content Security Policy");
 if (!catalogScript.includes('addEventListener("error"')) throw new Error("Catalog image fallback must use an event listener instead of inline onerror");
 console.log("Validation passed: dynamic commercial gate contract, staging provenance rules, Gate CLOSED default, products API lock, and CSP-safe catalog script");
