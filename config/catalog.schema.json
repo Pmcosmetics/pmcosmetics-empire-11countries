@@ -50,10 +50,9 @@
         "Makeup",
         "Fragrance",
         "Tools",
-        "Supplements",
         "Bundles"
       ],
-      "description": "Product category"
+      "description": "Cosmetics-only product category. Non-cosmetic supplements and medicines are out of scope."
     },
     "subcategory": {
       "type": "string",
