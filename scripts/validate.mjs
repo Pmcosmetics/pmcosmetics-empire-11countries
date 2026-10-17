@@ -28,7 +28,7 @@ const imageReadme = await read("data/images/real/README.md");
 const serverContract = await read("scripts/batch-gate.mjs");
 
 if (!catalogHtml.includes('<script src="/catalog.js" defer></script>')) throw new Error("Catalog must load its script as an external CSP-compatible asset");
-if (/<script(?![^>]*\\bsrc=)[^>]*>[\\s\\S]*?<\\/script>/i.test(catalogHtml)) throw new Error("Inline script found in catalog and would be blocked by the default CSP");
+if (/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/i.test(catalogHtml)) throw new Error("Inline script found in catalog and would be blocked by the default CSP");
 if (!catalogScript.includes('fetch(CSV_URL') || !catalogScript.includes('fetch("/api/markets")')) throw new Error("Catalog network-loading logic is missing");
 
 if (!server.includes("COMMERCIAL_PUBLISH_GATE")) throw new Error("Commercial gate environment contract is missing");
