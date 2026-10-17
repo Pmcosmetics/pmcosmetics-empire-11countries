@@ -10,6 +10,8 @@ const required = [
   "server/integrations/salla.mjs",
   "docs/SALLA-INTEGRATION.md",
   "scripts/batch-gate.mjs",
+  "public/catalog.html",
+  "public/catalog.js",
   "app/intake/README.md",
   "data/products/README.md",
   "data/images/real/README.md",
@@ -19,9 +21,15 @@ const required = [
 for (const file of required) await read(file);
 
 const server = await read("server/index.mjs");
+const catalogHtml = await read("public/catalog.html");
+const catalogScript = await read("public/catalog.js");
 const productReadme = await read("data/products/README.md");
 const imageReadme = await read("data/images/real/README.md");
 const serverContract = await read("scripts/batch-gate.mjs");
+
+if (!catalogHtml.includes('<script src="/catalog.js" defer></script>')) throw new Error("Catalog must load its script as an external CSP-compatible asset");
+if (/<script(?![^>]*\\bsrc=)[^>]*>[\\s\\S]*?<\\/script>/i.test(catalogHtml)) throw new Error("Inline script found in catalog and would be blocked by the default CSP");
+if (!catalogScript.includes('fetch(CSV_URL') || !catalogScript.includes('fetch("/api/markets")')) throw new Error("Catalog network-loading logic is missing");
 
 if (!server.includes("COMMERCIAL_PUBLISH_GATE")) throw new Error("Commercial gate environment contract is missing");
 if (!server.includes('process.env.COMMERCIAL_PUBLISH_GATE || "CLOSED"')) throw new Error("Commercial gate default CLOSED contract is missing");
