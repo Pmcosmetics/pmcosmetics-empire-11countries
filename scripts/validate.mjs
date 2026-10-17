@@ -19,6 +19,8 @@ const required = [
 for (const file of required) await read(file);
 
 const server = await read("server/index.mjs");
+const catalogHtml = await read("public/catalog.html");
+const catalogScript = await read("public/catalog.js");
 const productReadme = await read("data/products/README.md");
 const imageReadme = await read("data/images/real/README.md");
 const serverContract = await read("scripts/batch-gate.mjs");
@@ -48,4 +50,8 @@ if (!server.includes('x-hub-signature-256')) throw new Error("WhatsApp webhook s
 if (!server.includes('app.post("/api/shopify/webhook"')) throw new Error("Shopify webhook route is missing");
 if (!server.includes('x-shopify-hmac-sha256')) throw new Error("Shopify webhook HMAC guard is missing");
 
-console.log("Validation passed: dynamic commercial gate contract, staging provenance rules, Gate CLOSED default, and products API lock");
+if (!catalogHtml.includes('<script src="/catalog.js" defer></script>')) throw new Error("Catalog client script must be loaded as a same-origin external asset for CSP compatibility");
+if (/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/i.test(catalogHtml)) throw new Error("Inline catalog script is blocked by the default Content Security Policy");
+if (/\son[a-z]+\s*=/i.test(catalogHtml) || /\sonerror\s*=/i.test(catalogScript)) throw new Error("Inline catalog event handlers are blocked by the default Content Security Policy");
+if (!catalogScript.includes('addEventListener("error"')) throw new Error("Catalog image fallback must use an event listener instead of inline onerror");
+console.log("Validation passed: dynamic commercial gate contract, staging provenance rules, Gate CLOSED default, products API lock, and CSP-safe catalog script");
