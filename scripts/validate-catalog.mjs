@@ -2,6 +2,10 @@ import { readFile } from "node:fs/promises";
 
 const schema = JSON.parse(await readFile("config/catalog.schema.json", "utf8"));
 if (schema?.properties?.brand?.type !== "string") throw new Error("Catalog brand must accept the full brand catalog");
+const allowedCategories = ["Skincare", "Haircare", "Body Care", "Makeup", "Fragrance", "Tools", "Bundles"];
+if (JSON.stringify(schema?.properties?.category?.enum) !== JSON.stringify(allowedCategories)) {
+  throw new Error("Catalog categories must remain cosmetics-only; non-cosmetic categories are out of scope");
+}
 const skuPattern = schema?.properties?.sku?.pattern;
 if (!skuPattern) throw new Error("Catalog SKU pattern is missing");
 
